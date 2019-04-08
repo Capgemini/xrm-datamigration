@@ -1,6 +1,7 @@
 ﻿using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Resiliency.Polly;
 using Capgemini.Xrm.Datamigration.Examples.Properties;
+using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.CrmStore.Config;
 using Capgemini.Xrm.DataMigration.Engine;
 using Capgemini.Xrm.DataMigration.Repositories;
@@ -29,9 +30,9 @@ namespace Capgemini.Xrm.Datamigration.Examples
                 Directory.CreateDirectory(exportFolderPath);
            
             var cancellationTokenSource = new CancellationTokenSource();
-
             var serviceClient = new CrmServiceClient(connectionString);
-
+            var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
+            var logger = new ConsoleLogger();
             var exportConfig = new CrmExporterConfig()
             {
                 BatchSize = 1000,
@@ -44,11 +45,14 @@ namespace Capgemini.Xrm.Datamigration.Examples
                 CrmMigrationToolSchemaPaths = new List<string>() {schemaPath}
             };
 
-            var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
+            // Json Export
+            var fileExporterJson = new CrmFileDataExporter(logger, entityRepo, exportConfig, cancellationTokenSource.Token);
+            fileExporterJson.MigrateData();
 
-            var fileExporter = new CrmFileDataExporter(new ConsoleLogger(), entityRepo, exportConfig, cancellationTokenSource.Token);
-
-            fileExporter.MigrateData();
+            // Csv Export
+            var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
+            var fileExporterCsv = new CrmFileDataExporterCsv(logger, entityRepo, exportConfig, cancellationTokenSource.Token, schema);
+            fileExporterCsv.MigrateData();
         }
 
         static string GetConfigSchemaPath()
