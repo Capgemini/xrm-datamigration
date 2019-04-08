@@ -18,7 +18,7 @@ Something here
 
 ## Usage
 
-The engine supports two file formats JSON and CSV and has been used for a number of scenarios on a number of projects.  The engine is extremely flexible and supports the migration of simple reference data entities (e.g. Titles, Countries) to more complex scenarios around Security Roles and Teams.  See wiki for a fuller list of examples (link).
+The engine supports two file formats JSON and CSV and has been used for a number of scenarios on a number of projects.  It is extremely flexible and supports the migration of simple reference data entities (e.g. Titles, Countries) to more complex scenarios around Security Roles and Teams.  See wiki for a fuller list of examples (link).
 
 Other features of the engine are the support for many-to-many relationships, application of filters, building relations via composite keys and GUID mappings. 
 
