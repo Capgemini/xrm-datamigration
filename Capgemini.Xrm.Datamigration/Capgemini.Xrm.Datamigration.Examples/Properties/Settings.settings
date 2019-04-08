@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Capgemini.Xrm.Datamigration.Examples.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CrmExportConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Url = https://sourcerepo.dynamics.com; Username=xxxx; Password=xxxx; AuthType=Office365; RequireNewInstance=True;</Value>
+    </Setting>
+    <Setting Name="CrmImportConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Url = https://targetrepo.crm4.dynamics.com; Username=xxx; Password=xxxx; AuthType=Office365; RequireNewInstance=True;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
