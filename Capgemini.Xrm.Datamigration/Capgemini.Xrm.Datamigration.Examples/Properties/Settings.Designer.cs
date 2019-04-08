@@ -25,7 +25,8 @@ namespace Capgemini.Xrm.Datamigration.Examples.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CRM Connection string")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Url = https://sourcerepo.dynamics.com; Username=xxxx; Password=xxxx; AuthType=Off" +
+            "ice365; RequireNewInstance=True;")]
         public string CrmExportConnectionString {
             get {
                 return ((string)(this["CrmExportConnectionString"]));
@@ -34,7 +35,8 @@ namespace Capgemini.Xrm.Datamigration.Examples.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CRM Connection string")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Url = https://targetrepo.crm4.dynamics.com; Username=xxx; Password=xxxx; AuthType" +
+            "=Office365; RequireNewInstance=True;")]
         public string CrmImportConnectionString {
             get {
                 return ((string)(this["CrmImportConnectionString"]));
