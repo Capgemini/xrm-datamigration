@@ -24,8 +24,10 @@ Other features of the engine are the support for many-to-many relationships, app
 
 The engine is controlled by three configuration files, a fuller explanation of the values can be found in the wiki.
 **DataSchema.xml** - Defines details of the entities and attributes that are to be extracted.
-**DataExport.json** – Holds details of the schema to use, filters to be applied and other run controls.  See wiki for a more details explanation
-**DataImport.json** - Holds details of the location and prefix of the Exported files that are to be loaded
+
+**DataExport.json** – Holds details of the schema to use, filters to be applied and other run controls.  See wiki for a more details explanation.
+
+**DataImport.json** - Holds details of the location and prefix of the Exported files that are to be loaded.
 
 ## Contributing
 
