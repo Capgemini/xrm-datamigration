@@ -42,14 +42,14 @@ In the target CRM instance you can check if all contacts are created.
 
 ## Usage
 
-Create a new console app and add Capgemini.Xrm.DataMigration Nuget
+Create a new console app and add [Capgemini.Xrm.DataMigration](https://www.nuget.org/packages/Capgemini.Xrm.DataMigration.Engine) Nuget
 ![nugetScreen.png](./.attachments/nugetScreen.png)
 
 Xrm DataMigration Engine classes are available to be used in any custom scenario eg.
 
 *Export Example*
 ```c#
-static void ExportData(string connectionString, string schemaPath, string exportFolderPath)
+        static void ExportData(string connectionString, string schemaPath, string exportFolderPath)
         {
             if (!Directory.Exists(exportFolderPath))
                 Directory.CreateDirectory(exportFolderPath);
