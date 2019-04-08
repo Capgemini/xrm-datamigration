@@ -18,7 +18,7 @@ Something here
 
 ## Usage
 
-Something here
+The engine supports two file formats JSON and CSV.
 
 ## Contributing
 
