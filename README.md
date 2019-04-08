@@ -2,7 +2,7 @@
 
 ## Description
 
-This Data Migration project provides a flexible powerful engine based on the CRM SDK which allows CRM Dynamics Configuration, Reference and Seed data to be extracted, stored in version control and loaded to target instances.  This allows data to be managed in the same way as code and a release can be created that can load the required data to support the released functionality.
+This Data Migration project provides a flexible powerful engine based on the XRM SDK which allows CRM Dynamics Configuration, Reference and Seed data to be extracted, stored in version control and loaded to target instances.  This allows data to be managed in the same way as code and a release can be created that can load the required data to support the released functionality.
 
 ## Table Of Contents
 1. [Description](#Description)  
@@ -19,7 +19,7 @@ Create a new console app and add Capgemini.Xrm.DataMigration Nuget
 
 ## Usage
 
-The engine supports two file formats JSON and CSV and has been used for a number of scenarios on a number of projects.  The engine is extremely flexible and supports the migration of simple reference data entities (e.g. Titles, Countries) to more complex scenarios around Security Roles and Teams.  See wiki for a fuller list of examples (link).
+The engine supports two file formats JSON and CSV and has been used for a number of scenarios on a number of projects.  It is extremely flexible and supports the migration of simple reference data entities (e.g. Titles, Countries) to more complex scenarios around Security Roles and Teams.  See wiki for a fuller list of examples (link).
 
 Other features of the engine are the support for many-to-many relationships, application of filters, building relations via composite keys and GUID mappings. 
 
@@ -32,24 +32,12 @@ The engine is controlled by three configuration files, a fuller explanation of t
 
 ## Contributing
 
-Something here
+To contribute to this project, report any bugs, submit new feature requests, submit changes via pull requests or even join in the overall design of the tool.
 
 ## Credits
 
-Something here
-
-
-Line
-Line
-Line
-Line
-Line
-Line
-Line
-Line
-
-
-
-
+Special thanks to the entire Capgemini community for their support in developing this tool.
 
 ## License
+
+The Xrm Solution Audit is released under the [MIT](LICENSE) license.
