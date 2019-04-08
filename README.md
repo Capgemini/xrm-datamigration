@@ -39,4 +39,4 @@ Special thanks to the entire Capgemini community for their support in developing
 
 ## License
 
-The Xrm Solution Audit is released under the MIT license.
+The Xrm Solution Audit is released under the [MIT](LICENSE) license.
