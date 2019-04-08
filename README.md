@@ -20,6 +20,13 @@ Something here
 
 The engine supports two file formats JSON and CSV and has been used for a number of scenarios on a number of projects.  The engine is extremely flexible and supports the migration of simple reference data entities (e.g. Titles, Countries) to more complex scenarios around Security Roles and Teams.  See wiki for a fuller list of examples (link).
 
+Other features of the engine are the support for many-to-many relationships, application of filters, building relations via composite keys and GUID mappings. 
+
+The engine is controlled by three configuration files, a fuller explanation of the values can be found in the wiki.
+**DataSchema.xml** - Defines details of the entities and attributes that are to be extracted.
+**DataExport.json** – Holds details of the schema to use, filters to be applied and other run controls.  See wiki for a more details explanation
+**DataImport.json** - Holds details of the location and prefix of the Exported files that are to be loaded
+
 ## Contributing
 
 Something here
