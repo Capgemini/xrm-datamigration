@@ -31,24 +31,12 @@ The engine is controlled by three configuration files, a fuller explanation of t
 
 ## Contributing
 
-Something here
+To contribute to this project, report any bugs, submit new feature requests, submit changes via pull requests or even join in the overall design of the tool.
 
 ## Credits
 
-Something here
-
-
-Line
-Line
-Line
-Line
-Line
-Line
-Line
-Line
-
-
-
-
+Special thanks to the entire Capgemini community for their support in developing this tool.
 
 ## License
+
+The Xrm Solution Audit is released under the MIT license.
