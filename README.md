@@ -15,7 +15,7 @@ This Data Migration project provides a flexible powerful engine based on the XRM
 ## Installation
 
 Create a new console app and add Capgemini.Xrm.DataMigration Nuget
-![AddNugetScreen.png](.attachments/AddNugetScreen.png)
+![AddNugetScreen.png](./.attachments/AddNugetScreen.png)
 
 ## Usage
 
