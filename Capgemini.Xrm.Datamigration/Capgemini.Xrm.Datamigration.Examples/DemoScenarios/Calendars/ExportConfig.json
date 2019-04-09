@@ -1,0 +1,23 @@
+{
+  "CrmMigrationToolSchemaPaths": [
+    "GetAutomatically"
+  ],
+  "JsonFolderPath": "GetAutomatically",
+  "PageSize": 500,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "OneEntityPerBatch": true,
+  "FilePrefix": "Calendars",
+  "SeperateFilesPerEntity": true,
+  "CrmMigrationToolSchemaFilters": {
+    "calendar": "<filter type=\"or\"> <condition attribute=\"type\" operator=\"in\"><value>1</value><value>2</value></condition>  </filter> "
+  },
+  "LookupMapping": {
+    "calendar": {
+      "businessunitid": [
+        "name"
+      ]
+    }
+  }
+}

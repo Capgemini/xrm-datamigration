@@ -122,6 +122,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DemoScenarios\Calendars\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\Calendars\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DemoScenarios\Contacts\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
