@@ -105,7 +105,8 @@ namespace Capgemini.Xrm.Datamigration.Examples
             var importConfig = new CrmImportConfig()
             {
                 FilePrefix = $"Demo{Settings.Default.DemoScenarioName}",
-                SaveBatchSize = 50
+                SaveBatchSize = 50,
+                JsonFolderPath = GetExportPath(),
             };
 
             var filePath = $"{GetScenarioPath()}\\ImportConfig.json";
@@ -129,7 +130,10 @@ namespace Capgemini.Xrm.Datamigration.Examples
                 FilePrefix = $"Demo{Settings.Default.DemoScenarioName}",
                 OneEntityPerBatch = true,
                 SeperateFilesPerEntity = true,
-                TopCount = 10000
+                TopCount = 10000,
+                CrmMigrationToolSchemaFilters = new Dictionary<string, string> { },
+                JsonFolderPath = GetExportPath(),
+                CrmMigrationToolSchemaPaths = new List<string>() { GetSchemaPath() }
             };
 
             var filePath = $"{GetScenarioPath()}\\ExportConfig.json";

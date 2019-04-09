@@ -1,4 +1,8 @@
 {
+  "CrmMigrationToolSchemaPaths": [
+    "GetAutomatically"
+  ],
+  "JsonFolderPath": "GetAutomatically",
   "PageSize": 500,
   "BatchSize": 1000,
   "TopCount": 10000,
