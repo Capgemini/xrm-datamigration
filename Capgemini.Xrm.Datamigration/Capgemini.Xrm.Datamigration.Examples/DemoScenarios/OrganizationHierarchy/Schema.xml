@@ -1,0 +1,34 @@
+<entities >
+  <entity name="businessunit" displayname="Business Unit" etc="10" primaryidfield="businessunitid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Business Unit" name="businessunitid" type="guid" primaryKey="true" />
+      <field displayname="Email" name="emailaddress" type="string" />
+      <field displayname="Name" name="name" type="string" />
+      <field displayname="Parent Business" name="parentbusinessunitid" type="entityreference" lookupType="businessunit" />
+      <field displayname="Website" name="websiteurl" type="string" />
+    </fields>
+  </entity>
+  <entity name="team" displayname="Team" etc="9" primaryidfield="teamid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Team" name="teamid" type="guid" primaryKey="true" />
+      <field displayname="Team Name" name="name" type="string" />
+      <field displayname="Team Type" name="teamtype" type="optionsetvalue" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" lookupType="businessunit" />
+      <field displayname="Description" name="description" type="string" />
+      <field displayname="Email" name="emailaddress" type="string" />
+    </fields>
+    <relationships>
+      <relationship name="teamroles" manyToMany="true" isreflexive="false" relatedEntityName="teamroles" m2mTargetEntity="role" m2mTargetEntityPrimaryKey="roleid" />
+    </relationships>
+  </entity>
+  <entity name="queue" displayname="Queue" etc="2020" primaryidfield="queueid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Queue Type" name="queuetypecode" type="optionsetvalue" />
+      <field displayname="Queue" name="queueid" type="guid" primaryKey="true" />
+      <field displayname="Type" name="queueviewtype" type="optionsetvalue" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" lookupType="businessunit" />
+      <field displayname="Description" name="description" type="string" />
+      <field displayname="Name" name="name" type="string" />
+    </fields>
+  </entity>
+</entities>
