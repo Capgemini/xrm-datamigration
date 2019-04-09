@@ -1,5 +1,6 @@
 {
   "IgnoreStatuses": false,
+  "JsonFolderPath": "GetAutomatically",
   "IgnoreSystemFields": false,
   "SaveBatchSize": 50,
   "DeactivateAllProcesses": false,
