@@ -1,0 +1,14 @@
+{
+  "IgnoreStatuses": false,
+  "IgnoreSystemFields": false,
+  "SaveBatchSize": 50,
+  "JsonFolderPath": "C:\\GitRepos\\Capgemini\\xrm-datamigration\\Capgemini.Xrm.Datamigration\\Capgemini.Xrm.Datamigration.Examples\\bin\\Debug\\DemoScenarios\\Contacts\\ExportedData",
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "DemoContacts",
+  "PassOneReferences": [
+    "businessunit",
+    "uom",
+    "uomschedule",
+    "queue"
+  ]
+}

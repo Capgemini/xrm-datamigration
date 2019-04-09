@@ -20,14 +20,24 @@ namespace Capgemini.Xrm.Datamigration.Examples
         static void Main(string[] args)
         {
             ConsoleLogger.LogLevel = 5;
-
+            Console.WriteLine($"Using demo scenario {Settings.Default.DemoScenarioName}");
             Console.WriteLine("Exporting data - press enter to export");
             Console.ReadLine();
-            ExportData(Settings.Default.CrmExportConnectionString, GetConfigSchemaPath(), GetExportPath());
+
+            if (Directory.Exists(GetExportPath()))
+            {
+                Console.WriteLine($"Folder Exists {GetExportPath()} - press enter to delete and continue");
+                Console.ReadLine();
+                Directory.Delete(GetExportPath(), true);
+            }
+
+            Directory.CreateDirectory(GetExportPath());
+
+            ExportData(Settings.Default.CrmExportConnectionString, GetSchemaPath(), GetExportPath());
 
             Console.WriteLine("Importing data - press enter to import");
             Console.ReadLine();
-            ImportData(Settings.Default.CrmImportConnectionString, GetConfigSchemaPath(), GetExportPath());
+            ImportData(Settings.Default.CrmImportConnectionString, GetSchemaPath(), GetExportPath());
 
             Console.WriteLine("Operations completed - press enter to exit");
             Console.ReadLine();
@@ -35,71 +45,112 @@ namespace Capgemini.Xrm.Datamigration.Examples
 
         static void ExportData(string connectionString, string schemaPath, string exportFolderPath)
         {
-            if (!Directory.Exists(exportFolderPath))
-                Directory.CreateDirectory(exportFolderPath);
-           
+            Console.WriteLine("Export Started");
+
             var tokenSource = new CancellationTokenSource();
             var serviceClient = new CrmServiceClient(connectionString);
             var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
             var logger = new ConsoleLogger();
-            var exportConfig = new CrmExporterConfig()
-            {
-                BatchSize = 1000,
-                PageSize = 500,
-                FilePrefix = "EX0.1",
-                JsonFolderPath = exportFolderPath,
-                OneEntityPerBatch = true,
-                SeperateFilesPerEntity = true,
-                TopCount = 10000,
-                CrmMigrationToolSchemaPaths = new List<string>() {schemaPath}
-            };
 
             // Json Export
-            var fileExporterJson = new CrmFileDataExporter(logger, entityRepo, exportConfig, tokenSource.Token);
+            var fileExporterJson = new CrmFileDataExporter(logger, entityRepo, GetExportConfig(), tokenSource.Token);
             fileExporterJson.MigrateData();
 
             // Csv Export
             var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
-            var fileExporterCsv = new CrmFileDataExporterCsv(logger, entityRepo, exportConfig, tokenSource.Token, schema);
+            var fileExporterCsv = new CrmFileDataExporterCsv(logger, entityRepo, GetExportConfig(), tokenSource.Token, schema);
             fileExporterCsv.MigrateData();
+
+            Console.WriteLine("Export Finished");
         }
 
         public static void ImportData(string connectionString, string schemaPath, string exportFolderPath)
         {
+            Console.WriteLine("Import Started");
+
             var tokenSource = new CancellationTokenSource();
             var serviceClient = new CrmServiceClient(connectionString);
             var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
             var logger = new ConsoleLogger();
 
-            var importConfig = new CrmImportConfig()
-            {
-                FilePrefix = "EX0.1",
-                JsonFolderPath = exportFolderPath,
-                SaveBatchSize = 20
-            };
-
             // Json Import
-            var fileImporterJson = new CrmFileDataImporter(logger, entityRepo, importConfig, tokenSource.Token);
+            var fileImporterJson = new CrmFileDataImporter(logger, entityRepo, GetImportConfig(), tokenSource.Token);
             fileImporterJson.MigrateData();
 
             //Csv Import
             var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
-            var fileImporterCsv = new CrmFileDataImporterCsv(logger, entityRepo, importConfig, schema, tokenSource.Token);
+            var fileImporterCsv = new CrmFileDataImporterCsv(logger, entityRepo, GetImportConfig(), schema, tokenSource.Token);
             fileImporterCsv.MigrateData();
+
+            Console.WriteLine("Import Finished");
         }
 
-        static string GetConfigSchemaPath()
+        #region Helpers
+
+        static CrmImportConfig GetImportConfig()
         {
-            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
-            var schemaPath = Path.Combine(folderPath, "ConfigExamples", "Contacts", "ContactsSchema.xml");
+            var importConfig = new CrmImportConfig()
+            {
+                FilePrefix = $"Demo{Settings.Default.DemoScenarioName}",
+                SaveBatchSize = 50
+            };
+
+            var filePath = $"{GetScenarioPath()}\\ImportConfig.json";
+
+            if (!File.Exists(filePath))
+                importConfig.SaveConfiguration(filePath);
+            else
+                importConfig = CrmImportConfig.GetConfiguration(filePath);
+
+            importConfig.JsonFolderPath = GetExportPath();
+
+            return importConfig;
+        }
+
+        static CrmExporterConfig GetExportConfig()
+        {
+            var exportConfig = new CrmExporterConfig()
+            {
+                BatchSize = 1000,
+                PageSize = 500,
+                FilePrefix = $"Demo{Settings.Default.DemoScenarioName}",
+                OneEntityPerBatch = true,
+                SeperateFilesPerEntity = true,
+                TopCount = 10000
+            };
+
+            var filePath = $"{GetScenarioPath()}\\ExportConfig.json";
+
+            if (!File.Exists(filePath))
+                exportConfig.SaveConfiguration(filePath);
+            else
+                exportConfig = CrmExporterConfig.GetConfiguration(filePath);
+
+            exportConfig.JsonFolderPath = GetExportPath();
+            exportConfig.CrmMigrationToolSchemaPaths = new List<string>() { GetSchemaPath() };
+
+            return exportConfig;
+        }
+
+        static string GetSchemaPath()
+        {
+            var schemaPath = Path.Combine(GetScenarioPath(), "Schema.xml");
             return schemaPath;
         }
 
         static string GetExportPath()
         {
-            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
-            var exportFolderPath = Path.Combine(folderPath, "ConfigExamples", "Contacts", "ExportedData");
+            var exportFolderPath = Path.Combine(GetScenarioPath(), "ExportedData");
             return exportFolderPath;
         }
+
+        static string GetScenarioPath()
+        {
+            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            var scenarioPath = Path.Combine(folderPath, "DemoScenarios", Settings.Default.DemoScenarioName);
+            return scenarioPath;
+        }
+
+        #endregion
     }
 }

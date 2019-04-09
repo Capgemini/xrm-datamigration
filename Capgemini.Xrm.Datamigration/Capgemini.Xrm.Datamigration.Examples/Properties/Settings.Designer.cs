@@ -42,5 +42,14 @@ namespace Capgemini.Xrm.Datamigration.Examples.Properties {
                 return ((string)(this["CrmImportConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Contacts")]
+        public string DemoScenarioName {
+            get {
+                return ((string)(this["DemoScenarioName"]));
+            }
+        }
     }
 }
