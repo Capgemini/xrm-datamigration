@@ -25,8 +25,17 @@ namespace Capgemini.Xrm.Datamigration.Examples.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Url = https://sourcerepo.dynamics.com; Username=xxxx; Password=xxxx; AuthType=Off" +
-            "ice365; RequireNewInstance=True;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Contacts")]
+        public string DemoScenarioName {
+            get {
+                return ((string)(this["DemoScenarioName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Url = CRMUrl; Username=user; Password=password; AuthType=Office365; RequireNewIns" +
+            "tance=True;")]
         public string CrmExportConnectionString {
             get {
                 return ((string)(this["CrmExportConnectionString"]));
@@ -35,8 +44,8 @@ namespace Capgemini.Xrm.Datamigration.Examples.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Url = https://targetrepo.crm4.dynamics.com; Username=xxx; Password=xxxx; AuthType" +
-            "=Office365; RequireNewInstance=True;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Url = CRMUrl; Username=user; Password=password; AuthType=Office365; RequireNewIns" +
+            "tance=True;")]
         public string CrmImportConnectionString {
             get {
                 return ((string)(this["CrmImportConnectionString"]));
@@ -45,10 +54,10 @@ namespace Capgemini.Xrm.Datamigration.Examples.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Contacts")]
-        public string DemoScenarioName {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseCsvImport {
             get {
-                return ((string)(this["DemoScenarioName"]));
+                return ((bool)(this["UseCsvImport"]));
             }
         }
     }

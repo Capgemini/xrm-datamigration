@@ -52,14 +52,19 @@ namespace Capgemini.Xrm.Datamigration.Examples
             var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
             var logger = new ConsoleLogger();
 
-            // Json Export
-            var fileExporterJson = new CrmFileDataExporter(logger, entityRepo, GetExportConfig(), tokenSource.Token);
-            fileExporterJson.MigrateData();
-
-            // Csv Export
-            var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
-            var fileExporterCsv = new CrmFileDataExporterCsv(logger, entityRepo, GetExportConfig(), tokenSource.Token, schema);
-            fileExporterCsv.MigrateData();
+            if (!Settings.Default.UseCsvImport)
+            {
+                // Json Export
+                var fileExporterJson = new CrmFileDataExporter(logger, entityRepo, GetExportConfig(), tokenSource.Token);
+                fileExporterJson.MigrateData();
+            }
+            else
+            {
+                // Csv Export
+                var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
+                var fileExporterCsv = new CrmFileDataExporterCsv(logger, entityRepo, GetExportConfig(), tokenSource.Token, schema);
+                fileExporterCsv.MigrateData();
+            }
 
             Console.WriteLine("Export Finished");
         }
@@ -73,14 +78,19 @@ namespace Capgemini.Xrm.Datamigration.Examples
             var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
             var logger = new ConsoleLogger();
 
-            // Json Import
-            var fileImporterJson = new CrmFileDataImporter(logger, entityRepo, GetImportConfig(), tokenSource.Token);
-            fileImporterJson.MigrateData();
-
-            //Csv Import
-            var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
-            var fileImporterCsv = new CrmFileDataImporterCsv(logger, entityRepo, GetImportConfig(), schema, tokenSource.Token);
-            fileImporterCsv.MigrateData();
+            if (!Settings.Default.UseCsvImport)
+            {
+                // Json Import
+                var fileImporterJson = new CrmFileDataImporter(logger, entityRepo, GetImportConfig(), tokenSource.Token);
+                fileImporterJson.MigrateData();
+            }
+            else
+            {
+                //Csv Import
+                var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
+                var fileImporterCsv = new CrmFileDataImporterCsv(logger, entityRepo, GetImportConfig(), schema, tokenSource.Token);
+                fileImporterCsv.MigrateData();
+            }
 
             Console.WriteLine("Import Finished");
         }
