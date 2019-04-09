@@ -10,6 +10,7 @@ using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Threading;
 
@@ -19,6 +20,8 @@ namespace Capgemini.Xrm.Datamigration.Examples
     {
         static void Main(string[] args)
         {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             ConsoleLogger.LogLevel = 5;
             Console.WriteLine($"Using demo scenario {Settings.Default.DemoScenarioName}");
             Console.WriteLine("Exporting data - press enter to export");
