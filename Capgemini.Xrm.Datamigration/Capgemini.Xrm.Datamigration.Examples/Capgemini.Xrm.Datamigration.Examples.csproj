@@ -131,6 +131,12 @@
     <None Include="DemoScenarios\Contacts\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="DemoScenarios\DuplicateDetection\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\DuplicateDetection\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DemoScenarios\OrganizationHierarchy\ExportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -158,6 +164,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DemoScenarios\ManyToMany\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DemoScenarios\DuplicateDetection\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
