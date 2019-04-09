@@ -1,0 +1,10 @@
+{
+  "PageSize": 500,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "OneEntityPerBatch": true,
+  "FilePrefix": "DemoCalendars",
+  "SeperateFilesPerEntity": true,
+  "LookupMapping": {}
+}

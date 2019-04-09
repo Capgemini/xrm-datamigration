@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.Datamigration.Examples", "Capgemini.Xrm.Datamigration.Examples\Capgemini.Xrm.Datamigration.Examples.csproj", "{2F210350-B2B6-4955-AD3F-F115658CB150}"
 EndProject
