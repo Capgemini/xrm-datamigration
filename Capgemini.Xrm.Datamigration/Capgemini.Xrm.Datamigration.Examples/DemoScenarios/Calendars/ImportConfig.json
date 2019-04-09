@@ -1,0 +1,13 @@
+{
+  "IgnoreStatuses": false,
+  "IgnoreSystemFields": false,
+  "SaveBatchSize": 50,
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "DemoCalendars",
+  "PassOneReferences": [
+    "businessunit",
+    "uom",
+    "uomschedule",
+    "queue"
+  ]
+}
