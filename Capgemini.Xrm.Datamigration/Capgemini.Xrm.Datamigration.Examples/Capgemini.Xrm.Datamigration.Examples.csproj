@@ -122,9 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="ConfigExamples\Contacts\ContactsSchema.xml">
+    <None Include="DemoScenarios\Contacts\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="DemoScenarios\Contacts\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\Contacts\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
