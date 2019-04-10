@@ -122,13 +122,37 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DemoScenarios\Calendars\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\Calendars\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DemoScenarios\Contacts\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\CrmPortals\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\CrmPortals\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\DuplicateDetection\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\DuplicateDetection\ImportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DemoScenarios\OrganizationHierarchy\ExportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DemoScenarios\OrganizationHierarchy\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\SubjectsAndArticles\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\SubjectsAndArticles\ImportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -152,6 +176,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DemoScenarios\ManyToMany\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DemoScenarios\SubjectsAndArticles\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DemoScenarios\DuplicateDetection\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DemoScenarios\OrgSettings\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DemoScenarios\CrmPortals\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
