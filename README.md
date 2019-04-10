@@ -23,29 +23,42 @@ Open example project (Capgemini.Xrm.Datamigration.Examples) and edit configurati
 ```xml
   <applicationSettings>
     <Capgemini.Xrm.Datamigration.Examples.Properties.Settings>
+      <setting name="DemoScenarioName" serializeAs="String">
+        <value>Contacts</value>
+      </setting>
       <setting name="CrmExportConnectionString" serializeAs="String">
-        <value>Url = https://sourcerepo.dynamics.com; Username=xxxx; Password=xxxx; AuthType=Office365; RequireNewInstance=True;</value>
+        <value>Url = CRMUrl; Username=user; Password=password; AuthType=Office365; RequireNewInstance=True;</value>
       </setting>
       <setting name="CrmImportConnectionString" serializeAs="String">
-        <value>Url = https://targetrepo.crm4.dynamics.com; Username=xxx; Password=xxxx; AuthType=Office365; RequireNewInstance=True;</value>
+        <value>Url = CRMUrl; Username=user; Password=password; AuthType=Office365; RequireNewInstance=True;</value>
+      </setting>
+      <setting name="UseCsvImport" serializeAs="String">
+        <value>False</value>
       </setting>
     </Capgemini.Xrm.Datamigration.Examples.Properties.Settings>
   </applicationSettings>
 ```
-Set up some contacts example in the source CRM Instance 
+
+- **DemoScenarioName** - Scenario name from the scenarios in DemoScenarios Folder :
+ <img src="./.attachments/solutionView.png" width="300">
+- **CrmExportConnectionString** - Connection string for the source Dynamics 365 instance - used by export
+- **CrmImportConnectionString** - Connection String for the target Dynamics 365 instance - used by import
+- **UseCsvImport** - True - **Csv** format used, False - **Json** files used
+
+Set up some data example in the source CRM Instance 
 
 Run the console application and follow messages
 
-In the bin folder there will be output folder and files with exported data created:
+In the bin folder there will be output folder and files with exported data created, eg. running **Contacts** scenario
 
-![outputFilesExample.png](./.attachments/outputFilesExample.png)
+<img src="./.attachments/outputFilesExample.png" width="550">
 
-In the target CRM instance you can check if all contacts are created.
+In the target CRM instance you can check if all data is created as expected.
 
 ## Usage
 
 Create a new console app and add [Capgemini.Xrm.DataMigration](https://www.nuget.org/packages/Capgemini.Xrm.DataMigration.Engine) Nuget
-![nugetScreen.png](./.attachments/nugetScreen.png)
+<img src="./.attachments/nugetScreen.png" width="700">
 
 Xrm DataMigration Engine classes are available to be used in any custom scenario eg.
 
