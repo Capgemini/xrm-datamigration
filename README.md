@@ -105,6 +105,21 @@ Set up some data example in the source CRM Instance
 
 To execute run Capgemini.Xrm.Datamigration.Examples.exe
 
+When prompted confirm the scenario being executed
+
+<img src="./.attachments/ExecuteConfirm.png" width="700">
+
+Prior to Export you will be prompted about the Export folder the data will be exported to
+
+<img src="./.attachments/ConfirmExportFolder.png" width="700">
+
+Once Export complete you will be asked to confirm if you wish to continue with the Import.  At this point it is possible to verify the data exported in the ExportData folder which is created in the specific Demo folder you are executing.  For example   C:\DataMigEngine\DemoScenarios\Contacts\ExportedData
+
+<img src="./.attachments/ImportComplete.png" width="700">
+
+Following import you will receive confirmation and you can verify the data in the target CRM Instance
+
+<img src="./.attachments/ExecutionComplete.png" width="700">
 
 
 
