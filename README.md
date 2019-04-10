@@ -16,6 +16,8 @@ This Data Migration project provides a flexible powerful engine based on the XRM
 
 ## Installation
 
+###Visual Studio Instructions
+
 Clone the [Git Repository](https://github.com/Capgemini/xrm-datamigration)
 
 Open example project (Capgemini.Xrm.Datamigration.Examples) and edit configuration file (App.config):
