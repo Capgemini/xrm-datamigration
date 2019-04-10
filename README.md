@@ -115,7 +115,7 @@ Prior to Export you will be prompted about the Export folder the data will be ex
 
 Once Export complete you will be asked to confirm if you wish to continue with the Import.  At this point it is possible to verify the data exported in the ExportData folder which is created in the specific Demo folder you are executing.  For example   C:\DataMigEngine\DemoScenarios\Contacts\ExportedData
 
-<img src="./.attachments/ImportComplete.jpg" width="700">
+<img src="./.attachments/ImportConfirm.jpg" width="700">
 
 Following import you will receive confirmation and you can verify the data in the target CRM Instance
 
