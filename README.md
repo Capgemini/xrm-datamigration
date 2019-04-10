@@ -67,10 +67,6 @@ Unblock the zip and extract the contents
 
 <img src="./.attachments/UnblockZipScreen.png" width="700">
 
-Unblock the zip and extract the contents
-
-<img src="./.attachments/UnblockZipScreen.png" width="700">
-
 As part of the package there are a number of examples in the Demo Scenarios folder
 
 <img src="./.attachments/DemoScenariosScreen.png" width="700">
@@ -100,12 +96,14 @@ Edit configuration file:
   </applicationSettings>
 ```
 
-- **DemoScenarioName** - Scenario name from the scenarios in DemoScenarios Folder :<img src="./.attachments/solutionView.png" width="300">
+- **DemoScenarioName** - Scenario name from the scenarios in DemoScenarios Folder
 - **CrmExportConnectionString** - Connection string for the source Dynamics 365 instance - used by export
 - **CrmImportConnectionString** - Connection String for the target Dynamics 365 instance - used by import
 - **UseCsvImport** - True - **Csv** format used, False - **Json** files used
 
 Set up some data example in the source CRM Instance 
+
+To execute run Capgemini.Xrm.Datamigration.Examples.exe
 
 
 
