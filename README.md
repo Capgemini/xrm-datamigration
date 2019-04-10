@@ -61,19 +61,19 @@ In the target CRM instance you can check if all data is created as expected.
 
 Download the [Latest Release](https://github.com/Capgemini/xrm-datamigration/releases)
 
-<img src="./.attachments/LatestReleaseScreen.png" width="700">
+<img src="./.attachments/LatestReleaseScreen.jpg" width="700">
 
 Unblock the zip and extract the contents
 
-<img src="./.attachments/UnblockZipScreen.png" width="700">
+<img src="./.attachments/UnblockZipScreen.jpg" width="700">
 
 As part of the package there are a number of examples in the Demo Scenarios folder
 
-<img src="./.attachments/DemoScenariosScreen.png" width="700">
+<img src="./.attachments/DemoScenariosScreen.jpg" width="700">
 
 To execute a scenario navigate to the Capgemini.Xrm.Datamigration.Examples.exe.config file and edit the file
 
-<img src="./.attachments/ConfigFileScreen.png" width="700">
+<img src="./.attachments/ConfigFileScreen.jpg" width="700">
 
 Edit configuration file:
 
@@ -107,19 +107,19 @@ To execute run Capgemini.Xrm.Datamigration.Examples.exe
 
 When prompted confirm the scenario being executed
 
-<img src="./.attachments/ExecuteConfirm.png" width="700">
+<img src="./.attachments/ExecuteConfirm.jpg" width="700">
 
 Prior to Export you will be prompted about the Export folder the data will be exported to
 
-<img src="./.attachments/ConfirmExportFolder.png" width="700">
+<img src="./.attachments/ConfirmExportFolder.jpg" width="700">
 
 Once Export complete you will be asked to confirm if you wish to continue with the Import.  At this point it is possible to verify the data exported in the ExportData folder which is created in the specific Demo folder you are executing.  For example   C:\DataMigEngine\DemoScenarios\Contacts\ExportedData
 
-<img src="./.attachments/ImportComplete.png" width="700">
+<img src="./.attachments/ImportComplete.jpg" width="700">
 
 Following import you will receive confirmation and you can verify the data in the target CRM Instance
 
-<img src="./.attachments/ExecutionComplete.png" width="700">
+<img src="./.attachments/ExecutionComplete.jpg" width="700">
 
 
 
