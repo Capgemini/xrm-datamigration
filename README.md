@@ -16,7 +16,7 @@ This Data Migration project provides a flexible powerful engine based on the XRM
 
 ## Installation
 
-###Visual Studio Instructions
+### Visual Studio Instructions
 
 Clone the [Git Repository](https://github.com/Capgemini/xrm-datamigration)
 
@@ -55,6 +55,60 @@ In the bin folder there will be output folder and files with exported data creat
 <img src="./.attachments/outputFilesExample.png" width="550">
 
 In the target CRM instance you can check if all data is created as expected.
+
+
+### Command Line Instructions
+
+Download the [Latest Release](https://github.com/Capgemini/xrm-datamigration/releases)
+
+<img src="./.attachments/LatestReleaseScreen.png" width="700">
+
+Unblock the zip and extract the contents
+
+<img src="./.attachments/UnblockZipScreen.png" width="700">
+
+Unblock the zip and extract the contents
+
+<img src="./.attachments/UnblockZipScreen.png" width="700">
+
+As part of the package there are a number of examples in the Demo Scenarios folder
+
+<img src="./.attachments/DemoScenariosScreen.png" width="700">
+
+To execute a scenario navigate to the Capgemini.Xrm.Datamigration.Examples.exe.config file and edit the file
+
+<img src="./.attachments/ConfigFileScreen.png" width="700">
+
+Edit configuration file:
+
+```xml
+  <applicationSettings>
+    <Capgemini.Xrm.Datamigration.Examples.Properties.Settings>
+      <setting name="DemoScenarioName" serializeAs="String">
+        <value>Contacts</value>
+      </setting>
+      <setting name="CrmExportConnectionString" serializeAs="String">
+        <value>Url = CRMUrl; Username=user; Password=password; AuthType=Office365; RequireNewInstance=True;</value>
+      </setting>
+      <setting name="CrmImportConnectionString" serializeAs="String">
+        <value>Url = CRMUrl; Username=user; Password=password; AuthType=Office365; RequireNewInstance=True;</value>
+      </setting>
+      <setting name="UseCsvImport" serializeAs="String">
+        <value>False</value>
+      </setting>
+    </Capgemini.Xrm.Datamigration.Examples.Properties.Settings>
+  </applicationSettings>
+```
+
+- **DemoScenarioName** - Scenario name from the scenarios in DemoScenarios Folder :<img src="./.attachments/solutionView.png" width="300">
+- **CrmExportConnectionString** - Connection string for the source Dynamics 365 instance - used by export
+- **CrmImportConnectionString** - Connection String for the target Dynamics 365 instance - used by import
+- **UseCsvImport** - True - **Csv** format used, False - **Json** files used
+
+Set up some data example in the source CRM Instance 
+
+
+
 
 ## Usage
 
