@@ -41,8 +41,7 @@ Open example project (Capgemini.Xrm.Datamigration.Examples) and edit configurati
   </applicationSettings>
 ```
 
-- **DemoScenarioName** - Scenario name from the scenarios in DemoScenarios Folder :
- <img src="./.attachments/solutionView.png" width="300">
+- **DemoScenarioName** - Scenario name from the scenarios in DemoScenarios Folder :<img src="./.attachments/solutionView.png" width="300">
 - **CrmExportConnectionString** - Connection string for the source Dynamics 365 instance - used by export
 - **CrmImportConnectionString** - Connection String for the target Dynamics 365 instance - used by import
 - **UseCsvImport** - True - **Csv** format used, False - **Json** files used
