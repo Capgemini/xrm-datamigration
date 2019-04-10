@@ -20,7 +20,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
     {
         static void Main(string[] args)
         {
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        //    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             ConsoleLogger.LogLevel = 5;
             Console.WriteLine($"Using demo scenario {Settings.Default.DemoScenarioName}");
