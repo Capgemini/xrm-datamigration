@@ -45,7 +45,9 @@ Open example project (Capgemini.Xrm.Datamigration.Examples) and edit configurati
 - **CrmImportConnectionString** - Connection String for the target Dynamics 365 instance - used by import
 - **UseCsvImport** - True - **Csv** format used, False - **Json** files used
 
-Set up some data example in the source CRM Instance 
+The example project will extract data from one CRM instance (Export Instance) to a folder and then will subsequently load the data into a second CRM istance (Import Instance).
+
+Initially set up some data in the Export CRM Instance 
 
 Run the console application and follow messages
 
@@ -53,12 +55,12 @@ In the bin folder there will be output folder and files with exported data creat
 
 <img src="./.attachments/outputFilesExample.png" width="550">
 
-In the target CRM instance you can check if all data is created as expected.
+In the Import CRM instance you can check if all the data is created as expected.
 
 
 ### Command Line Instructions
 
-Download the [Latest Release](https://github.com/Capgemini/xrm-datamigration/releases)
+Download the [Latest Release](https://github.com/Capgemini/xrm-datamigration/releases) of Capgemini.Xrm.DataMigration.Engine.zip
 
 <img src="./.attachments/LatestReleaseScreen.jpg" width="700">
 
@@ -66,11 +68,11 @@ Unblock the zip and extract the contents
 
 <img src="./.attachments/UnblockZipScreen.jpg" width="700">
 
-As part of the package there are a number of examples in the Demo Scenarios folder
+As part of the package there are a number of examples in the Demo Scenarios folder.  Please visit the [Examples](https://github.com/Capgemini/xrm-datamigration/wiki/Examples) wiki page for more details on the examples
 
 <img src="./.attachments/DemoScenariosScreen.jpg" width="700">
 
-To execute a scenario navigate to the Capgemini.Xrm.Datamigration.Examples.exe.config file and edit the file
+To execute a scenario navigate to the Capgemini.Xrm.Datamigration.Examples.exe.config file and edit the file.  You can create your own scenarions by adding aditional DemoScenarios folders and creating your own configuration files.
 
 <img src="./.attachments/ConfigFileScreen.jpg" width="700">
 
@@ -100,7 +102,7 @@ Edit configuration file:
 - **CrmImportConnectionString** - Connection String for the target Dynamics 365 instance - used by import
 - **UseCsvImport** - True - **Csv** format used, False - **Json** files used
 
-Set up some data example in the source CRM Instance 
+Initially set up some data in the Export CRM Instance 
 
 To execute run Capgemini.Xrm.Datamigration.Examples.exe
 
@@ -112,7 +114,7 @@ Prior to Export you will be prompted about the Export folder the data will be ex
 
 <img src="./.attachments/ConfirmExportFolder.jpg" width="700">
 
-Once Export complete you will be asked to confirm if you wish to continue with the Import.  At this point it is possible to verify the data exported in the ExportData folder which is created in the specific Demo folder you are executing.  For example   C:\DataMigEngine\DemoScenarios\Contacts\ExportedData
+Once the data export part of the process completes you will be asked to confirm if you wish to continue and import the data to the Import CRM instance.  At this point it is possible to verify the data exported in the ExportData folder which is created in the specific Demo folder you are executing.  For example   C:\........\DemoScenarios\Contacts\ExportedData
 
 <img src="./.attachments/ImportConfirm.jpg" width="700">
 
