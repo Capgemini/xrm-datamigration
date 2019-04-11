@@ -7,7 +7,6 @@ Build Status [![Build status](https://capgeminiuk.visualstudio.com/Capgemini%20R
 This Data Migration project provides a flexible powerful engine based on the XRM SDK which allows CRM Dynamics Configuration, Reference and Seed data to be extracted, stored in version control and loaded to target instances.  This allows data to be managed in the same way as code and a release can be created that can load the required data to support the released functionality.
 
 ## Table Of Contents
-1. [Description](#Description)  
 1. [Installation](#Installation)
 1. [Usage](#Usage)
 1. [Contributing](#Contributing)
@@ -213,4 +212,4 @@ Special thanks to the entire Capgemini community for their support in developing
 
 ## License
 
-The Xrm Solution Audit is released under the [MIT](LICENSE) license.
+The Xrm Data Migration is released under the [MIT](LICENSE) license.
