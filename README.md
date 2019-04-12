@@ -4,7 +4,7 @@ Build Status [![Build status](https://capgeminiuk.visualstudio.com/Capgemini%20R
 
 ## Description
 
-This Data Migration project provides a flexible powerful engine based on the XRM SDK which allows CRM Dynamics Configuration, Reference and Seed data to be extracted, stored in version control and loaded to target instances.  This allows data to be managed in the same way as code and a release can be created that can load the required data to support the released functionality.
+This Data Migration project provides a flexible powerful engine based on the XRM SDK which allows CRM Dynamics Configuration, Reference and Seed data to be extracted, stored in version control and loaded to target instances.  The engine supports two file formats JSON and CSV and supports the migration of simple reference data entities (e.g. Titles, Countries) to more complex scenarios around Security Roles and Teams. This allows data to be managed in the same way as code and a release can be created that can load the required data to support the released functionality.
 
 ## Table Of Contents
 1. [Installation](#Installation)
@@ -193,14 +193,14 @@ Xrm DataMigration Engine classes are available to be used in any custom scenario
 ```
 
 
-The engine supports two file formats JSON and CSV and has been used for a number of scenarios on a number of projects.  It is extremely flexible and supports the migration of simple reference data entities (e.g. Titles, Countries) to more complex scenarios around Security Roles and Teams.  See wiki for a fuller list of examples (link).
+The engine has been used for a number of scenarios on a number of projects.  See wiki for a list of examples (link).
 
-Other features of the engine are the support for many-to-many relationships, application of filters, building relations via composite keys and GUID mappings. 
+Features of the engine include the support for many-to-many relationships, application of filters, building relations via composite keys and GUID mappings. 
 
 The engine is controlled by three configuration files, a fuller explanation of the values can be found in the wiki.
 **DataSchema.xml** - Defines details of the entities and attributes that are to be extracted.
 
-**DataExport.json** – Holds details of the schema to use, filters to be applied and other run controls.  See wiki for a more details explanation.
+**DataExport.json** – Holds details of the schema to use, filters to be applied and other run controls.
 
 **DataImport.json** - Holds details of the location and prefix of the Exported files that are to be loaded.
 
