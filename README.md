@@ -193,7 +193,7 @@ Xrm DataMigration Engine classes are available to be used in any custom scenario
 ```
 
 
-The engine has been used for a number of scenarios on a number of projects.  See wiki for a list of examples (link).
+The engine has been used for a number of scenarios on a number of projects.  See wiki for a list of [examples](https://github.com/Capgemini/xrm-datamigration/wiki/Examples).
 
 Features of the engine include the support for many-to-many relationships, application of filters, building relations via composite keys and GUID mappings. 
 
