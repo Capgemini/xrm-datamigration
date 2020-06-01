@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="systemuser" displayname="User" etc="8" primaryidfield="systemuserid" primarynamefield="fullname" disableplugins="false">
+    <fields>
+      <field displayname="User Name" name="domainname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Last Name" name="lastname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="First Name" name="firstname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="User" name="systemuserid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Access Mode" name="accessmode" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+    </fields>
+     <relationships>
+      <relationship name="systemuserprofiles" manyToMany="true" isreflexive="false" relatedEntityName="systemuserprofiles" m2mTargetEntity="fieldsecurityprofile" m2mTargetEntityPrimaryKey="fieldsecurityprofileid" />
+      <relationship name="systemuserroles" manyToMany="true" isreflexive="false" relatedEntityName="systemuserroles" m2mTargetEntity="role" m2mTargetEntityPrimaryKey="roleid" />
+      <relationship name="teammembership" manyToMany="true" isreflexive="false" relatedEntityName="teammembership" m2mTargetEntity="team" m2mTargetEntityPrimaryKey="teamid" />
+    </relationships>
+  </entity>
+  <entity name="usersettings" displayname="User Settings" etc="150" primaryidfield="systemuserid" disableplugins="false">
+    <fields>
+      <field displayname="" name="dateseparator" type="string" primaryKey="false" customfield="false" />
+      <field displayname="" name="systemuserid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="" name="userprofile" type="string" primaryKey="false" customfield="false" />
+      <field displayname="" name="dateformatstring" type="string" primaryKey="false" customfield="false" />
+      <field displayname="" name="timeseparator" type="string" primaryKey="false" customfield="false" />
+      <field displayname="" name="currencysymbol" type="string" primaryKey="false" customfield="false" />
+      <field displayname="" name="decimalsymbol" type="string" primaryKey="false" customfield="false" />
+      <field displayname="" name="timeformatstring" type="string" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+ </entities>

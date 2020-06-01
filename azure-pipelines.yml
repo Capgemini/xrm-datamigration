@@ -1,0 +1,100 @@
+trigger:
+  - master
+pool:
+  vmImage: 'windows-latest'
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'any cpu'
+  buildConfiguration: 'Release'
+stages:
+  - stage: Build
+    jobs:
+    - job: BuildJob
+      displayName: Build
+      steps:
+        - task: NuGetToolInstaller@1
+          displayName: Install NuGet
+        - task: NuGetCommand@2
+          displayName: Restore packages
+          inputs:
+            restoreSolution: '$(solution)'
+        - task: VSBuild@1
+          displayName: Build solution
+          inputs:
+            solution: '$(solution)'
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+        - task: NuGetCommand@2
+          displayName: Pack NuGet package
+          inputs:
+            command: pack
+            packagesToPack: src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj
+            includeReferencedProjects: true
+            packDestination: '$(Build.ArtifactStagingDirectory)/package'
+        - task: CopyFiles@2
+          displayName: Copy tests to staging directory
+          inputs:
+            Contents: '**/$(buildConfiguration)/**'
+            SourceFolder: tests
+            TargetFolder: '$(Build.ArtifactStagingDirectory)/tests'
+        - publish: $(Build.ArtifactStagingDirectory)/package
+          displayName: Publish NuGet artifact
+          artifact: Capgemini.Xrm.DataMigration.Engine
+        - publish: $(Build.ArtifactStagingDirectory)/tests
+          displayName: Publish tests
+          artifact: Capgemini.Xrm.DataMigration.Tests
+  - stage: Test
+    dependsOn: Build
+    jobs:
+    - job: TestJob
+      displayName: Test
+      steps:
+        - checkout: none
+        - download: current
+          displayName: Download tests artifact
+          artifact: Capgemini.Xrm.DataMigration.Tests
+        - task: VSTest@2
+          displayName: Run tests
+          inputs:
+            searchFolder: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Tests
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+            codeCoverageEnabled: true
+            testAssemblyVer2: |
+             **\*Tests*.dll
+             !**\*Integration*.dll
+             !**\obj\**
+  - stage: PublishtoPrivateFeed
+    displayName: Publish to Private Feed
+    jobs:
+      - job: PublishPrivateJob
+        displayName: Publish to Private Feed
+        steps:
+          - checkout: none
+          - download: current
+            displayName: Download NuGet package artifact
+            artifact: Capgemini.Xrm.DataMigration.Engine
+          - task: NuGetCommand@2
+            displayName: 'Push to private feed'
+            inputs:
+              command: push
+              packagesToPush: '$(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg'
+              publishVstsFeed: 'e64f1ace-b73a-42b0-8b8e-4b2fdbdac2c9'
+  - stage: PublishToPublicFeed
+    displayName: Publish to Public Feed
+    dependsOn: PublishtoPrivateFeed
+    condition: succeeded()
+    jobs:
+      - deployment:
+        environment: 'nuget-org'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+              - task: NuGetCommand@2
+                displayName: 'Push NuGet Package'
+                inputs:
+                  command: push
+                  packagesToPush: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg
+                  nuGetFeedType: external
+                  publishFeedCredentials: CapgeminiUkKey             

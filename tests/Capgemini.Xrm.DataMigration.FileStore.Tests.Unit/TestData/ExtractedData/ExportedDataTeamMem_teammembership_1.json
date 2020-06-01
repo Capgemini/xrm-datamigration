@@ -1,0 +1,668 @@
+{
+  "RecordsCount": 17,
+  "ExportedEntities": [
+    {
+      "LogicalName": "teammembership",
+      "Id": "2991599a-9b55-e711-8105-5065f38a4a21",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "***REMOVED***"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "81734a60-9b55-e711-8105-5065f38a4a21+b3228218-b8f6-4a1b-a18d-552c6f980831"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "3453b125-954b-e711-8104-5065f38aea41",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "dbf2f63332554437983fdfce4414f47ekkarampudi@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "a7f4dc43-504f-e711-8104-5065f38aea41",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "mewing@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "60cef439-06aa-e711-8111-5065f38aea41",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "satya.kar@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "d5588511-504f-e711-8105-5065f38b3681",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "lbenting@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "7366a9b0-0e02-e811-8120-5065f38b3681",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "joao.zorro_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "7d965af5-7f20-e811-8123-5065f38b3681",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "oleksandr.krasnoshchok@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "fa6d313f-2772-e711-810a-5065f38b6621",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "ksulikowski@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "71a3f64d-0d02-e811-8122-5065f38b6621",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "kriss.sulikowski_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "3564877f-2821-e811-8125-5065f38b6621",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "mark.cunningham@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "28a770be-4313-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "***REMOVED***"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "076c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "joao.zorro@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "116c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "kriss.sulikowski@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "1b6c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "Ben.Hosking@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "256c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "Dmitriy.Kraevoy@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "268102d6-de75-e711-810c-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "liam.charlesworth-dakin@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "teammembership",
+      "Id": "a85b6898-b2c3-e711-811b-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "tom.carrisi@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "team",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.teamid.team.businessunitid",
+          "AttributeValue": {
+            "AttributeLogicalName": "businessunitid",
+            "EntityLogicalName": "team",
+            "Value": {
+              "Id": "f25678b8-4313-e711-8103-5065f38bd511",
+              "LogicalName": "businessunit",
+              "Name": "capgeminibasedev",
+              "KeyAttributes": []
+            }
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    }
+  ]
+}

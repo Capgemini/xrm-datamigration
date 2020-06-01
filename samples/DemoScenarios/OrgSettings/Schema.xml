@@ -1,0 +1,12 @@
+<entities >
+  <entity name="organization" displayname="Organization" etc="1019" primaryidfield="organizationid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Full Name Display Order" name="fullnameconventioncode" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Restrict Status Update" name="restrictstatusupdate" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Auto Save Enabled" name="isautosaveenabled" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Cascade Status Update" name="cascadestatusupdate" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Is Auditing Enabled" name="isauditenabled" type="bool" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+</entities>

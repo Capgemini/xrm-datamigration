@@ -1,0 +1,1463 @@
+{
+  "RecordsCount": 18,
+  "ExportedEntities": [
+    {
+      "LogicalName": "usersettings",
+      "Id": "2c53b125-954b-e711-8104-5065f38aea41",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "dbf2f63332554437983fdfce4414f47ekkarampudi@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "9ff4dc43-504f-e711-8104-5065f38aea41",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "mewing@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "58cef439-06aa-e711-8111-5065f38aea41",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "satya.kar@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "cd588511-504f-e711-8105-5065f38b3681",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "lbenting@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "6b66a9b0-0e02-e811-8120-5065f38b3681",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "joao.zorro_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "75965af5-7f20-e811-8123-5065f38b3681",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "oleksandr.krasnoshchok@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "f26d313f-2772-e711-810a-5065f38b6621",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "ksulikowski@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "69a3f64d-0d02-e811-8122-5065f38b6621",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "kriss.sulikowski_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "2d64877f-2821-e811-8125-5065f38b6621",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "mark.cunningham@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "5a521a9d-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "crmoln@microsoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "ff6b8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "joao.zorro@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "096c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "kriss.sulikowski@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "136c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "Ben.Hosking@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "1d6c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "Dmitriy.Kraevoy@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "1e8102d6-de75-e711-810c-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "liam.charlesworth-dakin@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "a05b6898-b2c3-e711-811b-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "tom.carrisi@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "3c76faca-6d76-4369-8f00-9d27a83e1115",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "crmoln2@microsoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    },
+    {
+      "LogicalName": "usersettings",
+      "Id": "8425adb1-c4bb-44c6-bd69-e487fa70d026",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "***REMOVED***"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "decimalsymbol",
+          "AttributeValue": ".",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateseparator",
+          "AttributeValue": "/",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "uilanguageid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatstring",
+          "AttributeValue": "M/d/yyyy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencysymbol",
+          "AttributeValue": "$",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "longdateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timezonecode",
+          "AttributeValue": 92,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "dateformatcode",
+          "AttributeValue": 2,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "timeseparator",
+          "AttributeValue": ":",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "timeformatstring",
+          "AttributeValue": "h:mm tt",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "currencyformatcode",
+          "AttributeValue": 0,
+          "AttributeType": "System.Int32"
+        },
+        {
+          "AttributeName": "localeid",
+          "AttributeValue": 1033,
+          "AttributeType": "System.Int32"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "IgnoreStatuses": false,
+  "IgnoreSystemFields": true,
+  "MigrationConfig": {
+    "ApplyAliasMapping": true,
+    "SourceRootBUName": "superdevelop",
+    "Mappings": {}
+  },
+  "SaveBatchSize": 200,
+  "JsonFolderPath": "Extract",
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "DS0.1",
+  "EntitiesToSync": [
+    "ds_visittype"
+  ],
+  "PassOneReferences": [
+    "businessunit",
+    "subject",
+    "routingrule",
+    "queue",
+    "sla",
+    "uom",
+    "uomschedule",
+    "product",
+    "pricelevel"
+  ],
+  "ObjectTypeCodeMappingConfig": {
+    "EntityToTypeCodeMapping": {
+      "ds_requesttovest": 10113
+    },
+    "FieldsToSearchForMapping": [
+      "primaryentityotc"
+    ]
+  },
+  "NoUpdateEntities": [
+    "ds_configurationparameter"
+  ]
+}

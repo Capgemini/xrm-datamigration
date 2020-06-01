@@ -1,0 +1,30 @@
+{
+  "CrmMigrationToolSchemaPaths": [
+    "PostDeployDataSchema.xml"
+  ],
+  "CrmMigrationToolSchemaFilters": {
+    "sla": "<filter type=\"and\"><condition attribute=\"statecode\" value=\"1\" operator=\"eq\"/></filter>",
+    "workflow": "<filter type=\"and\"><condition attribute=\"type\" operator=\"eq\" value=\"1\" /><filter type=\"or\"><condition attribute=\"name\" operator=\"like\" value=\"%SLA\" /><condition attribute=\"workflowid\" operator=\"eq\" value=\"{2b78a5ce-9e94-4087-8e4c-a7f0300a595c}\" /><condition attribute=\"workflowid\" operator=\"eq\" value=\"{949f1f5a-98a8-4ae4-bd43-40d0369a4408}\" /><condition attribute=\"workflowid\" operator=\"eq\" value=\"{986e65e7-1bfb-4afc-ac0d-bb152b2a421a}\" /><condition attribute=\"workflowid\" operator=\"eq\" value=\"{15ce3fed-0e36-413e-8ade-0e8951e7b6f1}\" /><condition attribute=\"workflowid\" operator=\"eq\" value=\"{836dfc97-ef67-4cf0-b33b-2844400a70c4}\" /></filter></filter>",
+    "team": "<filter type=\"and\"><condition attribute=\"teamtype\" value=\"0\" operator=\"eq\"/><condition attribute=\"isdefault\" value=\"false\" operator=\"eq\"/><condition attribute=\"businessunitid\" value=\"{932ECBF3-5031-E911-A978-0022480149C2}\" operator=\"eq\" uitype=\"businessunit\" uiname=\"Developer Services\"/></filter>"
+  },
+  "LookupMapping": {
+    "teamroles": {
+      "roleid": [
+        "name",
+        "businessunitid"
+      ],
+      "teamid": [
+        "name",
+        "businessunitid"
+      ]
+    }
+  },
+  "PageSize": 1000,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "JsonFolderPath": "Extract",
+  "OneEntityPerBatch": true,
+  "FilePrefix": "DS0.1",
+  "SeperateFilesPerEntity": true
+}

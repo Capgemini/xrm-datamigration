@@ -1,0 +1,24 @@
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <entity name="list" displayname="Marketing List" etc="4300" primaryidfield="listid" primarynamefield="listname" disableplugins="false">
+    <fields>
+      <field displayname="Cost" name="cost" type="money" />
+      <field displayname="Cost (Base)" name="cost_base" type="money" />
+      <field displayname="Description" name="description" type="string" />
+      <field displayname="Exchange Rate" name="exchangerate" type="decimal" />
+      <field displayname="Exclude Members Who Opt Out" name="donotsendonoptout" type="bool" />
+      <field updateCompare="true" displayname="List" name="listid" type="guid" primaryKey="true" />
+      <field displayname="Locked" name="lockstatus" type="bool" />
+      <field displayname="Member Type" name="membertype" type="number" />
+      <field displayname="Members Count" name="membercount" type="number" />
+      <field displayname="Name" name="listname" type="string" />
+      <field displayname="Purpose" name="purpose" type="string" />
+      <field displayname="Query" name="query" type="string" />
+      <field displayname="Source" name="source" type="string" />
+      <field displayname="Status" name="statecode" type="state" />
+      <field displayname="Status Reason" name="statuscode" type="status" />
+      <field displayname="Time Zone Rule Version Number" name="timezoneruleversionnumber" type="number" />
+      <field displayname="Type" name="type" type="bool" />
+      <field displayname="Marketing List Member Type" name="createdfromcode" type="optionsetvalue" />
+    </fields>
+  </entity>
+ </entities>

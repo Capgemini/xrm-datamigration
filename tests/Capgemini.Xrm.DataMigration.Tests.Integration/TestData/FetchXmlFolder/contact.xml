@@ -1,0 +1,6 @@
+﻿<fetch>
+  <entity name="contact">
+    <attribute name="firstname" />
+    <attribute name="lastname" />
+  </entity>
+</fetch>

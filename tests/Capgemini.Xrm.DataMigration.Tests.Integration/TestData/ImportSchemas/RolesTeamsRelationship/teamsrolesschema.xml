@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <entity name="team" displayname="Team" etc="9" primaryidfield="teamid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Team" name="teamid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Team Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+    </fields>
+    <relationships>
+      <relationship name="teamroles" manyToMany="true" isreflexive="false" relatedEntityName="teamroles" m2mTargetEntity="role" m2mTargetEntityPrimaryKey="roleid" />
+    </relationships>
+  </entity>
+</entities>

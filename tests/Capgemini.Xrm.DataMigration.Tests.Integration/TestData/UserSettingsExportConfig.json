@@ -1,0 +1,61 @@
+{
+  "ExcludedFields": [
+    "systemuserid",
+    "roleid",
+    "teamid",
+    "fieldsecurityprofileid",
+    "systemuserprofilesid",
+    "systemuserrolesid",
+    "teammembershipid",
+    "businessunitid"
+  ],
+  "CrmMigrationToolSchemaPaths": [
+    "C:\\GitRepos\\Capgemini.Xrm.DataMigrationNHSBT\\Capgemini.Xrm.DataMigration\\Capgemini.Xrm.DataMigration.IntegrationTests\\bin\\Debug\\ImportSchemas\\UserSettings\\usersettingsschema.xml"
+  ],
+  "PageSize": 500,
+  "BatchSize": 500,
+  "TopCount": 100000,
+  "OnlyActiveRecords": false,
+  "JsonFolderPath": "C:\\GitRepos\\Capgemini.Xrm.DataMigrationNHSBT\\Capgemini.Xrm.DataMigration\\Capgemini.Xrm.DataMigration.IntegrationTests\\bin\\Debug\\ImportSchemas\\UserSettings\\ExtractedData",
+  "OneEntityPerBatch": true,
+  "FilePrefix": "ExportedData",
+  "SeperateFilesPerEntity": true,
+  "LookupMapping": {
+    "systemuser": {
+      "businessunitid": [
+        "name"
+      ]
+    },
+    "systemuserroles": {
+      "systemuserid": [
+        "domainname"
+      ],
+      "roleid": [
+        "name",
+        "businessunitid"
+      ]
+    },
+    "teammembership": {
+      "systemuserid": [
+        "domainname"
+      ],
+      "teamid": [
+        "name",
+        "businessunitid"
+      ]
+    },
+    "systemuserprofiles": {
+      "systemuserid": [
+        "domainname"
+      ],
+      "fieldsecurityprofileid": [
+        "name"
+      ]
+    },
+    "usersettings": {
+      "systemuserid": [
+        "domainname"
+      ]
+    }
+  }
+}

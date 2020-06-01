@@ -1,0 +1,765 @@
+{
+  "RecordsCount": 20,
+  "ExportedEntities": [
+    {
+      "LogicalName": "systemuser",
+      "Id": "2c53b125-954b-e711-8104-5065f38aea41",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Krish",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "dbf2f63332554437983fdfce4414f47ekkarampudi@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 1
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Karampudi",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "9ff4dc43-504f-e711-8104-5065f38aea41",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Max",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "mewing@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Ewing",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "58cef439-06aa-e711-8111-5065f38aea41",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Satya",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "satya.kar@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Kar",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "cd588511-504f-e711-8105-5065f38b3681",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Luke",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "lbenting@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Benting",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "6b66a9b0-0e02-e811-8120-5065f38b3681",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Joao",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "joao.zorro_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Zorro",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "75965af5-7f20-e811-8123-5065f38b3681",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Oleksandr",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "oleksandr.krasnoshchok@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Krasnoshchok",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "f26d313f-2772-e711-810a-5065f38b6621",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "#",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "ksulikowski@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 1
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "ksulikowski",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "69a3f64d-0d02-e811-8122-5065f38b6621",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Kriss",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "kriss.sulikowski_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Sulikowski",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "2d64877f-2821-e811-8125-5065f38b6621",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Mark",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "mark.cunningham@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Cunningham",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "5a521a9d-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Support",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "crmoln@microsoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 3
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "User",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "ff6b8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Joao",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "joao.zorro@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Zorro",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "096c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Krzysztof",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "kriss.sulikowski@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Sulikowski",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "136c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Ben",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "Ben.Hosking@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 1
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Hosking",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "1d6c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Dmitriy",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "Dmitriy.Kraevoy@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Kraevoy",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "1e8102d6-de75-e711-810c-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Liam",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "liam.charlesworth-dakin@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 1
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Charlesworth-Dakin",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "a05b6898-b2c3-e711-811b-5065f38bd511",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Tom",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "tom.carrisi@capgeminicrmuk.onmicrosoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Carrisi",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "1b14019d-319f-453a-8b9f-97191ed02e91",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "INTEGRATION",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "3c76faca-6d76-4369-8f00-9d27a83e1115",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "Delegated Admin",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "crmoln2@microsoft.com",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 5
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "d3cba011-bb1a-4097-a271-ba477fc80cf0",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "SYSTEM",
+          "AttributeType": "System.String"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuser",
+      "Id": "8425adb1-c4bb-44c6-bd69-e487fa70d026",
+      "IsManyToMany": false,
+      "Attributes": [
+        {
+          "AttributeName": "firstname",
+          "AttributeValue": "CI",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "domainname",
+          "AttributeValue": "***REMOVED***",
+          "AttributeType": "System.String"
+        },
+        {
+          "AttributeName": "accessmode",
+          "AttributeValue": {
+            "Value": 0
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.OptionSetValue"
+        },
+        {
+          "AttributeName": "map.businessunitid.isRootBU.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "businessunit",
+            "Value": "capgeminibasedev"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "lastname",
+          "AttributeValue": "Auth",
+          "AttributeType": "System.String"
+        }
+      ]
+    }
+  ]
+}

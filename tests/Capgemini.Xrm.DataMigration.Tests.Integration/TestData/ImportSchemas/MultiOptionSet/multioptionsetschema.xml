@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="cap_multiselect" displayname="multiselect" etc="10096" primaryidfield="cap_multiselectid" primarynamefield="cap_name" disableplugins="false">
+    <fields>
+      <field displayname="Alphabets" name="cap_alphabets" type="optionsetvaluecollection" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="cap_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="multiselect" name="cap_multiselectid" type="guid" primaryKey="true" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+</entities>

@@ -1,0 +1,15 @@
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="appointment" displayname="Appointment" etc="4201" primaryidfield="activityid" primarynamefield="subject" disableplugins="false">
+    <fields>
+      <field displayname="Service" name="serviceid" type="entityreference" lookupType="service" />
+      <field displayname="Regarding" name="regardingobjectid" type="entityreference" lookupType="account|bookableresourcebooking|bookableresourcebookingheader|bulkoperation|campaign|campaignactivity|cdi_automation|cdi_bulktxtmessage|cdi_emailcname|cdi_emailsend|cdi_emailtemplate|cdi_event|cdi_eventparticipation|cdi_executesocialpost|cdi_formcapture|cdi_import|cdi_importlog|cdi_iporganization|cdi_nurturebuilder|cdi_pageview|cdi_postedfield|cdi_postedform|cdi_postedsubscription|cdi_postedsurvey|cdi_subscriptionlist|cdi_subscriptionpreference|cdi_surveyanswer|cdi_surveyquestion|cdi_unsubscribe|cdi_visit|cdi_webcontent|contact|contract|entitlement|entitlementtemplate|incident|invoice|knowledgearticle|knowledgebaserecord|lead|msdyn_postalbum|opportunity|quote|salesorder" />
+      <field displayname="Optional Attendees" name="optionalattendees" type="partylist" />
+      <field displayname="Activity Type" name="activitytypecode" type="string" />
+      <field displayname="Actual Start" name="actualstart" type="datetime" />
+      <field displayname="Appointment" name="activityid" type="guid" primaryKey="true" />
+      <field displayname="Appointment Type" name="instancetypecode" type="optionsetvalue" />
+      <field displayname="Attendee" name="requiredattendees" type="partylist" />
+      <field displayname="Category" name="category" type="string" />
+    </fields>
+  </entity>
+</entities>
