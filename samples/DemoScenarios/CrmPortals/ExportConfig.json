@@ -1,0 +1,18 @@
+{
+  "CrmMigrationToolSchemaPaths": [
+    "GetAutomatically"
+  ],
+  "JsonFolderPath": "GetAutomatically",
+  "PageSize": 500,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "OneEntityPerBatch": true,
+  "FilePrefix": "CrmPortals",
+  "SeperateFilesPerEntity": true,
+  "CrmMigrationToolSchemaFilters": {
+    "adx_sitesetting": "<filter> <condition attribute=\"adx_name\" value=\"Authentication/OpenAuth/%\" operator=\"not-like\"/> </filter>"
+  },
+  "LookupMapping": {
+  }
+}

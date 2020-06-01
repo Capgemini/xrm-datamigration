@@ -1,0 +1,148 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{455BA3AB-820B-446F-B23A-EEF48F7C5316}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2F3EA3B1-B2CB-40AC-A2F5-58BF7E3F5594}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F6D0C3C-ABF4-4E8F-8BEF-3E014B8FEF07}"
+	ProjectSection(SolutionItems) = preProject
+		stylecop.json = stylecop.json
+		LICENSE = LICENSE
+		README.md = README.md
+		GlobalSuppressions.cs = GlobalSuppressions.cs
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Samples", "samples\Capgemini.Xrm.DataMigration.Samples.csproj", "{2F210350-B2B6-4955-AD3F-F115658CB150}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.FileStore", "src\Capgemini.Xrm.DataMigration.FileStore\Capgemini.Xrm.DataMigration.FileStore.csproj", "{15394533-D8AE-4F0F-9263-BE9E94F12336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Engine", "src\Capgemini.Xrm.DataMigration.Engine\Capgemini.Xrm.DataMigration.Engine.csproj", "{0FB0162D-0B31-4C5B-A657-F4F3579778EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.CrmStore", "src\Capgemini.Xrm.DataMigration.CrmStore\Capgemini.Xrm.DataMigration.CrmStore.csproj", "{DDB8DE01-5FDC-4F9C-9C26-BDC4F3436A10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Core", "src\Capgemini.Xrm.DataMigration.Core\Capgemini.Xrm.DataMigration.Core.csproj", "{B9C0E463-C42A-4F5C-BD36-E69C93C959B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Cli", "src\Capgemini.Xrm.DataMigration.Cli\Capgemini.Xrm.DataMigration.Cli.csproj", "{FF1CAA60-E675-450B-BC29-A03930E33CFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataMigration.Resiliency.Polly", "src\Capgemini.DataMigration.Resiliency.Polly\Capgemini.DataMigration.Resiliency.Polly.csproj", "{D2AFCCC9-6459-41EC-8C0E-9EEE45FFF507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataMigration.Core", "src\Capgemini.DataMigration.Core\Capgemini.DataMigration.Core.csproj", "{C8B84AF3-31DD-44AE-80CD-13AB60549F7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataMigration.Core.Tests.Base", "tests\Capgemini.DataMigration.Core.Tests.Base\Capgemini.DataMigration.Core.Tests.Base.csproj", "{DC7AE702-E957-455F-A0C4-630FF6827601}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Tests.Integration", "tests\Capgemini.Xrm.DataMigration.Tests.Integration\Capgemini.Xrm.DataMigration.Tests.Integration.csproj", "{42785ABF-1469-4788-BF62-D3E14264F5F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.FileStore.Tests.Unit", "tests\Capgemini.Xrm.DataMigration.FileStore.Tests.Unit\Capgemini.Xrm.DataMigration.FileStore.Tests.Unit.csproj", "{E3F232AA-FDBC-4716-A233-87DB51608ED8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Engine.Tests.Unit", "tests\Capgemini.Xrm.DataMigration.Engine.Tests.Unit\Capgemini.Xrm.DataMigration.Engine.Tests.Unit.csproj", "{FC634FD6-B3C6-4205-ABDF-5FD3BAEB2E69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.CrmStore.Tests.Unit", "tests\Capgemini.Xrm.DataMigration.CrmStore.Tests.Unit\Capgemini.Xrm.DataMigration.CrmStore.Tests.Unit.csproj", "{C12CCFC0-23A1-43BC-837E-B81CDACC7A8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Core.Tests.Unit", "tests\Capgemini.Xrm.DataMigration.Core.Tests.Unit\Capgemini.Xrm.DataMigration.Core.Tests.Unit.csproj", "{D805EB24-7909-4E58-8091-CADA2B03DBD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataMigration.Core.Tests.Unit", "tests\Capgemini.DataMigration.Core.Tests.Unit\Capgemini.DataMigration.Core.Tests.Unit.csproj", "{9CE399D0-687E-4096-BF2E-63735C446F21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Core.IntegrationTests", "tests\Capgemini.Xrm.DataMigration.Core.IntegrationTests\Capgemini.Xrm.DataMigration.Core.IntegrationTests.csproj", "{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F210350-B2B6-4955-AD3F-F115658CB150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F210350-B2B6-4955-AD3F-F115658CB150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F210350-B2B6-4955-AD3F-F115658CB150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F210350-B2B6-4955-AD3F-F115658CB150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15394533-D8AE-4F0F-9263-BE9E94F12336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15394533-D8AE-4F0F-9263-BE9E94F12336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15394533-D8AE-4F0F-9263-BE9E94F12336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15394533-D8AE-4F0F-9263-BE9E94F12336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FB0162D-0B31-4C5B-A657-F4F3579778EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB0162D-0B31-4C5B-A657-F4F3579778EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB0162D-0B31-4C5B-A657-F4F3579778EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB0162D-0B31-4C5B-A657-F4F3579778EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDB8DE01-5FDC-4F9C-9C26-BDC4F3436A10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDB8DE01-5FDC-4F9C-9C26-BDC4F3436A10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDB8DE01-5FDC-4F9C-9C26-BDC4F3436A10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDB8DE01-5FDC-4F9C-9C26-BDC4F3436A10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9C0E463-C42A-4F5C-BD36-E69C93C959B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C0E463-C42A-4F5C-BD36-E69C93C959B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C0E463-C42A-4F5C-BD36-E69C93C959B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9C0E463-C42A-4F5C-BD36-E69C93C959B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF1CAA60-E675-450B-BC29-A03930E33CFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF1CAA60-E675-450B-BC29-A03930E33CFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF1CAA60-E675-450B-BC29-A03930E33CFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF1CAA60-E675-450B-BC29-A03930E33CFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2AFCCC9-6459-41EC-8C0E-9EEE45FFF507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2AFCCC9-6459-41EC-8C0E-9EEE45FFF507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2AFCCC9-6459-41EC-8C0E-9EEE45FFF507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2AFCCC9-6459-41EC-8C0E-9EEE45FFF507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B84AF3-31DD-44AE-80CD-13AB60549F7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B84AF3-31DD-44AE-80CD-13AB60549F7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B84AF3-31DD-44AE-80CD-13AB60549F7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B84AF3-31DD-44AE-80CD-13AB60549F7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC7AE702-E957-455F-A0C4-630FF6827601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC7AE702-E957-455F-A0C4-630FF6827601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC7AE702-E957-455F-A0C4-630FF6827601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC7AE702-E957-455F-A0C4-630FF6827601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42785ABF-1469-4788-BF62-D3E14264F5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42785ABF-1469-4788-BF62-D3E14264F5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42785ABF-1469-4788-BF62-D3E14264F5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42785ABF-1469-4788-BF62-D3E14264F5F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3F232AA-FDBC-4716-A233-87DB51608ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3F232AA-FDBC-4716-A233-87DB51608ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3F232AA-FDBC-4716-A233-87DB51608ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3F232AA-FDBC-4716-A233-87DB51608ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC634FD6-B3C6-4205-ABDF-5FD3BAEB2E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC634FD6-B3C6-4205-ABDF-5FD3BAEB2E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC634FD6-B3C6-4205-ABDF-5FD3BAEB2E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC634FD6-B3C6-4205-ABDF-5FD3BAEB2E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C12CCFC0-23A1-43BC-837E-B81CDACC7A8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C12CCFC0-23A1-43BC-837E-B81CDACC7A8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C12CCFC0-23A1-43BC-837E-B81CDACC7A8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C12CCFC0-23A1-43BC-837E-B81CDACC7A8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D805EB24-7909-4E58-8091-CADA2B03DBD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D805EB24-7909-4E58-8091-CADA2B03DBD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D805EB24-7909-4E58-8091-CADA2B03DBD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D805EB24-7909-4E58-8091-CADA2B03DBD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE399D0-687E-4096-BF2E-63735C446F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE399D0-687E-4096-BF2E-63735C446F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE399D0-687E-4096-BF2E-63735C446F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE399D0-687E-4096-BF2E-63735C446F21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2F210350-B2B6-4955-AD3F-F115658CB150} = {2F3EA3B1-B2CB-40AC-A2F5-58BF7E3F5594}
+		{15394533-D8AE-4F0F-9263-BE9E94F12336} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{0FB0162D-0B31-4C5B-A657-F4F3579778EC} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{DDB8DE01-5FDC-4F9C-9C26-BDC4F3436A10} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{B9C0E463-C42A-4F5C-BD36-E69C93C959B2} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{FF1CAA60-E675-450B-BC29-A03930E33CFD} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{D2AFCCC9-6459-41EC-8C0E-9EEE45FFF507} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{C8B84AF3-31DD-44AE-80CD-13AB60549F7C} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{DC7AE702-E957-455F-A0C4-630FF6827601} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+		{42785ABF-1469-4788-BF62-D3E14264F5F7} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+		{E3F232AA-FDBC-4716-A233-87DB51608ED8} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+		{FC634FD6-B3C6-4205-ABDF-5FD3BAEB2E69} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+		{C12CCFC0-23A1-43BC-837E-B81CDACC7A8B} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+		{D805EB24-7909-4E58-8091-CADA2B03DBD3} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+		{9CE399D0-687E-4096-BF2E-63735C446F21} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {300EBF94-130F-4117-B90F-4B2552EC62E4}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,61 @@
+{
+  "ExcludedFields": [
+    "systemuserid",
+    "roleid",
+    "teamid",
+    "fieldsecurityprofileid",
+    "systemuserprofilesid",
+    "systemuserrolesid",
+    "teammembershipid",
+    "businessunitid"
+  ],
+  "CrmMigrationToolSchemaPaths": [
+    "TestData\\usersettingsschema.xml"
+  ],
+  "PageSize": 500,
+  "BatchSize": 500,
+  "TopCount": 100000,
+  "OnlyActiveRecords": false,
+  "JsonFolderPath": "ExtractedData",
+  "OneEntityPerBatch": true,
+  "FilePrefix": "ExportedData",
+  "SeperateFilesPerEntity": true,
+  "LookupMapping": {
+    "systemuser": {
+      "businessunitid": [
+        "name"
+      ]
+    },
+    "systemuserroles": {
+      "systemuserid": [
+        "domainname"
+      ],
+      "roleid": [
+        "name",
+        "businessunitid"
+      ]
+    },
+    "teammembership": {
+      "systemuserid": [
+        "domainname"
+      ],
+      "teamid": [
+        "name",
+        "businessunitid"
+      ]
+    },
+    "systemuserprofiles": {
+      "systemuserid": [
+        "domainname"
+      ],
+      "fieldsecurityprofileid": [
+        "name"
+      ]
+    },
+    "usersettings": {
+      "systemuserid": [
+        "domainname"
+      ]
+    }
+  }
+}

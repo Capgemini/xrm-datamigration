@@ -1,0 +1,25 @@
+﻿<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="knowledgearticle" displayname="Knowledge Article" etc="9953" primaryidfield="knowledgearticleid" primarynamefield="title" disableplugins="false">
+    <fields>
+      <field displayname="Keywords" name="keywords" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Major Version Number" name="majorversionnumber" type="integer" primaryKey="false" customfield="false" />
+      <field displayname="Primary Article" name="isprimary" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Root Article" name="isrootarticle" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Status" name="statecode" type="state" primaryKey="false" customfield="false" />
+      <field displayname="Published Status" name="publishstatusid" type="integer" primaryKey="false" customfield="false" />
+      <field displayname="Is Latest Version" name="islatestversion" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Knowledge Article" name="knowledgearticleid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Description" name="description" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Ready For Review" name="readyforreview" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Stage Id" name="stageid" type="guid" primaryKey="false" customfield="false" />
+      <field displayname="Title" name="title" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Review" name="review" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Article Public Number" name="articlepublicnumber" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Content" name="content" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Status Reason" name="statuscode" type="status" primaryKey="false" customfield="false" />
+      <field displayname="Subject" name="subjectid" type="entityreference" primaryKey="false" lookupType="subject" customfield="false" />
+      <field displayname="Minor Version Number" name="minorversionnumber" type="integer" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+</entities>

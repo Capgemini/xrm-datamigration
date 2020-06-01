@@ -1,0 +1,21 @@
+domainname,lastname,firstname,accessmode,map.businessunitid.isRootBU.name
+"dbf2f63332554437983fdfce4414f47ekkarampudi@capgeminicrmuk.onmicrosoft.com","Karampudi","Krish",1,capgeminibasedev
+"mewing@capgeminicrmuk.onmicrosoft.com","Ewing","Max",0,capgeminibasedev
+"satya.kar@capgeminicrmuk.onmicrosoft.com","Kar","Satya",0,capgeminibasedev
+"lbenting@capgeminicrmuk.onmicrosoft.com","Benting","Luke",0,capgeminibasedev
+"joao.zorro_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com","Zorro","Joao",0,capgeminibasedev
+"oleksandr.krasnoshchok@capgeminicrmuk.onmicrosoft.com","Krasnoshchok","Oleksandr",0,capgeminibasedev
+"ksulikowski@capgeminicrmuk.onmicrosoft.com","ksulikowski","#",1,capgeminibasedev
+"kriss.sulikowski_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com","Sulikowski","Kriss",0,capgeminibasedev
+"mark.cunningham@capgeminicrmuk.onmicrosoft.com","Cunningham","Mark",0,capgeminibasedev
+"crmoln@microsoft.com","User","Support",3,capgeminibasedev
+"joao.zorro@capgeminicrmuk.onmicrosoft.com","Zorro","Joao",0,capgeminibasedev
+"kriss.sulikowski@capgeminicrmuk.onmicrosoft.com","Sulikowski","Krzysztof",0,capgeminibasedev
+"Ben.Hosking@capgeminicrmuk.onmicrosoft.com","Hosking","Ben",1,capgeminibasedev
+"Dmitriy.Kraevoy@capgeminicrmuk.onmicrosoft.com","Kraevoy","Dmitriy",0,capgeminibasedev
+"liam.charlesworth-dakin@capgeminicrmuk.onmicrosoft.com","Charlesworth-Dakin","Liam",1,capgeminibasedev
+"tom.carrisi@capgeminicrmuk.onmicrosoft.com","Carrisi","Tom",0,capgeminibasedev
+"","INTEGRATION","",0,capgeminibasedev
+"crmoln2@microsoft.com","","Delegated Admin",5,capgeminibasedev
+"","SYSTEM","",0,capgeminibasedev
+"ciauth@capgeminicrmuk.onmicrosoft.com","Auth","CI",0,capgeminibasedev

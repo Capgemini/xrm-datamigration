@@ -1,0 +1,47 @@
+{
+  "CrmMigrationToolSchemaPaths": [
+    "GetAutomatically"
+  ],
+  "JsonFolderPath": "GetAutomatically",
+  "PageSize": 500,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "OneEntityPerBatch": true,
+  "FilePrefix": "DemoOrganizationHierarchy",
+  "SeperateFilesPerEntity": true,
+  "CrmMigrationToolSchemaFilters": {
+    "team": " <filter> <condition attribute=\"name\" operator=\"neq\" value=\"capgeminitest\" /> </filter>",
+    "queue": "<filter> <condition attribute=\"name\" operator=\"not-begin-with\" value=\"&lt;\" /> </filter>",
+    "businessunit": "<filter> <condition attribute=\"parentbusinessunitid\" operator=\"not-null\" /> </filter>"
+  },
+  "LookupMapping": {
+    "team": {
+      "businessunitid": [
+        "name"
+      ],
+      "teamid": [
+        "name",
+        "businessunitid"
+      ]
+    },
+    "queue": {
+      "businessunitid": [
+        "name"
+      ],
+      "queueid": [
+        "name"
+      ]
+    },
+    "teamroles": {
+      "roleid": [
+        "name",
+        "businessunitid"
+      ],
+      "teamid": [
+        "name",
+        "businessunitid"
+      ]
+    }
+  }
+}

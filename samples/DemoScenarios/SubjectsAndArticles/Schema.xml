@@ -1,0 +1,34 @@
+<entities >
+  <entity name="subject" displayname="Subject" etc="129" primaryidfield="subjectid" primarynamefield="title" disableplugins="false">
+    <fields>
+      <field displayname="Title" name="title" type="string" />
+      <field updateCompare="true" displayname="Subject" name="subjectid" type="guid" primaryKey="true" />
+      <field displayname="Parent Subject" name="parentsubject" type="entityreference" lookupType="subject" />
+      <field displayname="Feature Mask" name="featuremask" type="number" />
+      <field displayname="Description" name="description" type="string" />
+    </fields>
+  </entity>
+  <entity name="knowledgearticle" displayname="Knowledge Article" etc="9953" primaryidfield="knowledgearticleid" primarynamefield="title" disableplugins="false">
+    <fields>
+      <field displayname="Content" name="content" type="string" />
+      <field displayname="Article Public Number" name="articlepublicnumber" type="string" />
+      <field displayname="Description" name="description" type="string" />
+      <field displayname="Is Latest Version" name="islatestversion" type="bool" />
+      <field displayname="Keywords" name="keywords" type="string" />
+      <field updateCompare="true" displayname="Knowledge Article" name="knowledgearticleid" type="guid" primaryKey="true" />
+      <field displayname="Major Version Number" name="majorversionnumber" type="number" />
+      <field displayname="Minor Version Number" name="minorversionnumber" type="number" />
+      <field displayname="Previous Article Content ID" name="previousarticlecontentid" type="entityreference" lookupType="knowledgearticle" />
+      <field displayname="Primary Article" name="isprimary" type="bool" />
+      <field displayname="Published Status" name="publishstatusid" type="number" />
+      <field displayname="Ready For Review" name="readyforreview" type="bool" />
+      <field displayname="Review" name="review" type="optionsetvalue" />
+      <field displayname="Root Article" name="isrootarticle" type="bool" />
+      <field displayname="Stage Id" name="stageid" type="guid" />
+      <field displayname="Status" name="statecode" type="state" />
+      <field displayname="Status Reason" name="statuscode" type="status" />
+      <field displayname="Subject" name="subjectid" type="entityreference" lookupType="subject" />
+      <field displayname="Title" name="title" type="string" />
+    </fields>
+  </entity>
+</entities>

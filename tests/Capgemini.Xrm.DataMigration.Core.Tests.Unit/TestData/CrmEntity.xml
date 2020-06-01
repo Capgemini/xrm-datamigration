@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="account" displayname="Account" etc="1234" primaryidfield="accountId" primarynamefield="name" disableplugins="true">
+  <fields>
+    <field displayname="Account Type" name="accounttype" type="string" primaryKey="false" customfield="true" />
+    <field displayname="AccountId" name="accountid" type="string" primaryKey="true" customfield="false" />
+  </fields>
+  <relationships>
+    <relationship name="account_contact" manyToMany="false" isreflexive="false" relatedEntityName="contact" m2mTargetEntity="contact" m2mTargetEntityPrimaryKey="contactid" />
+    <relationship name="account_site" manyToMany="true" isreflexive="false" relatedEntityName="site" m2mTargetEntity="site" m2mTargetEntityPrimaryKey="siteid" />
+  </relationships>
+</entity>

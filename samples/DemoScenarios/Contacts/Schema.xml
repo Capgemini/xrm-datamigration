@@ -1,0 +1,13 @@
+ <entities >
+       <entity name="contact" displayname="Contact" etc="2" primaryidfield="contactid" primarynamefield="fullname" disableplugins="false">
+          <fields>
+             <field displayname="First Name" name="firstname" type="string" />
+             <field displayname="Last Name" name="lastname" type="string" />
+             <field displayname="Parent Contact" name="parentcontactid" type="entityreference" lookupType="contact" />
+             <field displayname="Contact" name="contactid" type="guid" primaryKey="true" />
+             <field displayname="Home Phone" name="telephone2" type="string" />
+             <field displayname="Mobile Phone" name="mobilephone" type="string" />
+          </fields>
+          <relationships />
+       </entity>
+ </entities>

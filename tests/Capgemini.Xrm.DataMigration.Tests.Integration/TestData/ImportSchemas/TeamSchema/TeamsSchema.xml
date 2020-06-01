@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="queue" displayname="Queue" etc="2020" primaryidfield="queueid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Incoming Email" name="emailaddress" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Type" name="queueviewtype" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Queue" name="queueid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Convert To Email Activities" name="ignoreunsolicitedemail" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Incoming Email Delivery Method" name="incomingemaildeliverymethod" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Convert Incoming Email To Activities" name="incomingemailfilteringmethod" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="team" displayname="Team" etc="9" primaryidfield="teamid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Description" name="description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Team" name="teamid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Team Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+      <field displayname="Email" name="emailaddress" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Team Type" name="teamtype" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Default Queue" name="queueid" type="entityreference" primaryKey="false" lookupType="queue" customfield="false" />
+    </fields>
+    <relationships>
+      <relationship name="teamroles" manyToMany="true" isreflexive="false" relatedEntityName="teamroles" m2mTargetEntity="role" m2mTargetEntityPrimaryKey="roleid" />
+    </relationships>
+  </entity>
+</entities>

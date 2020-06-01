@@ -1,0 +1,44 @@
+{
+  "JsonFolderPath": "GetAutomatically",
+  "IgnoreStatuses": true,
+  "IgnoreSystemFields": true,
+  "FiledsToIgnore": [
+    "createdby",
+    "createdonbehalfby",
+    "createdon",
+    "importsequencenumber",
+    "modifiedby",
+    "modifiedonbehalfby",
+    "modifiedon",
+    "ownerid",
+    "owningbusinessunit",
+    "owningteam",
+    "owninguser",
+    "overriddencreatedon",
+    "timezoneruleversionnumber",
+    "utcconversiontimezonecode",
+    "versionnumber",
+    "transactioncurrencyid",
+    "organizationid",
+    "statecode",
+    "statuscode"
+  ],
+  "SaveBatchSize": 50,
+  "DeactivateAllProcesses": true,
+  "FilePrefix": "CrmPortals",
+  "PassOneReferences": [
+    "businessunit",
+    "uom",
+    "uomschedule",
+    "queue"
+  ],
+  "MigrationConfig": {
+    "ApplyAliasMapping": true,
+    "SourceRootBUName": "capgeminitest"
+  },
+  "EntitiesToSync": [
+    "adx_weblink",
+    "adx_webpage",
+    "adx_sitesetting"
+  ]
+}

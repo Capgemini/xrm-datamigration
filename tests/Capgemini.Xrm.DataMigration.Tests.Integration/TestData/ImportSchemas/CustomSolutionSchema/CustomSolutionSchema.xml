@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="new_mydata" displayname="mydata" etc="10016" primaryidfield="new_mydataid" primarynamefield="new_name" disableplugins="false">
+    <fields>
+      <field displayname="Status" name="statecode" type="state" primaryKey="false" customfield="false" />
+      <field displayname="Status Reason" name="statuscode" type="status" primaryKey="false" customfield="false" />
+      <field displayname="data circular" name="new_datacircular" type="entityreference" primaryKey="false" lookupType="new_mydata" customfield="false" />
+      <field displayname="Name" name="new_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="mydata" name="new_mydataid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="my ref data id" name="new_myrefdataid" type="entityreference" primaryKey="false" lookupType="new_myrefdata" customfield="false" />
+      <field displayname="bulookupid" name="new_bulookupid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+      <field displayname="Owner" name="ownerid" type="Unknown" primaryKey="false" customfield="false" />
+      <field displayname="parentbuid" name="new_parentbuid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+    </fields>
+    <relationships>
+      <relationship name="new_new_mydata_new_myrefdata" manyToMany="true" isreflexive="true" relatedEntityName="new_new_mydata_new_myrefdata" m2mTargetEntity="new_myrefdata" m2mTargetEntityPrimaryKey="new_myrefdataid" />
+    </relationships>
+  </entity>
+  <entity name="new_myrefdata" displayname="myrefdata" etc="10017" primaryidfield="new_myrefdataid" primarynamefield="new_name" disableplugins="false">
+    <fields>
+      <field displayname="Name" name="new_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="myrefdata" name="new_myrefdataid" type="guid" primaryKey="true" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="new_refobentities" displayname="refobentities" etc="10018" primaryidfield="new_refobentitiesid" primarynamefield="new_name" disableplugins="false">
+    <fields>
+      <field displayname="Status" name="statecode" type="state" primaryKey="false" customfield="false" />
+      <field displayname="Status Reason" name="statuscode" type="status" primaryKey="false" customfield="false" />
+      <field displayname="team" name="new_teamid" type="entityreference" primaryKey="false" lookupType="team" customfield="false" />
+      <field displayname="refobentities" name="new_refobentitiesid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Name" name="new_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="subject" name="new_subjectid" type="entityreference" primaryKey="false" lookupType="subject" customfield="false" />
+      <field displayname="user" name="new_user" type="entityreference" primaryKey="false" lookupType="systemuser" customfield="false" />
+      <field displayname="queue" name="new_queueid" type="entityreference" primaryKey="false" lookupType="queue" customfield="false" />
+    </fields>
+    <relationships>
+      <relationship name="new_new_refobentities_queue" manyToMany="true" isreflexive="true" relatedEntityName="new_new_refobentities_queue" m2mTargetEntity="queue" m2mTargetEntityPrimaryKey="queueid" />
+      <relationship name="new_new_refobentities_systemuser" manyToMany="true" isreflexive="true" relatedEntityName="new_new_refobentities_systemuser" m2mTargetEntity="systemuser" m2mTargetEntityPrimaryKey="systemuserid" />
+      <relationship name="new_new_refobentities_team" manyToMany="true" isreflexive="true" relatedEntityName="new_new_refobentities_team" m2mTargetEntity="team" m2mTargetEntityPrimaryKey="teamid" />
+    </relationships>
+  </entity>
+  <entity name="businessunit" displayname="Business Unit" etc="10" primaryidfield="businessunitid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Parent Business" name="parentbusinessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+      <field displayname="Email" name="emailaddress" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Division" name="divisionname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="guid" primaryKey="true" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="queue" displayname="Queue" etc="2020" primaryidfield="queueid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Outgoing Email Delivery Method" name="outgoingemaildeliverymethod" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Incoming Email" name="emailaddress" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Type" name="queueviewtype" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Queue" name="queueid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Convert To Email Activities" name="ignoreunsolicitedemail" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Incoming Email Delivery Method" name="incomingemaildeliverymethod" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Convert Incoming Email To Activities" name="incomingemailfilteringmethod" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="subject" displayname="Subject" etc="129" primaryidfield="subjectid" primarynamefield="title" disableplugins="false">
+    <fields>
+      <field displayname="Title" name="title" type="string" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="team" displayname="Team" etc="9" primaryidfield="teamid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Description" name="description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Team" name="teamid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Team Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+      <field displayname="Email" name="emailaddress" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Team Type" name="teamtype" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Default Queue" name="queueid" type="entityreference" primaryKey="false" lookupType="queue" customfield="false" />
+    </fields>
+    <relationships>
+      <relationship name="teamroles" manyToMany="true" isreflexive="false" relatedEntityName="teamroles" m2mTargetEntity="role" m2mTargetEntityPrimaryKey="roleid" />
+    </relationships>
+  </entity>
+</entities>

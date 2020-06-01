@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Capgemini.Xrm.DataMigration.Engine</id>
+    <version>3.0.0.6</version>
+    <title>Capgemini Xrm DataMigration Engine</title>
+    <authors>Capgemini</authors>
+    <owners>Capgemini</owners>
+    <licenseUrl>https://github.com/Capgemini/xrm-datamigration/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <projectUrl>https://github.com/Capgemini/xrm-datamigration</projectUrl>
+    <repository type="git" url="https://github.com/Capgemini/xrm-datamigration" />
+    <description>Capgemini DataMigration Engine - Export/Import of CRM Data allowing management and release in the same way as code. The engine supports JSON and CSV file formats.</description>
+    <copyright>Capgemini Copyright ©  2019</copyright>
+    <tags>Capgemini.Xrm.DataMigration, DataMigration, Xrm</tags>
+    <releaseNotes></releaseNotes>
+    <dependencies />
+  </metadata>
+</package>

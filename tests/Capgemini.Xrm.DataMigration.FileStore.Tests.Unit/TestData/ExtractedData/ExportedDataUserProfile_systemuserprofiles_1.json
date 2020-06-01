@@ -1,0 +1,380 @@
+{
+  "RecordsCount": 15,
+  "ExportedEntities": [
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "23cf4504-2a24-e711-80ff-5065f38a4a21",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "Ben.Hosking@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "8d775c43-0f02-e811-811f-5065f38a9a01",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "joao.zorro_capgemini.com#EXT#@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "3653b125-954b-e711-8104-5065f38aea41",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "dbf2f63332554437983fdfce4414f47ekkarampudi@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "a9f4dc43-504f-e711-8104-5065f38aea41",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "mewing@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "d7588511-504f-e711-8105-5065f38b3681",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "lbenting@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "7f965af5-7f20-e811-8123-5065f38b3681",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "oleksandr.krasnoshchok@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "fc6d313f-2772-e711-810a-5065f38b6621",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "ksulikowski@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "8805676f-06aa-e711-8113-5065f38b6621",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "satya.kar@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "b8b3d9fb-6cc4-e711-8119-5065f38b6621",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "ciauth@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "3764877f-2821-e811-8125-5065f38b6621",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "mark.cunningham@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "05740b55-4713-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "crmoln2@microsoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "276c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "kriss.sulikowski@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "296c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "joao.zorro@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "2b6c8fe5-2624-e711-8103-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "Dmitriy.Kraevoy@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    },
+    {
+      "LogicalName": "systemuserprofiles",
+      "Id": "288102d6-de75-e711-810c-5065f38bd511",
+      "IsManyToMany": true,
+      "Attributes": [
+        {
+          "AttributeName": "map.systemuserid.systemuser.domainname",
+          "AttributeValue": {
+            "AttributeLogicalName": "domainname",
+            "EntityLogicalName": "systemuser",
+            "Value": "liam.charlesworth-dakin@capgeminicrmuk.onmicrosoft.com"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        },
+        {
+          "AttributeName": "map.fieldsecurityprofileid.fieldsecurityprofile.name",
+          "AttributeValue": {
+            "AttributeLogicalName": "name",
+            "EntityLogicalName": "fieldsecurityprofile",
+            "Value": "System Administrator"
+          },
+          "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
+        }
+      ]
+    }
+  ]
+}
