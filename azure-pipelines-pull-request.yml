@@ -34,7 +34,7 @@ stages:
         - task: VSTest@2
           displayName: Run tests
           inputs:
-            searchFolder: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Tests
+            searchFolder: tests
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
             codeCoverageEnabled: true
