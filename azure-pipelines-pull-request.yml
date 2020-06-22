@@ -4,7 +4,7 @@ pool:
   vmImage: 'windows-latest'
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'anycpu'
+  buildPlatform: 'any cpu'
   buildConfiguration: 'Release'
 stages:
   - stage: Build
