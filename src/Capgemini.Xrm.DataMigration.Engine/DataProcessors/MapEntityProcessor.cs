@@ -339,8 +339,8 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
                 }
                 else if (fieldType == typeof(EntityReference))
                 {
-                    string entRefName = metCache.GetLookUpEntityName(entity.LogicalName, originalFieldName);
-                    entity.OriginalEntity.Attributes[originalFieldName] = new EntityReference(entRefName, replaceGuid);
+                    var originalEntityReference = (EntityReference)entity.OriginalEntity.Attributes[originalFieldName];
+                    originalEntityReference.Id = replaceGuid;
                 }
                 else
                 {
