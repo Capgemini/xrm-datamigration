@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Capgemini.Xrm.DataMigration.Cli</id>
-    <version>2.0.0.7</version>
+    <version>2.0.0.8</version>
     <title>Capgemini Xrm DataMigration Engine - CLI</title>
     <authors>Capgemini</authors>
     <owners>Capgemini</owners>
