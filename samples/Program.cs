@@ -125,14 +125,19 @@ namespace Capgemini.Xrm.Datamigration.Examples
         {
             var exportConfig = new CrmExporterConfig()
             {
-                BatchSize = 1000,
-                PageSize = 500,
+                BatchSize = 10,
+                PageSize = 10,
                 FilePrefix = $"Demo{Settings.Default.DemoScenarioName}",
                 OneEntityPerBatch = true,
                 SeperateFilesPerEntity = true,
-                TopCount = 10000,
+                TopCount = 10,
                 JsonFolderPath = GetExportPath(),
                 CrmMigrationToolSchemaPaths = new List<string>() { GetSchemaPath() }
+            };
+
+            exportConfig.FieldsToObfuscate = new Dictionary<string, List<string>>()
+            {
+                { "contact", new List<string>() { "firstname" , "lastname"} }
             };
 
             var filePath = $"{GetScenarioPath()}\\ExportConfig.json";
