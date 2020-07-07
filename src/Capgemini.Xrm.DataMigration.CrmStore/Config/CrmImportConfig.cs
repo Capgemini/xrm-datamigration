@@ -179,6 +179,11 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         public ObjectTypeCodeMappingConfiguration ObjectTypeCodeMappingConfig { get; set; }
 
         /// <summary>
+        /// Gets or Sets the fields to Obfuscate
+        /// </summary>
+        public Dictionary<string, List<string>> FieldsToObfuscate { get; set; }
+
+        /// <summary>
         /// Gets entities that should be created only.
         /// </summary>
         public List<string> NoUpdateEntities { get; private set; }

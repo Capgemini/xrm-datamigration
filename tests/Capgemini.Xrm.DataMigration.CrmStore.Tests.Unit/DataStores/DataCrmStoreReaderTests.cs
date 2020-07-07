@@ -160,7 +160,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
         [TestMethod]
         public void DataCrmStoreReaderConstructor()
         {
-            FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries))
+            FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries, EmptyFieldsToObfuscate))
                    .Should()
                    .NotThrow();
         }
@@ -172,11 +172,11 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             {
                 new EntityWrapper(new Entity("contact", Guid.NewGuid()))
             };
-
+            
             MockEntityRepo.Setup(a => a.GetEntitesByFetchXML(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), ref It.Ref<string>.IsAny))
                            .Returns(entityWrapperList);
 
-            systemUnderTest = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries);
+            systemUnderTest = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries, EmptyFieldsToObfuscate);
 
             var actual = systemUnderTest.ReadBatchDataFromStore();
 
@@ -187,7 +187,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
         [TestMethod]
         public void Reset()
         {
-            systemUnderTest = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries);
+            systemUnderTest = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries, EmptyFieldsToObfuscate);
 
             FluentActions.Invoking(() => systemUnderTest.Reset())
                         .Should()

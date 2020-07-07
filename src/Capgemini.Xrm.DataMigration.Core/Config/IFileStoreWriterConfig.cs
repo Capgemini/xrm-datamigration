@@ -13,5 +13,10 @@ namespace Capgemini.Xrm.DataMigration.Config
         /// Gets excluded fields from the output file.
         /// </summary>
         List<string> ExcludedFields { get; }
+
+        /// <summary>
+        /// Gets the fields that must be obfuscated.
+        /// </summary>
+        Dictionary<string, List<string>> FieldsToObfuscate { get; }
     }
 }

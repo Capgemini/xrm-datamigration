@@ -44,6 +44,8 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
 
         public ObjectTypeCodeMappingConfiguration ObjectTypeCodeMappingConfig { get; set; }
 
+        public Dictionary<string, List<string>> FieldsToObfuscate { get; set; } = null;
+
         /// <summary>
         /// Allow caalers to reset ProcessesToDeactivate list.
         /// </summary>
