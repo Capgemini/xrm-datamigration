@@ -42,9 +42,6 @@
     <CodeAnalysisRuleSet>Capgemini.Xrm.DataMigration.Engine.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capgemini.DataScrambler, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.DataScrambler.1.0.0.2\lib\net461\Capgemini.DataScrambler.dll</HintPath>
-    </Reference>
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CsvHelper.12.1.3\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
@@ -125,6 +122,10 @@
     <ProjectReference Include="..\Capgemini.DataMigration.Resiliency.Polly\Capgemini.DataMigration.Resiliency.Polly.csproj">
       <Project>{d2afccc9-6459-41ec-8c0e-9eee45fff507}</Project>
       <Name>Capgemini.DataMigration.Resiliency.Polly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Capgemini.DataScrambler\Capgemini.DataScrambler.csproj">
+      <Project>{00413b74-0224-4d49-a5c5-16ae29294537}</Project>
+      <Name>Capgemini.DataScrambler</Name>
     </ProjectReference>
     <ProjectReference Include="..\Capgemini.Xrm.DataMigration.Core\Capgemini.Xrm.DataMigration.Core.csproj">
       <Project>{b9c0e463-c42a-4f5c-bd36-e69c93c959b2}</Project>
