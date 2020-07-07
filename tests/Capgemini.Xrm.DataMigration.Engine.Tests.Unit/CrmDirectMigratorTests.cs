@@ -20,7 +20,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit
         {
             InitializeProperties();
 
-            dataCrmStoreReader = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, 500, 500, 1000, true, new List<string>());
+            dataCrmStoreReader = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, 500, 500, 1000, true, new List<string>(), EmptyFieldsToObfuscate);
 
             dataCrmStoreWriter = new DataCrmStoreWriter(MockLogger.Object, MockEntityRepo.Object, 500, new List<string>(), new List<string>());
         }

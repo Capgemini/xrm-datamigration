@@ -20,6 +20,11 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
 
         public int TopCount { get; set; } = 500;
 
+        /// <summary>
+        /// Gets or Sets the fields to Obfuscate.
+        /// </summary>
+        public Dictionary<string, List<string>> FieldsToObfuscate { get; set; } = null;
+
         public List<string> GetFetchXMLQueries()
         {
             return fetchXMlQueries;

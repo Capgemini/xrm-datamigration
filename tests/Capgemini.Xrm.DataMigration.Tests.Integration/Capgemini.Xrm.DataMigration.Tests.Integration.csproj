@@ -142,12 +142,14 @@
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationTestDataTests.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationUserSettingsTest.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationContactWithOwnerTest.cs" />
+    <Compile Include="DataMigration\MigrationTests\CrmFileMigration_ContactWithObfuscationTest.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\EntityMockHelper.cs" />
     <Compile Include="Helpers\EntityRepositoryFake.cs" />
     <Compile Include="Helpers\FileManager.cs" />
     <Compile Include="ProcessorsUnitTests\DeleteEntitiesProcessorTest.cs" />
     <Compile Include="ProcessorsUnitTests\EntityStatusProcessorTests.cs" />
+    <Compile Include="Processors\ObfuscateFieldsProcessorTests.cs" />
     <Compile Include="Processors\WorkflowsPluginsProcessorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializationTests\SchemaFileTest.cs" />

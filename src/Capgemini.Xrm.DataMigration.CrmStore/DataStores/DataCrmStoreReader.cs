@@ -19,6 +19,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
         private readonly int topCount;
         private readonly bool oneEntityPerBatch;
         private readonly List<string> fetchXMLQueries;
+        private readonly Dictionary<string, List<string>> fieldsToObfuscate;
 
         private int currentPage;
         private string pagingCookie;
@@ -34,11 +35,12 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
                 readerConfig == null ? 0 : readerConfig.BatchSize,
                 readerConfig == null ? 0 : readerConfig.TopCount,
                 readerConfig != null && readerConfig.OneEntityPerBatch,
-                readerConfig?.GetFetchXMLQueries())
+                readerConfig?.GetFetchXMLQueries(),
+                readerConfig?.FieldsToObfuscate)
         {
         }
 
-        public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, int pageSize, int batchSize, int topCount, bool oneEntityPerBatch, List<string> fetchXmlQueries)
+        public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, int pageSize, int batchSize, int topCount, bool oneEntityPerBatch, List<string> fetchXmlQueries, Dictionary<string, List<string>> fieldsToObfuscate)
         {
             logger.ThrowIfNull<ArgumentNullException>(nameof(logger));
             entityRepo.ThrowIfNull<ArgumentNullException>(nameof(entityRepo));
@@ -75,8 +77,13 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
             this.batchSize = batchSize;
             this.topCount = topCount;
             this.oneEntityPerBatch = oneEntityPerBatch;
+            this.fieldsToObfuscate = fieldsToObfuscate;
             fetchXMLQueries = fetchXmlQueries;
         }
+
+        public IEntityRepository GetEntityRepository => entityRepo;
+
+        public Dictionary<string, List<string>> GetFieldsToObfuscate => fieldsToObfuscate;
 
         public List<EntityWrapper> ReadBatchDataFromStore()
         {

@@ -20,7 +20,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
         private readonly string filesPath;
         private readonly bool seperateFilesPerEntity;
         private readonly List<string> excludedFields;
-
+        private readonly Dictionary<string, List<string>> fieldsToObfuscate;
         private int currentBatchNo;
         private int fileNo;
         private string lastEntity;
@@ -31,11 +31,12 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
                   config?.FilePrefix,
                   config?.JsonFolderPath,
                   config?.ExcludedFields,
-                  config != null && config.SeperateFilesPerEntity)
+                  config != null && config.SeperateFilesPerEntity,
+                  config?.FieldsToObfuscate)
         {
         }
 
-        public DataFileStoreWriter(ILogger logger, string filePrefix, string filesPath, List<string> excludedFields = null, bool seperateFilesPerEntity = true)
+        public DataFileStoreWriter(ILogger logger, string filePrefix, string filesPath, List<string> excludedFields = null, bool seperateFilesPerEntity = true, Dictionary<string, List<string>> fieldsToObfuscate = null)
         {
             logger.ThrowArgumentNullExceptionIfNull(nameof(logger));
             filePrefix.ThrowArgumentNullExceptionIfNull(nameof(filePrefix));
@@ -46,6 +47,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             this.filesPath = filesPath;
             this.seperateFilesPerEntity = seperateFilesPerEntity;
             this.excludedFields = excludedFields;
+            this.fieldsToObfuscate = fieldsToObfuscate;
         }
 
         public void Reset()

@@ -41,6 +41,8 @@ namespace Capgemini.DataMigration.Core
             this.cancellationToken = cancellationToken;
         }
 
+        protected IDataStoreReader<TMigrationEntity, TMigrationEntityWrapper> GetStoreReader => storeReader;
+
         protected ILogger Logger { get; }
 
         public void AddProcessor(IEntityProcessor<TMigrationEntity, TMigrationEntityWrapper> processor)

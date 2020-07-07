@@ -13,6 +13,13 @@ namespace Capgemini.Xrm.DataMigration.Config
         List<string> FiledsToIgnore { get; }
 
         /// <summary>
+        /// A dictionary representing fields that should be obfuscated.
+        /// The key is the logical name of the entity and the value is a list
+        /// containing the names of the fields which should be obfuscated.
+        /// </summary>
+        Dictionary<string, List<string>> FieldsToObfuscate { get; }
+
+        /// <summary>
         /// Gets list of entity names. If <seealso cref="IgnoreStatuses"/> is true, status wil be apllied to entities listed.
         /// When <seealso cref="IgnoreStatuses"/>  is false, statuses wil be skipped for entities listed here.
         /// </summary>

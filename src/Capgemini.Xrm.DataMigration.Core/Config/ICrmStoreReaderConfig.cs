@@ -26,6 +26,11 @@ namespace Capgemini.Xrm.DataMigration.Config
         int TopCount { get; set; }
 
         /// <summary>
+        /// Gets the fields to Obfuscate.
+        /// </summary>
+        Dictionary<string, List<string>> FieldsToObfuscate { get; }
+
+        /// <summary>
         /// Generates FetchXMLQueries.
         /// </summary>
         /// <returns>Returns fetchxml list.</returns>

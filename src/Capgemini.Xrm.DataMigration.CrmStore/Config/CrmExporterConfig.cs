@@ -75,6 +75,12 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// </summary>
         public bool SeperateFilesPerEntity { get; set; } = true;
 
+
+        /// <summary>
+        /// Gets or Sets the fields to Obfuscate.
+        /// </summary>
+        public Dictionary<string, List<string>> FieldsToObfuscate { get; set; }
+
         /// <summary>
         /// Gets mapping for entity refrences, format entityname - field on source entityt - field which hold unique value for mapping (usually name).
         /// </summary>

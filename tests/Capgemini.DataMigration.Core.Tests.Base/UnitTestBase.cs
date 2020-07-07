@@ -40,6 +40,8 @@ namespace Capgemini.DataMigration.Core.Tests.Base
                 "
             };
 
+        protected Dictionary<string, List<string>> EmptyFieldsToObfuscate { get; } = new Dictionary<string, List<string>>();
+
         protected GenericDataMigrator<Entity, MigrationEntityWrapper<Entity>> SystemUnderTest { get; set; }
 
         protected Mock<ILogger> MockLogger { get; set; }
