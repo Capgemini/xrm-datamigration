@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Core.Extensions;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.DataStore;
@@ -19,7 +20,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
         private readonly int topCount;
         private readonly bool oneEntityPerBatch;
         private readonly List<string> fetchXMLQueries;
-        private readonly Dictionary<string, List<string>> fieldsToObfuscate;
+        private readonly List<EntityToBeObfuscated> fieldsToObfuscate;
 
         private int currentPage;
         private string pagingCookie;
@@ -40,7 +41,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
         {
         }
 
-        public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, int pageSize, int batchSize, int topCount, bool oneEntityPerBatch, List<string> fetchXmlQueries, Dictionary<string, List<string>> fieldsToObfuscate)
+        public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, int pageSize, int batchSize, int topCount, bool oneEntityPerBatch, List<string> fetchXmlQueries, List<EntityToBeObfuscated> fieldsToObfuscate)
         {
             logger.ThrowIfNull<ArgumentNullException>(nameof(logger));
             entityRepo.ThrowIfNull<ArgumentNullException>(nameof(entityRepo));
@@ -83,7 +84,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
 
         public IEntityRepository GetEntityRepository => entityRepo;
 
-        public Dictionary<string, List<string>> GetFieldsToObfuscate => fieldsToObfuscate;
+        public List<EntityToBeObfuscated> GetFieldsToObfuscate => fieldsToObfuscate;
 
         public List<EntityWrapper> ReadBatchDataFromStore()
         {

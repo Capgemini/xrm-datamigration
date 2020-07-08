@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.Xrm.DataMigration.Config;
 
 namespace Capgemini.Xrm.DataMigration.FileStore.Config
@@ -18,6 +19,6 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Config
         /// <summary>
         /// Gets the fields that must be obfuscated.
         /// </summary>
-        public Dictionary<string, List<string>> FieldsToObfuscate { get; } = new Dictionary<string, List<string>>();
+        public List<EntityToBeObfuscated> FieldsToObfuscate { get; } = new List<EntityToBeObfuscated>();
     }
 }

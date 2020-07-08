@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.Xrm.DataMigration.Config;
 
 namespace Capgemini.Xrm.DataMigration.CrmStore.Config
@@ -44,7 +45,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
 
         public ObjectTypeCodeMappingConfiguration ObjectTypeCodeMappingConfig { get; set; }
 
-        public Dictionary<string, List<string>> FieldsToObfuscate { get; set; } = null;
+        public List<EntityToBeObfuscated> FieldsToObfuscate { get; set; } = null;
 
         /// <summary>
         /// Allow caalers to reset ProcessesToDeactivate list.

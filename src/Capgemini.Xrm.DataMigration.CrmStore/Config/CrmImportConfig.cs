@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Newtonsoft.Json;
@@ -179,9 +180,9 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         public ObjectTypeCodeMappingConfiguration ObjectTypeCodeMappingConfig { get; set; }
 
         /// <summary>
-        /// Gets or Sets the fields to Obfuscate
+        /// Gets or Sets the fields to Obfuscate.
         /// </summary>
-        public Dictionary<string, List<string>> FieldsToObfuscate { get; set; }
+        public List<EntityToBeObfuscated> FieldsToObfuscate { get; set; }
 
         /// <summary>
         /// Gets entities that should be created only.
