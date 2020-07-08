@@ -1,26 +1,27 @@
-﻿using Capgemini.DataMigration.Core;
-using Capgemini.Xrm.DataMigration.DataStore;
-using Microsoft.Xrm.Sdk;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Capgemini.DataMigration.Core;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
 using Capgemini.DataScrambler.Scramblers;
-using Capgemini.Xrm.DataMigration.Engine.Obfuscate;
 using Capgemini.Xrm.DataMigration.Core;
+using Capgemini.Xrm.DataMigration.DataStore;
+using Capgemini.Xrm.DataMigration.Engine.Obfuscate;
+using Microsoft.Xrm.Sdk;
 
 namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 {
     public class ObfuscateFieldsProcessor : IEntityProcessor<Entity, EntityWrapper>
     {
 
-        private readonly Dictionary<string, List<string>> fieldsToObfuscate;
+        private readonly List<EntityToBeObfuscated> fieldsToObfuscate;
         private readonly IEntityMetadataCache metaDataCache;
         private readonly List<ICrmObfuscateHandler> crmObfuscateHandlers;
 
-        public ObfuscateFieldsProcessor(IEntityMetadataCache metaDataCache, Dictionary<string, List<string>> fieldsToObfuscate)
+        public ObfuscateFieldsProcessor(IEntityMetadataCache metaDataCache, List<EntityToBeObfuscated> fieldsToObfuscate)
         {
             this.fieldsToObfuscate = fieldsToObfuscate;
             this.metaDataCache = metaDataCache;
@@ -51,16 +52,16 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
             {
                 // Get the List of fields for the current entity if they exist
                 Entity originalEntity = entity.OriginalEntity;
-                List<string> fieldsToChangeForCurrentEntity = fieldsToObfuscate.Where(e => e.Key == originalEntity.LogicalName).FirstOrDefault().Value;
+                List<FieldToBeObfuscated> fieldsToChangeForCurrentEntity = fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).FirstOrDefault().FieldsToBeObfuscated;
 
                 // If the list is not empty process the entities fields
                 if (fieldsToChangeForCurrentEntity != null && fieldsToChangeForCurrentEntity.Count > 0)
                 {
-                    foreach (string fieldName in fieldsToChangeForCurrentEntity)
+                    foreach (FieldToBeObfuscated field in fieldsToChangeForCurrentEntity)
                     {
-                        if (originalEntity.Attributes.Contains(fieldName))
+                        if (originalEntity.Attributes.Contains(field.FieldName))
                         {
-                            ObfuscateField(originalEntity, fieldName);
+                            ObfuscateField(originalEntity, field.FieldName);
                         }
                     }
                 }

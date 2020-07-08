@@ -1,4 +1,5 @@
-﻿using Capgemini.Xrm.DataMigration.Cache;
+﻿using Capgemini.DataMigration.Core.Model;
+using Capgemini.Xrm.DataMigration.Cache;
 using Capgemini.Xrm.DataMigration.DataStore;
 using Capgemini.Xrm.DataMigration.Engine.DataProcessors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,10 +22,15 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.Processors
             var orgService = ConnectionHelper.GetOrganizationalServiceTarget();
             var cache = new EntityMetadataCache(orgService);
 
-            Dictionary<string, List<string>> fieldsToObfuscate = new Dictionary<string, List<string>>();
-            fieldsToObfuscate.Add("contact", new List<string>() { "firstname" });
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
+            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
 
-            ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(cache, fieldsToObfuscate);
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+
+            var fieldsToBeObfuscated = new List<EntityToBeObfuscated>();
+            fieldsToBeObfuscated.Add(entityToBeObfuscated);
+
+            ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(cache, fieldsToBeObfuscated);
 
             string beforeFirstName = "Bob";
             string beforeLastName = "test";
@@ -49,10 +55,15 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.Processors
             var orgService = ConnectionHelper.GetOrganizationalServiceTarget();
             var cache = new EntityMetadataCache(orgService);
 
-            Dictionary<string, List<string>> fieldsToObfuscate = new Dictionary<string, List<string>>();
-            fieldsToObfuscate.Add("contact", new List<string>() { "numberofchildren" });
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
+            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "numberofchildren" });
 
-            ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(cache, fieldsToObfuscate);
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+
+            var fieldsToBeObfuscated = new List<EntityToBeObfuscated>();
+            fieldsToBeObfuscated.Add(entityToBeObfuscated);
+
+            ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(cache, fieldsToBeObfuscated);
 
             string beforeFirstName = "Bob";
             int beforeNumberOfChildren = 5;

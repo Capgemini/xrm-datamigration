@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Capgemini.DataMigration.Core.Model;
 
 namespace Capgemini.Xrm.DataMigration.Config
 {
@@ -28,7 +29,7 @@ namespace Capgemini.Xrm.DataMigration.Config
         /// <summary>
         /// Gets the fields to Obfuscate.
         /// </summary>
-        Dictionary<string, List<string>> FieldsToObfuscate { get; }
+        List<EntityToBeObfuscated> FieldsToObfuscate { get; }
 
         /// <summary>
         /// Generates FetchXMLQueries.

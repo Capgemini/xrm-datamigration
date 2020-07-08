@@ -1,6 +1,8 @@
-﻿using Capgemini.DataMigration.Core;
+﻿using System;
+using System.Collections.Generic;
+using Capgemini.DataMigration.Core;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Resiliency.Polly;
-using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.CrmStore.Config;
 using Capgemini.Xrm.DataMigration.CrmStore.DataStores;
 using Capgemini.Xrm.DataMigration.DataStore;
@@ -8,11 +10,6 @@ using Capgemini.Xrm.DataMigration.Engine.DataProcessors;
 using Capgemini.Xrm.DataMigration.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.Xrm.DataMigration.IntegrationTests.DataMigration.MigrationTests
 {
@@ -92,9 +89,15 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.DataMigration.MigrationTe
 
             importConfig.SaveBatchSize = 500;
 
-            Dictionary<string, List<string>> fieldsToObfuscate = new Dictionary<string, List<string>>();
-            fieldsToObfuscate.Add("contact", new List<string>() { "firstname" });
-            importConfig.FieldsToObfuscate = fieldsToObfuscate;
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
+            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
+
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
+            fieldToBeObfuscated.Add(entityToBeObfuscated);
+
+            importConfig.FieldsToObfuscate = fieldToBeObfuscated;
 
             return importConfig;
         }

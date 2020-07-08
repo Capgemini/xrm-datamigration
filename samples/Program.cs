@@ -1,4 +1,4 @@
-﻿
+﻿using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Resiliency.Polly;
 using Capgemini.Xrm.Datamigration.Examples;
 using Capgemini.Xrm.Datamigration.Examples.Properties;
@@ -19,8 +19,8 @@ namespace Capgemini.Xrm.Datamigration.Examples
     class Program
     {
         static void Main(string[] args)
-        {
-        //    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        {        
+            //    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             ConsoleLogger.LogLevel = 5;
             Console.WriteLine($"Using demo scenario {Settings.Default.DemoScenarioName}");
@@ -135,10 +135,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
                 CrmMigrationToolSchemaPaths = new List<string>() { GetSchemaPath() }
             };
 
-            exportConfig.FieldsToObfuscate = new Dictionary<string, List<string>>()
-            {
-                { "contact", new List<string>() { "firstname" , "lastname"} }
-            };
+            exportConfig.FieldsToObfuscate = GenerateObfuscationObject();
 
             var filePath = $"{GetScenarioPath()}\\ExportConfig.json";
 
@@ -151,6 +148,20 @@ namespace Capgemini.Xrm.Datamigration.Examples
             exportConfig.CrmMigrationToolSchemaPaths = new List<string>() { GetSchemaPath() };
 
             return exportConfig;
+        }
+
+        private static List<EntityToBeObfuscated> GenerateObfuscationObject()
+        {
+            List<FieldToBeObfuscated> fieldsToBeObfuscated = new List<FieldToBeObfuscated>();
+            fieldsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
+            fieldsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "lastname" });
+
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fieldsToBeObfuscated };
+
+            List<EntityToBeObfuscated> EntitiesToBeObfuscated = new List<EntityToBeObfuscated>();
+            EntitiesToBeObfuscated.Add(entityToBeObfuscated);
+
+            return EntitiesToBeObfuscated;
         }
 
         static string GetSchemaPath()

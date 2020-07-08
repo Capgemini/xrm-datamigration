@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.Core;
@@ -79,7 +80,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// <summary>
         /// Gets or Sets the fields to Obfuscate.
         /// </summary>
-        public Dictionary<string, List<string>> FieldsToObfuscate { get; set; }
+        public List<EntityToBeObfuscated> FieldsToObfuscate { get; set; }
 
         /// <summary>
         /// Gets mapping for entity refrences, format entityname - field on source entityt - field which hold unique value for mapping (usually name).
