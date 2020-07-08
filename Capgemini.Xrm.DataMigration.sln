@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataScrambler", "src\Capgemini.DataScrambler\Capgemini.DataScrambler.csproj", "{00413B74-0224-4D49-A5C5-16AE29294537}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataScrambler.Tests.Unit", "tests\Capgemini.DataScrambler.Tests.Unit\Capgemini.DataScrambler.Tests.Unit.csproj", "{768DB632-8BB1-4DCF-B122-19F7FEAFA233}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,6 +128,10 @@ Global
 		{00413B74-0224-4D49-A5C5-16AE29294537}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00413B74-0224-4D49-A5C5-16AE29294537}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00413B74-0224-4D49-A5C5-16AE29294537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +154,7 @@ Global
 		{9CE399D0-687E-4096-BF2E-63735C446F21} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
 		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
 		{00413B74-0224-4D49-A5C5-16AE29294537} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {300EBF94-130F-4117-B90F-4B2552EC62E4}
