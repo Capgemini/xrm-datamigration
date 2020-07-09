@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2F3E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F6D0C3C-ABF4-4E8F-8BEF-3E014B8FEF07}"
 	ProjectSection(SolutionItems) = preProject
-		stylecop.json = stylecop.json
+		azure-pipelines.yml = azure-pipelines.yml
+		GlobalSuppressions.cs = GlobalSuppressions.cs
 		LICENSE = LICENSE
 		README.md = README.md
-		GlobalSuppressions.cs = GlobalSuppressions.cs
-		azure-pipelines.yml = azure-pipelines.yml
+		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Samples", "samples\Capgemini.Xrm.DataMigration.Samples.csproj", "{2F210350-B2B6-4955-AD3F-F115658CB150}"
@@ -49,6 +49,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataMigration.Core.Tests.Unit", "tests\Capgemini.DataMigration.Core.Tests.Unit\Capgemini.DataMigration.Core.Tests.Unit.csproj", "{9CE399D0-687E-4096-BF2E-63735C446F21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.Xrm.DataMigration.Core.IntegrationTests", "tests\Capgemini.Xrm.DataMigration.Core.IntegrationTests\Capgemini.Xrm.DataMigration.Core.IntegrationTests.csproj", "{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataScrambler", "src\Capgemini.DataScrambler\Capgemini.DataScrambler.csproj", "{00413B74-0224-4D49-A5C5-16AE29294537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DataScrambler.Tests.Unit", "tests\Capgemini.DataScrambler.Tests.Unit\Capgemini.DataScrambler.Tests.Unit.csproj", "{768DB632-8BB1-4DCF-B122-19F7FEAFA233}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -120,6 +124,14 @@ Global
 		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00413B74-0224-4D49-A5C5-16AE29294537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00413B74-0224-4D49-A5C5-16AE29294537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00413B74-0224-4D49-A5C5-16AE29294537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00413B74-0224-4D49-A5C5-16AE29294537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +153,8 @@ Global
 		{D805EB24-7909-4E58-8091-CADA2B03DBD3} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
 		{9CE399D0-687E-4096-BF2E-63735C446F21} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
 		{E51DE4C0-3E6C-49E6-BE46-1D66E65F68B5} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
+		{00413B74-0224-4D49-A5C5-16AE29294537} = {B9D7650C-99F1-4BA6-A4C6-E3F9464E9ACD}
+		{768DB632-8BB1-4DCF-B122-19F7FEAFA233} = {455BA3AB-820B-446F-B23A-EEF48F7C5316}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {300EBF94-130F-4117-B90F-4B2552EC62E4}

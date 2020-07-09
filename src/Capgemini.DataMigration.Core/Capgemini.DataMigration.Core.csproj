@@ -68,6 +68,8 @@
     <Compile Include="IDataStoreReader.cs" />
     <Compile Include="IDataStoreWriter.cs" />
     <Compile Include="ILogger.cs" />
+    <Compile Include="Model\EntityToBeObfuscated.cs" />
+    <Compile Include="Model\FieldToBeObfuscated.cs" />
     <Compile Include="OperationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resiliency\IPolicyBuilder.cs" />
