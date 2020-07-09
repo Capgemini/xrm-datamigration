@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.DataStore;
 using Capgemini.DataMigration.Resiliency;
 using Capgemini.Xrm.DataMigration.Config;
@@ -39,6 +40,8 @@ namespace Capgemini.DataMigration.Core.Tests.Base
                 </fetch>
                 "
             };
+
+        protected List<EntityToBeObfuscated> EmptyFieldsToObfuscate { get; } = new List<EntityToBeObfuscated>();
 
         protected GenericDataMigrator<Entity, MigrationEntityWrapper<Entity>> SystemUnderTest { get; set; }
 

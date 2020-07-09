@@ -103,6 +103,7 @@
     <Compile Include="DataProcessors\IgnoredFieldsProcessorTests.cs" />
     <Compile Include="DataProcessors\MapEntityProcessorTests.cs" />
     <Compile Include="DataProcessors\NoUpdateProcessorTests.cs" />
+    <Compile Include="DataProcessors\ObfuscateFieldsProcessorTests.cs" />
     <Compile Include="DataProcessors\ObjectTypeCodeProcessorTests.cs" />
     <Compile Include="DataProcessors\PassZeroReferenceProcessorTests.cs" />
     <Compile Include="DataProcessors\ReferenceFieldsProcessorTests.cs" />

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Core.Extensions;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
@@ -20,7 +21,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
         private readonly string filesPath;
         private readonly bool seperateFilesPerEntity;
         private readonly List<string> excludedFields;
-
+        private readonly List<EntityToBeObfuscated> fieldsToObfuscate;
         private int currentBatchNo;
         private int fileNo;
         private string lastEntity;
@@ -31,11 +32,12 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
                   config?.FilePrefix,
                   config?.JsonFolderPath,
                   config?.ExcludedFields,
-                  config != null && config.SeperateFilesPerEntity)
+                  config != null && config.SeperateFilesPerEntity,
+                  config?.FieldsToObfuscate)
         {
         }
 
-        public DataFileStoreWriter(ILogger logger, string filePrefix, string filesPath, List<string> excludedFields = null, bool seperateFilesPerEntity = true)
+        public DataFileStoreWriter(ILogger logger, string filePrefix, string filesPath, List<string> excludedFields = null, bool seperateFilesPerEntity = true, List<EntityToBeObfuscated> fieldsToObfuscate = null)
         {
             logger.ThrowArgumentNullExceptionIfNull(nameof(logger));
             filePrefix.ThrowArgumentNullExceptionIfNull(nameof(filePrefix));
@@ -46,6 +48,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             this.filesPath = filesPath;
             this.seperateFilesPerEntity = seperateFilesPerEntity;
             this.excludedFields = excludedFields;
+            this.fieldsToObfuscate = fieldsToObfuscate;
         }
 
         public void Reset()

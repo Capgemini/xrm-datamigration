@@ -88,6 +88,7 @@
     <Compile Include="DataProcessors\EntityStatusProcessor.cs" />
     <Compile Include="DataProcessors\IgnoredFieldsProcessor.cs" />
     <Compile Include="DataProcessors\MapEntityProcessor.cs" />
+    <Compile Include="DataProcessors\ObfuscateFieldsProcessor.cs" />
     <Compile Include="DataProcessors\ObjectTypeCodeProcessor.cs" />
     <Compile Include="DataProcessors\NoUpdateProcessor.cs" />
     <Compile Include="GlobalSuppressions1.cs" />
@@ -97,6 +98,11 @@
     <Compile Include="DataProcessors\ReferenceFieldsProcessor.cs" />
     <Compile Include="DataProcessors\SyncEntitiesProcessor.cs" />
     <Compile Include="DataProcessors\WorkflowsPluginsProcessor.cs" />
+    <Compile Include="Obfuscate\CrmObfuscateDecimalHandler.cs" />
+    <Compile Include="Obfuscate\CrmObfuscateDoubleHandler.cs" />
+    <Compile Include="Obfuscate\CrmObfuscateIntHandler.cs" />
+    <Compile Include="Obfuscate\CrmObfuscateStringHandler.cs" />
+    <Compile Include="Obfuscate\ICrmObfuscateHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +122,10 @@
     <ProjectReference Include="..\Capgemini.DataMigration.Resiliency.Polly\Capgemini.DataMigration.Resiliency.Polly.csproj">
       <Project>{d2afccc9-6459-41ec-8c0e-9eee45fff507}</Project>
       <Name>Capgemini.DataMigration.Resiliency.Polly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Capgemini.DataScrambler\Capgemini.DataScrambler.csproj">
+      <Project>{00413b74-0224-4d49-a5c5-16ae29294537}</Project>
+      <Name>Capgemini.DataScrambler</Name>
     </ProjectReference>
     <ProjectReference Include="..\Capgemini.Xrm.DataMigration.Core\Capgemini.Xrm.DataMigration.Core.csproj">
       <Project>{b9c0e463-c42a-4f5c-bd36-e69c93c959b2}</Project>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Capgemini.DataMigration.Core.Model;
 
 namespace Capgemini.Xrm.DataMigration.Config
 {
@@ -24,6 +25,11 @@ namespace Capgemini.Xrm.DataMigration.Config
         /// Gets or sets max Limit of items per entity.
         /// </summary>
         int TopCount { get; set; }
+
+        /// <summary>
+        /// Gets the fields to Obfuscate.
+        /// </summary>
+        List<EntityToBeObfuscated> FieldsToObfuscate { get; }
 
         /// <summary>
         /// Generates FetchXMLQueries.

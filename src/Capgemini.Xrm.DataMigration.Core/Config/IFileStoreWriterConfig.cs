@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Capgemini.DataMigration.Core.Model;
 
 namespace Capgemini.Xrm.DataMigration.Config
 {
@@ -13,5 +14,10 @@ namespace Capgemini.Xrm.DataMigration.Config
         /// Gets excluded fields from the output file.
         /// </summary>
         List<string> ExcludedFields { get; }
+
+        /// <summary>
+        /// Gets the fields that must be obfuscated.
+        /// </summary>
+        List<EntityToBeObfuscated> FieldsToObfuscate { get; }
     }
 }

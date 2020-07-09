@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Capgemini.DataMigration.Core.Model;
 
 namespace Capgemini.Xrm.DataMigration.Config
 {
@@ -11,6 +12,11 @@ namespace Capgemini.Xrm.DataMigration.Config
         bool IgnoreStatuses { get; set; }
 
         List<string> FiledsToIgnore { get; }
+
+        /// <summary>
+        /// Gets a List of Entities with fields that will be obfuscated.
+        /// </summary>
+        List<EntityToBeObfuscated> FieldsToObfuscate { get; }
 
         /// <summary>
         /// Gets list of entity names. If <seealso cref="IgnoreStatuses"/> is true, status wil be apllied to entities listed.
