@@ -1,4 +1,5 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using Capgemini.DataMigration.Core.Helpers;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Resiliency.Polly;
 using Capgemini.Xrm.Datamigration.Examples;
 using Capgemini.Xrm.Datamigration.Examples.Properties;
@@ -36,6 +37,9 @@ namespace Capgemini.Xrm.Datamigration.Examples
 
             Directory.CreateDirectory(GetExportPath());
 
+            LoadObfuscationLookups();
+
+
             ExportData(Settings.Default.CrmExportConnectionString, GetSchemaPath(), GetExportPath());
 
             Console.WriteLine("Importing data - press enter to import");
@@ -44,6 +48,11 @@ namespace Capgemini.Xrm.Datamigration.Examples
 
             Console.WriteLine("Operations completed - press enter to exit");
             Console.ReadLine();
+        }
+
+        private static void LoadObfuscationLookups()
+        {
+            ObfuscationLookupHelper.LoadLookups(GetLookupFolderPath());
         }
 
         static void ExportData(string connectionString, string schemaPath, string exportFolderPath)
@@ -152,11 +161,74 @@ namespace Capgemini.Xrm.Datamigration.Examples
 
         private static List<EntityToBeObfuscated> GenerateObfuscationObject()
         {
-            List<FieldToBeObfuscated> fieldsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fieldsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
-            fieldsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "lastname" });
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fieldsToBeObfuscated };
+            List<ObfuscationFormatOption> arguments = new List<ObfuscationFormatOption>();
+            List<ObfuscationFormatOption> arguments2 = new List<ObfuscationFormatOption>();
+            List<ObfuscationFormatOption> arguments3 = new List<ObfuscationFormatOption>();
+            List<ObfuscationFormatOption> arguments4 = new List<ObfuscationFormatOption>();
+
+            Dictionary<string, string> argumentsParams = new Dictionary<string, string>();
+            Dictionary<string, string> argumentsParams2 = new Dictionary<string, string>();
+            Dictionary<string, string> argumentsParams3 = new Dictionary<string, string>();
+            Dictionary<string, string> argumentsParams4 = new Dictionary<string, string>();
+            Dictionary<string, string> argumentsParams5 = new Dictionary<string, string>();
+            Dictionary<string, string> argumentsParams6 = new Dictionary<string, string>();
+            Dictionary<string, string> argumentsParams7 = new Dictionary<string, string>();
+            Dictionary<string, string> argumentsParams8 = new Dictionary<string, string>();
+            Dictionary<string, string> argumentsParams9 = new Dictionary<string, string>();
+
+
+
+            argumentsParams.Add("filename", "FirstnameAndSurnames.csv");
+            argumentsParams.Add("columnname", "firstname");
+
+            arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
+            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname", ObfuscationFormat = "f-{0}", ObfuscationFormatArgs = arguments });
+
+            //argumentsParams2.Add("length", "30");
+            //arguments2.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomString, argumentsParams2));
+            argumentsParams2.Add("filename", "FirstnameAndSurnames.csv");
+            argumentsParams2.Add("columnname", "surname");
+
+            arguments2.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams2));
+
+            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "lastname", ObfuscationFormat = "l-{0}", ObfuscationFormatArgs = arguments2 });
+
+            //argumentsParams3.Add("length", "10");
+            argumentsParams3.Add("filename", "FirstnameAndSurnames.csv");
+            argumentsParams3.Add("columnname", "firstname");
+            arguments3.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams3));
+
+            argumentsParams4.Add("length", "30");
+            arguments3.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomString, argumentsParams4));
+
+            argumentsParams5.Add("min", "10000");
+            argumentsParams5.Add("max", "99999");
+            arguments3.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomNumber, argumentsParams5));
+
+            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "emailaddress1", ObfuscationFormat = "{0}.{1}@{2}.com", ObfuscationFormatArgs = arguments3 });
+
+            //argumentsParams6.Add("length", "2");
+            //arguments4.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomString, argumentsParams6));
+
+            //argumentsParams8.Add("min", "1");
+            //argumentsParams8.Add("max", "99");
+            //arguments4.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomNumber, argumentsParams8));
+
+            //argumentsParams9.Add("min", "1");
+            //argumentsParams9.Add("max", "9");
+            //arguments4.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomNumber, argumentsParams9));
+
+            //argumentsParams7.Add("length", "2");
+            //arguments4.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomString, argumentsParams7));
+            argumentsParams6.Add("filename", "Postcodes.csv");
+            argumentsParams6.Add("columnname", "Postcode");
+
+            arguments4.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams6));
+            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "address1_postalcode", ObfuscationFormat = "PC-{0}", ObfuscationFormatArgs = arguments4 });
+
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
 
             List<EntityToBeObfuscated> EntitiesToBeObfuscated = new List<EntityToBeObfuscated>();
             EntitiesToBeObfuscated.Add(entityToBeObfuscated);
@@ -169,6 +241,15 @@ namespace Capgemini.Xrm.Datamigration.Examples
             var schemaPath = Path.Combine(GetScenarioPath(), "Schema.xml");
             return schemaPath;
         }
+
+        static string GetLookupFolderPath()
+        {
+            var lookupPath = Path.Combine(GetScenarioPath(), "LookupFiles");
+            return lookupPath;
+        }
+
+        
+
 
         static string GetExportPath()
         {

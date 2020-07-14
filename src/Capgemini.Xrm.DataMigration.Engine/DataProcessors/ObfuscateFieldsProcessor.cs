@@ -61,22 +61,22 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
                     {
                         if (originalEntity.Attributes.Contains(field.FieldName))
                         {
-                            ObfuscateField(originalEntity, field.FieldName);
+                            ObfuscateField(originalEntity, field);
                         }
                     }
                 }
             }
         }
 
-        private void ObfuscateField(Entity entity, string fieldName)
+        private void ObfuscateField(Entity entity, FieldToBeObfuscated field)
         {
-            Type fieldType = entity[fieldName].GetType();
+            Type fieldType = entity[field.FieldName].GetType();
             ICrmObfuscateHandler handler = crmObfuscateHandlers
                     .FirstOrDefault(currentHandler => currentHandler.CanHandle(fieldType));
 
             if(handler != null)
             {
-                handler.HandleObfuscation(entity, fieldName, metaDataCache);
+                handler.HandleObfuscation(entity, field, metaDataCache);
             }
         }
 
