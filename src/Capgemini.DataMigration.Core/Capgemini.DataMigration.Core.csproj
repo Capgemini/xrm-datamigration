@@ -42,9 +42,18 @@
     <CodeAnalysisRuleSet>Capgemini.DataMigration.Core.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CsvHelper.12.1.3\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,12 +73,17 @@
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="GenericDataMigrator.cs" />
+    <Compile Include="Helpers\ObfuscationLookupHelper.cs" />
     <Compile Include="IEntityProcessor.cs" />
     <Compile Include="IDataStoreReader.cs" />
     <Compile Include="IDataStoreWriter.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="Model\EntityToBeObfuscated.cs" />
     <Compile Include="Model\FieldToBeObfuscated.cs" />
+    <Compile Include="Model\FieldDataType.cs" />
+    <Compile Include="Model\ObfuscationFormatOption.cs" />
+    <Compile Include="Model\ObfuscationFormatType.cs" />
+    <Compile Include="Model\ObfuscationLookup.cs" />
     <Compile Include="OperationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resiliency\IPolicyBuilder.cs" />
@@ -97,6 +111,7 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

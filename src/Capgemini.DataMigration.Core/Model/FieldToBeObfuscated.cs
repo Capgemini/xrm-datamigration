@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.DataMigration.Core.Model
 {
     /// <summary>
-    /// Contains details of the field to be obfuscated
+    /// Contains details of the field to be obfuscated.
     /// </summary>
     public class FieldToBeObfuscated
     {
@@ -22,9 +19,23 @@ namespace Capgemini.DataMigration.Core.Model
         public string ObfuscationFormat { get; set; }
 
         /// <summary>
-        /// The functions that will be used to generate the obfuscated values
+        /// Gets or sets the function that will be used to generate the obfuscated values.
         /// </summary>
-        public List<string> ObfuscationFormatArgs { get; set; }
+        public List<ObfuscationFormatOption> ObfuscationFormatArgs { get; set; }
 
+        public FieldDataType FieldDataType { get; set; } = FieldDataType.Default;
+
+        public bool CanBeFormatted
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(this.ObfuscationFormat) && this.ObfuscationFormatArgs.Any())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
     }
 }

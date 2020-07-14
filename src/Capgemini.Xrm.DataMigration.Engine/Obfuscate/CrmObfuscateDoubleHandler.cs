@@ -1,4 +1,5 @@
-﻿using Capgemini.DataScrambler;
+﻿using Capgemini.DataMigration.Core.Model;
+using Capgemini.DataScrambler;
 using Capgemini.DataScrambler.Scramblers;
 using Capgemini.Xrm.DataMigration.Core;
 using Microsoft.Xrm.Sdk;
@@ -25,13 +26,13 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
             return type.Equals(typeof(double));
         }
 
-        public void HandleObfuscation(Entity entity, string fieldName, IEntityMetadataCache metaData)
+        public void HandleObfuscation(Entity entity, FieldToBeObfuscated field, IEntityMetadataCache metaData)
         {
             // Get the min and maximum values for the field using the meta data cache
-            DoubleAttributeMetadata doubleMetaData = (DoubleAttributeMetadata)metaData.GetAttribute(entity.LogicalName, fieldName);
-            int min = (int) doubleMetaData.MinValue.GetValueOrDefault(0);
-            int max = (int) doubleMetaData.MaxValue.GetValueOrDefault(10);
-            entity[fieldName] = doubleScramblerClient.ExecuteScramble((double)entity[fieldName], min, max);
+            DoubleAttributeMetadata doubleMetaData = (DoubleAttributeMetadata)metaData.GetAttribute(entity.LogicalName, field.FieldName);
+            int min = (int)doubleMetaData.MinValue.GetValueOrDefault(0);
+            int max = (int)doubleMetaData.MaxValue.GetValueOrDefault(10);
+            entity[field.FieldName] = doubleScramblerClient.ExecuteScramble((double)entity[field.FieldName], min, max);
         }
     }
 }
