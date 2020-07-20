@@ -9,24 +9,24 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
 {
     public class ObfuscationFormattingString : IObfuscationFormattingType<string>
     {
-        public string CreateFormattedValue(string originalValue, FieldToBeObfuscated field)
+        public string CreateFormattedValue(string originalValue, FieldToBeObfuscated field, Dictionary<string, object> metadataParameters)
         {
             if (field == null)
             {
                 throw new ArgumentNullException(nameof(field));
             }
 
-            string replacementString = Format(originalValue, field);
+            string replacementString = Format(originalValue, field, metadataParameters);
 
             while (replacementString == originalValue)
             {
-                replacementString = Format(originalValue, field);
+                replacementString = Format(originalValue, field, metadataParameters);
             }
 
             return replacementString;
         }
 
-        private string Format(string originalValue, FieldToBeObfuscated field)
+        private string Format(string originalValue, FieldToBeObfuscated field, Dictionary<string, object> metadataParameters)
         {
             List<string> obfuscatedStrings = new List<string>();
 
@@ -47,6 +47,16 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
             }
 
             string replacementString = string.Format(CultureInfo.InvariantCulture, field.ObfuscationFormat, obfuscatedStrings.ToArray());
+
+            if (metadataParameters != null && metadataParameters.ContainsKey("maxlength"))
+            {
+                var maxLength = (int)metadataParameters["maxlength"];
+
+                if (replacementString.Length > maxLength)
+                {
+                    replacementString = replacementString.Substring(0, maxLength);
+                }
+            }
 
             return replacementString;
         }

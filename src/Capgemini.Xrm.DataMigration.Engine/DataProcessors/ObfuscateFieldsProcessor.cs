@@ -52,7 +52,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
             {
                 // Get the List of fields for the current entity if they exist
                 Entity originalEntity = entity.OriginalEntity;
-                List<FieldToBeObfuscated> fieldsToChangeForCurrentEntity = fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).FirstOrDefault().FieldsToBeObfuscated;
+                List<FieldToBeObfuscated> fieldsToChangeForCurrentEntity = fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).Any() ? fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).FirstOrDefault().FieldsToBeObfuscated : null;
 
                 // If the list is not empty process the entities fields
                 if (fieldsToChangeForCurrentEntity != null && fieldsToChangeForCurrentEntity.Count > 0)
