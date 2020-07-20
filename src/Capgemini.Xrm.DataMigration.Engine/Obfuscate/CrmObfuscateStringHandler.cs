@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
@@ -47,12 +48,19 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
 
             if (field.CanBeFormatted)
             {
-                entity[field.FieldName] = formattingClient.CreateFormattedValue((string)entity[field.FieldName], field);
+                Dictionary<string, object> metadataParams = new Dictionary<string, object>();
+
+                if (stringMetaData.MaxLength != null)
+                {
+                    metadataParams.Add("maxlength", stringMetaData.MaxLength);
+                }
+
+                entity[field.FieldName] = formattingClient.CreateFormattedValue((string)entity[field.FieldName], field, metadataParams);
+                return;
             }
-            else
-            {
-                entity[field.FieldName] = strScramblerClient.ExecuteScramble((string)entity[field.FieldName]);
-            }
+
+            entity[field.FieldName] = strScramblerClient.ExecuteScramble((string)entity[field.FieldName]);
+            
         }
     }
 }
