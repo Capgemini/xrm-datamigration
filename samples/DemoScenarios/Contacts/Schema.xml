@@ -11,8 +11,8 @@
 			<field displayname="Email Address" name="emailaddress1" type="string" />
 			<field displayname="Postal Code" name="address1_postalcode" type="string" />
 			<field displayname="Address Line 1" name="address1_line1" type="string" />
-			<field displayname="Address Line Lat" name="address1_latitude" type="double" />
-			<field displayname="Address Line Lon" name="address1_longitude" type="double" />
+			<field displayname="Address 1: Latitude" name="address1_latitude" type="double" />
+			<field displayname="Address 1: Longitude" name="address1_longitude" type="double" />
 		</fields>
 		<relationships />
 	</entity>
