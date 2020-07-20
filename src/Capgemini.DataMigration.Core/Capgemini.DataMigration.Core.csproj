@@ -80,7 +80,6 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="Model\EntityToBeObfuscated.cs" />
     <Compile Include="Model\FieldToBeObfuscated.cs" />
-    <Compile Include="Model\FieldDataType.cs" />
     <Compile Include="Model\ObfuscationFormatOption.cs" />
     <Compile Include="Model\ObfuscationFormatType.cs" />
     <Compile Include="Model\ObfuscationLookup.cs" />

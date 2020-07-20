@@ -23,8 +23,6 @@ namespace Capgemini.DataMigration.Core.Model
         /// </summary>
         public List<ObfuscationFormatOption> ObfuscationFormatArgs { get; set; }
 
-        public FieldDataType FieldDataType { get; set; } = FieldDataType.Default;
-
         public bool CanBeFormatted
         {
             get
