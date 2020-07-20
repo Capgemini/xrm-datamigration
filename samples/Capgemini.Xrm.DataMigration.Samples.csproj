@@ -127,7 +127,7 @@
     <None Include="DemoScenarios\Contacts\LookupFiles\FirstnameAndSurnames.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="DemoScenarios\Contacts\LookupFiles\Postcodes.csv">
+    <None Include="DemoScenarios\Contacts\LookupFiles\ukpostcodes.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DemoScenarios\Contacts\Schema.xml">
