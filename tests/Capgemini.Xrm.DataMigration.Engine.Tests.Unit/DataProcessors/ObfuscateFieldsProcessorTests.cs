@@ -5,9 +5,11 @@ using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.CrmStore.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
 using Capgemini.Xrm.DataMigration.Engine.DataProcessors;
+using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
+using Moq;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
 {
@@ -199,11 +201,10 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             entity.Attributes.Add("address1_latitude", latitudeBefore);
             EntityWrapper entityWrapper = new EntityWrapper(entity);
 
+            List<FieldToBeObfuscated> fieldsToBeObfuscated = new List<FieldToBeObfuscated>();
+            fieldsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "address1_latitude" });
 
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "address1_latitude" });
-
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fieldsToBeObfuscated };
 
             var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
             fieldToBeObfuscated.Add(entityToBeObfuscated);
