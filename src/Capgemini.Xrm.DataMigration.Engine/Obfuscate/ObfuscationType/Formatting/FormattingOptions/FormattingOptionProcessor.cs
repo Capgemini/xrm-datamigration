@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Helpers;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
@@ -7,16 +8,24 @@ using Capgemini.DataScrambler.Scramblers;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions
 {
-    public static class FormattingOptionProcessor
+    public class FormattingOptionProcessor
     {
-        private static Random randomGenerator = new Random();
+        private FormattingOptionLookup formattingOptionLookup;
 
-        public static int GenerateRandomNumber(string originalValue, ObfuscationFormatOption arg)
+        public FormattingOptionProcessor()
         {
-            if (arg == null)
-            {
-                throw new ArgumentNullException(nameof(arg));
-            }
+            this.formattingOptionLookup = new FormattingOptionLookup();
+        }
+
+        public FormattingOptionProcessor(FormattingOptionLookup formattingOptionLookup)
+        {
+            this.formattingOptionLookup = formattingOptionLookup;
+        }
+
+        public int GenerateRandomNumber(string originalValue, ObfuscationFormatOption arg)
+        {
+            originalValue.ThrowArgumentNullExceptionIfNull(nameof(originalValue));
+            arg.ThrowArgumentNullExceptionIfNull(nameof(arg));
 
             int min = 0;
             int max = 10;
@@ -37,27 +46,35 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
                 }
             }
 
-            int randomNumber = randomGenerator.Next(min, max);
+            if (min >= max)
+            {
+                throw new ArgumentOutOfRangeException($"The min({min}) must be lower than the max({max}).");
+            }
+
+            int randomNumber = FormattingOptionProcessorStatics.RandomGenerator.Next(min, max);
             while (originalValue.Contains(randomNumber.ToString(CultureInfo.InvariantCulture)))
             {
-                randomNumber = randomGenerator.Next(min, max);
+                randomNumber = FormattingOptionProcessorStatics.RandomGenerator.Next(min, max);
             }
 
             return randomNumber;
         }
 
-        public static string GenerateFromLookup(string originalValue, ObfuscationFormatOption arg)
+        public virtual string GenerateFromLookup(string originalValue, ObfuscationFormatOption arg)
         {
-            if (arg == null)
-            {
-                throw new ArgumentNullException(nameof(arg));
-            }
+            originalValue.ThrowArgumentNullExceptionIfNull(nameof(originalValue));
+            arg.ThrowArgumentNullExceptionIfNull(nameof(arg));
 
             string fileName = string.Empty;
 
             if (arg.Arguments.ContainsKey("filename"))
             {
                 fileName = arg.Arguments["filename"];
+            }
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
             }
 
             string columnName = string.Empty;
@@ -67,7 +84,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
                 columnName = arg.Arguments["columnname"];
             }
 
-            var obfuscationLookup = ObfuscationLookupHelper.ObfuscationLookups[fileName];
+            if (string.IsNullOrEmpty(columnName))
+            {
+                throw new ArgumentNullException(nameof(columnName));
+            }
+            ObfuscationLookup obfuscationLookup = formattingOptionLookup.GetObfuscationLookup(fileName);
 
             var newValue = (string)LookupRandomValue(columnName, obfuscationLookup);
 
@@ -79,24 +100,12 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
             return newValue;
         }
 
-        public static string GenerateRandomString(string originalValue, ObfuscationFormatOption arg)
+        public virtual string GenerateRandomString(string originalValue, ObfuscationFormatOption arg)
         {
-            if (arg == null)
-            {
-                throw new ArgumentNullException(nameof(arg));
-            }
-
-            if (originalValue == null)
-            {
-                throw new ArgumentNullException(nameof(originalValue));
-            }
+            originalValue.ThrowArgumentNullExceptionIfNull(nameof(originalValue));
+            arg.ThrowArgumentNullExceptionIfNull(nameof(arg));
 
             var scramblerClient = new ScramblerClient<string>(new StringScrambler());
-            if (scramblerClient == null)
-            {
-                throw new NullReferenceException(nameof(scramblerClient));
-            }
-
             int length = 5;
 
             if (arg.Arguments.ContainsKey("length"))
@@ -117,9 +126,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
             return scramblerClient.ExecuteScramble(originalValue);
         }
 
-        private static object LookupRandomValue(string columnName, ObfuscationLookup lookup)
+        private object LookupRandomValue(string columnName, ObfuscationLookup lookup)
         {
-            int index = randomGenerator.Next(lookup.Count - 1);
+            int index = FormattingOptionProcessorStatics.RandomGenerator.Next(lookup.Count - 1);
 
             var newValue = lookup[index, columnName];
             return newValue;

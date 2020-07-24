@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
 using Capgemini.DataScrambler.Scramblers;
 using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting;
+using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 
@@ -19,7 +21,13 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
         public CrmObfuscateStringHandler()
         {
             this.strScramblerClient = new ScramblerClient<string>(new StringScrambler());
-            this.formattingClient = new ObfuscationFormattingString();
+            this.formattingClient = new ObfuscationFormattingString(new FormattingOptionProcessor());
+        }
+
+        public CrmObfuscateStringHandler(IObfuscationFormattingType<string> formattingClient = null)
+        {
+            this.strScramblerClient = new ScramblerClient<string>(new StringScrambler());
+            this.formattingClient = formattingClient;
         }
 
         public bool CanHandle(Type type)
@@ -29,20 +37,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
 
         public void HandleObfuscation(Entity entity, FieldToBeObfuscated field, IEntityMetadataCache metaData)
         {
-            if (field == null)
-            {
-                throw new ArgumentNullException(nameof(field));
-            }
-
-            if (metaData == null)
-            {
-                throw new ArgumentNullException(nameof(metaData));
-            }
-
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            entity.ThrowArgumentNullExceptionIfNull(nameof(entity));
+            field.ThrowArgumentNullExceptionIfNull(nameof(field));
+            metaData.ThrowArgumentNullExceptionIfNull(nameof(metaData));
 
             StringAttributeMetadata stringMetaData = (StringAttributeMetadata)metaData.GetAttribute(entity.LogicalName, field.FieldName);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Security.Cryptography.Xml;
+using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
@@ -10,12 +11,17 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
 {
     public class ObfuscationFormattingDouble : IObfuscationFormattingType<double>
     {
+        private FormattingOptionProcessor optionProcessor;
+
+        public ObfuscationFormattingDouble(FormattingOptionProcessor processor)
+        {
+            optionProcessor = processor;
+        }
+
         public double CreateFormattedValue(double originalValue, FieldToBeObfuscated field, Dictionary<string, object> metadataParameters)
         {
-            if (field == null)
-            {
-                throw new ArgumentNullException(nameof(field));
-            }
+            metadataParameters.ThrowArgumentNullExceptionIfNull(nameof(metadataParameters));
+            field.ThrowArgumentNullExceptionIfNull(nameof(field));
 
             var replacementValue = Format(originalValue, field);
 
@@ -27,7 +33,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
             return replacementValue;
         }
 
-        private bool ReplacementIsValid(double replacementValue, Dictionary<string, object> metadataParameters)
+        public bool ReplacementIsValid(double replacementValue, Dictionary<string, object> metadataParameters)
         {
             int min = 0;
             int max = 10;
@@ -70,7 +76,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
                 throw new NotImplementedException($"The ObfuscationFormatType({field.ObfuscationFormatArgs[0].FormatType}) is not implemented for fields of type double.");
             }
 
-            string lookupValue = FormattingOptionProcessor.GenerateFromLookup(originalValue.ToString("G", CultureInfo.InvariantCulture), field.ObfuscationFormatArgs[0]);
+            string lookupValue = optionProcessor.GenerateFromLookup(originalValue.ToString("G", CultureInfo.InvariantCulture), field.ObfuscationFormatArgs[0]);
 
             if (double.TryParse(lookupValue, out double replacementValue))
             {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Capgemini.DataMigration.Core;
+using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
 using Capgemini.DataScrambler.Scramblers;
@@ -48,6 +49,8 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
         public void ProcessEntity(EntityWrapper entity, int passNumber, int maxPassNumber)
         {
+            entity.ThrowArgumentNullExceptionIfNull(nameof(entity));
+
             if (entity.OperationType != OperationType.Ignore && fieldsToObfuscate != null)
             {
                 // Get the List of fields for the current entity if they exist
