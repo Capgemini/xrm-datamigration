@@ -1,8 +1,10 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using Capgemini.DataMigration.Core.Extensions;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
 using Capgemini.DataScrambler.Scramblers;
 using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting;
+using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 using System;
@@ -21,7 +23,13 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
         public CrmObfuscateDoubleHandler()
         {
             this.doubleScramblerClient = new ScramblerClient<double>(new DoubleScrambler());
-            this.formattingClient = new ObfuscationFormattingDouble();
+            this.formattingClient = new ObfuscationFormattingDouble(new FormattingOptionProcessor());
+        }
+
+        public CrmObfuscateDoubleHandler(IObfuscationFormattingType<double> formattingClient = null)
+        {
+            this.doubleScramblerClient = new ScramblerClient<double>(new DoubleScrambler());
+            this.formattingClient = formattingClient;
         }
 
         public bool CanHandle(Type type)
@@ -31,20 +39,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
 
         public void HandleObfuscation(Entity entity, FieldToBeObfuscated field, IEntityMetadataCache metaData)
         {
-            if (field == null)
-            {
-                throw new ArgumentNullException(nameof(field));
-            }
-
-            if (metaData == null)
-            {
-                throw new ArgumentNullException(nameof(metaData));
-            }
-
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            entity.ThrowArgumentNullExceptionIfNull(nameof(entity));
+            field.ThrowArgumentNullExceptionIfNull(nameof(field));
+            metaData.ThrowArgumentNullExceptionIfNull(nameof(metaData));
 
             // Get the min and maximum values for the field using the meta data cache
             DoubleAttributeMetadata doubleMetaData = (DoubleAttributeMetadata)metaData.GetAttribute(entity.LogicalName, field.FieldName);

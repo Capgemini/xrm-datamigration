@@ -2,6 +2,7 @@
 using System.Data;
 using System.IO;
 using System.Linq;
+using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
 using CsvHelper;
 
@@ -22,8 +23,11 @@ namespace Capgemini.DataMigration.Core.Helpers
         /// <summary>
         /// Load lookups from a Dictionary.
         /// </summary>
+        /// <param name="lookups">Dictionary containing a key of the lookup file name as referenced in the FieldsForObfuscation Json in the ExportConfig file and the list of values.</param>
         public static void LoadLookups(Dictionary<string, ObfuscationLookup> lookups)
         {
+            lookups.ThrowArgumentNullExceptionIfNull(nameof(lookups));
+
             ObfuscationLookups = lookups;
         }
 
@@ -33,9 +37,18 @@ namespace Capgemini.DataMigration.Core.Helpers
         /// <param name="folderPath">The folder that contains the csv files to be used as lookups.</param>
         public static void LoadLookups(string folderPath)
         {
+            folderPath.ThrowArgumentNullExceptionIfNull(nameof(folderPath));
+
+            var searchPattern = "*.csv";
+            var files = System.IO.Directory.GetFiles(folderPath, searchPattern, SearchOption.TopDirectoryOnly);
+            if (files.Length == 0)
+            {
+                throw new FileNotFoundException($"No file matching the search pattern ({searchPattern}) could be found in the folder ({folderPath})");
+            }
+
             Dictionary<string, ObfuscationLookup> lookups = new Dictionary<string, ObfuscationLookup>();
 
-            foreach (string filePath in System.IO.Directory.GetFiles(folderPath, "*.csv", SearchOption.TopDirectoryOnly))
+            foreach (string filePath in files)
             {
                 var file = new FileInfo(filePath);
                 ObfuscationLookup f = ReadFromFile(filePath);
@@ -48,6 +61,8 @@ namespace Capgemini.DataMigration.Core.Helpers
 
         public static ObfuscationLookup ReadFromFile(string fileName)
         {
+            fileName.ThrowArgumentNullExceptionIfNull(nameof(fileName));
+
             List<dynamic> records = new List<dynamic>();
 
             using (TextReader tr = File.OpenText(fileName))

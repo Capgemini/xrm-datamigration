@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
@@ -9,12 +10,17 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
 {
     public class ObfuscationFormattingString : IObfuscationFormattingType<string>
     {
+        private FormattingOptionProcessor optionProcessor;
+
+        public ObfuscationFormattingString(FormattingOptionProcessor processor)
+        {
+            optionProcessor = processor;
+        }
+
         public string CreateFormattedValue(string originalValue, FieldToBeObfuscated field, Dictionary<string, object> metadataParameters)
         {
-            if (field == null)
-            {
-                throw new ArgumentNullException(nameof(field));
-            }
+            field.ThrowArgumentNullExceptionIfNull(nameof(field));
+            metadataParameters.ThrowArgumentNullExceptionIfNull(nameof(metadataParameters));
 
             string replacementString = Format(originalValue, field, metadataParameters);
 
@@ -35,13 +41,13 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
                 switch (arg.FormatType)
                 {
                     case ObfuscationFormatType.RandomString:
-                        obfuscatedStrings.Add(FormattingOptionProcessor.GenerateRandomString(originalValue, arg));
+                        obfuscatedStrings.Add(optionProcessor.GenerateRandomString(originalValue, arg));
                         break;
                     case ObfuscationFormatType.RandomNumber:
-                        obfuscatedStrings.Add(FormattingOptionProcessor.GenerateRandomNumber(originalValue, arg).ToString(CultureInfo.InvariantCulture));
+                        obfuscatedStrings.Add(optionProcessor.GenerateRandomNumber(originalValue, arg).ToString(CultureInfo.InvariantCulture));
                         break;
                     case ObfuscationFormatType.Lookup:
-                        obfuscatedStrings.Add(FormattingOptionProcessor.GenerateFromLookup(originalValue, arg));
+                        obfuscatedStrings.Add(optionProcessor.GenerateFromLookup(originalValue, arg));
                         break;
                 }
             }

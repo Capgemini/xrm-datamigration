@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
 
 namespace Capgemini.DataMigration.Core.Model
@@ -9,6 +10,16 @@ namespace Capgemini.DataMigration.Core.Model
 
         public ObfuscationLookup(string name, List<dynamic> dataRows)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException($"{nameof(name)} must not be null or empty.");
+            }
+
+            if (dataRows == null || dataRows.Count.Equals(0))
+            {
+                throw new ArgumentException($"{nameof(dataRows)} must not be null or empty.");
+            }
+
             Name = name;
             this.dataRows = dataRows;
         }
