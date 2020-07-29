@@ -8,12 +8,10 @@ namespace Capgemini.DataScrambler.Scramblers
 {
     public class StringScrambler : IScrambler<string>
     {
-        Random RandomGenerator { get; }
         const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         public StringScrambler()
         {
-            RandomGenerator = new Random();
         }
 
         public virtual string Scramble(string input, int min, int max)
@@ -26,7 +24,7 @@ namespace Capgemini.DataScrambler.Scramblers
             StringBuilder sb = new StringBuilder();
             foreach (char c in input)
             {
-                int randomNumber = RandomGenerator.Next(0, Chars.Length);
+                int randomNumber = RandomGenerator.GetRandom.Next(0, Chars.Length);
                 char newCharacter = Chars[randomNumber];
                 sb.Append(newCharacter);
             }
