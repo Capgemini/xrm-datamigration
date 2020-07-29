@@ -124,12 +124,6 @@
     <None Include="DemoScenarios\Calendars\ImportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="DemoScenarios\Contacts\LookupFiles\FirstnameAndSurnames.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="DemoScenarios\Contacts\LookupFiles\ukpostcodes.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="DemoScenarios\Contacts\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -143,6 +137,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DemoScenarios\DuplicateDetection\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\Obfuscation\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\Obfuscation\LookupFiles\FirstnameAndSurnames.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\Obfuscation\LookupFiles\ukpostcodes.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DemoScenarios\OrganizationHierarchy\ExportConfig.json">
@@ -226,6 +229,11 @@
       <Project>{D2AFCCC9-6459-41EC-8C0E-9EEE45FFF507}</Project>
       <Name>Capgemini.DataMigration.Resiliency.Polly</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DemoScenarios\Obfuscation\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
