@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="account" displayname="Organisation" etc="1" primaryidfield="accountid" primarynamefield="name" disableplugins="false">
+    <fields>
+          <field displayname="Address 1: Longitude" name="address1_longitude" type="double" primaryKey="false" customfield="false" />
+          <field displayname="Email" name="emailaddress1" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: Country/Region" name="address1_country" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Account Rating" name="accountratingcode" type="optionsetvalue" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: Street 2" name="address1_line2" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Main Phone" name="telephone1" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: State/Province" name="address1_stateorprovince" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Classification" name="accountclassificationcode" type="optionsetvalue" primaryKey="false" customfield="false" />
+          <field displayname="Account" name="accountid" type="guid" primaryKey="true" customfield="false" />
+          <field displayname="Address 1: County" name="address1_county" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: City" name="address1_city" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: Name" name="address1_name" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: Latitude" name="address1_latitude" type="double" primaryKey="false" customfield="false" />
+          <field displayname="Account Number" name="accountnumber" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: Street 3" name="address1_line3" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address Phone" name="address1_telephone1" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: ID" name="address1_addressid" type="guid" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: Street 1" name="address1_line1" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Category" name="accountcategorycode" type="optionsetvalue" primaryKey="false" customfield="false" />
+          <field displayname="Organisation Name" name="name" type="string" primaryKey="false" customfield="false" />
+          <field displayname="Address 1: ZIP/Postal Code" name="address1_postalcode" type="string" primaryKey="false" customfield="false" />
+    </fields>
+  </entity>
+  <entity name="contact" displayname="Contact" etc="2" primaryidfield="contactid" primarynamefield="fullname" disableplugins="false">
+    <fields>
+      <field displayname="Email" name="emailaddress1" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Town / City" name="address1_city" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Street 1" name="address1_line1" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Address 1: Longitude" name="address1_longitude" type="double" primaryKey="false" customfield="false" />
+      <field displayname="Mobile Phone" name="mobilephone" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Street 3" name="address1_line3" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Address 1: Phone" name="address1_telephone1" type="string" primaryKey="false" customfield="false" />
+      <field displayname="First Name" name="firstname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Address 1: County" name="address1_county" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Address 1: ID" name="address1_addressid" type="guid" primaryKey="false" customfield="false" />
+      <field displayname="Address 1: Country/Region" name="address1_country" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Account" name="accountid" type="entityreference" primaryKey="false" lookupType="account" customfield="false" />
+      <field displayname="Street 2" name="address1_line2" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Salutation" name="salutation" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Postcode" name="address1_postalcode" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Address 1: Name" name="address1_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Address 1: Latitude" name="address1_latitude" type="double" primaryKey="false" customfield="false" />
+      <field displayname="Last Name" name="lastname" type="string" primaryKey="false" customfield="false" />
+	</fields>
+    <relationships />
+  </entity>
+</entities>
