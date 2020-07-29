@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Capgemini.DataMigration.Core.Model
@@ -23,6 +24,7 @@ namespace Capgemini.DataMigration.Core.Model
         /// </summary>
         public List<ObfuscationFormatOption> ObfuscationFormatArgs { get; set; }
 
+        [JsonIgnore]
         public bool CanBeFormatted
         {
             get
