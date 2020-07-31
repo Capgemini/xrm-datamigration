@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Capgemini.DataMigration.Core;
+using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
 using Capgemini.DataScrambler.Scramblers;
@@ -48,11 +49,13 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
         public void ProcessEntity(EntityWrapper entity, int passNumber, int maxPassNumber)
         {
+            entity.ThrowArgumentNullExceptionIfNull(nameof(entity));
+
             if (entity.OperationType != OperationType.Ignore && fieldsToObfuscate != null)
             {
                 // Get the List of fields for the current entity if they exist
                 Entity originalEntity = entity.OriginalEntity;
-                List<FieldToBeObfuscated> fieldsToChangeForCurrentEntity = fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).FirstOrDefault().FieldsToBeObfuscated;
+                List<FieldToBeObfuscated> fieldsToChangeForCurrentEntity = fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).Any() ? fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).FirstOrDefault().FieldsToBeObfuscated : null;
 
                 // If the list is not empty process the entities fields
                 if (fieldsToChangeForCurrentEntity != null && fieldsToChangeForCurrentEntity.Count > 0)
@@ -61,22 +64,22 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
                     {
                         if (originalEntity.Attributes.Contains(field.FieldName))
                         {
-                            ObfuscateField(originalEntity, field.FieldName);
+                            ObfuscateField(originalEntity, field);
                         }
                     }
                 }
             }
         }
 
-        private void ObfuscateField(Entity entity, string fieldName)
+        private void ObfuscateField(Entity entity, FieldToBeObfuscated field)
         {
-            Type fieldType = entity[fieldName].GetType();
+            Type fieldType = entity[field.FieldName].GetType();
             ICrmObfuscateHandler handler = crmObfuscateHandlers
                     .FirstOrDefault(currentHandler => currentHandler.CanHandle(fieldType));
 
             if(handler != null)
             {
-                handler.HandleObfuscation(entity, fieldName, metaDataCache);
+                handler.HandleObfuscation(entity, field, metaDataCache);
             }
         }
 

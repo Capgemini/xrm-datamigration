@@ -8,11 +8,8 @@ namespace Capgemini.DataScrambler.Scramblers
 {
     public class DoubleScrambler : IScrambler<double>
     {
-        Random RandomGenerator { get; }
-
         public DoubleScrambler()
         {
-            RandomGenerator = new Random();
         }
 
         public double Scramble(double input, int min, int max)
@@ -28,7 +25,7 @@ namespace Capgemini.DataScrambler.Scramblers
 
         private double CalculateRandomDouble(int max)
         {
-            return RandomGenerator.NextDouble() * max;
+            return RandomGenerator.GetRandom.NextDouble() * max;
         }
     }
 }
