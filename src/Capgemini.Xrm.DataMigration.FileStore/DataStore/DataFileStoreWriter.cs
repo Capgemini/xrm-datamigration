@@ -77,6 +77,8 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
                 }
             }
 
+            RemoveEntityReferenceNameProperty(entitiesToExport);
+
             var exportedStore = new CrmExportedDataStore
             {
                 RecordsCount = entitiesToExport.Count,
@@ -96,6 +98,29 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             }
 
             logger.LogVerbose("DataFileStoreWriter SaveBatchDataToStore finished");
+        }
+
+        /// <summary>
+        /// Remove the value from the name property of any EntityReference type if obfuscation is being performed on the data
+        /// </summary>
+        /// <param name="entitiesToExport">Collection of entities being exported.</param>
+        public void RemoveEntityReferenceNameProperty(List<CrmEntityStore> entitiesToExport)
+        {
+            entitiesToExport.ThrowArgumentNullExceptionIfNull(nameof(entitiesToExport));
+
+            if (this.fieldsToObfuscate != null && this.fieldsToObfuscate.Any())
+            {
+                foreach (var entity in entitiesToExport)
+                {
+                    if (entity.Attributes.Where(x => x.AttributeType == "Microsoft.Xrm.Sdk.EntityReference").Any())
+                    {
+                        foreach (var attr in entity.Attributes.Where(x => x.AttributeType == "Microsoft.Xrm.Sdk.EntityReference"))
+                        {
+                            ((EntityReference)attr.AttributeValue).Name = null;
+                        }
+                    }
+                }
+            }
         }
 
         private string GetFileNameForBatchNo(int batchNo, string entName)
