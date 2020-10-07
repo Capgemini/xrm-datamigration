@@ -103,7 +103,6 @@
     <Compile Include="Extensions\ExceptionExtensionsTests.cs" />
     <Compile Include="GenericDataMigratorTests.cs" />
     <Compile Include="Helpers\ObfuscationLookupHelperShould.cs" />
-    <Compile Include="Model.FieldToBeObfuscatedTests.cs" />
     <Compile Include="Model\FieldToBeObfuscatedTests.cs" />
     <Compile Include="Model\ObfuscationFormatOptionTests.cs" />
     <Compile Include="Model\ObfuscationLookupTests.cs" />
