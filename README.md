@@ -9,7 +9,7 @@ This Data Migration project provides a flexible powerful engine based on the XRM
 ## Table Of Contents
 1. [Installation](#Installation)
 1. [Usage](#Usage)
-1. [Obfuscation](#Obfuscation)
+   1. [Obfuscation](#Obfuscation)
 1. [Contributing](#Contributing)
 1. [Credits](#Credits)
 1. [License](#License)

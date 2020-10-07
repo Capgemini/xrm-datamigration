@@ -112,12 +112,9 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             {
                 foreach (var entity in entitiesToExport)
                 {
-                    if (entity.Attributes.Where(x => x.AttributeType == "Microsoft.Xrm.Sdk.EntityReference").Any())
+                    foreach (var attr in entity.Attributes.Where(x => x.AttributeType == "Microsoft.Xrm.Sdk.EntityReference"))
                     {
-                        foreach (var attr in entity.Attributes.Where(x => x.AttributeType == "Microsoft.Xrm.Sdk.EntityReference"))
-                        {
-                            ((EntityReference)attr.AttributeValue).Name = null;
-                        }
+                        ((EntityReference)attr.AttributeValue).Name = null;
                     }
                 }
             }
