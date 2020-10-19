@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="msdyn_incidenttype" displayname="Commodity Group" etc="10187" primaryidfield="msdyn_incidenttypeid" primarynamefield="msdyn_name" disableplugins="false">
+    <fields>
+      <field displayname="Incident Type" name="msdyn_incidenttypeid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Estimated Duration" name="msdyn_estimatedduration" type="integer" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="msdyn_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="msdyn_description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Copy Incident Items to Agreement" name="msdyn_copyincidentitemstoagreement" type="bool" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="msdyn_incidenttypeservice" displayname="Incident Type Service" etc="10190" primaryidfield="msdyn_incidenttypeserviceid" primarynamefield="msdyn_name" disableplugins="false">
+    <fields>
+      <field displayname="Incident Type Service" name="msdyn_incidenttypeserviceid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Name" name="msdyn_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Service" name="msdyn_service" type="entityreference" primaryKey="false" lookupType="product" customfield="false" />
+      <field displayname="Description" name="msdyn_description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Incident Type" name="msdyn_incidenttype" type="entityreference" primaryKey="false" lookupType="msdyn_incidenttype" customfield="false" />
+      <field displayname="Duration" name="msdyn_duration" type="integer" primaryKey="false" customfield="false" />
+      <field displayname="Unit" name="msdyn_unit" type="entityreference" primaryKey="false" lookupType="uom" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="msdyn_incidenttypeservicetask" displayname="Incident Type Service Task" etc="10191" primaryidfield="msdyn_incidenttypeservicetaskid" primarynamefield="msdyn_name" disableplugins="false">
+    <fields>
+      <field displayname="Estimated Duration" name="msdyn_estimatedduration" type="integer" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="msdyn_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="msdyn_description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Incident Type Service Task" name="msdyn_incidenttypeservicetaskid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Task Type" name="msdyn_tasktype" type="entityreference" primaryKey="false" lookupType="msdyn_servicetasktype" customfield="false" />
+      <field displayname="Incident Type" name="msdyn_incidenttype" type="entityreference" primaryKey="false" lookupType="msdyn_incidenttype" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="msdyn_servicetasktype" displayname="Work Order Task Type" etc="10230" primaryidfield="msdyn_servicetasktypeid" primarynamefield="msdyn_name" disableplugins="false">
+    <fields>
+      <field displayname="Estimated Duration" name="msdyn_estimatedduration" type="integer" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="msdyn_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="msdyn_description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Service Task Type" name="msdyn_servicetasktypeid" type="guid" primaryKey="true" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="msdyn_workordersubstatus" displayname="Work Order Substatus" etc="10245" primaryidfield="msdyn_workordersubstatusid" primarynamefield="msdyn_name" disableplugins="false">
+    <fields>
+      <field displayname="Name" name="msdyn_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="System Status" name="msdyn_systemstatus" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Work Order Substatus" name="msdyn_workordersubstatusid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Default Substatus" name="msdyn_defaultsubstatus" type="bool" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="msdyn_workordertype" displayname="Application Type" etc="10246" primaryidfield="msdyn_workordertypeid" primarynamefield="msdyn_name" disableplugins="false">
+    <fields>
+      <field displayname="Incident Required" name="msdyn_incidentrequired" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="msdyn_name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Taxable" name="msdyn_taxable" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Price List" name="msdyn_pricelist" type="entityreference" primaryKey="false" lookupType="pricelevel" customfield="false" />
+      <field displayname="Work Order Type" name="msdyn_workordertypeid" type="guid" primaryKey="true" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="pricelevel" displayname="Price List" etc="1022" primaryidfield="pricelevelid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Freight Terms" name="freighttermscode" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="End Date" name="enddate" type="datetime" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Start Date" name="begindate" type="datetime" primaryKey="false" customfield="false" />
+      <field displayname="Break Hours Billable" name="msdyn_breakhoursbillable" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Price List" name="pricelevelid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Shipping Method" name="shippingmethodcode" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Payment Method " name="paymentmethodcode" type="optionsetvalue" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="product" displayname="Product" etc="1024" primaryidfield="productid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Is Kit" name="iskit" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Is Reparented" name="isreparented" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Default Unit" name="defaultuomid" type="entityreference" primaryKey="false" lookupType="uom" customfield="false" />
+      <field displayname="Unit Group" name="defaultuomscheduleid" type="entityreference" primaryKey="false" lookupType="uomschedule" customfield="false" />
+      <field displayname="Decimals Supported" name="quantitydecimal" type="integer" primaryKey="false" customfield="false" />
+      <field displayname="Taxable" name="msdyn_taxable" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Convert to Customer Asset" name="msdyn_converttocustomerasset" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Field Service Product Type" name="msdyn_fieldserviceproducttype" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Product" name="productid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Product Type" name="producttypecode" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Stock Item" name="isstockitem" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Product ID" name="productnumber" type="string" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="productpricelevel" displayname="Price List Item" etc="1026" primaryidfield="productpricelevelid" primarynamefield="productidname" disableplugins="false">
+    <fields>
+      <field displayname="Unit Schedule ID" name="uomscheduleid" type="entityreference" primaryKey="false" lookupType="uomschedule" customfield="false" />
+      <field displayname="Price List" name="pricelevelid" type="entityreference" primaryKey="false" lookupType="pricelevel" customfield="false" />
+      <field displayname="Product" name="productid" type="entityreference" primaryKey="false" lookupType="product" customfield="false" />
+      <field displayname="Product Price List" name="productpricelevelid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Pricing Method" name="pricingmethodcode" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Amount" name="amount" type="money" primaryKey="false" customfield="false" />
+      <field displayname="Unit" name="uomid" type="entityreference" primaryKey="false" lookupType="uom" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+</entities>
