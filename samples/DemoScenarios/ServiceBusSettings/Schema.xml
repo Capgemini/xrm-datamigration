@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="serviceendpoint" displayname="Service Endpoint" etc="4618" primaryidfield="serviceendpointid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Namespace Address" name="namespaceaddress" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Shared Access Key Name" name="saskeyname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="" name="serviceendpointid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Path" name="path" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Shared Access Key" name="saskey" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Service Namespace" name="solutionnamespace" type="string" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+</entities>
