@@ -1,0 +1,20 @@
+{
+  "IgnoreStatuses": false,
+  "IgnoreSystemFields": true,
+  "MigrationConfig": {
+    "ApplyAliasMapping": true,
+    "SourceRootBUName": "test",
+    "Mappings": {}
+  },
+  "SaveBatchSize": 200,
+  "JsonFolderPath": "GetAutomatically",
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "fieldservice",
+  "PassOneReferences": [
+    "uomschedule",
+    "uom",
+    "msdyn_service",
+    "msdyn_incidenttype",
+    "msdyn_tasktype"
+  ]
+}

@@ -139,10 +139,22 @@
     <None Include="DemoScenarios\DuplicateDetection\ImportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="DemoScenarios\FieldServiceConfig\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\FieldServiceConfig\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DemoScenarios\OrganizationHierarchy\ExportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DemoScenarios\OrganizationHierarchy\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\ServiceBusSettings\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\ServiceBusSettings\ImportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DemoScenarios\SubjectsAndArticles\ExportConfig.json">
@@ -157,9 +169,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DemoScenarios\OneToMany\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="DemoScenarios\Calendars\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -220,6 +230,17 @@
       <Project>{D2AFCCC9-6459-41EC-8C0E-9EEE45FFF507}</Project>
       <Name>Capgemini.DataMigration.Resiliency.Polly</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DemoScenarios\FieldServiceConfig\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="DemoScenarios\OneToMany\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DemoScenarios\ServiceBusSettings\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
