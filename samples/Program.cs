@@ -23,7 +23,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
         {        
             //    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            ConsoleLogger.LogLevel = 5;
+            ConsoleLogger.LogLevel = 3;
             Console.WriteLine($"Using demo scenario {Settings.Default.DemoScenarioName}");
             Console.WriteLine("Exporting data - press enter to export");
             Console.ReadLine();

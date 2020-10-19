@@ -1,0 +1,30 @@
+{
+  "CrmMigrationToolSchemaPaths": [ "GetAutomatically" ],
+  "CrmMigrationToolSchemaFilters": {},
+  "PageSize": 1000,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "JsonFolderPath": "GetAutomatically",
+  "OneEntityPerBatch": true,
+  "FilePrefix": "fieldservice",
+  "SeperateFilesPerEntity": true,
+  "LookupMapping": {
+    "msdyn_incidenttypeservice": {
+      "msdyn_unit": [ "name" ]
+    },
+    "product": {
+      "defaultuomid": [ "name" ],
+      "defaultuomscheduleid": [ "name" ]
+    },
+    "productpricelevel": {
+      "uomid": [ "name" ],
+      "uomscheduleid": [ "name" ]
+    },
+    "uom": {
+      "uomid": [ "name" ],
+      "baseuom": [ "name" ],
+      "uomscheduleid": [ "name" ]
+    }
+  }
+}
