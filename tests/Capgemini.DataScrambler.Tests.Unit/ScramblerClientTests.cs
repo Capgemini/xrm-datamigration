@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Capgemini.DataScrambler.Factories;
 using Capgemini.DataScrambler.Scramblers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Capgemini.DataScrambler.Tests.Unit
 {
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class ScramblerClientTests
     {

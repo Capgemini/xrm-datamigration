@@ -1,0 +1,25 @@
+{
+  "IgnoreStatuses": false,
+  "IgnoreStatusesExceptions": [],
+  "IgnoreSystemFields": false,
+  "AdditionalFieldsToIgnore": [],
+  "SaveBatchSize": 50,
+  "JsonFolderPath": "C:\\Users\\dpowell\\source\\repos\\GitHub\\Personal\\xrm-datamigration\\samples\\bin\\Debug\\DemoScenarios\\Obfuscation\\ExportedData",
+  "EntitiesToSync": [],
+  "NoUpsertEntities": [],
+  "PluginsToDeactivate": [],
+  "ProcessesToDeactivate": [],
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "DemoObfuscation",
+  "PassOneReferences": [
+    "businessunit",
+    "uom",
+    "uomschedule",
+    "queue",
+    "duplicaterule",
+    "contact",
+    "account",
+    "organization"
+  ],
+  "NoUpdateEntities": []
+}

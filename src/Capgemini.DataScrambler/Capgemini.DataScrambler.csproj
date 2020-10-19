@@ -49,6 +49,7 @@
     <Compile Include="Scramblers\GuidScrambler.cs" />
     <Compile Include="Scramblers\IntegerScrambler.cs" />
     <Compile Include="Scramblers\IScrambler.cs" />
+    <Compile Include="Scramblers\RandomGenerator.cs" />
     <Compile Include="Scramblers\StringScrambler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
