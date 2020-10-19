@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Capgemini.DataMigration.Core;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.DataStore;
+using Capgemini.Xrm.DataMigration.FileStore.Model;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -107,6 +110,62 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
             FluentActions.Invoking(() => systemUnderTest.SaveBatchDataToStore(entities))
                              .Should()
                              .NotThrow();
+        }
+
+        [TestMethod]
+        public void RemoveEntityReferenceNamePropertyValue()
+        {
+            // Arrange
+            Guid accountId = Guid.NewGuid();
+            string accountName = "ABC Ltd";
+
+            Entity account = new Entity("account");
+            account.Id = accountId;
+            account.Attributes.Add("name", "Fake Account");
+
+            EntityReference entityRef = account.ToEntityReference();
+            entityRef.Name = accountName;
+
+            Entity entity = new Entity("contact");
+            entity.Attributes.Add("firstname", "Test");
+            entity.Attributes.Add("surname", "Tester");
+            entity.Attributes.Add("account", entityRef);
+
+            EntityWrapper entityWrapper = new EntityWrapper(entity);
+
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
+            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
+
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
+            fieldToBeObfuscated.Add(new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated });
+
+            List<EntityWrapper> entities = new List<EntityWrapper>
+            {
+                new EntityWrapper(entity)
+            };
+
+            var entitiesToExport = entities.Select(e => new CrmEntityStore(e)).ToList();
+
+            var dataFileStoreWriter = new DataFileStoreWriter(MockLogger.Object, FilePrefix, TestResultFolder, null, true, fieldToBeObfuscated);
+
+            string accountNameBefore = (string)((EntityReference)entity["account"]).Name;
+
+            // Assert
+            FluentActions.Invoking(() => dataFileStoreWriter.RemoveEntityReferenceNameProperty(entitiesToExport))
+                             .Should()
+                             .NotThrow();
+
+            string accountNameAfter = (string)((EntityReference)entity["account"]).Name;
+            accountNameBefore.Should().Be(accountName);
+            accountNameAfter.Should().BeNull();
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionIfentitiesToExportIsNull()
+        {
+            FluentActions.Invoking(() => systemUnderTest.RemoveEntityReferenceNameProperty(null))
+                             .Should()
+                             .Throw<ArgumentNullException>();
         }
     }
 }
