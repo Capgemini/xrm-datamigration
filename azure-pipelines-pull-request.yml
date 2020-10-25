@@ -14,23 +14,40 @@ stages:
       steps:
         - task: NuGetToolInstaller@1
           displayName: Install NuGet
+        - task: gittools.gitversion.gitversion-task.GitVersion@5
+          displayName: GitVersion
+          inputs:
+            runtime: full
+            updateAssemblyInfo: true
         - task: NuGetCommand@2
           displayName: Restore packages
           inputs:
             restoreSolution: '$(solution)'
+        - task: SonarCloudPrepare@1
+          displayName: Prepare SonarCloud
+          inputs:
+            SonarCloud: 'SonarCloud'
+            organization: '[NEED TO CHECK IF ANYONE HAS THIS OR CREATE ONE]'
+            scannerMode: 'MSBuild'
+            projectKey: 'DataMigrationEngine'
+            projectName: 'DataMigrationEngine'
+            projectVersion: '$(GitVersion.NuGetVersionV2)'
         - task: VSBuild@1
           displayName: Build solution
           inputs:
             solution: '$(solution)'
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
-        - task: NuGetCommand@2
-          displayName: Pack NuGet package
+        - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
+          displayName: 'WhiteSource Bolt'
           inputs:
-            command: pack
-            packagesToPack: src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj
-            includeReferencedProjects: true
-            packDestination: '$(Build.ArtifactStagingDirectory)/package'
+            cwd: '$(Build.SourcesDirectory)'
+        - task: SonarCloudAnalyze@1
+          displayName: Analyse with SonarCloud
+        - task: SonarCloudPublish@1
+          displayName: Publish SonarCloud results
+          inputs:
+            pollingTimeoutSec: '300'
         - task: VSTest@2
           displayName: Run tests
           inputs:
