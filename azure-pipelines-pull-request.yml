@@ -27,10 +27,10 @@ stages:
           displayName: Prepare SonarCloud
           inputs:
             SonarCloud: 'SonarCloud'
-            organization: '[NEED TO CHECK IF ANYONE HAS THIS OR CREATE ONE]'
+            organization: 'capgemini-1'
             scannerMode: 'MSBuild'
-            projectKey: 'DataMigrationEngine'
-            projectName: 'DataMigrationEngine'
+            projectKey: 'xrm-datamigration'
+            projectName: 'xrm-datamigration'
             projectVersion: '$(GitVersion.NuGetVersionV2)'
         - task: VSBuild@1
           displayName: Build solution
