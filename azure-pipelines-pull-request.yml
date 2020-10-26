@@ -43,7 +43,7 @@ stages:
           inputs:
             cwd: '$(Build.SourcesDirectory)'
         - task: SonarCloudAnalyze@1
-          displayName: Analyse with SonarCloud
+          displayName: 'Run Code Analysis'
         - task: SonarCloudPublish@1
           displayName: Publish SonarCloud results
           inputs:
