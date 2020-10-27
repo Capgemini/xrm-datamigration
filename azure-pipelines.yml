@@ -27,7 +27,7 @@ stages:
           displayName: Prepare SonarCloud
           inputs:
             SonarCloud: 'Capgemini Accelerator Token'
-            organization: 'capgemini-1'
+            organization: 'capgemini-1' 
             scannerMode: 'MSBuild'
             projectKey: 'xrm-datamigration'
             projectName: 'xrm-datamigration'
