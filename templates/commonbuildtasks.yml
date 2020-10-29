@@ -1,0 +1,58 @@
+jobs: 
+  - job: CommonBuildJob
+    variables:
+      - name: solution
+        value: '**/*.sln'
+      - name: buildPlatform
+        value: 'Any CPU'
+      - name: buildConfiguration
+        value: 'Release'
+    displayName: Common build tasks
+    steps:
+        - task: NuGetToolInstaller@1
+          displayName: Install NuGet
+        - task: gittools.gitversion.gitversion-task.GitVersion@5
+          displayName: GitVersion
+          inputs:
+            runtime: full
+            updateAssemblyInfo: true
+        - task: NuGetCommand@2
+          displayName: Restore packages
+          inputs:
+            restoreSolution: '$(solution)'
+        - task: SonarCloudPrepare@1
+          displayName: Prepare SonarCloud
+          inputs:
+            SonarCloud: 'Capgemini Accelerator Token'
+            organization: 'capgemini-1'
+            scannerMode: 'MSBuild'
+            projectKey: 'xrm-datamigration'
+            projectName: 'xrm-datamigration'
+            projectVersion: '$(GitVersion.NuGetVersionV2)'
+        - task: VSBuild@1
+          displayName: Build solution
+          inputs:
+            solution: '$(solution)'
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+        - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
+          displayName: 'WhiteSource Bolt'
+          inputs:
+            cwd: '$(Build.SourcesDirectory)'
+        - task: SonarCloudAnalyze@1
+          displayName: 'Run Code Analysis'
+        - task: SonarCloudPublish@1
+          displayName: Publish SonarCloud results
+          inputs:
+            pollingTimeoutSec: '300'
+        - task: VSTest@2
+          displayName: Run tests
+          inputs:
+            searchFolder: tests
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+            codeCoverageEnabled: true
+            testAssemblyVer2: |
+             **\*Tests*.dll
+             !**\*Integration*.dll
+             !**\obj\**  

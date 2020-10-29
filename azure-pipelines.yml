@@ -9,45 +9,10 @@ variables:
 stages:
   - stage: Build
     jobs:
+    - template: templates/commonbuildtasks.yml
     - job: BuildJob
       displayName: Build
       steps:
-        - task: NuGetToolInstaller@1
-          displayName: Install NuGet
-        - task: gittools.gitversion.gitversion-task.GitVersion@5
-          displayName: GitVersion
-          inputs:
-            runtime: full
-            updateAssemblyInfo: true
-        - task: NuGetCommand@2
-          displayName: Restore packages
-          inputs:
-            restoreSolution: '$(solution)'
-        - task: SonarCloudPrepare@1
-          displayName: Prepare SonarCloud
-          inputs:
-            SonarCloud: 'Capgemini Accelerator Token'
-            organization: 'capgemini-1' 
-            scannerMode: 'MSBuild'
-            projectKey: 'xrm-datamigration'
-            projectName: 'xrm-datamigration'
-            projectVersion: '$(GitVersion.NuGetVersionV2)'
-        - task: VSBuild@1
-          displayName: Build solution
-          inputs:
-            solution: '$(solution)'
-            platform: '$(buildPlatform)'
-            configuration: '$(buildConfiguration)'
-        - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
-          displayName: 'WhiteSource Bolt'
-          inputs:
-            cwd: '$(Build.SourcesDirectory)'
-        - task: SonarCloudAnalyze@1
-          displayName: 'Run Code Analysis'
-        - task: SonarCloudPublish@1
-          displayName: Publish SonarCloud results
-          inputs:
-            pollingTimeoutSec: '300'
         - task: NuGetCommand@2
           displayName: Pack NuGet package
           inputs:
@@ -68,27 +33,6 @@ stages:
         - publish: $(Build.ArtifactStagingDirectory)/tests
           displayName: Publish tests
           artifact: Capgemini.Xrm.DataMigration.Tests
-  - stage: Test
-    dependsOn: Build
-    jobs:
-    - job: TestJob
-      displayName: Test
-      steps:
-        - checkout: none
-        - download: current
-          displayName: Download tests artifact
-          artifact: Capgemini.Xrm.DataMigration.Tests
-        - task: VSTest@2
-          displayName: Run tests
-          inputs:
-            searchFolder: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Tests
-            platform: '$(buildPlatform)'
-            configuration: '$(buildConfiguration)'
-            codeCoverageEnabled: true
-            testAssemblyVer2: |
-             **\*Tests*.dll
-             !**\*Integration*.dll
-             !**\obj\**
   - stage: PublishtoPrivateFeed
     displayName: Publish to Private Feed
     jobs:
