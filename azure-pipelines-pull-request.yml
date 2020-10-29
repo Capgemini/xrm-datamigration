@@ -1,3 +1,5 @@
+name: $(GitVersion.NuGetVersionV2)
+trigger: none
 pr:
   - master
 pool:
