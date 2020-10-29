@@ -7,7 +7,7 @@ jobs:
         value: 'Any CPU'
       - name: buildConfiguration
         value: 'Release'
-    displayName: Common build tasks
+    displayName: Build test and analyse
     steps:
         - task: NuGetToolInstaller@1
           displayName: Install NuGet
