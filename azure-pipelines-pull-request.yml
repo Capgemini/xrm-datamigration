@@ -1,4 +1,4 @@
-name: $(GitVersion.NuGetVersionV2)
+name: $(GITVERSION_FullSemVer)
 trigger: none
 pr:
   - master
