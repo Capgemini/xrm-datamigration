@@ -11,7 +11,7 @@ stages:
     jobs:
     - template: templates/commonbuildtasks.yml
     - job: BuildJob
-      displayName: Build
+      displayName: NuGet Build
       steps:
         - task: NuGetCommand@2
           displayName: Pack NuGet package
