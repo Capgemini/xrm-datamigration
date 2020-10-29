@@ -9,28 +9,18 @@ variables:
 stages:
   - stage: Build
     jobs:
+    - template: templates/commonbuildtasks.yml
     - job: BuildJob
-      displayName: Build
+      displayName: NuGet Build
       steps:
-        - task: NuGetToolInstaller@1
-          displayName: Install NuGet
-        - task: NuGetCommand@2
-          displayName: Restore packages
-          inputs:
-            restoreSolution: '$(solution)'
-        - task: VSBuild@1
-          displayName: Build solution
-          inputs:
-            solution: '$(solution)'
-            platform: '$(buildPlatform)'
-            configuration: '$(buildConfiguration)'
         - task: NuGetCommand@2
           displayName: Pack NuGet package
           inputs:
             command: pack
             packagesToPack: src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj
-            includeReferencedProjects: true
             packDestination: '$(Build.ArtifactStagingDirectory)/package'
+            versioningScheme: byEnvVar
+            versionEnvVar: GitVersion.NuGetVersionV2
         - task: CopyFiles@2
           displayName: Copy tests to staging directory
           inputs:
@@ -43,27 +33,6 @@ stages:
         - publish: $(Build.ArtifactStagingDirectory)/tests
           displayName: Publish tests
           artifact: Capgemini.Xrm.DataMigration.Tests
-  - stage: Test
-    dependsOn: Build
-    jobs:
-    - job: TestJob
-      displayName: Test
-      steps:
-        - checkout: none
-        - download: current
-          displayName: Download tests artifact
-          artifact: Capgemini.Xrm.DataMigration.Tests
-        - task: VSTest@2
-          displayName: Run tests
-          inputs:
-            searchFolder: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Tests
-            platform: '$(buildPlatform)'
-            configuration: '$(buildConfiguration)'
-            codeCoverageEnabled: true
-            testAssemblyVer2: |
-             **\*Tests*.dll
-             !**\*Integration*.dll
-             !**\obj\**
   - stage: PublishtoPrivateFeed
     displayName: Publish to Private Feed
     jobs:
