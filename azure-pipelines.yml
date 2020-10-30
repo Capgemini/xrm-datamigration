@@ -1,4 +1,4 @@
-name: $(GitVersion.NuGetVersionV2)
+name: $(GITVERSION_FullSemVer)
 trigger:
   - master
 pool:
@@ -11,30 +11,6 @@ stages:
   - stage: Build
     jobs:
     - template: templates/commonbuildtasks.yml
-    - job: BuildJob
-      displayName: NuGet Build
-      dependsOn: CommonBuildJob
-      steps:
-        - task: NuGetCommand@2
-          displayName: Pack NuGet package
-          inputs:
-            command: pack
-            packagesToPack: src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj
-            packDestination: '$(Build.ArtifactStagingDirectory)/package'
-            versioningScheme: byEnvVar
-            versionEnvVar: GitVersion.NuGetVersionV2
-        - task: CopyFiles@2
-          displayName: Copy tests to staging directory
-          inputs:
-            Contents: '**/$(buildConfiguration)/**'
-            SourceFolder: tests
-            TargetFolder: '$(Build.ArtifactStagingDirectory)/tests'
-        - publish: $(Build.ArtifactStagingDirectory)/package
-          displayName: Publish NuGet artifact
-          artifact: Capgemini.Xrm.DataMigration.Engine
-        - publish: $(Build.ArtifactStagingDirectory)/tests
-          displayName: Publish tests
-          artifact: Capgemini.Xrm.DataMigration.Tests
   - stage: PublishtoPrivateFeed
     displayName: Publish to Private Feed
     jobs:
@@ -62,10 +38,14 @@ stages:
           runOnce:
             deploy:
               steps:
+              - checkout: none
+              - download: current
+                displayName: Download NuGet package artifact
+                artifact: Capgemini.Xrm.DataMigration.Engine
               - task: NuGetCommand@2
                 displayName: 'Push NuGet Package'
                 inputs:
                   command: push
                   packagesToPush: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg
                   nuGetFeedType: external
-                  publishFeedCredentials: CapgeminiUkKey             
+                  publishFeedCredentials: CapgeminiUkKey
