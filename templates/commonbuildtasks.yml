@@ -15,6 +15,7 @@ jobs:
           displayName: GitVersion
           inputs:
             runtime: full
+            configFilePath: '$(Build.SourcesDirectory)\GitVersion.yml'
             updateAssemblyInfo: true
         - task: NuGetCommand@2
           displayName: Restore packages
@@ -35,16 +36,6 @@ jobs:
             solution: '$(solution)'
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
-        - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
-          displayName: 'WhiteSource Bolt'
-          inputs:
-            cwd: '$(Build.SourcesDirectory)'
-        - task: SonarCloudAnalyze@1
-          displayName: 'Run Code Analysis'
-        - task: SonarCloudPublish@1
-          displayName: Publish SonarCloud results
-          inputs:
-            pollingTimeoutSec: '300'
         - task: VSTest@2
           displayName: Run tests
           inputs:
@@ -55,4 +46,34 @@ jobs:
             testAssemblyVer2: |
              **\*Tests*.dll
              !**\*Integration*.dll
-             !**\obj\**  
+             !**\obj\**
+        - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
+          displayName: 'WhiteSource Bolt'
+          inputs:
+            cwd: '$(Build.SourcesDirectory)'
+        - task: SonarCloudAnalyze@1
+          displayName: 'Run Code Analysis'
+        - task: SonarCloudPublish@1
+          displayName: Publish SonarCloud results
+          inputs:
+            pollingTimeoutSec: '300'
+        - task: NuGetCommand@2
+          displayName: Pack NuGet package
+          inputs:
+            command: pack
+            packagesToPack: src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj
+            packDestination: '$(Build.ArtifactStagingDirectory)/package'
+            versioningScheme: byEnvVar
+            versionEnvVar: GitVersion.NuGetVersionV2
+        - task: CopyFiles@2
+          displayName: Copy tests to staging directory
+          inputs:
+            Contents: '**/$(buildConfiguration)/**'
+            SourceFolder: tests
+            TargetFolder: '$(Build.ArtifactStagingDirectory)/tests'
+        - publish: $(Build.ArtifactStagingDirectory)/package
+          displayName: Publish NuGet artifact
+          artifact: Capgemini.Xrm.DataMigration.Engine
+        - publish: $(Build.ArtifactStagingDirectory)/tests
+          displayName: Publish tests
+          artifact: Capgemini.Xrm.DataMigration.Tests
