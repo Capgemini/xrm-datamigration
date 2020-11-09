@@ -76,7 +76,7 @@ namespace Capgemini.Xrm.DataMigration.Config
                 {
                     foreach (var relationship in entity.CrmRelationships)
                     {
-                        fetchXMls.Add(BuildFetchXml(relationship, entity, mappingFetchCreators));
+                        fetchXMls.Add(BuildFetchXml(relationship, entity, fetchXmlFilters, mappingFetchCreators));
                     }
                 }
             }
@@ -122,7 +122,7 @@ namespace Capgemini.Xrm.DataMigration.Config
             return fetchXML.ToString();
         }
 
-        private static string BuildFetchXml(CrmRelationship relationship, CrmEntity entity, List<IMappingFetchCreator> mappingFetchCreators)
+        private static string BuildFetchXml(CrmRelationship relationship, CrmEntity entity, Dictionary<string, string> fetchXmlFilters, List<IMappingFetchCreator> mappingFetchCreators)
         {
             StringBuilder fetchXML = new StringBuilder();
             fetchXML.AppendLine("<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">");
@@ -141,6 +141,11 @@ namespace Capgemini.Xrm.DataMigration.Config
             foreach (var rule in aplicableFetchCreators)
             {
                 fetchXML.Append(rule.GetExportFetchXML(relationship.RelatedEntityName, new CrmField() { LookupType = relationship.TargetEntityName, FieldName = relationship.TargetEntityPrimaryKey }));
+            }
+
+            if (fetchXmlFilters != null && fetchXmlFilters.ContainsKey(relationship.RelatedEntityName))
+            {
+                fetchXML.AppendLine(fetchXmlFilters[relationship.RelatedEntityName]);
             }
 
             fetchXML.AppendLine("</entity>");

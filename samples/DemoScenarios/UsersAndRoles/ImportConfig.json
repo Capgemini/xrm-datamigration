@@ -1,0 +1,19 @@
+{
+  "IgnoreStatuses": true,
+  "IgnoreSystemFields": true,
+  "MigrationConfig": {
+    "ApplyAliasMapping": true,
+    "SourceRootBUName": "mainbu",
+    "Mappings": {}
+  },
+  "SaveBatchSize": 200,
+  "JsonFolderPath": "GetAutomatically",
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "ExportedData",
+  "PassOneReferences": [
+    "businessunit",
+    "uom",
+    "uomschedule",
+    "queue"
+  ]
+}

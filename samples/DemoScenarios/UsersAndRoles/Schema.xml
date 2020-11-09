@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="systemuser" displayname="User" etc="8" primaryidfield="systemuserid" primarynamefield="fullname" disableplugins="false">
+    <fields>
+      <field displayname="Primary Email" name="internalemailaddress" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Last Name" name="lastname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="User License Type" name="userlicensetype" type="integer" primaryKey="false" customfield="false" />
+      <field displayname="Application ID" name="applicationid" type="guid" primaryKey="false" customfield="false" />
+      <field displayname="First Name" name="firstname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="User" name="systemuserid" type="guid" primaryKey="true" customfield="false" />
+      <field displayname="Access Mode" name="accessmode" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="User Name" name="domainname" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+    </fields>
+    <relationships>
+      <relationship name="systemuserroles" manyToMany="true" isreflexive="false" relatedEntityName="systemuserroles" m2mTargetEntity="role" m2mTargetEntityPrimaryKey="roleid" />
+    </relationships>
+  </entity>
+</entities>

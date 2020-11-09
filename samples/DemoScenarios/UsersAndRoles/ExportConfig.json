@@ -1,0 +1,36 @@
+{
+  "CrmMigrationToolSchemaPaths": [
+    "GetAutomatically"
+  ],
+  "CrmMigrationToolSchemaFilters": {
+    "systemuser": "<filter type=\"and\"><condition attribute=\"domainname\" value=\"test.user@test.com\" operator=\"eq\"/></filter>",
+    "systemuserroles": "<filter type=\"and\"><condition entityname=\"map.systemuserid.systemuser\" attribute=\"domainname\" value=\"test.user@test.com\" operator=\"eq\"/></filter>"
+  },
+  "PageSize": 1000,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "JsonFolderPath": "GetAutomatically",
+  "OneEntityPerBatch": true,
+  "FilePrefix": "ExportedData",
+  "SeperateFilesPerEntity": true,
+  "LookupMapping": {
+    "systemuser": {
+      "systemuserid": [
+        "domainname"
+      ],
+      "businessunitid": [
+        "name"
+      ]
+    },
+    "systemuserroles": {
+      "systemuserid": [
+        "domainname"
+      ],
+      "roleid": [
+        "name",
+        "businessunitid"
+      ]
+    }
+  }
+}
