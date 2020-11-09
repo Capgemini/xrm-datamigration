@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Capgemini.Xrm.DataMigration.Engine</id>
-    <version>3.0.0.10</version>
+    <version>3.0.1</version>
     <title>Capgemini Xrm DataMigration Engine</title>
     <authors>Capgemini</authors>
     <owners>Capgemini</owners>
