@@ -63,7 +63,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
             var lookupPath = GetLookupFolderPath();
 
             if (Directory.Exists(lookupPath))
-                ObfuscationLookupHelper.LoadLookups(GetLookupFolderPath());
+                ObfuscationLookupHelper.LoadLookups(lookupPath);
         }
 
         static void ExportData(string connectionString, string schemaPath, string exportFolderPath)
