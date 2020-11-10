@@ -172,6 +172,12 @@
     <None Include="DemoScenarios\SubjectsAndArticles\ImportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="DemoScenarios\UsersAndRoles\ExportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DemoScenarios\UsersAndRoles\ImportConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -244,6 +250,9 @@
     <Content Include="DemoScenarios\Obfuscation\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="DemoScenarios\UsersAndRoles\Schema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DemoScenarios\FieldServiceConfig\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
