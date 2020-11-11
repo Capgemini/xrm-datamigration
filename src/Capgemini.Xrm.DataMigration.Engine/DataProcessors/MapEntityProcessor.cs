@@ -63,28 +63,36 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
         public void ProcessEntity(EntityWrapper entity, int passNumber, int maxPassNumber)
         {
-            entity.ThrowArgumentNullExceptionIfNull(nameof(entity));
-
-            if (entity.OperationType != OperationType.Ignore)
+            try
             {
-                if (entity.LogicalName == "organization")
-                {
-                    entity.OriginalEntity.Id = organizationId;
-                }
+                entity.ThrowArgumentNullExceptionIfNull(nameof(entity));
 
-                if (mappingConfiguration.Mappings != null && mappingConfiguration.Mappings.Any())
+                if (entity.OperationType != OperationType.Ignore)
                 {
-                    MapGuids(entity);
-                }
+                    if (entity.LogicalName == "organization")
+                    {
+                        entity.OriginalEntity.Id = organizationId;
+                    }
 
-                if (mappingConfiguration.ApplyAliasMapping)
-                {
-                    MapEntityId(entity);
-                    MapAliasses(entity, passNumber);
-                }
+                    if (mappingConfiguration.Mappings != null && mappingConfiguration.Mappings.Any())
+                    {
+                        MapGuids(entity);
+                    }
 
-                // clean aliassed values as they give error on update!
-                RemoveAliassedValues(entity.OriginalEntity);
+                    if (mappingConfiguration.ApplyAliasMapping)
+                    {
+                        MapEntityId(entity);
+                        MapAliasses(entity, passNumber);
+                    }
+
+                    // clean aliassed values as they give error on update!
+                    RemoveAliassedValues(entity.OriginalEntity);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("MapAliasses: Processing Error", ex);
+                throw;
             }
         }
 
@@ -292,8 +300,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
                 }
                 else
                 {
-                    logger.LogWarning($"MapEntityId: Entity:{entName}:{entity.OriginalEntity.Id} Cannot find replacement guid for {idAlias}, empty Id Guid, entity will be ignored.");
-                    entity.OperationType = OperationType.Ignore;
+                    entity.OriginalEntity.Id = Guid.NewGuid();
+                    logger.LogInfo($"MapEntityId: Entity:{entName}:{entity.Id} Cannot find replacement guid for {idAlias}, empty Id Guid, a random GUID {entity.OriginalEntity.Id} is generated.");
+                    entity.OperationType = OperationType.Update;
                 }
             }
 
@@ -319,37 +328,53 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
             foreach (var alias in aliasMain.Distinct())
             {
                 var replaceGuid = FindReplacementValue(entity, alias);
-                if (replaceGuid == Guid.Empty)
-                {
-                    logger.LogWarning($"MapAliasses: Entity:{entity.LogicalName}:{entity.Id} Mapped value not processed correctly for {alias}. cannot find replacement guid");
-                    continue;
-                }
 
                 var originalFieldName = alias.Split(new char[] { '.' })[1];
-                if (!entity.OriginalEntity.Attributes.ContainsKey(originalFieldName))
+                if (replaceGuid == Guid.Empty)
                 {
-                    logger.LogVerbose($"MapAliasses: Entity:{entity.LogicalName}:{entity.Id} field {originalFieldName} for {alias} removed by ignored fields or other processor!");
+                    logger.LogWarning($"MapAliasses: Entity:{entity.LogicalName}:{entity.Id}, Field:{originalFieldName}, Mapped value not processed correctly for {alias}. cannot find replacement guid, original value will be used if exists or will be empty");
+                    continue;
                 }
 
                 Type fieldType = metCache.GetAttributeDotNetType(entity.LogicalName, originalFieldName);
 
                 if (fieldType == typeof(Guid))
                 {
-                    entity.OriginalEntity.Attributes[originalFieldName] = replaceGuid;
+                    if (entity.OriginalEntity.Attributes.ContainsKey(originalFieldName))
+                    {
+                        logger.LogVerbose($"MapAliasses Guid: Entity:{entity.LogicalName}:{entity.Id}, Field:{originalFieldName}, using replaced Guid {replaceGuid}");
+                        entity.OriginalEntity.Attributes[originalFieldName] = replaceGuid;
+                    }
+                    else
+                    {
+                        logger.LogVerbose($"MapAliasses Guid: Entity:{entity.LogicalName}:{entity.Id}, Field:{originalFieldName}, only mapping exists, using replaced Guid {replaceGuid}");
+                        entity.OriginalEntity.Attributes.Add(originalFieldName, replaceGuid);
+                    }
                 }
                 else if (fieldType == typeof(EntityReference))
                 {
-                    var originalEntityReference = (EntityReference)entity.OriginalEntity.Attributes[originalFieldName];
-                    originalEntityReference.Id = replaceGuid;
-
-                    if (string.IsNullOrEmpty(originalEntityReference.LogicalName))
+                    if (entity.OriginalEntity.Attributes.ContainsKey(originalFieldName))
                     {
-                        originalEntityReference.LogicalName = metCache.GetLookUpEntityName(entity.LogicalName, originalFieldName);
+                        logger.LogVerbose($"MapAliasses EntRef: Entity:{entity.LogicalName}:{entity.Id}, Field:{originalFieldName}, using replaced Guid {replaceGuid}");
+                        var originalEntityReference = (EntityReference)entity.OriginalEntity.Attributes[originalFieldName];
+                        originalEntityReference.Id = replaceGuid;
+
+                        if (string.IsNullOrEmpty(originalEntityReference.LogicalName))
+                        {
+                            originalEntityReference.LogicalName = metCache.GetLookUpEntityName(entity.LogicalName, originalFieldName);
+                        }
+                    }
+                    else
+                    {
+                        logger.LogVerbose($"MapAliasses EntRef: Entity:{entity.LogicalName}:{entity.Id}, Field:{originalFieldName}, only mapping exists, using replaced Guid {replaceGuid}");
+                        string refEntName = metCache.GetLookUpEntityName(entity.LogicalName, originalFieldName);
+                        EntityReference entRef = new EntityReference(refEntName, replaceGuid);
+                        entity.OriginalEntity.Attributes.Add(originalFieldName, entRef);
                     }
                 }
                 else
                 {
-                    throw new ConfigurationException($"MapAliasses, Bad Data Migrator Configuration! {alias} Using mapping for unsupported type {fieldType.FullName} !");
+                    throw new ConfigurationException($"MapAliasses: Bad Data Migrator Configuration! {alias} Using mapping for unsupported type {fieldType.FullName} !");
                 }
             }
 
