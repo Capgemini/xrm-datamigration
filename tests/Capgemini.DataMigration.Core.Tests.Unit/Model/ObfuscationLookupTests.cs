@@ -39,7 +39,6 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
 
             int index = dataRows.Count - 1;
             string columnName = "postcode";
-            var comparisonRecord = dataRows[index];
 
             ExpandoObject row = dataRows[index];
             var properties = (IDictionary<string, object>)row;
@@ -50,7 +49,6 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
 
             // Assert
             testObject[index, columnName].Should().Be(comparisonValue);
-
         }
 
         [TestMethod]
@@ -62,7 +60,6 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
 
             int index = dataRows.Count - 1;
             string columnName = "NonExistingColumnName";
-            var comparisonRecord = dataRows[index];
 
             // Act
             ObfuscationLookup testObject = new ObfuscationLookup(name, dataRows);
@@ -118,7 +115,6 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
         public void PassingNullAsTheNameParamShouldThrowInvalidArgumentException()
         {
             // Arrange
-            string name = "testlookup.csv";
             List<dynamic> dataRows = CreateDataRows();
             ObfuscationLookup a = null;
 
@@ -158,10 +154,17 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
             testObject.Name.Should().Be(name);
         }
 
+        private static string GetTestDataPath()
+        {
+            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            var scenarioPath = Path.Combine(folderPath, "TestData", "LookupFiles");
+            return scenarioPath;
+        }
+
         private List<dynamic> CreateDataRows()
         {
             string fileName = Path.Combine(GetTestDataPath(), "ukpostcodes.csv");
-            List<dynamic> records = new List<dynamic>();
+            List<dynamic> records = null;
 
             using (TextReader tr = File.OpenText(fileName))
             {
@@ -172,13 +175,6 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
             }
 
             return records;
-        }
-
-        private string GetTestDataPath()
-        {
-            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
-            var scenarioPath = Path.Combine(folderPath, "TestData", "LookupFiles");
-            return scenarioPath;
         }
     }
 }

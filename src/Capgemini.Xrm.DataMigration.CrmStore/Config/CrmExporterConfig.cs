@@ -26,7 +26,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// <summary>
         /// Gets list of CRM SDK Migration Tool schema files.
         /// </summary>
-        public List<string> CrmMigrationToolSchemaPaths { get; set; } = new List<string>();
+        public List<string> CrmMigrationToolSchemaPaths { get; private set; } = new List<string>();
 
         /// <summary>
         /// Gets used for configuration migration schema file to add filters, ignored for direct fetchXML files.
@@ -76,11 +76,10 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// </summary>
         public bool SeperateFilesPerEntity { get; set; } = true;
 
-
         /// <summary>
-        /// Gets or Sets the fields to Obfuscate.
+        /// Gets the fields to Obfuscate.
         /// </summary>
-        public List<EntityToBeObfuscated> FieldsToObfuscate { get; set; }
+        public List<EntityToBeObfuscated> FieldsToObfuscate { get; private set; } = new List<EntityToBeObfuscated>();
 
         /// <summary>
         /// Gets mapping for entity refrences, format entityname - field on source entityt - field which hold unique value for mapping (usually name).

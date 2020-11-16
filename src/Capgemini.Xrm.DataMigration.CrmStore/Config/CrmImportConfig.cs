@@ -39,13 +39,6 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
 
         public CrmImportConfig()
         {
-            ProcessesToDeactivate = new List<string>();
-            PluginsToDeactivate = new List<Tuple<string, string>>();
-            NoUpsertEntities = new List<string>();
-            IgnoreStatusesExceptions = new List<string>();
-            AdditionalFieldsToIgnore = new List<string>();
-            EntitiesToSync = new List<string>();
-            NoUpdateEntities = new List<string>();
         }
 
         /// <summary>
@@ -69,7 +62,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// Gets list of entity names. If <seealso cref="IgnoreStatuses"/> is true, status wil be apllied to entities listed.
         /// When <seealso cref="IgnoreStatuses"/>  is false, statuses wil be skipped for entities listed here.
         /// </summary>
-        public List<string> IgnoreStatusesExceptions { get; private set; }
+        public List<string> IgnoreStatusesExceptions { get; private set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a value indicating whether if true, the defined system fields are ignored.
@@ -126,7 +119,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
             }
         }
 
-        public List<string> AdditionalFieldsToIgnore { get; private set; }
+        public List<string> AdditionalFieldsToIgnore { get; private set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets batch size used for executemultiple request.
@@ -141,22 +134,22 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// <summary>
         /// Gets all records which are not in the imported data set will be deleted.
         /// </summary>
-        public List<string> EntitiesToSync { get; private set; }
+        public List<string> EntitiesToSync { get; private set; } = new List<string>();
 
         /// <summary>
         /// Gets don't use Upsert request, use Create and Update requests instead.
         /// </summary>
-        public List<string> NoUpsertEntities { get; private set; }
+        public List<string> NoUpsertEntities { get; private set; } = new List<string>();
 
         /// <summary>
         /// Gets list of plugins which will be autmatically deactivatd before Import and activated after.
         /// </summary>
-        public List<Tuple<string, string>> PluginsToDeactivate { get; private set; }
+        public List<Tuple<string, string>> PluginsToDeactivate { get; private set; } = new List<Tuple<string, string>>();
 
         /// <summary>
         /// Gets list of processes which will be autmatically deactivatd before Import and activated after.
         /// </summary>
-        public List<string> ProcessesToDeactivate { get; private set; }
+        public List<string> ProcessesToDeactivate { get; private set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a value indicating whether if true, all active plugins and workflows will be deacivated prior to processing and activatedafter import.
@@ -180,14 +173,14 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         public ObjectTypeCodeMappingConfiguration ObjectTypeCodeMappingConfig { get; set; }
 
         /// <summary>
-        /// Gets or Sets the fields to Obfuscate.
+        /// Gets the fields to Obfuscate.
         /// </summary>
-        public List<EntityToBeObfuscated> FieldsToObfuscate { get; set; }
+        public List<EntityToBeObfuscated> FieldsToObfuscate { get; private set; } = new List<EntityToBeObfuscated>();
 
         /// <summary>
         /// Gets entities that should be created only.
         /// </summary>
-        public List<string> NoUpdateEntities { get; private set; }
+        public List<string> NoUpdateEntities { get; private set; } = new List<string>();
 
         /// <summary>
         /// Reads settings from file.

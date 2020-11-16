@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using Capgemini.DataMigration.Core.Extensions;
-using Capgemini.DataMigration.Core.Helpers;
 using Capgemini.DataMigration.Core.Model;
+using Capgemini.DataMigration.Exceptions;
 using Capgemini.DataScrambler;
 using Capgemini.DataScrambler.Scramblers;
 
@@ -10,7 +10,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
 {
     public class FormattingOptionProcessor
     {
-        private FormattingOptionLookup formattingOptionLookup;
+        private readonly FormattingOptionLookup formattingOptionLookup;
 
         public FormattingOptionProcessor()
         {
@@ -22,7 +22,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
             this.formattingOptionLookup = formattingOptionLookup;
         }
 
-        public int GenerateRandomNumber(string originalValue, ObfuscationFormatOption arg)
+        public static int GenerateRandomNumber(string originalValue, ObfuscationFormatOption arg)
         {
             originalValue.ThrowArgumentNullExceptionIfNull(nameof(originalValue));
             arg.ThrowArgumentNullExceptionIfNull(nameof(arg));
@@ -30,20 +30,14 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
             int min = 0;
             int max = 10;
 
-            if (arg.Arguments.ContainsKey("min"))
+            if (arg.Arguments.ContainsKey("min") && int.TryParse(arg.Arguments["min"], out int minResult))
             {
-                if (int.TryParse(arg.Arguments["min"], out int result))
-                {
-                    min = result;
-                }
+                min = minResult;
             }
 
-            if (arg.Arguments.ContainsKey("max"))
+            if (arg.Arguments.ContainsKey("max") && int.TryParse(arg.Arguments["max"], out int maxResult))
             {
-                if (int.TryParse(arg.Arguments["max"], out int result))
-                {
-                    max = result;
-                }
+                max = maxResult;
             }
 
             if (min >= max)
@@ -74,7 +68,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
 
             if (string.IsNullOrEmpty(fileName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                throw new ValidationException($"Obfuscation format option {nameof(fileName)} should not be null");
             }
 
             string columnName = string.Empty;
@@ -86,8 +80,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
 
             if (string.IsNullOrEmpty(columnName))
             {
-                throw new ArgumentNullException(nameof(columnName));
+                throw new ValidationException($"Obfuscation format option {nameof(columnName)} should not be null");
             }
+
             ObfuscationLookup obfuscationLookup = formattingOptionLookup.GetObfuscationLookup(fileName);
 
             var newValue = (string)LookupRandomValue(columnName, obfuscationLookup);

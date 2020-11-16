@@ -1,6 +1,7 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Core.Tests.Base;
-using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting;
 using FluentAssertions;
@@ -8,12 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
 {
@@ -25,7 +20,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
         public void Setup()
         {
             InitializeProperties();
-
         }
 
         [TestMethod]
@@ -54,12 +48,12 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
 
-            FieldToBeObfuscated fieldToBeObfuscated = new FieldToBeObfuscated()
+            var fieldToBeObfuscated = new FieldToBeObfuscated()
             {
                 FieldName = "address1_latitude",
-                ObfuscationFormat = "{0}",
-                ObfuscationFormatArgs = arguments
+                ObfuscationFormat = "{0}"
             };
+            fieldToBeObfuscated.ObfuscationFormatArgs.AddRange(arguments);
 
             // Act
             systemUnderTest.HandleObfuscation(entity, fieldToBeObfuscated, MockEntityMetadataCache.Object);
@@ -68,6 +62,5 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
 
             latitudeAfter.Should().NotBe(latitudeBefore);
         }
-
     }
 }

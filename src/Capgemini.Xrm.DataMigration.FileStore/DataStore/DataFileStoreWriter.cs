@@ -101,7 +101,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
         }
 
         /// <summary>
-        /// Remove the value from the name property of any EntityReference type if obfuscation is being performed on the data
+        /// Remove the value from the name property of any EntityReference type if obfuscation is being performed on the data.
         /// </summary>
         /// <param name="entitiesToExport">Collection of entities being exported.</param>
         public void RemoveEntityReferenceNameProperty(List<CrmEntityStore> entitiesToExport)

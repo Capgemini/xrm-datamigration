@@ -1,14 +1,11 @@
-﻿using Capgemini.DataMigration.Core.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationType.Formatting.FormattingOptions
 {
@@ -29,9 +26,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         [TestMethod]
         public void GenerateARandomNumberThatIsDifferentToTheOriginalValue()
         {
-            var originalValue = 999999;
+            var originalValue = 867489;
 
-            var newValue = systemUnderTest.GenerateRandomNumber(originalValue.ToString(), GenerateValidArgs());
+            var newValue = FormattingOptionProcessor.GenerateRandomNumber(originalValue.ToString(CultureInfo.InvariantCulture), GenerateValidArgs());
 
             newValue.Should().NotBe(originalValue);
         }
@@ -41,7 +38,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         {
             var originalValue = 999999;
 
-            Action action = () => systemUnderTest.GenerateRandomString(originalValue.ToString(), null);
+            Action action = () => systemUnderTest.GenerateRandomString(originalValue.ToString(CultureInfo.InvariantCulture), null);
 
             action.Should().Throw<ArgumentNullException>();
         }
@@ -59,7 +56,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         {
             var originalValue = 999999;
 
-            var newValue = systemUnderTest.GenerateRandomNumber(originalValue.ToString(), GenerateValidArgs());
+            var newValue = FormattingOptionProcessor.GenerateRandomNumber(originalValue.ToString(CultureInfo.InvariantCulture), GenerateValidArgs());
 
             newValue.Should().NotBe(originalValue);
         }
@@ -69,25 +66,29 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         {
             var originalValue = 999999;
 
-            Action action = () => systemUnderTest.GenerateRandomNumber(originalValue.ToString(), GenerateInvalidArgs());
+            Action action = () => FormattingOptionProcessor.GenerateRandomNumber(originalValue.ToString(CultureInfo.InvariantCulture), GenerateInvalidArgs());
 
             action.Should().Throw<ArgumentOutOfRangeException>();
         }
 
         private static ObfuscationFormatOption GenerateValidArgs()
         {
-            var args = new Dictionary<string, string>();
-            args.Add("min", MinRangeOfNewNumber.ToString());
-            args.Add("max", MaxRangeOfNewNumber.ToString());
+            var args = new Dictionary<string, string>
+            {
+                { "min", MinRangeOfNewNumber.ToString(CultureInfo.InvariantCulture) },
+                { "max", MaxRangeOfNewNumber.ToString(CultureInfo.InvariantCulture) }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.RandomNumber, args);
             return arg;
         }
 
         private static ObfuscationFormatOption GenerateInvalidArgs()
         {
-            var args = new Dictionary<string, string>();
-            args.Add("min", MaxRangeOfNewNumber.ToString());
-            args.Add("max", MinRangeOfNewNumber.ToString());
+            var args = new Dictionary<string, string>
+            {
+                { "min", MaxRangeOfNewNumber.ToString(CultureInfo.InvariantCulture) },
+                { "max", MinRangeOfNewNumber.ToString(CultureInfo.InvariantCulture) }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.RandomString, args);
             return arg;
         }

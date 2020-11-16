@@ -1,13 +1,9 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Core.Tests.Base;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.DataMigration.Core.Tests.Unit.Model
 {
@@ -36,12 +32,12 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
             args.Add("length", "10");
             List<ObfuscationFormatOption> formatOptions = new List<ObfuscationFormatOption>();
             formatOptions.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomString, args));
-            FieldToBeObfuscated testObject = new FieldToBeObfuscated() 
+            var testObject = new FieldToBeObfuscated()
             {
                 FieldName = "test",
-                ObfuscationFormat = "{0}",
-                ObfuscationFormatArgs = formatOptions
+                ObfuscationFormat = "{0}"
             };
+            testObject.ObfuscationFormatArgs.AddRange(formatOptions);
 
             testObject.CanBeFormatted.Should().BeTrue();
         }
