@@ -131,13 +131,15 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
             entity.Attributes.Add("surname", "Tester");
             entity.Attributes.Add("account", entityRef);
 
-            EntityWrapper entityWrapper = new EntityWrapper(entity);
-
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "firstname" }
+            };
 
             var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldToBeObfuscated.Add(new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated });
+            var entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
+            fieldToBeObfuscated.Add(entityToBeObfuscated);
 
             List<EntityWrapper> entities = new List<EntityWrapper>
             {
@@ -148,14 +150,14 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
 
             var dataFileStoreWriter = new DataFileStoreWriter(MockLogger.Object, FilePrefix, TestResultFolder, null, true, fieldToBeObfuscated);
 
-            string accountNameBefore = (string)((EntityReference)entity["account"]).Name;
+            string accountNameBefore = ((EntityReference)entity["account"]).Name;
 
             // Assert
             FluentActions.Invoking(() => dataFileStoreWriter.RemoveEntityReferenceNameProperty(entitiesToExport))
                              .Should()
                              .NotThrow();
 
-            string accountNameAfter = (string)((EntityReference)entity["account"]).Name;
+            string accountNameAfter = ((EntityReference)entity["account"]).Name;
             accountNameBefore.Should().Be(accountName);
             accountNameAfter.Should().BeNull();
         }

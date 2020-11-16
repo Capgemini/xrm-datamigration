@@ -8,29 +8,25 @@ using Capgemini.Xrm.DataMigration.CrmStore.DataStores;
 using Capgemini.Xrm.DataMigration.DataStore;
 using Capgemini.Xrm.DataMigration.Engine.DataProcessors;
 using Capgemini.Xrm.DataMigration.Repositories;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 
 namespace Capgemini.Xrm.DataMigration.IntegrationTests.DataMigration.MigrationTests
 {
     [TestClass]
-    public class CrmFileMigration_ContactWithObfuscationTest : CrmFileMigrationBaseTest
+    public class CrmFileMigrationContactWithObfuscationTest : CrmFileMigrationBaseTest
     {
-        private ConsoleLogger logger = new ConsoleLogger();
+        private readonly ConsoleLogger logger = new ConsoleLogger();
 
-        //Ci AUth in sprint auto test
-        private Guid sourceUserId = Guid.Parse("fdd460bf-e73a-e711-8104-5065f38b6621");
-
-        //Data Migration Dev in sprint auto test
-        private Guid targetGuidId = Guid.Parse("04fd61b7-c33b-e711-8102-5065f38aea41");
-
-        public CrmFileMigration_ContactWithObfuscationTest() : base(
-            "ImportSchemas\\ContactSchema",
-            "ContactSchemaWithOwner.xml",
-            "ContactWithOwner",
-            ConnectionHelper.GetOrganizationalServiceSource(),
-            ConnectionHelper.GetOrganizationalServiceTarget(),
-            true)
+        public CrmFileMigrationContactWithObfuscationTest()
+            : base(
+                    "ImportSchemas\\ContactSchema",
+                    "ContactSchemaWithOwner.xml",
+                    "ContactWithOwner",
+                    ConnectionHelper.GetOrganizationalServiceSource(),
+                    ConnectionHelper.GetOrganizationalServiceTarget(),
+                    true)
         {
         }
 
@@ -57,9 +53,7 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.DataMigration.MigrationTe
             var writerConfig = new CrmStoreWriterConfig
             {
                 SaveBatchSize = 200,
-
             };
-
 
             var reader = new DataCrmStoreReader(logger, repo, readerConfig);
             var writer = new DataCrmStoreWriter(logger, repo, writerConfig);
@@ -69,7 +63,9 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.DataMigration.MigrationTe
 
             migrator.AddProcessor(obfuscateProcessor);
 
-            migrator.MigrateData();
+            Action result = () => migrator.MigrateData();
+
+            result.Should().NotThrow();
         }
 
         protected override CrmExporterConfig GetExporterConfig()
@@ -89,15 +85,19 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.DataMigration.MigrationTe
 
             importConfig.SaveBatchSize = 500;
 
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
+            var fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "firstname" }
+            };
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+            var entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
-            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldToBeObfuscated.Add(entityToBeObfuscated);
-
-            importConfig.FieldsToObfuscate = fieldToBeObfuscated;
+            importConfig.FieldsToObfuscate.AddRange(fieldToBeObfuscated);
 
             return importConfig;
         }

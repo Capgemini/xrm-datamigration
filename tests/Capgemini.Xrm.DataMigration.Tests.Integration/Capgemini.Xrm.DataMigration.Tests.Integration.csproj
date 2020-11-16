@@ -131,6 +131,7 @@
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationBaseTest.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationBusinessUnitTests.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationCallendarTests.cs" />
+    <Compile Include="DataMigration\MigrationTests\CrmFileMigrationContactWithObfuscationTest.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationCrmPortalsTests.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationCustomSolutionTests.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationKBArticlesTests.cs" />
@@ -142,7 +143,6 @@
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationTestDataTests.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationUserSettingsTest.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationContactWithOwnerTest.cs" />
-    <Compile Include="DataMigration\MigrationTests\CrmFileMigration_ContactWithObfuscationTest.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\EntityMockHelper.cs" />
     <Compile Include="Helpers\EntityRepositoryFake.cs" />
@@ -213,8 +213,6 @@
     <Analyzer Include="..\..\packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\SecurityCodeScan.3.3.0.0\analyzers\dotnet\SecurityCodeScan.dll" />
-    <Analyzer Include="..\..\packages\SecurityCodeScan.3.3.0.0\analyzers\dotnet\YamlDotNet.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>

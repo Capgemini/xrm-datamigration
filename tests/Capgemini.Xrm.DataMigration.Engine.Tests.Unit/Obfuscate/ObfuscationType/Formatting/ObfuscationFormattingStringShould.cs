@@ -1,16 +1,13 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationType.Formatting
 {
@@ -18,8 +15,8 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
     [ExcludeFromCodeCoverage]
     public class ObfuscationFormattingStringShould : UnitTestBase
     {
-        protected ObfuscationFormattingString systemUnderTest;
-        protected string originalValue;
+        private ObfuscationFormattingString systemUnderTest;
+        private string originalValue;
 
         [TestInitialize]
         public void Setup()
@@ -29,15 +26,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
 
             systemUnderTest = new ObfuscationFormattingString(mockFormattingOptionProcessor.Object);
             originalValue = "OriginalValue";
-        }
-
-        private static Mock<FormattingOptionProcessor> OptionProcessorValidResponse()
-        {
-            var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
-            mockFormattingOptionProcessor
-                .Setup(a => a.GenerateFromLookup(It.IsAny<string>(), It.IsAny<ObfuscationFormatOption>()))
-                .Returns("NewValue");
-            return mockFormattingOptionProcessor;
         }
 
         [TestMethod]
@@ -85,6 +73,25 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             action.Should().Throw<ArgumentNullException>();
         }
 
+        private static string AlterReturnValue(int call)
+        {
+            if (call > 0)
+            {
+                return "NewValue";
+            }
+
+            return "OriginalValue";
+        }
+
+        private static Mock<FormattingOptionProcessor> OptionProcessorValidResponse()
+        {
+            var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
+            mockFormattingOptionProcessor
+                .Setup(a => a.GenerateFromLookup(It.IsAny<string>(), It.IsAny<ObfuscationFormatOption>()))
+                .Returns("NewValue");
+            return mockFormattingOptionProcessor;
+        }
+
         private Dictionary<string, object> CreateMetadataParamters(int maxLength = 100)
         {
             var metadataParameters = new Dictionary<string, object>();
@@ -104,16 +111,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
                 .Returns(() => AlterReturnValue(calls++));
 
             return mockFormattingOptionProcessor;
-        }
-
-        private string AlterReturnValue(int call)
-        {
-            if (call > 0)
-            {
-                return "NewValue";
-            }
-
-            return "OriginalValue";
         }
 
         private FieldToBeObfuscated CreateFieldToBeObfuscatedValidObject()
@@ -136,14 +133,14 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomNumber, argumentsParamsNumber));
 
-
-            return new FieldToBeObfuscated()
+            var fieldToBeObfuscated = new FieldToBeObfuscated()
             {
                 FieldName = "address1_line1",
-                ObfuscationFormat = "{0}",
-                ObfuscationFormatArgs = arguments
+                ObfuscationFormat = "{0}"
             };
-        }
+            fieldToBeObfuscated.ObfuscationFormatArgs.AddRange(arguments);
 
+            return fieldToBeObfuscated;
+        }
     }
 }

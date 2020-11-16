@@ -1,17 +1,13 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationType.Formatting
 {
@@ -19,9 +15,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
     [ExcludeFromCodeCoverage]
     public class ObfuscationFormattingDoubleShould : UnitTestBase
     {
-        protected ObfuscationFormattingDouble systemUnderTest;
-        protected double originalValue;
-        protected double returnValue;
+        private ObfuscationFormattingDouble systemUnderTest;
+        private double originalValue;
+        private double returnValue;
 
         [TestInitialize]
         public void Setup()
@@ -32,46 +28,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             systemUnderTest = new ObfuscationFormattingDouble(mockFormattingOptionProcessor.Object);
             originalValue = 1.1111;
             returnValue = originalValue;
-        }
-
-        private Mock<FormattingOptionProcessor> OptionProcessorValidResponse()
-        {
-            var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
-            mockFormattingOptionProcessor
-                .Setup(a => a.GenerateFromLookup(It.IsAny<string>(), It.IsAny<ObfuscationFormatOption>()))
-                .Returns("2.222");
-            return mockFormattingOptionProcessor;
-        }
-
-        private Mock<FormattingOptionProcessor> OptionProcessorSequenceOfResponses()
-        {
-            var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
-
-            var calls = 0;
-            mockFormattingOptionProcessor
-                .Setup(a => a.GenerateFromLookup(It.IsAny<string>(), It.IsAny<ObfuscationFormatOption>()))
-                .Returns(() => AlterReturnValue(calls++));
-                
-            return mockFormattingOptionProcessor;
-        }
-
-        private string AlterReturnValue(int call)
-        {
-            if (call > 0)
-            {
-                return "2.222";
-            }
-
-            return "1.1111";
-        }
-
-        private Mock<FormattingOptionProcessor> OptionProcessorInvalidResponse()
-        {
-            var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
-            mockFormattingOptionProcessor
-                .Setup(a => a.GenerateFromLookup(It.IsAny<string>(), It.IsAny<ObfuscationFormatOption>()))
-                .Returns("string");
-            return mockFormattingOptionProcessor;
         }
 
         [TestMethod]
@@ -121,10 +77,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         [TestMethod]
         public void ThrowExceptionIfMoreThanObfuscationFormatArgIsPassed()
         {
-            Mock<FormattingOptionProcessor> mockFormattingOptionProcessor = OptionProcessorValidResponse();
-
-            ObfuscationFormattingDouble localSystemUnderTest = new ObfuscationFormattingDouble(mockFormattingOptionProcessor.Object);
-
             Action action = () => systemUnderTest.CreateFormattedValue(originalValue, CreateFieldToBeObfuscatedObjectWithMultipleArguments(), CreateValidMetadataParamters());
 
             action.Should().Throw<Exception>();
@@ -145,7 +97,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         [TestMethod]
         public void ReturnTrueIfTheReplacementValueIsOutsideTheAlllowedRange()
         {
-            var isValid = systemUnderTest.ReplacementIsValid(1, CreateValidMetadataParamters());
+            var isValid = ObfuscationFormattingDouble.ReplacementIsValid(1, CreateValidMetadataParamters());
 
             isValid.Should().BeTrue();
         }
@@ -153,7 +105,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         [TestMethod]
         public void ReturnFalseIfTheReplacementValueIsHigherThanTheMaxConstraint()
         {
-            var isValid = systemUnderTest.ReplacementIsValid(1000, CreateValidMetadataParamters());
+            var isValid = ObfuscationFormattingDouble.ReplacementIsValid(1000, CreateValidMetadataParamters());
 
             isValid.Should().BeFalse();
         }
@@ -161,7 +113,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         [TestMethod]
         public void ReturnFalseIfTheReplacementValueIsLowerThanTheMaxConstraint()
         {
-            var isValid = systemUnderTest.ReplacementIsValid(1000, CreateValidMetadataParamters(2000,3000));
+            var isValid = ObfuscationFormattingDouble.ReplacementIsValid(1000, CreateValidMetadataParamters(2000, 3000));
 
             isValid.Should().BeFalse();
         }
@@ -169,7 +121,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         [TestMethod]
         public void ReturnFalseIfTheNewValueIsOutsideTheValidRange()
         {
-            bool isValid = systemUnderTest.ReplacementIsValid(20, CreateValidMetadataParamters(-10, 10));
+            bool isValid = ObfuscationFormattingDouble.ReplacementIsValid(20, CreateValidMetadataParamters(-10, 10));
 
             isValid.Should().BeFalse();
         }
@@ -177,7 +129,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         [TestMethod]
         public void ReturnTrueIfTheNewValueIsInsideTheValidRange()
         {
-            bool isValid = systemUnderTest.ReplacementIsValid(20, CreateValidMetadataParamters());
+            bool isValid = ObfuscationFormattingDouble.ReplacementIsValid(20, CreateValidMetadataParamters());
 
             isValid.Should().BeTrue();
         }
@@ -185,9 +137,49 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         [TestMethod]
         public void HandleMetadataParametersBeingPassedAsNull()
         {
-            Action action = () => systemUnderTest.ReplacementIsValid(5, null);
+            Action action = () => ObfuscationFormattingDouble.ReplacementIsValid(5, null);
 
             action.Should().NotThrow();
+        }
+
+        private static string AlterReturnValue(int call)
+        {
+            if (call > 0)
+            {
+                return "2.222";
+            }
+
+            return "1.1111";
+        }
+
+        private Mock<FormattingOptionProcessor> OptionProcessorValidResponse()
+        {
+            var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
+            mockFormattingOptionProcessor
+                .Setup(a => a.GenerateFromLookup(It.IsAny<string>(), It.IsAny<ObfuscationFormatOption>()))
+                .Returns("2.222");
+            return mockFormattingOptionProcessor;
+        }
+
+        private Mock<FormattingOptionProcessor> OptionProcessorSequenceOfResponses()
+        {
+            var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
+
+            var calls = 0;
+            mockFormattingOptionProcessor
+                .Setup(a => a.GenerateFromLookup(It.IsAny<string>(), It.IsAny<ObfuscationFormatOption>()))
+                .Returns(() => AlterReturnValue(calls++));
+
+            return mockFormattingOptionProcessor;
+        }
+
+        private Mock<FormattingOptionProcessor> OptionProcessorInvalidResponse()
+        {
+            var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
+            mockFormattingOptionProcessor
+                .Setup(a => a.GenerateFromLookup(It.IsAny<string>(), It.IsAny<ObfuscationFormatOption>()))
+                .Returns("string");
+            return mockFormattingOptionProcessor;
         }
 
         private Dictionary<string, object> CreateValidMetadataParamters(int min = -100, int max = 100)
@@ -209,12 +201,14 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
 
-            return new FieldToBeObfuscated()
+            var fieldToBeObfuscated = new FieldToBeObfuscated()
             {
                 FieldName = "address1_latitude",
-                ObfuscationFormat = "{0}",
-                ObfuscationFormatArgs = arguments
+                ObfuscationFormat = "{0}"
             };
+            fieldToBeObfuscated.ObfuscationFormatArgs.AddRange(arguments);
+
+            return fieldToBeObfuscated;
         }
 
         private FieldToBeObfuscated CreateFieldToBeObfuscatedObjectWithMultipleArguments()
@@ -227,12 +221,14 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
 
-            return new FieldToBeObfuscated()
+            var fieldToBeObfuscated = new FieldToBeObfuscated()
             {
                 FieldName = "address1_latitude",
-                ObfuscationFormat = "{0}",
-                ObfuscationFormatArgs = arguments
+                ObfuscationFormat = "{0}"
             };
+            fieldToBeObfuscated.ObfuscationFormatArgs.AddRange(arguments);
+
+            return fieldToBeObfuscated;
         }
 
         private FieldToBeObfuscated CreateFieldToBeObfuscatedInvalidObject()
@@ -244,12 +240,14 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomNumber, argumentsParams));
 
-            return new FieldToBeObfuscated()
+            var fieldToBeObfuscated = new FieldToBeObfuscated()
             {
                 FieldName = "address1_latitude",
-                ObfuscationFormat = "{0}",
-                ObfuscationFormatArgs = arguments
+                ObfuscationFormat = "{0}"
             };
+            fieldToBeObfuscated.ObfuscationFormatArgs.AddRange(arguments);
+
+            return fieldToBeObfuscated;
         }
     }
 }

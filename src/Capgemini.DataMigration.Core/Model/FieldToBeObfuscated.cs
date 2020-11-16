@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Capgemini.DataMigration.Core.Model
 {
@@ -20,9 +20,9 @@ namespace Capgemini.DataMigration.Core.Model
         public string ObfuscationFormat { get; set; }
 
         /// <summary>
-        /// Gets or sets the function that will be used to generate the obfuscated values.
+        /// Gets the function that will be used to generate the obfuscated values.
         /// </summary>
-        public List<ObfuscationFormatOption> ObfuscationFormatArgs { get; set; }
+        public List<ObfuscationFormatOption> ObfuscationFormatArgs { get; private set; } = new List<ObfuscationFormatOption>();
 
         [JsonIgnore]
         public bool CanBeFormatted

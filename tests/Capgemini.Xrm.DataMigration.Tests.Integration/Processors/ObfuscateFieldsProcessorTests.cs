@@ -1,14 +1,10 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using System.Collections.Generic;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.Xrm.DataMigration.Cache;
 using Capgemini.Xrm.DataMigration.DataStore;
 using Capgemini.Xrm.DataMigration.Engine.DataProcessors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.Xrm.DataMigration.IntegrationTests.Processors
 {
@@ -18,14 +14,14 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.Processors
         [TestMethod]
         public void ObfuscateStringFieldsTest()
         {
-
             var orgService = ConnectionHelper.GetOrganizationalServiceTarget();
             var cache = new EntityMetadataCache(orgService);
 
             List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
             fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
 
             var fieldsToBeObfuscated = new List<EntityToBeObfuscated>();
             fieldsToBeObfuscated.Add(entityToBeObfuscated);
@@ -45,21 +41,21 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.Processors
 
             Assert.AreNotEqual(beforeFirstName, entWrap.OriginalEntity.Attributes["firstname"]);
             Assert.AreEqual(beforeLastName, entWrap.OriginalEntity.Attributes["lastname"]);
-
         }
 
         [TestMethod]
         public void ObfuscateIntFieldsTest()
         {
-
             var orgService = ConnectionHelper.GetOrganizationalServiceTarget();
             var cache = new EntityMetadataCache(orgService);
 
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "numberofchildren" });
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "numberofchildren" }
+            };
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
-
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
             var fieldsToBeObfuscated = new List<EntityToBeObfuscated>();
             fieldsToBeObfuscated.Add(entityToBeObfuscated);
 
@@ -78,7 +74,6 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.Processors
 
             Assert.AreEqual(beforeFirstName, entWrap.OriginalEntity.Attributes["firstname"]);
             Assert.AreNotEqual(beforeNumberOfChildren, entWrap.OriginalEntity.Attributes["numberofchildren"]);
-
         }
     }
 }
