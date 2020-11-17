@@ -52,7 +52,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
             return cont1;
         }
 
-        private List<EntityWrapper> PrepareEntities()
+        private static List<EntityWrapper> PrepareEntities()
         {
             List<EntityWrapper> entities = new List<EntityWrapper>
             {
@@ -64,7 +64,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
             return entities;
         }
 
-        private CrmSchemaConfiguration GetSchema()
+        private static CrmSchemaConfiguration GetSchema()
         {
             CrmSchemaConfiguration schemaConfig = new CrmSchemaConfiguration();
             List<CrmEntity> entities = new List<CrmEntity>();

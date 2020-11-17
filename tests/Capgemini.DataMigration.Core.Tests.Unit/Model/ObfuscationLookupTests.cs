@@ -161,7 +161,7 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
             return scenarioPath;
         }
 
-        private List<dynamic> CreateDataRows()
+        private static List<dynamic> CreateDataRows()
         {
             string fileName = Path.Combine(GetTestDataPath(), "ukpostcodes.csv");
             List<dynamic> records = null;

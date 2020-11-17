@@ -17,7 +17,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
     [TestClass]
     public class DataFileStoreWriterTests : UnitTestBase
     {
-        private DataFileStoreWriter systemUnderTest = null;
+        private DataFileStoreWriter systemUnderTest;
 
         [TestInitialize]
         public void Setup()
@@ -119,8 +119,10 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
             Guid accountId = Guid.NewGuid();
             string accountName = "ABC Ltd";
 
-            Entity account = new Entity("account");
-            account.Id = accountId;
+            Entity account = new Entity("account")
+            {
+                Id = accountId
+            };
             account.Attributes.Add("name", "Fake Account");
 
             EntityReference entityRef = account.ToEntityReference();

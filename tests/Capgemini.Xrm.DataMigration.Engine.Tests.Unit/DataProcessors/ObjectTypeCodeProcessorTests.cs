@@ -125,6 +125,15 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             MockEntityRepo.Verify(repo => repo.GetEntityMetadataCache.GetEntityMetadata(expectedEntity), Times.Once);
         }
 
+        private static ObjectTypeCodeMappingConfiguration CreateConfiguration(string entityName, int typeCode, string fieldName)
+        {
+            var config = new ObjectTypeCodeMappingConfiguration();
+            config.EntityToTypeCodeMapping.Add(entityName, typeCode);
+            config.FieldsToSearchForMapping.AddRange(new List<string>() { fieldName });
+
+            return config;
+        }
+
         private void InitRepoToReturnMetaData(string entityLogicalName)
         {
             MockEntityRepo.SetupGet(r => r.GetEntityMetadataCache)
@@ -135,15 +144,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
                 EntityMetadata metaData = new EntityMetadata();
                 return metaData;
             });
-        }
-
-        private ObjectTypeCodeMappingConfiguration CreateConfiguration(string entityName, int typeCode, string fieldName)
-        {
-            var config = new ObjectTypeCodeMappingConfiguration();
-            config.EntityToTypeCodeMapping.Add(entityName, typeCode);
-            config.FieldsToSearchForMapping.AddRange(new List<string>() { fieldName });
-
-            return config;
         }
     }
 }

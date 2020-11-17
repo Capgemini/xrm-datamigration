@@ -10,7 +10,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Implementation
     [TestClass]
     public class PollyRetryBuilderTests
     {
-        private int total = 0;
+        private int total;
 
         [TestInitialize]
         public void Setup()

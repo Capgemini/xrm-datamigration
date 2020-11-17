@@ -66,8 +66,10 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         public void ThrowValidationExceptionIfFilenameIsNotPassedAsAnArgument()
         {
             var originalValue = "Tester";
-            var args = new Dictionary<string, string>();
-            args.Add("columnname", "column");
+            var args = new Dictionary<string, string>
+            {
+                { "columnname", "column" }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.Lookup, args);
 
             Action action = () => systemUnderTest.GenerateFromLookup(originalValue, arg);
@@ -94,9 +96,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
 
         private static ObfuscationFormatOption GenerateValidArgs()
         {
-            var args = new Dictionary<string, string>();
-            args.Add("filename", "testlookup.csv");
-            args.Add("columnname", "postcode");
+            var args = new Dictionary<string, string>
+            {
+                { "filename", "testlookup.csv" },
+                { "columnname", "postcode" }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.Lookup, args);
             return arg;
         }
@@ -108,7 +112,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return scenarioPath;
         }
 
-        private List<dynamic> CreateDataRows()
+        private static List<dynamic> CreateDataRows()
         {
             string fileName = Path.Combine(GetTestDataPath(), "ukpostcodes.csv");
             List<dynamic> records = null;

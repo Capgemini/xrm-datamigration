@@ -15,7 +15,7 @@ namespace Capgemini.Xrm.DataMigration.Core.IntegrationTests
         private readonly string entityName = "contact";
         private readonly string attributeName = "contactid";
 
-        private EntityMetadataCache systemUnderTest = null;
+        private EntityMetadataCache systemUnderTest;
 
         [TestInitialize]
         public void Setup()

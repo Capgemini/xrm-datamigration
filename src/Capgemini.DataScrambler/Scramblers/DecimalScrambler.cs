@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Capgemini.DataScrambler.Scramblers
+﻿namespace Capgemini.DataScrambler.Scramblers
 {
     public class DecimalScrambler : IScrambler<decimal>
     {
-        private DoubleScrambler doubleScrambler;
+        private readonly DoubleScrambler doubleScrambler;
 
         public DecimalScrambler()
         {
@@ -18,7 +12,7 @@ namespace Capgemini.DataScrambler.Scramblers
         public decimal Scramble(decimal input, int min, int max)
         {
             double inputAsDouble = (double)input;
-            return (decimal) doubleScrambler.Scramble(inputAsDouble, min, max);
+            return (decimal)doubleScrambler.Scramble(inputAsDouble, min, max);
         }
     }
 }

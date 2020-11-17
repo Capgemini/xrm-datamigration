@@ -28,10 +28,14 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Model
         [TestMethod]
         public void CanBeFormattedReturnsTrueIfFormattingArgsAreAvailable()
         {
-            Dictionary<string, string> args = new Dictionary<string, string>();
-            args.Add("length", "10");
-            List<ObfuscationFormatOption> formatOptions = new List<ObfuscationFormatOption>();
-            formatOptions.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomString, args));
+            Dictionary<string, string> args = new Dictionary<string, string>
+            {
+                { "length", "10" }
+            };
+            List<ObfuscationFormatOption> formatOptions = new List<ObfuscationFormatOption>
+            {
+                new ObfuscationFormatOption(ObfuscationFormatType.RandomString, args)
+            };
             var testObject = new FieldToBeObfuscated()
             {
                 FieldName = "test",

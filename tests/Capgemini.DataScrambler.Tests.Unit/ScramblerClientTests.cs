@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Capgemini.DataScrambler.Factories;
 using Capgemini.DataScrambler.Scramblers;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Capgemini.DataScrambler.Tests.Unit
@@ -48,7 +49,7 @@ namespace Capgemini.DataScrambler.Tests.Unit
             Assert.IsTrue(output.Contains("@"));
         }
 
-        [TestMethod()]
+        [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void ExecuteEmailScramblerExceptionTest()
         {
@@ -58,7 +59,7 @@ namespace Capgemini.DataScrambler.Tests.Unit
             client.ExecuteScramble("this is not an email");
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ExecuteGuidScramblerTest()
         {
             IScrambler<Guid> scrambler = new GuidScrambler();
@@ -70,7 +71,7 @@ namespace Capgemini.DataScrambler.Tests.Unit
             Assert.AreNotEqual(input, output);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ExecuteDoubleScramblerTest()
         {
             IScrambler<double> scrambler = new DoubleScrambler();
@@ -82,7 +83,7 @@ namespace Capgemini.DataScrambler.Tests.Unit
             Assert.AreNotEqual(input, output);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ExecuteDecimalScramblerTest()
         {
             IScrambler<decimal> scrambler = new DecimalScrambler();
@@ -94,7 +95,7 @@ namespace Capgemini.DataScrambler.Tests.Unit
             Assert.AreNotEqual(input, output);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ExecuteMetricsStringScramblerTest()
         {
             IScrambler<string> scrambler = new StringScrambler();
@@ -103,46 +104,46 @@ namespace Capgemini.DataScrambler.Tests.Unit
             List<string> inputStrings = new List<string>();
             for (var i = 0; i <= 100000; i++)
             {
-                inputStrings.Add(String.Format("Hello World" + i));
+                inputStrings.Add($"Hello World {i}");
             }
 
             var watch = System.Diagnostics.Stopwatch.StartNew();
             foreach (string str in inputStrings)
             {
-                client.ExecuteScramble(str);
+                FluentActions.Invoking(() => client.ExecuteScramble(str))
+                             .Should()
+                             .NotThrow();
             }
+
             watch.Stop();
             var elapsedSeconds = watch.ElapsedMilliseconds / 1000;
-            Console.WriteLine(String.Format("Time taken: ", elapsedSeconds));
-
+            Console.WriteLine($"Time taken: {elapsedSeconds}");
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ExecuteScramblerFactoryTest()
         {
-            ScramblerClientFactory factory = new ScramblerClientFactory();
-
-            ScramblerClient<String> strClient = factory.GetScrambler<string>();
+            ScramblerClient<string> strClient = ScramblerClientFactory.GetScrambler<string>();
             string inputStr = "Hello world";
             string outputStr = strClient.ExecuteScramble(inputStr);
             Assert.AreNotEqual(inputStr, outputStr);
 
-            ScramblerClient<int> intClient = factory.GetScrambler<int>();
+            ScramblerClient<int> intClient = ScramblerClientFactory.GetScrambler<int>();
             int inputInt = 1;
             int outputInt = intClient.ExecuteScramble(inputInt, 2, 10);
             Assert.AreNotEqual(inputInt, outputInt);
 
-            ScramblerClient<Guid> guidClient = factory.GetScrambler<Guid>();
+            ScramblerClient<Guid> guidClient = ScramblerClientFactory.GetScrambler<Guid>();
             Guid inputGuid = Guid.NewGuid();
             Guid outputGuid = guidClient.ExecuteScramble(inputGuid);
             Assert.AreNotEqual(inputGuid, outputGuid);
 
-            ScramblerClient<double> doubleClient = factory.GetScrambler<double>();
+            ScramblerClient<double> doubleClient = ScramblerClientFactory.GetScrambler<double>();
             double inputDouble = 1;
             double outputDouble = doubleClient.ExecuteScramble(inputDouble, 2, 10);
             Assert.AreNotEqual(inputDouble, outputDouble);
 
-            ScramblerClient<decimal> decimalClient = factory.GetScrambler<decimal>();
+            ScramblerClient<decimal> decimalClient = ScramblerClientFactory.GetScrambler<decimal>();
             decimal inputDecimal = 1;
             decimal outputDecimal = decimalClient.ExecuteScramble(inputDecimal, 2, 10);
             Assert.AreNotEqual(inputDecimal, outputDecimal);

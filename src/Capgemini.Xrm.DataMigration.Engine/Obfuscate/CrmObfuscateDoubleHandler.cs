@@ -50,9 +50,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
 
             if (field.CanBeFormatted)
             {
-                Dictionary<string, object> metadataParameters = new Dictionary<string, object>();
-                metadataParameters.Add("min", min);
-                metadataParameters.Add("max", max);
+                Dictionary<string, object> metadataParameters = new Dictionary<string, object>
+                {
+                    { "min", min },
+                    { "max", max }
+                };
 
                 entity[field.FieldName] = formattingClient.CreateFormattedValue((double)entity[field.FieldName], field, metadataParameters);
                 return;

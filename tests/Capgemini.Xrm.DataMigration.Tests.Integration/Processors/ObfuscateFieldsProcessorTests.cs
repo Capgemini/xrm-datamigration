@@ -17,14 +17,18 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.Processors
             var orgService = ConnectionHelper.GetOrganizationalServiceTarget();
             var cache = new EntityMetadataCache(orgService);
 
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "firstname" }
+            };
 
             EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
             entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
 
-            var fieldsToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldsToBeObfuscated.Add(entityToBeObfuscated);
+            var fieldsToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
             ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(cache, fieldsToBeObfuscated);
 
@@ -56,8 +60,10 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.Processors
 
             EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
             entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
-            var fieldsToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldsToBeObfuscated.Add(entityToBeObfuscated);
+            var fieldsToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
             ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(cache, fieldsToBeObfuscated);
 

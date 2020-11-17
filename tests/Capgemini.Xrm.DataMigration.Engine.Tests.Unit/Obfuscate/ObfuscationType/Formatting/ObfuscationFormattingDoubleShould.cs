@@ -17,7 +17,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
     {
         private ObfuscationFormattingDouble systemUnderTest;
         private double originalValue;
-        private double returnValue;
 
         [TestInitialize]
         public void Setup()
@@ -27,7 +26,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
 
             systemUnderTest = new ObfuscationFormattingDouble(mockFormattingOptionProcessor.Object);
             originalValue = 1.1111;
-            returnValue = originalValue;
         }
 
         [TestMethod]
@@ -152,7 +150,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return "1.1111";
         }
 
-        private Mock<FormattingOptionProcessor> OptionProcessorValidResponse()
+        private static Mock<FormattingOptionProcessor> OptionProcessorValidResponse()
         {
             var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
             mockFormattingOptionProcessor
@@ -161,7 +159,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return mockFormattingOptionProcessor;
         }
 
-        private Mock<FormattingOptionProcessor> OptionProcessorSequenceOfResponses()
+        private static Mock<FormattingOptionProcessor> OptionProcessorSequenceOfResponses()
         {
             var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
 
@@ -173,7 +171,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return mockFormattingOptionProcessor;
         }
 
-        private Mock<FormattingOptionProcessor> OptionProcessorInvalidResponse()
+        private static Mock<FormattingOptionProcessor> OptionProcessorInvalidResponse()
         {
             var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
             mockFormattingOptionProcessor
@@ -182,22 +180,25 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return mockFormattingOptionProcessor;
         }
 
-        private Dictionary<string, object> CreateValidMetadataParamters(int min = -100, int max = 100)
+        private static Dictionary<string, object> CreateValidMetadataParamters(int min = -100, int max = 100)
         {
-            var metadataParameters = new Dictionary<string, object>();
-
-            metadataParameters.Add("min", min);
-            metadataParameters.Add("max", max);
+            var metadataParameters = new Dictionary<string, object>
+            {
+                { "min", min },
+                { "max", max }
+            };
 
             return metadataParameters;
         }
 
-        private FieldToBeObfuscated CreateFieldToBeObfuscatedValidObject()
+        private static FieldToBeObfuscated CreateFieldToBeObfuscatedValidObject()
         {
             List<ObfuscationFormatOption> arguments = new List<ObfuscationFormatOption>();
-            Dictionary<string, string> argumentsParams = new Dictionary<string, string>();
-            argumentsParams.Add("filename", "FirstnameAndSurnames.csv");
-            argumentsParams.Add("columnname", "latitude");
+            Dictionary<string, string> argumentsParams = new Dictionary<string, string>
+            {
+                { "filename", "FirstnameAndSurnames.csv" },
+                { "columnname", "latitude" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
 
@@ -211,12 +212,14 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return fieldToBeObfuscated;
         }
 
-        private FieldToBeObfuscated CreateFieldToBeObfuscatedObjectWithMultipleArguments()
+        private static FieldToBeObfuscated CreateFieldToBeObfuscatedObjectWithMultipleArguments()
         {
             List<ObfuscationFormatOption> arguments = new List<ObfuscationFormatOption>();
-            Dictionary<string, string> argumentsParams = new Dictionary<string, string>();
-            argumentsParams.Add("filename", "FirstnameAndSurnames.csv");
-            argumentsParams.Add("columnname", "latitude");
+            Dictionary<string, string> argumentsParams = new Dictionary<string, string>
+            {
+                { "filename", "FirstnameAndSurnames.csv" },
+                { "columnname", "latitude" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
@@ -231,12 +234,14 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return fieldToBeObfuscated;
         }
 
-        private FieldToBeObfuscated CreateFieldToBeObfuscatedInvalidObject()
+        private static FieldToBeObfuscated CreateFieldToBeObfuscatedInvalidObject()
         {
             List<ObfuscationFormatOption> arguments = new List<ObfuscationFormatOption>();
-            Dictionary<string, string> argumentsParams = new Dictionary<string, string>();
-            argumentsParams.Add("min", "-10.000");
-            argumentsParams.Add("max", "60.000");
+            Dictionary<string, string> argumentsParams = new Dictionary<string, string>
+            {
+                { "min", "-10.000" },
+                { "max", "60.000" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomNumber, argumentsParams));
 

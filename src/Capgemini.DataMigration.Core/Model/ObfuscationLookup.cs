@@ -6,7 +6,7 @@ namespace Capgemini.DataMigration.Core.Model
 {
     public class ObfuscationLookup
     {
-        private List<dynamic> dataRows = new List<dynamic>();
+        private readonly List<dynamic> dataRows = new List<dynamic>();
 
         public ObfuscationLookup(string name, List<dynamic> dataRows)
         {

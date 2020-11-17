@@ -10,7 +10,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Model.Tests
     [TestClass]
     public class CrmAttributeStoreTests
     {
-        private CrmAttributeStore systemUnderTest = null;
+        private CrmAttributeStore systemUnderTest;
 
         [TestMethod]
         public void CrmAttributeStore()
