@@ -17,6 +17,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
 {
     internal static class Program
     {
+        [STAThread]
         private static void Main(string[] args)
         {
             ConsoleLogger.LogLevel = 3;
@@ -58,39 +59,14 @@ namespace Capgemini.Xrm.Datamigration.Examples
             }
         }
 
-        private static void ImportData(string connectionString, string schemaPath)
-        {
-            Console.WriteLine("Import Started");
-
-            using (var tokenSource = new CancellationTokenSource())
-            {
-                using (var serviceClient = new CrmServiceClient(connectionString))
-                {
-                    var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
-                    var logger = new ConsoleLogger();
-
-                    if (!Settings.Default.UseCsvImport)
-                    {
-                        // Json Import
-                        var fileImporterJson = new CrmFileDataImporter(logger, entityRepo, GetImportConfig(), tokenSource.Token);
-                        fileImporterJson.MigrateData();
-                    }
-                    else
-                    {
-                        // Csv Import
-                        var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
-                        var fileImporterCsv = new CrmFileDataImporterCsv(logger, entityRepo, GetImportConfig(), schema, tokenSource.Token);
-                        fileImporterCsv.MigrateData();
-                    }
-                }
-            }
-
-            Console.WriteLine("Import Finished");
-        }
-
         private static void LoadObfuscationLookups()
         {
-            ObfuscationLookupHelper.LoadLookups(GetLookupFolderPath());
+            var lookupPath = GetLookupFolderPath();
+
+            if (Directory.Exists(lookupPath))
+            {
+                ObfuscationLookupHelper.LoadLookups(lookupPath);
+            }
         }
 
         private static void ExportData(string connectionString, string schemaPath)
@@ -121,6 +97,36 @@ namespace Capgemini.Xrm.Datamigration.Examples
             }
 
             Console.WriteLine("Export Finished");
+        }
+
+        private static void ImportData(string connectionString, string schemaPath)
+        {
+            Console.WriteLine("Import Started");
+
+            using (var tokenSource = new CancellationTokenSource())
+            {
+                using (var serviceClient = new CrmServiceClient(connectionString))
+                {
+                    var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
+                    var logger = new ConsoleLogger();
+
+                    if (!Settings.Default.UseCsvImport)
+                    {
+                        // Json Import
+                        var fileImporterJson = new CrmFileDataImporter(logger, entityRepo, GetImportConfig(), tokenSource.Token);
+                        fileImporterJson.MigrateData();
+                    }
+                    else
+                    {
+                        // Csv Import
+                        var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
+                        var fileImporterCsv = new CrmFileDataImporterCsv(logger, entityRepo, GetImportConfig(), schema, tokenSource.Token);
+                        fileImporterCsv.MigrateData();
+                    }
+                }
+            }
+
+            Console.WriteLine("Import Finished");
         }
 
         private static CrmImportConfig GetImportConfig()

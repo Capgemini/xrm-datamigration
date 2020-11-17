@@ -4,9 +4,7 @@
 // a specific target and scoped to a namespace, type, member, etc.
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Failure of ProcessImport is not a fatal exception.", Scope = "member", Target = "~M:Capgemini.Xrm.DataMigration.Engine.DataProcessors.MappEntityProcessor.FindReplacementValue(Capgemini.Xrm.DataMigration.DataStore.EntityWrapper,System.String)~System.Guid")]
 [assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Failure of DeleteEntity is not a fatal exception.", Scope = "member", Target = "~M:Capgemini.Xrm.DataMigration.Engine.DataProcessors.SyncEntitiesProcessor.ImportCompleted")]
-[assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Failure of DeleteEntity is not a fatal exception.", Scope = "member", Target = "~M:Capgemini.Xrm.DataMigration.Engine.DataProcessors.ImportCompleted")]
 [assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Failure of StartPlugins is not a fatal exception.", Scope = "member", Target = "~M:Capgemini.Xrm.DataMigration.Engine.DataProcessors.WorkflowsPluginsProcessor.StartPlugins")]
 [assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Failure of StartWorkflows is not a fatal exception.", Scope = "member", Target = "~M:Capgemini.Xrm.DataMigration.Engine.DataProcessors.WorkflowsPluginsProcessor.StartWorkflows")]
 [assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Failure of DeactivateSdkStep is not a fatal exception.", Scope = "member", Target = "~M:Capgemini.Xrm.DataMigration.Engine.DataProcessors.WorkflowsPluginsProcessor.DeactivateSdkStep(Capgemini.Xrm.DataMigration.Model.SdkStep)")]
