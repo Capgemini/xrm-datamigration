@@ -50,7 +50,7 @@ namespace Capgemini.DataScrambler.Tests.Unit
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(Capgemini.DataMigration.Exceptions.ValidationException))]
         public void ExecuteEmailScramblerExceptionTest()
         {
             IScrambler<string> scrambler = new EmailScambler();

@@ -83,6 +83,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Capgemini.DataMigration.Core\Capgemini.DataMigration.Core.csproj">
+      <Project>{c8b84af3-31dd-44ae-80cd-13ab60549f7c}</Project>
+      <Name>Capgemini.DataMigration.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Capgemini.DataScrambler\Capgemini.DataScrambler.csproj">
       <Project>{00413b74-0224-4d49-a5c5-16ae29294537}</Project>
       <Name>Capgemini.DataScrambler</Name>
