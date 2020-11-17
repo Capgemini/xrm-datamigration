@@ -154,7 +154,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// <summary>
         /// Gets or sets a value indicating whether if true, all active plugins and workflows will be deacivated prior to processing and activatedafter import.
         /// </summary>
-        public bool DeactivateAllProcesses { get; set; } = false;
+        public bool DeactivateAllProcesses { get; set; }
 
         /// <summary>
         /// Gets or sets preFix for JSON files.

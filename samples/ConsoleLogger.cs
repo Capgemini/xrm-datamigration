@@ -1,16 +1,12 @@
-﻿using Capgemini.DataMigration.Core;
-using System;
+﻿using System;
+using Capgemini.DataMigration.Core;
 
 namespace Capgemini.Xrm.Datamigration.Examples
 {
     public class ConsoleLogger : ILogger
     {
         /// <summary>
-        /// LogLevel
-        /// 0 - only Errors
-        /// 1 - Warnings
-        /// 2 - Info
-        /// 3 - Verbose
+        /// Gets or sets LogLevel - 0 - only Errors, 1 - Warnings, 2 - Info, 3 - Verbose.
         /// </summary>
         public static int LogLevel { get; set; } = 2;
 
@@ -21,25 +17,31 @@ namespace Capgemini.Xrm.Datamigration.Examples
 
         public void LogError(string message, Exception ex)
         {
-            Console.WriteLine("Error:" + message + ",Ex:" + ex.ToString());
+            Console.WriteLine($"Error: {message} ,Ex: {ex}");
         }
 
         public void LogInfo(string message)
         {
             if (LogLevel > 1)
-                Console.WriteLine("Info:" + message);
+            {
+                Console.WriteLine($"Info: {message}");
+            }
         }
 
         public void LogVerbose(string message)
         {
             if (LogLevel > 2)
-                Console.WriteLine("Verbose:" + message);
+            {
+                Console.WriteLine($"Verbose: {message}");
+            }
         }
 
         public void LogWarning(string message)
         {
             if (LogLevel > 0)
-                Console.WriteLine("Warning:" + message);
+            {
+                Console.WriteLine($"Warning: {message}");
+            }
         }
     }
 }

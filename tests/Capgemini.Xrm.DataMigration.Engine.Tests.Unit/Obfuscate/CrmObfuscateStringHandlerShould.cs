@@ -45,9 +45,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
             entity.Attributes.Add("address1_line1", originalValue);
 
             List<ObfuscationFormatOption> arguments = new List<ObfuscationFormatOption>();
-            Dictionary<string, string> argumentsParams = new Dictionary<string, string>();
-            argumentsParams.Add("filename", "test.csv");
-            argumentsParams.Add("columnname", "street");
+            Dictionary<string, string> argumentsParams = new Dictionary<string, string>
+            {
+                { "filename", "test.csv" },
+                { "columnname", "street" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
 

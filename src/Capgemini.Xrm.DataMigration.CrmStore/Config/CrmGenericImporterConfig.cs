@@ -11,7 +11,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         {
         }
 
-        public bool DeactivateAllProcesses { get; set; } = false;
+        public bool DeactivateAllProcesses { get; set; }
 
         public List<string> EntitiesToSync { get; private set; } = new List<string>();
 
@@ -23,7 +23,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
 
         public bool IgnoreSystemFields { get; set; } = true;
 
-        public MappingConfiguration MigrationConfig { get; set; } = null;
+        public MappingConfiguration MigrationConfig { get; set; }
 
         public List<Tuple<string, string>> PluginsToDeactivate { get; private set; } = new List<Tuple<string, string>>();
 
@@ -31,7 +31,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
 
         public List<string> PassOneReferences { get; private set; } = new List<string> { "businessunit", "uom", "uomschedule", "queue" };
 
-        public ObjectTypeCodeMappingConfiguration ObjectTypeCodeMappingConfiguration { get; set; } = null;
+        public ObjectTypeCodeMappingConfiguration ObjectTypeCodeMappingConfiguration { get; set; }
 
         public List<string> NoUpdateEntities { get; private set; } = new List<string>();
 

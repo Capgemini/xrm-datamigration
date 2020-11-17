@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Capgemini.DataScrambler.Scramblers
+﻿namespace Capgemini.DataScrambler.Scramblers
 {
     public class IntegerScrambler : IScrambler<int>
-    {        
+    {
         public IntegerScrambler()
         {
         }
 
         public int Scramble(int input, int min, int max)
         {
+            var getRandom = RandomGenerator.GetRandom;
+            int randomNumber = getRandom.Next(min, max);
 
-            int randomNumber = RandomGenerator.GetRandom.Next(min, max);
-            while(randomNumber == input)
+            while (randomNumber == input)
             {
-                randomNumber = RandomGenerator.GetRandom.Next(min, max);
+                randomNumber = getRandom.Next(min, max);
             }
 
             return randomNumber;

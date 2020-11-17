@@ -92,16 +92,17 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return mockFormattingOptionProcessor;
         }
 
-        private Dictionary<string, object> CreateMetadataParamters(int maxLength = 100)
+        private static Dictionary<string, object> CreateMetadataParamters(int maxLength = 100)
         {
-            var metadataParameters = new Dictionary<string, object>();
-
-            metadataParameters.Add("maxlength", maxLength);
+            var metadataParameters = new Dictionary<string, object>
+            {
+                { "maxlength", maxLength }
+            };
 
             return metadataParameters;
         }
 
-        private Mock<FormattingOptionProcessor> OptionProcessorSequenceOfResponses()
+        private static Mock<FormattingOptionProcessor> OptionProcessorSequenceOfResponses()
         {
             var mockFormattingOptionProcessor = new Mock<FormattingOptionProcessor>();
 
@@ -113,23 +114,29 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
             return mockFormattingOptionProcessor;
         }
 
-        private FieldToBeObfuscated CreateFieldToBeObfuscatedValidObject()
+        private static FieldToBeObfuscated CreateFieldToBeObfuscatedValidObject()
         {
             List<ObfuscationFormatOption> arguments = new List<ObfuscationFormatOption>();
-            Dictionary<string, string> argumentsParams = new Dictionary<string, string>();
-            argumentsParams.Add("filename", "FirstnameAndSurnames.csv");
-            argumentsParams.Add("columnname", "latitude");
+            Dictionary<string, string> argumentsParams = new Dictionary<string, string>
+            {
+                { "filename", "FirstnameAndSurnames.csv" },
+                { "columnname", "latitude" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
 
-            Dictionary<string, string> argumentsParamsString = new Dictionary<string, string>();
-            argumentsParamsString.Add("length", "10");
+            Dictionary<string, string> argumentsParamsString = new Dictionary<string, string>
+            {
+                { "length", "10" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomString, argumentsParamsString));
 
-            Dictionary<string, string> argumentsParamsNumber = new Dictionary<string, string>();
-            argumentsParamsNumber.Add("min", "0");
-            argumentsParamsNumber.Add("max", "10");
+            Dictionary<string, string> argumentsParamsNumber = new Dictionary<string, string>
+            {
+                { "min", "0" },
+                { "max", "10" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.RandomNumber, argumentsParamsNumber));
 

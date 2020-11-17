@@ -42,9 +42,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
             entity.Attributes.Add("address1_latitude", latitudeBefore);
 
             List<ObfuscationFormatOption> arguments = new List<ObfuscationFormatOption>();
-            Dictionary<string, string> argumentsParams = new Dictionary<string, string>();
-            argumentsParams.Add("filename", "FirstnameAndSurnames.csv");
-            argumentsParams.Add("columnname", "latitude");
+            Dictionary<string, string> argumentsParams = new Dictionary<string, string>
+            {
+                { "filename", "FirstnameAndSurnames.csv" },
+                { "columnname", "latitude" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
 

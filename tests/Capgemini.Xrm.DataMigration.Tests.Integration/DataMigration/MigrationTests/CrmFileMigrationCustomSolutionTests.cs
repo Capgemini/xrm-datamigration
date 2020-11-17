@@ -139,7 +139,7 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
             return exportConfig;
         }
 
-        private void DeleteFileIfExits(string file)
+        private static void DeleteFileIfExits(string file)
         {
             if (File.Exists(file))
             {

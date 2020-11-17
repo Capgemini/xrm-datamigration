@@ -1,30 +1,24 @@
 ﻿using Capgemini.DataScrambler.Scramblers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.DataScrambler
 {
     public class ScramblerClient<T>
     {
-
-        private IScrambler<T> CurrentScrambler;
+        private IScrambler<T> currentScrambler;
 
         public ScramblerClient(IScrambler<T> scrambler)
         {
-            CurrentScrambler = scrambler;
+            currentScrambler = scrambler;
         }
 
         public T ExecuteScramble(T input, int min = 0, int max = 10)
         {
-            return CurrentScrambler.Scramble(input, min, max);
+            return currentScrambler.Scramble(input, min, max);
         }
 
         public void ChangeScrambler(IScrambler<T> newScrambler)
         {
-            CurrentScrambler = newScrambler;
+            currentScrambler = newScrambler;
         }
     }
 }
