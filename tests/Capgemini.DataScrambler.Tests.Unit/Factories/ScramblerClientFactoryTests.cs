@@ -43,6 +43,17 @@ namespace Capgemini.DataScrambler.Factories.Tests
         }
 
         [TestMethod]
+        public void ChangeDoubleScrambler()
+        {
+            IScrambler<double> newScrambler = new DoubleScrambler();
+            var actual = ScramblerClientFactory.GetScrambler<double>();
+
+            FluentActions.Invoking(() => actual.ChangeScrambler(newScrambler))
+                .Should()
+                .NotThrow();
+        }
+
+        [TestMethod]
         public void GetScramblerEmailScambler()
         {
             FluentActions.Invoking(() => ScramblerClientFactory.GetScrambler<EmailScambler>())
