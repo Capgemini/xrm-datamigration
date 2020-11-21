@@ -30,7 +30,7 @@ namespace Capgemini.DataScrambler.Factories
             }
             else
             {
-                throw new NotSupportedException($"The specified generic type {nameof(T)} could not be found");
+                throw new NotSupportedException($"The specified generic type {type.Name} could not be found");
             }
         }
     }

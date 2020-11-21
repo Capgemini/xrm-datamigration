@@ -29,7 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>1701,1702,1573,1591,1712,RECS0145,RECS0129,CA1054,CA1056,SA1618,SA1600;S4210;CA1031</NoWarn>
+    <NoWarn>1701,1702,1573,1591,1712,RECS0145,RECS0129,CA1054,CA1056,SA1618,SA1600;S4210;</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

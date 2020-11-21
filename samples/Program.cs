@@ -55,7 +55,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
+                throw;
             }
         }
 

@@ -7,10 +7,6 @@ namespace Capgemini.DataScrambler.Scramblers
     {
         private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        public StringScrambler()
-        {
-        }
-
         public virtual string Scramble(string input, int min, int max)
         {
             return ScrambleString(input, min, max);
