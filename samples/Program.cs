@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -15,6 +16,7 @@ using Microsoft.Xrm.Tooling.Connector;
 
 namespace Capgemini.Xrm.Datamigration.Examples
 {
+    [ExcludeFromCodeCoverage]
     internal static class Program
     {
         [STAThread]

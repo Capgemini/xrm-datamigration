@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Capgemini.DataMigration.Core;
 
 namespace Capgemini.Xrm.Datamigration.Examples
 {
+    [ExcludeFromCodeCoverage]
     public class ConsoleLogger : ILogger
     {
         /// <summary>
