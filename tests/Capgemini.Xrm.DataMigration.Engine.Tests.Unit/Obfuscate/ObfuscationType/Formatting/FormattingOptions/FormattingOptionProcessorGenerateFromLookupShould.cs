@@ -1,18 +1,16 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
 using CsvHelper;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationType.Formatting.FormattingOptions
 {
@@ -20,31 +18,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
     [ExcludeFromCodeCoverage]
     public class FormattingOptionProcessorGenerateFromLookupShould : UnitTestBase
     {
-        private const int MaxLengthOfString = 10;
         private FormattingOptionProcessor systemUnderTest;
-
-        private List<dynamic> CreateDataRows()
-        {
-            string fileName = Path.Combine(GetTestDataPath(), "ukpostcodes.csv");
-            List<dynamic> records = new List<dynamic>();
-
-            using (TextReader tr = File.OpenText(fileName))
-            {
-                using (var reader = new CsvReader(tr))
-                {
-                    records = reader.GetRecords<dynamic>().ToList();
-                }
-            }
-
-            return records;
-        }
-
-        private string GetTestDataPath()
-        {
-            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
-            var scenarioPath = Path.Combine(folderPath, "TestData", "LookupFiles");
-            return scenarioPath;
-        }
 
         [TestInitialize]
         public void Setup()
@@ -89,38 +63,69 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
         }
 
         [TestMethod]
-        public void ThrowArgumentNullExceptionIfFilenameIsNotPassedAsAnArgument()
+        public void ThrowValidationExceptionIfFilenameIsNotPassedAsAnArgument()
         {
             var originalValue = "Tester";
-            var args = new Dictionary<string, string>();
-            args.Add("columnname", "column");
+            var args = new Dictionary<string, string>
+            {
+                { "columnname", "column" }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.Lookup, args);
 
             Action action = () => systemUnderTest.GenerateFromLookup(originalValue, arg);
 
-            action.Should().Throw<ArgumentNullException>();
+            action.Should().Throw<Capgemini.DataMigration.Exceptions.ValidationException>();
         }
 
         [TestMethod]
-        public void ThrowArgumentNullExceptionIfColumnNameIsNotPassedAsAnArgument()
+        public void ThrowValidationExceptionIfColumnNameIsNotPassedAsAnArgument()
         {
             var originalValue = "Tester";
-            var args = new Dictionary<string, string>();
-            args.Add("filename", "testlookup.csv");
+            var args = new Dictionary<string, string>
+            {
+                { "filename", "testlookup.csv" }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.Lookup, args);
 
             Action action = () => systemUnderTest.GenerateFromLookup(originalValue, arg);
 
-            action.Should().Throw<ArgumentNullException>();
+            action.Should()
+                  .Throw<Capgemini.DataMigration.Exceptions.ValidationException>()
+                  .WithMessage("Obfuscation format option columnName should not be null");
         }
 
         private static ObfuscationFormatOption GenerateValidArgs()
         {
-            var args = new Dictionary<string, string>();
-            args.Add("filename", "testlookup.csv");
-            args.Add("columnname", "postcode");
+            var args = new Dictionary<string, string>
+            {
+                { "filename", "testlookup.csv" },
+                { "columnname", "postcode" }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.Lookup, args);
             return arg;
+        }
+
+        private static string GetTestDataPath()
+        {
+            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            var scenarioPath = Path.Combine(folderPath, "TestData", "LookupFiles");
+            return scenarioPath;
+        }
+
+        private static List<dynamic> CreateDataRows()
+        {
+            string fileName = Path.Combine(GetTestDataPath(), "ukpostcodes.csv");
+            List<dynamic> records = null;
+
+            using (TextReader tr = File.OpenText(fileName))
+            {
+                using (var reader = new CsvReader(tr))
+                {
+                    records = reader.GetRecords<dynamic>().ToList();
+                }
+            }
+
+            return records;
         }
     }
 }

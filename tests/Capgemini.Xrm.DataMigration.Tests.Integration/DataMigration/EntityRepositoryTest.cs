@@ -17,9 +17,9 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
     [TestClass]
     public class EntityRepositoryTest
     {
-        private IRetryExecutor retryExecutor = null;
-        private IOrganizationService orgService = null;
-        private EntityRepository entityRepository = null;
+        private IRetryExecutor retryExecutor;
+        private IOrganizationService orgService;
+        private EntityRepository entityRepository;
 
         [TestInitialize]
         public void Setup()
@@ -191,7 +191,7 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
             Assert.IsTrue(count > 0);
         }
 
-        private List<EntityWrapper> GetContacts(IOrganizationService orgService, int count)
+        private static List<EntityWrapper> GetContacts(IOrganizationService orgService, int count)
         {
             var query = new QueryExpression("contact")
             {

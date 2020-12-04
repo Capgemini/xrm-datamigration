@@ -172,7 +172,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             {
                 new EntityWrapper(new Entity("contact", Guid.NewGuid()))
             };
-            
+
             MockEntityRepo.Setup(a => a.GetEntitesByFetchXML(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), ref It.Ref<string>.IsAny))
                            .Returns(entityWrapperList);
 

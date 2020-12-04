@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Capgemini.DataScrambler.Scramblers
+﻿namespace Capgemini.DataScrambler.Scramblers
 {
     public class DoubleScrambler : IScrambler<double>
     {
@@ -23,9 +17,6 @@ namespace Capgemini.DataScrambler.Scramblers
             return randomNumber;
         }
 
-        private double CalculateRandomDouble(int max)
-        {
-            return RandomGenerator.GetRandom.NextDouble() * max;
-        }
+        private static double CalculateRandomDouble(int max) => RandomGenerator.GetRandom.NextDouble() * max;
     }
 }

@@ -17,7 +17,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
     {
         private CrmSchemaConfiguration crmSchemaConfiguration;
 
-        private DataFileStoreWriterCsv systemUnderTest = null;
+        private DataFileStoreWriterCsv systemUnderTest;
 
         [TestInitialize]
         public void Setup()

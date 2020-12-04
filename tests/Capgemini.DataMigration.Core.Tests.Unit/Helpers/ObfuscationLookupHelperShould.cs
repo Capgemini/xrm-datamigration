@@ -1,16 +1,14 @@
-﻿using Capgemini.DataMigration.Core.Helpers;
-using Capgemini.DataMigration.Core.Model;
-using Capgemini.DataMigration.Core.Tests.Base;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Capgemini.DataMigration.Core.Helpers;
+using Capgemini.DataMigration.Core.Model;
+using Capgemini.DataMigration.Core.Tests.Base;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Capgemini.DataMigration.Core.Tests.Unit.Helpers
 {
@@ -28,7 +26,6 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Helpers
         public void ClearTheLookupList()
         {
             string folderPath = GetTestDataPath();
-            int fileCount = System.IO.Directory.GetFiles(folderPath, "*.csv", SearchOption.TopDirectoryOnly).Length;
 
             ObfuscationLookupHelper.LoadLookups(folderPath);
 
@@ -37,14 +34,13 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Helpers
             ObfuscationLookupHelper.CleanLookups();
 
             ObfuscationLookupHelper.ObfuscationLookups.Count.Should().BeLessThan(lookupCount);
-
         }
 
         [TestMethod]
-        public void LoadLookupFromADictionary ()
+        public void LoadLookupFromADictionary()
         {
             Dictionary<string, ObfuscationLookup> lookups = new Dictionary<string, ObfuscationLookup>();
-            string fileName = System.IO.Directory.GetFiles(GetTestDataPath(), "*.csv", SearchOption.TopDirectoryOnly).First();
+            string fileName = Directory.GetFiles(GetTestDataPath(), "*.csv", SearchOption.TopDirectoryOnly).First();
 
             var result = ObfuscationLookupHelper.ReadFromFile(fileName);
 
@@ -54,14 +50,13 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Helpers
             ObfuscationLookupHelper.LoadLookups(lookups);
 
             ObfuscationLookupHelper.ObfuscationLookups.Count.Should().Be(lookupCount);
-
         }
 
         [TestMethod]
         public void LoadLookupsFromAFolderPath()
         {
             string folderPath = GetTestDataPath();
-            int fileCount = System.IO.Directory.GetFiles(folderPath, "*.csv", SearchOption.TopDirectoryOnly).Length;
+            int fileCount = Directory.GetFiles(folderPath, "*.csv", SearchOption.TopDirectoryOnly).Length;
 
             ObfuscationLookupHelper.LoadLookups(folderPath);
 
@@ -82,26 +77,14 @@ namespace Capgemini.DataMigration.Core.Tests.Unit.Helpers
         [TestMethod]
         public void ReadFromAFile()
         {
-            string fileName = System.IO.Directory.GetFiles(GetTestDataPath(), "*.csv", SearchOption.TopDirectoryOnly).First();
+            string fileName = Directory.GetFiles(GetTestDataPath(), "*.csv", SearchOption.TopDirectoryOnly).First();
 
             var result = ObfuscationLookupHelper.ReadFromFile(fileName);
 
             result.Should().BeOfType(typeof(ObfuscationLookup));
         }
 
-        //[TestMethod]
-        //public void ReturnAllObfuscationLookups()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //[TestMethod]
-        //public void SetTheObfuscationsLookupsProperty()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        static string GetTestDataPath()
+        private static string GetTestDataPath()
         {
             string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
             var scenarioPath = Path.Combine(folderPath, "TestData", "LookupFiles");

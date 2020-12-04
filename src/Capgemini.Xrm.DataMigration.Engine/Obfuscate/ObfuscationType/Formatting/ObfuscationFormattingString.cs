@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
-using Capgemini.DataScrambler;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting
 {
     public class ObfuscationFormattingString : IObfuscationFormattingType<string>
     {
-        private FormattingOptionProcessor optionProcessor;
+        private readonly FormattingOptionProcessor optionProcessor;
 
         public ObfuscationFormattingString(FormattingOptionProcessor processor)
         {
@@ -43,9 +42,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
                     case ObfuscationFormatType.RandomString:
                         obfuscatedStrings.Add(optionProcessor.GenerateRandomString(originalValue, arg));
                         break;
+
                     case ObfuscationFormatType.RandomNumber:
-                        obfuscatedStrings.Add(optionProcessor.GenerateRandomNumber(originalValue, arg).ToString(CultureInfo.InvariantCulture));
+                        obfuscatedStrings.Add(FormattingOptionProcessor.GenerateRandomNumber(originalValue, arg).ToString(CultureInfo.InvariantCulture));
                         break;
+
                     case ObfuscationFormatType.Lookup:
                         obfuscatedStrings.Add(optionProcessor.GenerateFromLookup(originalValue, arg));
                         break;

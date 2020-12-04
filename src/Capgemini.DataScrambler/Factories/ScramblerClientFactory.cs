@@ -1,15 +1,11 @@
-﻿using Capgemini.DataScrambler.Scramblers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Capgemini.DataScrambler.Scramblers;
 
 namespace Capgemini.DataScrambler.Factories
 {
-    public class ScramblerClientFactory
+    public static class ScramblerClientFactory
     {
-        public ScramblerClient<T> GetScrambler<T>()
+        public static ScramblerClient<T> GetScrambler<T>()
         {
             Type type = typeof(T);
             if (type == typeof(int))
@@ -19,7 +15,6 @@ namespace Capgemini.DataScrambler.Factories
             else if (type == typeof(string))
             {
                 return new ScramblerClient<T>((IScrambler<T>)new StringScrambler());
-
             }
             else if (type == typeof(Guid))
             {
@@ -35,9 +30,8 @@ namespace Capgemini.DataScrambler.Factories
             }
             else
             {
-                throw new Exception("The specified generic type could not be found");
+                throw new NotSupportedException($"The specified generic type {type.Name} could not be found");
             }
-
         }
     }
 }
