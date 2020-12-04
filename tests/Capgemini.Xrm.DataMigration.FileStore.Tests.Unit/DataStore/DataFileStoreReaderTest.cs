@@ -140,6 +140,27 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
                          .NotThrow();
         }
 
+        private static Tuple<List<Entity>, List<Entity>> GetFirstEntities(string filePrefix)
+        {
+            string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
+            string extractFolder = Path.Combine(extractedPath, "ExtractedData");
+            string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
+
+            CrmSchemaConfiguration schemaConfig = CrmSchemaConfiguration.ReadFromFile(schemaFilePath);
+
+            DataFileStoreReaderCsv store = new DataFileStoreReaderCsv(new ConsoleLogger(), filePrefix, extractFolder, schemaConfig);
+
+            var batch = store.ReadBatchDataFromStore();
+            List<Entity> firstEnt = batch.Select(p => p.OriginalEntity).ToList();
+
+            DataFileStoreReader storeJson = new DataFileStoreReader(new ConsoleLogger(), filePrefix, extractFolder);
+
+            var batchJson = storeJson.ReadBatchDataFromStore();
+            List<Entity> firstEntJson = batchJson.Select(p => p.OriginalEntity).ToList();
+
+            return new Tuple<List<Entity>, List<Entity>>(firstEnt, firstEntJson);
+        }
+
         private static void AssertMapAttribute(Entity firstEnt, Entity firstEntJson, string attrName)
         {
             Assert.IsNotNull(firstEnt.Attributes[attrName]);
@@ -165,7 +186,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
             }
         }
 
-        private void CompareAttributes(Entity firstEnt, Entity firstEntJson, bool ignoreCount = false)
+        private static void CompareAttributes(Entity firstEnt, Entity firstEntJson, bool ignoreCount = false)
         {
             Assert.IsNotNull(firstEnt);
             Assert.IsNotNull(firstEntJson);
@@ -191,27 +212,6 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
 
                 idx++;
             }
-        }
-
-        private Tuple<List<Entity>, List<Entity>> GetFirstEntities(string filePrefix)
-        {
-            string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
-            string extractFolder = Path.Combine(extractedPath, "ExtractedData");
-            string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
-
-            CrmSchemaConfiguration schemaConfig = CrmSchemaConfiguration.ReadFromFile(schemaFilePath);
-
-            DataFileStoreReaderCsv store = new DataFileStoreReaderCsv(new ConsoleLogger(), filePrefix, extractFolder, schemaConfig);
-
-            var batch = store.ReadBatchDataFromStore();
-            List<Entity> firstEnt = batch.Select(p => p.OriginalEntity).ToList();
-
-            DataFileStoreReader storeJson = new DataFileStoreReader(new ConsoleLogger(), filePrefix, extractFolder);
-
-            var batchJson = storeJson.ReadBatchDataFromStore();
-            List<Entity> firstEntJson = batchJson.Select(p => p.OriginalEntity).ToList();
-
-            return new Tuple<List<Entity>, List<Entity>>(firstEnt, firstEntJson);
         }
     }
 }

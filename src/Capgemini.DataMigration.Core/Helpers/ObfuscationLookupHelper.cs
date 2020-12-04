@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using Capgemini.DataMigration.Core.Extensions;
@@ -63,7 +62,7 @@ namespace Capgemini.DataMigration.Core.Helpers
         {
             fileName.ThrowArgumentNullExceptionIfNull(nameof(fileName));
 
-            List<dynamic> records = new List<dynamic>();
+            List<dynamic> records = null;
 
             using (TextReader tr = File.OpenText(fileName))
             {

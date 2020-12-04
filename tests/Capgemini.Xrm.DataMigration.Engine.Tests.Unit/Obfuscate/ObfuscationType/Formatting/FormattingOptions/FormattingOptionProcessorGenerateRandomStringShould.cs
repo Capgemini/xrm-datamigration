@@ -1,15 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Threading;
+using Capgemini.DataMigration.Core.Model;
+using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting.FormattingOptions;
 using FluentAssertions;
-using Capgemini.DataMigration.Core.Model;
-using System.Threading;
-using Capgemini.DataMigration.Core.Tests.Base;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationType.Formatting.FormattingOptions
 {
@@ -93,16 +91,20 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate.ObfuscationTyp
 
         private static ObfuscationFormatOption GenerateValidArgs()
         {
-            var args = new Dictionary<string, string>();
-            args.Add("length", MaxLengthOfString.ToString());
+            var args = new Dictionary<string, string>
+            {
+                { "length", MaxLengthOfString.ToString(CultureInfo.InvariantCulture) }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.RandomString, args);
             return arg;
         }
 
         private static ObfuscationFormatOption GenerateInvalidArgs()
         {
-            var args = new Dictionary<string, string>();
-            args.Add("width", MaxLengthOfString.ToString());
+            var args = new Dictionary<string, string>
+            {
+                { "width", MaxLengthOfString.ToString(CultureInfo.InvariantCulture) }
+            };
             var arg = new ObfuscationFormatOption(ObfuscationFormatType.RandomString, args);
             return arg;
         }

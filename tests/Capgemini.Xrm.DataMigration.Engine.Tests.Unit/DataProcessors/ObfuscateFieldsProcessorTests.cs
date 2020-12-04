@@ -5,11 +5,9 @@ using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.CrmStore.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
 using Capgemini.Xrm.DataMigration.Engine.DataProcessors;
-using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
-using Moq;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
 {
@@ -24,7 +22,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
         }
 
         [TestMethod]
-        public void ProcessEntity_ObfuscateStringFields()
+        public void ProcessEntityObfuscateStringFields()
         {
             // Arrange
             CrmGenericImporterConfig config = GetCrmConfigWithFieldsToObfuscate();
@@ -37,15 +35,20 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             entity.Attributes.Add("surname", surnameBefore);
             EntityWrapper entityWrapper = new EntityWrapper(entity);
 
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "firstname" }
+            };
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
 
-            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldToBeObfuscated.Add(entityToBeObfuscated);
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
-            config.FieldsToObfuscate = fieldToBeObfuscated;
+            config.FieldsToObfuscate.AddRange(fieldToBeObfuscated);
 
             // Act
             ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(MockEntityMetadataCache.Object, config.FieldsToObfuscate);
@@ -57,11 +60,10 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             // Assert
             Assert.AreNotEqual(firstnameBefore, firstnameAfter);
             Assert.AreEqual(surnameBefore, surnameAfter);
-
         }
 
         [TestMethod]
-        public void ProcessEntity_ObfuscateMultipleStringFields()
+        public void ProcessEntityObfuscateMultipleStringFields()
         {
             // Arrange
             CrmGenericImporterConfig config = GetCrmConfigWithFieldsToObfuscate();
@@ -74,16 +76,21 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             entity.Attributes.Add("surname", surnameBefore);
             EntityWrapper entityWrapper = new EntityWrapper(entity);
 
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "firstname" });
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "surname" });
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "firstname" },
+                new FieldToBeObfuscated() { FieldName = "surname" }
+            };
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
 
-            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldToBeObfuscated.Add(entityToBeObfuscated);
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
-            config.FieldsToObfuscate = fieldToBeObfuscated;
+            config.FieldsToObfuscate.AddRange(fieldToBeObfuscated);
 
             // Act
             ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(MockEntityMetadataCache.Object, config.FieldsToObfuscate);
@@ -99,7 +106,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
         }
 
         [TestMethod]
-        public void ProcessEntity_ObfuscateIntegerFields()
+        public void ProcessEntityObfuscateIntegerFields()
         {
             // Arrange
             CrmGenericImporterConfig config = GetCrmConfigWithFieldsToObfuscate();
@@ -115,17 +122,20 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             entity.Attributes.Add("age", ageBefore);
             entity.Attributes.Add("surname", surnameBefore);
             EntityWrapper entityWrapper = new EntityWrapper(entity);
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "age" }
+            };
 
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
 
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "age" });
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
-
-            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldToBeObfuscated.Add(entityToBeObfuscated);
-
-            config.FieldsToObfuscate = fieldToBeObfuscated;
+            config.FieldsToObfuscate.AddRange(fieldToBeObfuscated);
 
             // Act
             ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(MockEntityMetadataCache.Object, config.FieldsToObfuscate);
@@ -137,11 +147,10 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             // Assert
             Assert.AreNotEqual(ageBefore, ageAfter);
             Assert.AreEqual(surnameBefore, surnameAfter);
-
         }
 
         [TestMethod]
-        public void ProcessEntity_ObfuscateMultipleIntegerFields()
+        public void ProcessEntityObfuscateMultipleIntegerFields()
         {
             // Arrange
             CrmGenericImporterConfig config = GetCrmConfigWithFieldsToObfuscate();
@@ -161,18 +170,22 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             entity.Attributes.Add("age", ageBefore);
             entity.Attributes.Add("idnumber", idNumberBefore);
             EntityWrapper entityWrapper = new EntityWrapper(entity);
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "age" },
+                new FieldToBeObfuscated() { FieldName = "idnumber" }
+            };
 
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
 
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "age" });
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "idnumber" });
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
+            config.FieldsToObfuscate.AddRange(fieldToBeObfuscated);
 
-            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldToBeObfuscated.Add(entityToBeObfuscated);
-
-            config.FieldsToObfuscate = fieldToBeObfuscated;
             // Act
             ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(MockEntityMetadataCache.Object, config.FieldsToObfuscate);
             processor.ProcessEntity(entityWrapper, 1, 1);
@@ -186,7 +199,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
         }
 
         [TestMethod]
-        public void ProcessEntity_ObfuscateDoubleFields()
+        public void ProcessEntityObfuscateDoubleFields()
         {
             // Arrange
             CrmGenericImporterConfig config = GetCrmConfigWithFieldsToObfuscate();
@@ -201,15 +214,20 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             entity.Attributes.Add("address1_latitude", latitudeBefore);
             EntityWrapper entityWrapper = new EntityWrapper(entity);
 
-            List<FieldToBeObfuscated> fieldsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fieldsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "address1_latitude" });
+            List<FieldToBeObfuscated> fieldsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "address1_latitude" }
+            };
 
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fieldsToBeObfuscated };
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fieldsToBeObfuscated);
 
-            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldToBeObfuscated.Add(entityToBeObfuscated);
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
-            config.FieldsToObfuscate = fieldToBeObfuscated;
+            config.FieldsToObfuscate.AddRange(fieldToBeObfuscated);
 
             // Act
             ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(MockEntityMetadataCache.Object, config.FieldsToObfuscate);
@@ -222,7 +240,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
         }
 
         [TestMethod]
-        public void ProcessEntity_ObfuscateDecimalFields()
+        public void ProcessEntityObfuscateDecimalFields()
         {
             // Arrange
             CrmGenericImporterConfig config = GetCrmConfigWithFieldsToObfuscate();
@@ -236,17 +254,18 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             Entity entity = new Entity("contact");
             entity.Attributes.Add("creditlimit", creditLimitBefore);
             EntityWrapper entityWrapper = new EntityWrapper(entity);
+            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>
+            {
+                new FieldToBeObfuscated() { FieldName = "creditlimit" }
+            };
+            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact" };
+            entityToBeObfuscated.FieldsToBeObfuscated.AddRange(fiedlsToBeObfuscated);
+            var fieldToBeObfuscated = new List<EntityToBeObfuscated>
+            {
+                entityToBeObfuscated
+            };
 
-
-            List<FieldToBeObfuscated> fiedlsToBeObfuscated = new List<FieldToBeObfuscated>();
-            fiedlsToBeObfuscated.Add(new FieldToBeObfuscated() { FieldName = "creditlimit" });
-
-            EntityToBeObfuscated entityToBeObfuscated = new EntityToBeObfuscated() { EntityName = "contact", FieldsToBeObfuscated = fiedlsToBeObfuscated };
-
-            var fieldToBeObfuscated = new List<EntityToBeObfuscated>();
-            fieldToBeObfuscated.Add(entityToBeObfuscated);
-
-            config.FieldsToObfuscate = fieldToBeObfuscated;
+            config.FieldsToObfuscate.AddRange(fieldToBeObfuscated);
 
             // Act
             ObfuscateFieldsProcessor processor = new ObfuscateFieldsProcessor(MockEntityMetadataCache.Object, config.FieldsToObfuscate);
@@ -258,13 +277,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             Assert.AreNotEqual(creditLimitBefore, creditLimitAfter);
         }
 
-        private CrmGenericImporterConfig GetCrmConfigWithFieldsToObfuscate()
+        private static CrmGenericImporterConfig GetCrmConfigWithFieldsToObfuscate()
         {
-            CrmGenericImporterConfig config = new CrmGenericImporterConfig();
-            config.FieldsToObfuscate = new List<EntityToBeObfuscated>();
+            var config = new CrmGenericImporterConfig();
 
             return config;
         }
-
     }
 }

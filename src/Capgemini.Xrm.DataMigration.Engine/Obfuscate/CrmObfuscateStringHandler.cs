@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataScrambler;
@@ -15,8 +14,8 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
 {
     public class CrmObfuscateStringHandler : ICrmObfuscateHandler
     {
-        private ScramblerClient<string> strScramblerClient;
-        private IObfuscationFormattingType<string> formattingClient;
+        private readonly ScramblerClient<string> strScramblerClient;
+        private readonly IObfuscationFormattingType<string> formattingClient;
 
         public CrmObfuscateStringHandler()
         {
@@ -24,7 +23,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
             this.formattingClient = new ObfuscationFormattingString(new FormattingOptionProcessor());
         }
 
-        public CrmObfuscateStringHandler(IObfuscationFormattingType<string> formattingClient = null)
+        public CrmObfuscateStringHandler(IObfuscationFormattingType<string> formattingClient)
         {
             this.strScramblerClient = new ScramblerClient<string>(new StringScrambler());
             this.formattingClient = formattingClient;
@@ -32,6 +31,8 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
 
         public bool CanHandle(Type type)
         {
+            type.ThrowArgumentNullExceptionIfNull(nameof(type));
+
             return type.Equals(typeof(string));
         }
 
@@ -57,7 +58,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate
             }
 
             entity[field.FieldName] = strScramblerClient.ExecuteScramble((string)entity[field.FieldName]);
-            
         }
     }
 }

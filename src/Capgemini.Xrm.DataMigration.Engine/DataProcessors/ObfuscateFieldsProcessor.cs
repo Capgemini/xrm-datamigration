@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Core.Extensions;
 using Capgemini.DataMigration.Core.Model;
-using Capgemini.DataScrambler;
-using Capgemini.DataScrambler.Scramblers;
 using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.DataStore;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate;
@@ -17,7 +13,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 {
     public class ObfuscateFieldsProcessor : IEntityProcessor<Entity, EntityWrapper>
     {
-
         private readonly List<EntityToBeObfuscated> fieldsToObfuscate;
         private readonly IEntityMetadataCache metaDataCache;
         private readonly List<ICrmObfuscateHandler> crmObfuscateHandlers;
@@ -55,7 +50,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
             {
                 // Get the List of fields for the current entity if they exist
                 Entity originalEntity = entity.OriginalEntity;
-                List<FieldToBeObfuscated> fieldsToChangeForCurrentEntity = fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).Any() ? fieldsToObfuscate.Where(e => e.EntityName == originalEntity.LogicalName).FirstOrDefault().FieldsToBeObfuscated : null;
+                List<FieldToBeObfuscated> fieldsToChangeForCurrentEntity = fieldsToObfuscate.Any(e => e.EntityName == originalEntity.LogicalName) ? fieldsToObfuscate.FirstOrDefault(e => e.EntityName == originalEntity.LogicalName).FieldsToBeObfuscated : null;
 
                 // If the list is not empty process the entities fields
                 if (fieldsToChangeForCurrentEntity != null && fieldsToChangeForCurrentEntity.Count > 0)
@@ -77,7 +72,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
             ICrmObfuscateHandler handler = crmObfuscateHandlers
                     .FirstOrDefault(currentHandler => currentHandler.CanHandle(fieldType));
 
-            if(handler != null)
+            if (handler != null)
             {
                 handler.HandleObfuscation(entity, field, metaDataCache);
             }
@@ -96,5 +91,4 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
             return obfuscateHandlers;
         }
     }
-
 }

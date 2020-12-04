@@ -1,6 +1,7 @@
-﻿using Capgemini.DataMigration.Core.Model;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Core.Tests.Base;
-using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate;
 using Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formatting;
 using FluentAssertions;
@@ -8,12 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
 {
@@ -25,7 +20,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
         public void Setup()
         {
             InitializeProperties();
-
         }
 
         [TestMethod]
@@ -42,7 +36,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
                 .Setup(cache => cache.GetAttribute("contact", "address1_line1"))
                 .Returns(new StringAttributeMetadata()
                 {
-                 MaxLength = 200
+                    MaxLength = 200
                 });
 
             string originalValue = "1 Main Road";
@@ -51,18 +45,20 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
             entity.Attributes.Add("address1_line1", originalValue);
 
             List<ObfuscationFormatOption> arguments = new List<ObfuscationFormatOption>();
-            Dictionary<string, string> argumentsParams = new Dictionary<string, string>();
-            argumentsParams.Add("filename", "test.csv");
-            argumentsParams.Add("columnname", "street");
+            Dictionary<string, string> argumentsParams = new Dictionary<string, string>
+            {
+                { "filename", "test.csv" },
+                { "columnname", "street" }
+            };
 
             arguments.Add(new ObfuscationFormatOption(ObfuscationFormatType.Lookup, argumentsParams));
 
-            FieldToBeObfuscated fieldToBeObfuscated = new FieldToBeObfuscated()
+            var fieldToBeObfuscated = new FieldToBeObfuscated()
             {
                 FieldName = "address1_line1",
-                ObfuscationFormat = "{0}",
-                ObfuscationFormatArgs = arguments
+                ObfuscationFormat = "{0}"
             };
+            fieldToBeObfuscated.ObfuscationFormatArgs.AddRange(arguments);
 
             // Act
             systemUnderTest.HandleObfuscation(entity, fieldToBeObfuscated, MockEntityMetadataCache.Object);
@@ -71,6 +67,5 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.Obfuscate
 
             newValue.Should().NotBe(originalValue);
         }
-
     }
 }

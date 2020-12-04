@@ -11,7 +11,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Model.Tests
     [TestClass]
     public class CrmEntityStoreTests
     {
-        private CrmEntityStore systemUnderTest = null;
+        private CrmEntityStore systemUnderTest;
 
         [TestMethod]
         public void CrmEntityStoreTest()

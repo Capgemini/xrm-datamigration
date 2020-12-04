@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
+using Capgemini.DataMigration.Core.Extensions;
 
 namespace Capgemini.DataScrambler.Scramblers
 {
     public class StringScrambler : IScrambler<string>
     {
-        const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        public StringScrambler()
-        {
-        }
+        private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         public virtual string Scramble(string input, int min, int max)
         {
@@ -21,6 +14,8 @@ namespace Capgemini.DataScrambler.Scramblers
 
         protected string ScrambleString(string input, int min, int max)
         {
+            input.ThrowArgumentNullExceptionIfNull(nameof(input));
+
             StringBuilder sb = new StringBuilder();
             foreach (char c in input)
             {

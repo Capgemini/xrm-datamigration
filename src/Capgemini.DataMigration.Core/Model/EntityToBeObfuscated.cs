@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Capgemini.DataMigration.Core.Model
 {
@@ -17,9 +13,8 @@ namespace Capgemini.DataMigration.Core.Model
         public string EntityName { get; set; }
 
         /// <summary>
-        /// Contains a list of the fields that will be obfuscated.
+        /// Gets the fields that will be obfuscated.
         /// </summary>
-        public List<FieldToBeObfuscated> FieldsToBeObfuscated { get; set; }
-
+        public List<FieldToBeObfuscated> FieldsToBeObfuscated { get; private set; } = new List<FieldToBeObfuscated>();
     }
 }
