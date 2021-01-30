@@ -40,24 +40,8 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
                 connectionString = $"RequireNewInstance=True; {connectionString}";
             }
 
-            using (var serviceClient = new CrmServiceClient(connectionString))
-            {
-                if (serviceClient.OrganizationWebProxyClient != null)
-                {
-                    var service = serviceClient.OrganizationWebProxyClient;
-                    service.InnerChannel.OperationTimeout = new System.TimeSpan(1, 0, 0);
-                    return service;
-                }
-
-                if (serviceClient.OrganizationServiceProxy != null)
-                {
-                    var service = serviceClient.OrganizationServiceProxy;
-                    service.Timeout = new System.TimeSpan(1, 0, 0);
-                    return service;
-                }
-            }
-
-            throw new System.Exception("Cannot get IOrganizationService");
+            CrmServiceClient.MaxConnectionTimeout = new System.TimeSpan(1, 0, 0);
+            return new CrmServiceClient(connectionString);
         }
     }
 }
