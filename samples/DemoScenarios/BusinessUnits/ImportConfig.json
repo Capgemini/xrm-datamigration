@@ -13,6 +13,6 @@
   ],
   "MigrationConfig": {
     "ApplyAliasMapping": true,
-    "SourceRootBUName": "Defra - Trade"
+    "SourceRootBUName": "RootBU"
   }
 }
