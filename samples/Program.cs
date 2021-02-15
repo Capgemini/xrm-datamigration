@@ -187,6 +187,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
             }
 
             exportConfig.JsonFolderPath = GetExportPath();
+            exportConfig.CrmMigrationToolSchemaPaths.Clear();
             exportConfig.CrmMigrationToolSchemaPaths.Add(GetSchemaPath());
 
             return exportConfig;
