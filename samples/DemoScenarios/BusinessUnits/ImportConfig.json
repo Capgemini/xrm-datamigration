@@ -1,0 +1,18 @@
+{
+  "JsonFolderPath": "GetAutomatically",
+  "IgnoreStatuses": true,
+  "IgnoreSystemFields": true,
+  "SaveBatchSize": 50,
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "bunits",
+  "PassOneReferences": [
+    "businessunit",
+    "uom",
+    "uomschedule",
+    "queue"
+  ],
+  "MigrationConfig": {
+    "ApplyAliasMapping": true,
+    "SourceRootBUName": "RootBU"
+  }
+}
