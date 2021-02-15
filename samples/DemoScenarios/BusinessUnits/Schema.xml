@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="businessunit" displayname="Business Unit" etc="10" primaryidfield="businessunitid" primarynamefield="name" disableplugins="false">
+    <fields>
+      <field displayname="Parent Business" name="parentbusinessunitid" type="entityreference" primaryKey="false" lookupType="businessunit" customfield="false" />
+      <field displayname="Description" name="description" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="name" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Business Unit" name="businessunitid" type="guid" primaryKey="true" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+</entities>

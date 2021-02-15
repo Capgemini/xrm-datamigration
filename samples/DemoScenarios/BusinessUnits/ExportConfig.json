@@ -1,0 +1,18 @@
+{
+  "CrmMigrationToolSchemaPaths": [ "GetAutomatically" ],
+  "CrmMigrationToolSchemaFilters": {},
+  "PageSize": 1000,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "JsonFolderPath": "extract",
+  "OneEntityPerBatch": true,
+  "FilePrefix": "bunits",
+  "SeperateFilesPerEntity": true,
+  "LookupMapping": {
+    "businessunit": {
+      "businessunitid": [ "name" ],
+      "parentbusinessunitid": [ "name" ]
+    }
+  }
+}
