@@ -5,7 +5,7 @@
   "BatchSize": 1000,
   "TopCount": 10000,
   "OnlyActiveRecords": false,
-  "JsonFolderPath": "extract",
+  "JsonFolderPath": "GetAutomatically",
   "OneEntityPerBatch": true,
   "FilePrefix": "bunits",
   "SeperateFilesPerEntity": true,
