@@ -21,6 +21,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories
         private readonly IEntityMetadataCache metadataCache;
         private readonly IOrganizationService orgService;
         private readonly IRetryExecutor retryExecutor;
+        private readonly Dictionary<string, Guid> MappingCache = new Dictionary<string, Guid>();
 
         public EntityRepository(IOrganizationService orgService, IRetryExecutor retryExecutor)
             : this(orgService, retryExecutor, new EntityMetadataCache(orgService))
@@ -228,43 +229,53 @@ namespace Capgemini.Xrm.DataMigration.Repositories
 
         public Guid GetGuidForMapping(string entityName, string[] filterFields, object[] filterValues)
         {
-            if (filterFields == null || filterValues == null || filterFields.Length != filterValues.Length)
+            lock (this)
             {
-                throw new ArgumentException("filter fields must have same length as filter values!");
-            }
-
-            QueryExpression query = new QueryExpression
-            {
-                EntityName = entityName,
-                ColumnSet = new ColumnSet(false)
-            };
-
-            for (int i = 0; i < filterFields.Length; i++)
-            {
-                if (!(filterValues[i] is EntityReference entRefValue))
+                if (filterFields == null || filterValues == null || filterFields.Length != filterValues.Length)
                 {
-                    query.Criteria.AddCondition(filterFields[i], ConditionOperator.Equal, filterValues[i]);
+                    throw new ArgumentException("filter fields must have same length as filter values!");
                 }
-                else
+
+                var cacheKey = entityName + "|" + string.Join(";", filterFields) + "|" + string.Join(";", (from f in filterValues select f?.ToString() ?? "NULL"));
+                if (MappingCache.TryGetValue(cacheKey, out Guid cachedResult))
                 {
-                    Guid refId = entRefValue.Id;
-                    query.Criteria.AddCondition(filterFields[i], ConditionOperator.Equal, refId);
+                    return cachedResult;
                 }
+
+                QueryExpression query = new QueryExpression
+                {
+                    EntityName = entityName,
+                    ColumnSet = new ColumnSet(false)
+                };
+
+                for (int i = 0; i < filterFields.Length; i++)
+                {
+                    if (!(filterValues[i] is EntityReference entRefValue))
+                    {
+                        query.Criteria.AddCondition(filterFields[i], ConditionOperator.Equal, filterValues[i]);
+                    }
+                    else
+                    {
+                        Guid refId = entRefValue.Id;
+                        query.Criteria.AddCondition(filterFields[i], ConditionOperator.Equal, refId);
+                    }
+                }
+
+                List<Entity> entities = orgService.GetDataByQuery(query, 2).Entities.ToList();
+
+                if (entities.Count > 1)
+                {
+                    throw new ConfigurationException($"incorrect mapping value - cannot find unique record, Found {entities.Count} maching criteria {entityName}:{string.Join(",", filterFields)}={string.Join(", ", filterValues)}");
+                }
+
+                if (entities.Count == 0)
+                {
+                    return Guid.Empty;
+                }
+
+                MappingCache[cacheKey] = entities[0].Id;
+                return entities[0].Id;
             }
-
-            List<Entity> entities = orgService.GetDataByQuery(query, 2).Entities.ToList();
-
-            if (entities.Count > 1)
-            {
-                throw new ConfigurationException($"incorrect mapping value - cannot find unique record, Found {entities.Count} maching criteria {entityName}:{string.Join(",", filterFields)}={string.Join(", ", filterValues)}");
-            }
-
-            if (entities.Count == 0)
-            {
-                return Guid.Empty;
-            }
-
-            return entities[0].Id;
         }
 
         /// <summary>

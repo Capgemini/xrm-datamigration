@@ -96,6 +96,7 @@
     <Compile Include="DataProcessors\ObfuscateFieldsProcessor.cs" />
     <Compile Include="DataProcessors\ObjectTypeCodeProcessor.cs" />
     <Compile Include="DataProcessors\NoUpdateProcessor.cs" />
+    <Compile Include="DataProcessors\SkipExistingRecordProcessor.cs" />
     <Compile Include="GlobalSuppressions1.cs" />
     <Compile Include="MappingRules\BusinessUnitRootRule.cs" />
     <Compile Include="MappingRules\MappingAliasedValueRule.cs" />

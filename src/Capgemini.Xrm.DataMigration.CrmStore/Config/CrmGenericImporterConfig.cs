@@ -40,6 +40,11 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         public List<EntityToBeObfuscated> FieldsToObfuscate { get; private set; } = new List<EntityToBeObfuscated>();
 
         /// <summary>
+        /// If true, updates to existing records with correct data are suppressed.
+        /// </summary>
+        public bool SkipExistingRecords { get; set; }
+
+        /// <summary>
         /// Allow caalers to reset ProcessesToDeactivate list.
         /// </summary>
         public void ResetProcessesToDeactivate()

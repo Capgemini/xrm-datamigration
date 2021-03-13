@@ -29,7 +29,7 @@ namespace Capgemini.Xrm.DataMigration.Extensions
             return orgService.GetDataByQuery(query, pageSize, true);
         }
 
-        public static EntityCollection GetDataByQuery(this IOrganizationService orgService, QueryExpression query, int pageSize, bool shouldIncudeEntityCollection = true)
+        public static EntityCollection GetDataByQuery(this IOrganizationService orgService, QueryExpression query, int pageSize, bool shouldIncudeEntityCollection = true, int maxRecords = int.MaxValue)
         {
             query.ThrowArgumentNullExceptionIfNull(nameof(query));
             orgService.ThrowArgumentNullExceptionIfNull(nameof(orgService));
@@ -46,6 +46,13 @@ namespace Capgemini.Xrm.DataMigration.Extensions
             while (true)
             {
                 var pagedResults = orgService.RetrieveMultiple(query);
+
+                maxRecords -= pagedResults.Entities.Count;
+
+                if (maxRecords < 0)
+                {
+                    return null; // maximum exceeded
+                }
 
                 if (shouldIncudeEntityCollection)
                 {

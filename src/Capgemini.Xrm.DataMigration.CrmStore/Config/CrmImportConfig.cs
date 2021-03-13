@@ -183,6 +183,11 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         public List<string> NoUpdateEntities { get; private set; } = new List<string>();
 
         /// <summary>
+        /// If true, updates to existing records with correct data are suppressed.
+        /// </summary>
+        public bool SkipExistingRecords { get; set; }
+
+        /// <summary>
         /// Reads settings from file.
         /// </summary>
         /// <param name="filePath">filePath.</param>

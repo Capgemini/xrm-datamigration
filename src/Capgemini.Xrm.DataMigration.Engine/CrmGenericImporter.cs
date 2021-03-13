@@ -70,6 +70,11 @@ namespace Capgemini.Xrm.DataMigration.Engine
 
             AddProcessor(new MapEntityProcessor(config.MigrationConfig, Logger, targetEntRepo, config.PassOneReferences));
 
+            if (config.SkipExistingRecords)
+            {
+                AddProcessor(new SkipExistingRecordProcessor(Logger, targetEntRepo));
+            }
+
             if (config.EntitiesToSync != null && config.EntitiesToSync.Count > 0)
             {
                 AddProcessor(new SyncEntitiesProcessor(config.EntitiesToSync, targetEntRepo, Logger));

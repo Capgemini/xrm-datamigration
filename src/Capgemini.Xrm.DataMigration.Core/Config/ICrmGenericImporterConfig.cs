@@ -70,6 +70,11 @@ namespace Capgemini.Xrm.DataMigration.Config
         List<string> NoUpdateEntities { get; }
 
         /// <summary>
+        /// If true, updates to existing records with correct data are suppressed.
+        /// </summary>
+        bool SkipExistingRecords { get; set; }
+
+        /// <summary>
         /// Allow caalers to reset ProcessesToDeactivate list.
         /// </summary>
         void ResetProcessesToDeactivate();
