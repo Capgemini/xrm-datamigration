@@ -46,39 +46,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
                 {
                     if (!this.cachedRecordKeys.ContainsKey(entity.LogicalName))
                     {
-                        var fieldsToMatch = (from a in entity.OriginalEntity.Attributes where !(a.Value is AliasedValue) select a.Key).ToArray();
-                        var recordCache = new Dictionary<Guid, KeyValuePair<string, string>[]>();
-                        this.cachedRecordKeys[entity.LogicalName] = new Tuple<string[], Dictionary<Guid, KeyValuePair<string, string>[]>>(fieldsToMatch, recordCache);
-
-                        var query = new QueryExpression(entity.LogicalName)
-                        {
-                            ColumnSet = new ColumnSet(fieldsToMatch.ToArray())
-                        };
-
-                        var results = this.targetRepo.GetCurrentOrgService.GetDataByQuery(query, MaxCachedrecords, true, MaxCachedrecords);
-
-                        if (results == null)
-                        {
-                            this.logger.LogWarning("Record skipping skipped, too many records returned");
-                        }
-                        else
-                        {
-                            var tempList = new List<KeyValuePair<string, string>>();
-
-                            foreach (var record in results.Entities)
-                            {
-                                tempList.Clear();
-
-                                foreach (var field in fieldsToMatch)
-                                {
-                                    tempList.Add(new KeyValuePair<string, string>(field, GetFieldValueAsText(record, field)));
-                                }
-
-                                recordCache[record.Id] = tempList.ToArray();
-                            }
-
-                            this.logger.LogInfo($"Cached {recordCache.Count} records of type {entity.LogicalName} for skipping {GetType().FullName}");
-                        }
+                        CacheEntityRecords(entity);
                     }
                 }
 
@@ -125,6 +93,43 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
         public void ImportCompleted()
         {
             logger.LogInfo($"Executing {nameof(ImportCompleted)}");
+        }
+
+        private void CacheEntityRecords(EntityWrapper entity)
+        {
+            var fieldsToMatch = (from a in entity.OriginalEntity.Attributes where !(a.Value is AliasedValue) select a.Key).ToArray();
+            var recordCache = new Dictionary<Guid, KeyValuePair<string, string>[]>();
+            this.cachedRecordKeys[entity.LogicalName] = new Tuple<string[], Dictionary<Guid, KeyValuePair<string, string>[]>>(fieldsToMatch, recordCache);
+
+            var query = new QueryExpression(entity.LogicalName)
+            {
+                ColumnSet = new ColumnSet(fieldsToMatch.ToArray())
+            };
+
+            var results = this.targetRepo.GetCurrentOrgService.GetDataByQuery(query, MaxCachedrecords, true, MaxCachedrecords);
+
+            if (results == null)
+            {
+                this.logger.LogWarning("Record skipping skipped, too many records returned");
+            }
+            else
+            {
+                var tempList = new List<KeyValuePair<string, string>>();
+
+                foreach (var record in results.Entities)
+                {
+                    tempList.Clear();
+
+                    foreach (var field in fieldsToMatch)
+                    {
+                        tempList.Add(new KeyValuePair<string, string>(field, GetFieldValueAsText(record, field)));
+                    }
+
+                    recordCache[record.Id] = tempList.ToArray();
+                }
+
+                this.logger.LogInfo($"Cached {recordCache.Count} records of type {entity.LogicalName} for skipping {GetType().FullName}");
+            }
         }
 
         private string GetFieldValueAsText(Entity e, string field)
