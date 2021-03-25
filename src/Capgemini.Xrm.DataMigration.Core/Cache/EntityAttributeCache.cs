@@ -38,18 +38,9 @@ namespace Capgemini.Xrm.DataMigration.Cache
 
             var results = this.orgService.GetDataByQuery(query, MaxCachedRecords, true, MaxCachedRecords);
 
-            var tempList = new List<string>();
-
             foreach (var record in results.Entities)
             {
-                tempList.Clear();
-
-                foreach (var field in this.cacheFields)
-                {
-                    tempList.Add(GetFieldValueAsText(record, field));
-                }
-
-                this.SetCachedItem(CacheId + record.Id, tempList.ToArray());
+                this.SetCachedItem(CacheId + record.Id, GetCacheArray(record));
             }
         }
 
@@ -75,11 +66,6 @@ namespace Capgemini.Xrm.DataMigration.Cache
 
             // Only if we have all fields and they are all the same
             return true;
-        }
-
-        public static string GetFieldValueAsText(Entity e, string field)
-        {
-            return GetFieldValueAsText(e.Contains(field) ? e[field] : null);
         }
 
         public static string GetFieldValueAsText(object val)
@@ -114,12 +100,22 @@ namespace Capgemini.Xrm.DataMigration.Cache
             try
             {
                 var entity = orgService.Retrieve(this.entityLogicalName, new Guid(entityId), new Microsoft.Xrm.Sdk.Query.ColumnSet(this.cacheFields));
-                return (from f in this.cacheFields select entity.Contains(f) ? GetFieldValueAsText(entity, f) : null).ToArray();
+                return GetCacheArray(entity);
             }
             catch (FaultException<OrganizationServiceFault>)
             {
                 return Array.Empty<string>(); // cache empty array to indicate that this record does not exist
             }
+        }
+
+        private static string GetFieldValueAsText(Entity e, string field)
+        {
+            return GetFieldValueAsText(e.Contains(field) ? e[field] : null);
+        }
+
+        private string[] GetCacheArray(Entity entity)
+        {
+            return (from f in this.cacheFields select entity.Contains(f) ? GetFieldValueAsText(entity, f) : null).ToArray();
         }
     }
 }
