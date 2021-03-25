@@ -78,27 +78,22 @@ namespace Capgemini.Xrm.DataMigration.Cache
 
         public static string GetFieldValueAsText(object val)
         {
-            if (val != null)
+            if (val is EntityReference)
             {
-                if (val is EntityReference)
-                {
-                    return string.Intern(((EntityReference)val).Id.ToString());
-                }
-                else if (val is OptionSetValue)
-                {
-                    return string.Intern(((OptionSetValue)val).Value.ToString());
-                }
-                else if (val is Money)
-                {
-                    return ((Money)val).Value.ToString();
-                }
-                else
-                {
-                    return val.ToString();
-                }
+                return string.Intern(((EntityReference)val).Id.ToString());
             }
-
-            return null;
+            else if (val is OptionSetValue)
+            {
+                return string.Intern(((OptionSetValue)val).Value.ToString());
+            }
+            else if (val is Money)
+            {
+                return ((Money)val).Value.ToString();
+            }
+            else
+            {
+                return val?.ToString();
+            }
         }
 
         protected override string[] CreateCachedItem(string cacheKey)
