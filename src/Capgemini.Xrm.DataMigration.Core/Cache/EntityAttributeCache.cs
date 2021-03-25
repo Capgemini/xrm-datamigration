@@ -47,9 +47,9 @@ namespace Capgemini.Xrm.DataMigration.Cache
         public bool MatchCachedEntityAttributes(Guid entityId, IEnumerable<KeyValuePair<string, string>> attributes)
         {
             var cacheKey = CacheId + entityId;
-            var fields = this.GetCachedItem(cacheKey);
+            var fields = this.TryGetCachedItem(cacheKey);
 
-            if (fields.Length == 0)
+            if (fields == null)
             {
                 return false;   // we have cached that the object does not exist
             }
@@ -90,22 +90,7 @@ namespace Capgemini.Xrm.DataMigration.Cache
 
         protected override string[] CreateCachedItem(string cacheKey)
         {
-            if (cacheKey == null)
-            {
-                throw new ArgumentNullException(nameof(cacheKey));
-            }
-
-            string entityId = cacheKey.Substring(CacheId.Length);
-
-            try
-            {
-                var entity = orgService.Retrieve(this.entityLogicalName, new Guid(entityId), new Microsoft.Xrm.Sdk.Query.ColumnSet(this.cacheFields));
-                return GetCacheArray(entity);
-            }
-            catch (FaultException<OrganizationServiceFault>)
-            {
-                return Array.Empty<string>(); // cache empty array to indicate that this record does not exist
-            }
+            throw new ApplicationException("Auto=populate not supported for this cCache");
         }
 
         private static string GetFieldValueAsText(Entity e, string field)

@@ -54,10 +54,6 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
             MockOrganizationService.Setup(a => a.RetrieveMultiple(It.IsAny<QueryBase>()))
                            .Returns(entityCollection);
 
-            // Make retrieve attempt fail to load
-            MockOrganizationService.Setup(a => a.Retrieve(It.IsAny<string>(), It.IsAny<Guid>(), It.IsAny<ColumnSet>()))
-                            .Throws(new FaultException<OrganizationServiceFault>(new OrganizationServiceFault()));
-
             systemUnderTest = new SkipExistingRecordProcessor(MockLogger.Object, MockEntityRepo.Object);
 
             FluentActions.Invoking(() => systemUnderTest.ProcessEntity(originalEntity, passNumber, maxPassNumber))
