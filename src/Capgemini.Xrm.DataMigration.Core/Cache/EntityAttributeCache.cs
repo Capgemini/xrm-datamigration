@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using Capgemini.DataMigration.Cache;
 using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Core;
@@ -57,6 +58,11 @@ namespace Capgemini.Xrm.DataMigration.Cache
             var cacheKey = CacheId + entityId;
             var fields = this.GetCachedItem(cacheKey);
 
+            if (fields.Length == 0)
+            {
+                return false;   // we have cached that the object does not exist
+            }
+
             foreach (var a in attributes)
             {
                 var fieldIndex = System.Array.IndexOf(this.cacheFields, a.Key);
@@ -105,15 +111,15 @@ namespace Capgemini.Xrm.DataMigration.Cache
 
             string entityId = cacheKey.Substring(CacheId.Length);
 
-            var request = new RetrieveRequest
+            try
             {
-                ColumnSet = new Microsoft.Xrm.Sdk.Query.ColumnSet(this.cacheFields),
-                Target = new EntityReference(this.entityLogicalName, new Guid(entityId))
-            };
-
-            var response = (RetrieveResponse)orgService.Execute(request);
-
-            return (from f in this.cacheFields select response.Entity.Contains(f) ? GetFieldValueAsText(response.Entity, f) : null).ToArray();
+                var entity = orgService.Retrieve(this.entityLogicalName, new Guid(entityId), new Microsoft.Xrm.Sdk.Query.ColumnSet(this.cacheFields));
+                return (from f in this.cacheFields select entity.Contains(f) ? GetFieldValueAsText(entity, f) : null).ToArray();
+            }
+            catch (FaultException<OrganizationServiceFault>)
+            {
+                return Array.Empty<string>(); // cache empty array to indicate that this record does not exist
+            }
         }
     }
 }
