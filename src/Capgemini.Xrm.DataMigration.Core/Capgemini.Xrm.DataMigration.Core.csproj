@@ -75,6 +75,8 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="Cache\EntityMapLookupCache.cs" />
+    <Compile Include="Cache\EntityAttributeCache.cs" />
     <Compile Include="Cache\EntityMetadataCache.cs" />
     <Compile Include="Config\CrmSchemaConfiguration.cs" />
     <Compile Include="Config\ICrmGenericImporterConfig.cs" />

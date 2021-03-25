@@ -41,5 +41,20 @@ namespace Capgemini.DataMigration.Cache
                 return newIstance;
             }
         }
+
+        protected TItem TryGetCachedItem(string cacheKey)
+        {
+            var cachedObject = MemoryCache.Default.Get(cacheKey, null);
+            return (TItem)cachedObject;
+        }
+
+        protected void SetCachedItem (string cacheKey, TItem item)
+        {
+            // Store cached item
+            lock (MemoryCache.Default)
+            {
+                MemoryCache.Default.Set(cacheKey, item, new DateTimeOffset(DateTime.Now.AddMinutes(ExpirationMinutes)));
+            }
+        }
     }
 }

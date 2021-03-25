@@ -47,13 +47,6 @@ namespace Capgemini.Xrm.DataMigration.Extensions
             {
                 var pagedResults = orgService.RetrieveMultiple(query);
 
-                maxRecords -= pagedResults.Entities.Count;
-
-                if (maxRecords < 0)
-                {
-                    return null; // maximum exceeded
-                }
-
                 if (shouldIncudeEntityCollection)
                 {
                     if (query.PageInfo.PageNumber == 1)
@@ -71,7 +64,9 @@ namespace Capgemini.Xrm.DataMigration.Extensions
                     allResults.TotalRecordCount += pagedResults.Entities.Count;
                 }
 
-                if (pagedResults.MoreRecords)
+                maxRecords -= pagedResults.Entities.Count;
+
+                if (pagedResults.MoreRecords && maxRecords > 0)
                 {
                     query.PageInfo.PageNumber++;
                     query.PageInfo.PagingCookie = pagedResults.PagingCookie;
