@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using Capgemini.DataMigration.Cache;
-using Capgemini.DataMigration.Exceptions;
-using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.Extensions;
-using Capgemini.Xrm.DataMigration.Model;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace Capgemini.Xrm.DataMigration.Cache
 {
-    public class EntityAttributeCache : SimpleMemoryCache<string[]>
+    public class EntityAttributeCache : ExternallyManagedMemoryCache<string[]>
     {
         private const int MaxCachedRecords = 50000;
         private const string CacheId = "EA";
@@ -47,7 +41,7 @@ namespace Capgemini.Xrm.DataMigration.Cache
         public bool MatchCachedEntityAttributes(Guid entityId, IEnumerable<KeyValuePair<string, string>> attributes)
         {
             var cacheKey = CacheId + entityId;
-            var fields = this.TryGetCachedItem(cacheKey);
+            var fields = this.GetCachedItem(cacheKey);
 
             if (fields == null)
             {
@@ -56,7 +50,7 @@ namespace Capgemini.Xrm.DataMigration.Cache
 
             foreach (var a in attributes)
             {
-                var fieldIndex = System.Array.IndexOf(this.cacheFields, a.Key);
+                var fieldIndex = Array.IndexOf(this.cacheFields, a.Key);
 
                 if (fieldIndex < 0 || fields[fieldIndex] != a.Value)
                 {
@@ -86,11 +80,6 @@ namespace Capgemini.Xrm.DataMigration.Cache
             {
                 return val?.ToString();
             }
-        }
-
-        protected override string[] CreateCachedItem(string cacheKey)
-        {
-            throw new ApplicationException("Auto=populate not supported for this cCache");
         }
 
         private static string GetFieldValueAsText(Entity e, string field)

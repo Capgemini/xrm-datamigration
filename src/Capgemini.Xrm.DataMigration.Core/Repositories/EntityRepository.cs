@@ -22,7 +22,6 @@ namespace Capgemini.Xrm.DataMigration.Repositories
         private readonly IOrganizationService orgService;
         private readonly EntityMapLookupCache mapLookupCache;
         private readonly IRetryExecutor retryExecutor;
-        private readonly Dictionary<string, Guid> MappingCache = new Dictionary<string, Guid>();
 
         public EntityRepository(IOrganizationService orgService, IRetryExecutor retryExecutor)
             : this(orgService, retryExecutor, new EntityMetadataCache(orgService))
@@ -253,7 +252,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories
             {
                 if (filterFields.Length != filterValues.Length)
                 {
-                    throw new ArgumentException("filter fields must have same length as filter values!");
+                    throw new ArgumentException("Filter fields must have same length as filter values!");
                 }
 
                 for (int i = 0; i < filterFields.Length; i++)

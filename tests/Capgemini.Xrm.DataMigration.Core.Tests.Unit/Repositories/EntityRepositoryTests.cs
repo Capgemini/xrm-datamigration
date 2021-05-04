@@ -235,7 +235,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         [TestMethod]
         public void GetGuidForMappingThrowsExceptionForNullFilterValues()
         {
-            var errorMessage = "filter fields must have same length as filter values!";
+            var errorMessage = "Filter fields must have same length as filter values!";
 
             FluentActions.Invoking(() => systemUnderTest.GetGuidForMapping(entityName, filterFields, null))
                          .Should()
@@ -246,7 +246,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         [TestMethod]
         public void GetGuidForMappingThrowsExceptionForNullFilterFields()
         {
-            var errorMessage = "filter fields must have same length as filter values!";
+            var errorMessage = "Filter fields must have same length as filter values!";
 
             FluentActions.Invoking(() => systemUnderTest.GetGuidForMapping(entityName, null, filterValues))
                          .Should()
@@ -259,7 +259,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         {
             string[] localFilterFields = new string[] { "firstname", "lastname" };
 
-            var errorMessage = "filter fields must have same length as filter values!";
+            var errorMessage = "Filter fields must have same length as filter values!";
 
             FluentActions.Invoking(() => systemUnderTest.GetGuidForMapping(entityName, localFilterFields, filterValues))
                          .Should()

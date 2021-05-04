@@ -12,7 +12,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace Capgemini.Xrm.DataMigration.Cache
 {
-    public class EntityMapLookupCache : SimpleMemoryCache<Guid?>
+    public class EntityMapLookupCache : ExternallyManagedMemoryCache<Guid?>
     {
         private const string CacheId = "CRMMapCache";
         private readonly IOrganizationService orgService;
@@ -26,11 +26,13 @@ namespace Capgemini.Xrm.DataMigration.Cache
         {
             if (filterFields == null || filterValues == null || filterFields.Length != filterValues.Length)
             {
-                throw new ArgumentException("filter fields must have same length as filter values!");
+                throw new ArgumentException("Filter fields must have same length as filter values!");
             }
 
-            var cacheKey = CacheId + "|" + entityName + "|" + string.Join(";", filterFields) + "|" + string.Join(";", from f in filterValues select f?.ToString() ?? "NULL");
-            var result = this.TryGetCachedItem(cacheKey);
+            var filterFieldsText = string.Join(";", filterFields);
+            var filterValuesText = string.Join(";", from f in filterValues select f?.ToString() ?? "NULL");
+            var cacheKey = $"{CacheId}|{entityName}|{filterFieldsText}|{filterValuesText}"; 
+            var result = this.GetCachedItem(cacheKey);
 
             if (result == null)
             {
@@ -44,11 +46,6 @@ namespace Capgemini.Xrm.DataMigration.Cache
             }
 
             return result.Value;
-        }
-
-        protected override Guid? CreateCachedItem(string cacheKey)
-        {
-            throw new InvalidOperationException("This cache does not create entries on demand");
         }
 
         private Guid LookupGuidForMapping(string entityName, string[] filterFields, object[] filterValues)

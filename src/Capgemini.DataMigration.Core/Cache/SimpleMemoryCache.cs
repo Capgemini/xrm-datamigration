@@ -3,7 +3,7 @@ using System.Runtime.Caching;
 
 namespace Capgemini.DataMigration.Cache
 {
-    public abstract class SimpleMemoryCache<TItem>
+    public abstract class SimpleMemoryCache<TItem> : BaseCache<TItem>
     {
         protected int ExpirationMinutes { get; set; } = 60;
 
@@ -39,21 +39,6 @@ namespace Capgemini.DataMigration.Cache
                 MemoryCache.Default.Set(cacheKey, newIstance, cip);
 
                 return newIstance;
-            }
-        }
-
-        protected TItem TryGetCachedItem(string cacheKey)
-        {
-            var cachedObject = MemoryCache.Default.Get(cacheKey, null);
-            return (TItem)cachedObject;
-        }
-
-        protected void SetCachedItem (string cacheKey, TItem item)
-        {
-            // Store cached item
-            lock (MemoryCache.Default)
-            {
-                MemoryCache.Default.Set(cacheKey, item, new DateTimeOffset(DateTime.Now.AddMinutes(ExpirationMinutes)));
             }
         }
     }
