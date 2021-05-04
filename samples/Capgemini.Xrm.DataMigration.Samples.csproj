@@ -195,12 +195,6 @@
     <None Include="DemoScenarios\OrganizationHierarchy\ImportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="DemoScenarios\ProductPriceLevel\ExportConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="DemoScenarios\ProductPriceLevel\ImportConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="DemoScenarios\ServiceBusSettings\ExportConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -317,9 +311,6 @@
     <Content Include="DemoScenarios\OneToMany\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="DemoScenarios\ProductPriceLevel\Schema.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="DemoScenarios\ServiceBusSettings\Schema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
