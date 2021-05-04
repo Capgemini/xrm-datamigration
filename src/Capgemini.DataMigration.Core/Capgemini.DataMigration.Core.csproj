@@ -115,7 +115,7 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Attributes\ValidatedNotNullAttribute.cs" />
-    <Compile Include="Cache\ExternallyManagedMemoryCache.cs" />
+    <Compile Include="Cache\DictionaryCache.cs" />
     <Compile Include="Cache\BaseCache.cs" />
     <Compile Include="Cache\SimpleMemoryCache.cs" />
     <Compile Include="ConsoleLogger.cs" />

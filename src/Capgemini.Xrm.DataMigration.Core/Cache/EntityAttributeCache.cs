@@ -8,7 +8,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace Capgemini.Xrm.DataMigration.Cache
 {
-    public class EntityAttributeCache : ExternallyManagedMemoryCache<string[]>
+    public class EntityAttributeCache : DictionaryCache<string[]>
     {
         private const int MaxCachedRecords = 50000;
         private const string CacheId = "EA";

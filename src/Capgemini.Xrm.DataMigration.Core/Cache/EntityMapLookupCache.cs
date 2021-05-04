@@ -12,7 +12,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace Capgemini.Xrm.DataMigration.Cache
 {
-    public class EntityMapLookupCache : ExternallyManagedMemoryCache<Guid?>
+    public class EntityMapLookupCache : DictionaryCache<Guid?>
     {
         private const string CacheId = "CRMMapCache";
         private readonly IOrganizationService orgService;
