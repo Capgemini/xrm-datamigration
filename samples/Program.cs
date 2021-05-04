@@ -120,7 +120,15 @@ namespace Capgemini.Xrm.Datamigration.Examples
                         while (threadCount > 1)
                         {
                             threadCount--;
-                            entRepos.Add(new EntityRepository(serviceClient.Clone(), new ServiceRetryExecutor()));
+                            var newServiceClient = serviceClient.Clone();
+                            if (newServiceClient != null)
+                            {
+                                entRepos.Add(new EntityRepository(serviceClient.Clone(), new ServiceRetryExecutor()));
+                            }
+                            else
+                            {
+                                Console.WriteLine("CrmServiceClient Clone() operation is only supported for OAUTH connections, single thread will be used as clone returned null");
+                            }
                         }
 
                         if (!Settings.Default.UseCsvImport)
