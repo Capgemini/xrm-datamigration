@@ -1,0 +1,27 @@
+{
+  "IgnoreStatuses": false,
+  "IgnoreSystemFields": true,
+  "MigrationConfig": {
+    "ApplyAliasMapping": true,
+    "SourceRootBUName": "defra-trade-dev-plants-feature",
+    "Mappings": {}
+  },
+  "SaveBatchSize": 1000,
+  "JsonFolderPath": "GetAutomatically",
+  "NoUpsertEntities": [
+    "list",
+    "productpricelevel"
+  ],
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "DEFRA",
+  "PassOneReferences": [
+    "uomschedule",
+    "uom",
+    "msdyn_service",
+    "msdyn_incidenttype",
+    "msdyn_tasktype",
+    "product",
+    "pricelevel",
+    "productpricelevel"
+  ]
+}

@@ -8,6 +8,7 @@ using Capgemini.DataMigration.Core.Helpers;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Resiliency.Polly;
 using Capgemini.Xrm.DataMigration.Config;
+using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.CrmStore.Config;
 using Capgemini.Xrm.DataMigration.Engine;
 using Capgemini.Xrm.Datamigration.Examples.Properties;
@@ -110,20 +111,47 @@ namespace Capgemini.Xrm.Datamigration.Examples
                 using (var serviceClient = new CrmServiceClient(connectionString))
                 {
                     var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
+                    int threadCount = Settings.Default.ThreadCount;
                     var logger = new ConsoleLogger();
 
-                    if (!Settings.Default.UseCsvImport)
+                    if (threadCount > 1)
                     {
-                        // Json Import
-                        var fileImporterJson = new CrmFileDataImporter(logger, entityRepo, GetImportConfig(), tokenSource.Token);
-                        fileImporterJson.MigrateData();
+                        List<IEntityRepository> entRepos = new List<IEntityRepository>() { entityRepo };
+                        while (threadCount > 1)
+                        {
+                            threadCount--;
+                            entRepos.Add(new EntityRepository(serviceClient.Clone(), new ServiceRetryExecutor()));
+                        }
+
+                        if (!Settings.Default.UseCsvImport)
+                        {
+                            // Json Import
+                            var fileImporterJson = new CrmFileDataImporter(logger, entRepos, GetImportConfig(), tokenSource.Token);
+                            fileImporterJson.MigrateData();
+                        }
+                        else
+                        {
+                            // Csv Import
+                            var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
+                            var fileImporterCsv = new CrmFileDataImporterCsv(logger, entRepos, GetImportConfig(), schema, tokenSource.Token);
+                            fileImporterCsv.MigrateData();
+                        }
                     }
                     else
                     {
-                        // Csv Import
-                        var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
-                        var fileImporterCsv = new CrmFileDataImporterCsv(logger, entityRepo, GetImportConfig(), schema, tokenSource.Token);
-                        fileImporterCsv.MigrateData();
+                        if (!Settings.Default.UseCsvImport)
+                        {
+                            // Json Import
+                            var fileImporterJson = new CrmFileDataImporter(logger, entityRepo, GetImportConfig(), tokenSource.Token);
+                            fileImporterJson.MigrateData();
+                        }
+                        else
+                        {
+                            // Csv Import
+                            var schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
+                            var fileImporterCsv = new CrmFileDataImporterCsv(logger, entityRepo, GetImportConfig(), schema, tokenSource.Token);
+                            fileImporterCsv.MigrateData();
+                        }
                     }
                 }
             }
