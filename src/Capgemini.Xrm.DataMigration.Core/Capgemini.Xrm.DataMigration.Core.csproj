@@ -116,6 +116,7 @@
     <Compile Include="Repositories\EntityRepository.cs" />
     <Compile Include="Repositories\EntityRepositorySingle.cs" />
     <Compile Include="Repositories\ProcessRepository.cs" />
+    <Compile Include="Repositories\RepositoryCachingMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\stylecop.json">

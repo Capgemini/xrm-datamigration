@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Capgemini.DataMigration.Cache;
 using Capgemini.Xrm.DataMigration.Extensions;
@@ -23,6 +24,26 @@ namespace Capgemini.Xrm.DataMigration.Cache
             this.cacheFields = fieldsToCache;
         }
 
+        public static string GetFieldValueAsText(object val)
+        {
+            if (val is EntityReference)
+            {
+                return string.Intern(((EntityReference)val).Id.ToString());
+            }
+            else if (val is OptionSetValue)
+            {
+                return string.Intern(((OptionSetValue)val).Value.ToString(CultureInfo.InvariantCulture));
+            }
+            else if (val is Money)
+            {
+                return ((Money)val).Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                return val?.ToString();
+            }
+        }
+
         public void LoadAllRecords()
         {
             var query = new QueryExpression(this.entityLogicalName)
@@ -43,7 +64,7 @@ namespace Capgemini.Xrm.DataMigration.Cache
             var cacheKey = CacheId + entityId;
             var fields = this.GetCachedItem(cacheKey);
 
-            if (fields == null)
+            if (fields == null || attributes == null)
             {
                 return false;   // we have cached that the object does not exist
             }
@@ -60,26 +81,6 @@ namespace Capgemini.Xrm.DataMigration.Cache
 
             // Only if we have all fields and they are all the same
             return true;
-        }
-
-        public static string GetFieldValueAsText(object val)
-        {
-            if (val is EntityReference)
-            {
-                return string.Intern(((EntityReference)val).Id.ToString());
-            }
-            else if (val is OptionSetValue)
-            {
-                return string.Intern(((OptionSetValue)val).Value.ToString());
-            }
-            else if (val is Money)
-            {
-                return ((Money)val).Value.ToString();
-            }
-            else
-            {
-                return val?.ToString();
-            }
         }
 
         private static string GetFieldValueAsText(Entity e, string field)

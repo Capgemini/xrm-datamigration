@@ -105,7 +105,11 @@
     <Compile Include="Model\CrmEntityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EntityRepositorySingleTests.cs" />
+    <Compile Include="Repositories\EntityRepositorySingleTestsCached.cs" />
+    <Compile Include="Repositories\EntityRepositorySingleTestsUncached.cs" />
     <Compile Include="Repositories\EntityRepositoryTests.cs" />
+    <Compile Include="Repositories\EntityRepositoryTestsCached.cs" />
+    <Compile Include="Repositories\EntityRepositoryTestsUncached.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\stylecop.json">

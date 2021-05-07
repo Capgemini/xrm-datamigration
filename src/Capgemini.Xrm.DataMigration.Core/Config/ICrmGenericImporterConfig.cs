@@ -70,9 +70,15 @@ namespace Capgemini.Xrm.DataMigration.Config
         List<string> NoUpdateEntities { get; }
 
         /// <summary>
-        /// If true, updates to existing records with correct data are suppressed.
+        /// Gets or sets a value indicating whether, if true, updates to existing records with correct data are suppressed.
         /// </summary>
         bool SkipExistingRecords { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the repository can cache looked up values, e.g. resolving a username to a guid.
+        /// If true this speeds things up considerably, but the flag is here in case of unexpected consequences.
+        /// </summary>
+        bool EnableLookupCaching { get; set; }
 
         /// <summary>
         /// Allow caalers to reset ProcessesToDeactivate list.

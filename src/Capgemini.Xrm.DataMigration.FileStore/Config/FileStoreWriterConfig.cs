@@ -20,5 +20,11 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Config
         /// Gets the fields that must be obfuscated.
         /// </summary>
         public List<EntityToBeObfuscated> FieldsToObfuscate { get; } = new List<EntityToBeObfuscated>();
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the repository can cache looked up values, e.g. resolving a username to a guid.
+        /// If true this speeds things up considerably, but the flag is here in case of unexpected consequences.
+        /// </summary>
+        public bool EnableLookupCaching { get; set; }
     }
 }

@@ -17,17 +17,21 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
-    public class EntityRepositorySingleTests : UnitTestBase
+    public abstract class EntityRepositorySingleTests : UnitTestBase
     {
         private readonly string entityName = "contact";
         private readonly string[] filterFields = new string[] { "firstname", "lastname", "dateOfBirth" };
         private readonly object[] filterValues = new string[] { "joe", "blogs", "20 June 2019" };
-
+        private readonly RepositoryCachingMode cachingMode;
         private TestOrganizationalService testOrgService;
         private List<EntityWrapper> entities = new List<EntityWrapper>();
         private ExecuteMultipleResponse requestResult;
-
         private EntityRepositorySingle systemUnderTest;
+
+        public EntityRepositorySingleTests(RepositoryCachingMode cachingMode)
+        {
+            this.cachingMode = cachingMode;
+        }
 
         [TestInitialize]
         public void Setup()
@@ -50,13 +54,13 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
 
             testOrgService.EntityCollection.Entities.AddRange(new Entity[] { contact, account });
 
-            systemUnderTest = new EntityRepositorySingle(testOrgService, MockRetryExecutor.Object, MockEntityMetadataCache.Object);
+            systemUnderTest = new EntityRepositorySingle(testOrgService, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode);
         }
 
         [TestMethod]
         public void EntityRepositorySingle()
         {
-            FluentActions.Invoking(() => new EntityRepositorySingle(testOrgService, MockRetryExecutor.Object))
+            FluentActions.Invoking(() => new EntityRepositorySingle(testOrgService, MockRetryExecutor.Object, cachingMode))
                  .Should()
                  .NotThrow();
         }
@@ -64,7 +68,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         [TestMethod]
         public void EntityRepositorySingleSecondConstructor()
         {
-            FluentActions.Invoking(() => new EntityRepositorySingle(testOrgService, MockRetryExecutor.Object, MockEntityMetadataCache.Object))
+            FluentActions.Invoking(() => new EntityRepositorySingle(testOrgService, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode))
                  .Should()
                  .NotThrow();
         }
@@ -74,7 +78,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         {
             testOrgService.ExecutionResponse = new UpsertResponse();
 
-            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object);
+            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode);
 
             var response = new UpdateResponse();
             MockOrganizationService.Setup(a => a.Execute(It.IsAny<OrganizationRequest>()))
@@ -92,7 +96,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         {
             testOrgService.ExecutionResponse = new CreateResponse();
 
-            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object);
+            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode);
 
             var response = new UpdateResponse();
             MockOrganizationService.Setup(a => a.Execute(It.IsAny<OrganizationRequest>()))
@@ -110,7 +114,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         {
             testOrgService.ExecutionResponse = new UpdateResponse();
 
-            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object);
+            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode);
 
             var response = new UpdateResponse();
             MockOrganizationService.Setup(a => a.Execute(It.IsAny<OrganizationRequest>()))
@@ -152,7 +156,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
 
             testOrgService.ExecutionResponse = new AssociateResponse();
 
-            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object);
+            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode);
 
             var response = new UpdateResponse();
             MockOrganizationService.Setup(a => a.Execute(It.IsAny<OrganizationRequest>()))
@@ -176,7 +180,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         [TestMethod]
         public void GetAllEntitesMetadata()
         {
-            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object);
+            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode);
 
             RetrieveAllEntitiesResponse response = new RetrieveAllEntitiesResponse();
 
@@ -206,7 +210,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         {
             Guid entityId = Guid.NewGuid();
 
-            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object);
+            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode);
 
             MockOrganizationService.Setup(a => a.Delete(It.IsAny<string>(), It.IsAny<Guid>()));
 
@@ -222,7 +226,7 @@ namespace Capgemini.Xrm.DataMigration.Repositories.Tests
         {
             WhoAmIResponse response = new WhoAmIResponse();
 
-            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object);
+            systemUnderTest = new EntityRepositorySingle(MockOrganizationService.Object, MockRetryExecutor.Object, MockEntityMetadataCache.Object, cachingMode);
 
             MockOrganizationService.Setup(a => a.Execute(It.IsAny<OrganizationRequest>())).Returns(response);
 

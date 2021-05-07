@@ -79,7 +79,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
             {
                 using (var serviceClient = new CrmServiceClient(connectionString))
                 {
-                    var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
+                    var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor(), RepositoryCachingMode.Lookup);
                     var logger = new ConsoleLogger();
 
                     if (!Settings.Default.UseCsvImport)
@@ -109,7 +109,7 @@ namespace Capgemini.Xrm.Datamigration.Examples
             {
                 using (var serviceClient = new CrmServiceClient(connectionString))
                 {
-                    var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor());
+                    var entityRepo = new EntityRepository(serviceClient, new ServiceRetryExecutor(), RepositoryCachingMode.Lookup);
                     var logger = new ConsoleLogger();
 
                     if (!Settings.Default.UseCsvImport)

@@ -15,18 +15,24 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
 {
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [TestClass]
-    public class EntityRepositoryTest
+    public abstract class EntityRepositoryTest
     {
+        private readonly RepositoryCachingMode cachingMode;
         private IRetryExecutor retryExecutor;
         private IOrganizationService orgService;
         private EntityRepository entityRepository;
+
+        public EntityRepositoryTest(RepositoryCachingMode cachingMode)
+        {
+            this.cachingMode = cachingMode;
+        }
 
         [TestInitialize]
         public void Setup()
         {
             orgService = ConnectionHelper.GetOrganizationalServiceTarget();
             retryExecutor = new ServiceRetryExecutor();
-            entityRepository = new EntityRepository(orgService, retryExecutor);
+            entityRepository = new EntityRepository(orgService, retryExecutor, cachingMode);
         }
 
         [TestMethod]

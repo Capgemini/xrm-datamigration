@@ -20,13 +20,13 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class EntityRepositoryFake : EntityRepository
     {
-        public EntityRepositoryFake(IOrganizationService orgService, IRetryExecutor retryExecutor)
-            : this(orgService, retryExecutor, new EntityMetadataCache(orgService))
+        public EntityRepositoryFake(IOrganizationService orgService, IRetryExecutor retryExecutor, RepositoryCachingMode cachingMode)
+            : this(orgService, retryExecutor, new EntityMetadataCache(orgService), cachingMode)
         {
         }
 
-        public EntityRepositoryFake(IOrganizationService orgService, IRetryExecutor retryExecutor, IEntityMetadataCache entMetadataCache)
-            : base(orgService, retryExecutor, entMetadataCache)
+        public EntityRepositoryFake(IOrganizationService orgService, IRetryExecutor retryExecutor, IEntityMetadataCache entMetadataCache, RepositoryCachingMode cachingMode)
+            : base(orgService, retryExecutor, entMetadataCache, cachingMode)
         {
         }
 

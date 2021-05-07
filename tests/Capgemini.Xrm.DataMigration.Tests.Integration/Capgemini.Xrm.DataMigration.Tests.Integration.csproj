@@ -160,6 +160,8 @@
     <Compile Include="DataMigration\DataStoreTests\DataCrmStoreReaderWriterTest.cs" />
     <Compile Include="DataMigration\DataStoreTests\DataFileStoreReaderWriterTest.cs" />
     <Compile Include="DataMigration\EntityMetadataCacheTest.cs" />
+    <Compile Include="DataMigration\EntityRepositoryTestNonCached.cs" />
+    <Compile Include="DataMigration\EntityRepositoryTestCached.cs" />
     <Compile Include="DataMigration\EntityRepositoryTest.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationAppointmentsTest.cs" />
     <Compile Include="DataMigration\MigrationTests\CrmFileMigrationBaseTest.cs" />

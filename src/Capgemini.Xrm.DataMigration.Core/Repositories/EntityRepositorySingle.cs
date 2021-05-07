@@ -14,13 +14,13 @@ namespace Capgemini.Xrm.DataMigration.Repositories
 {
     public class EntityRepositorySingle : EntityRepository
     {
-        public EntityRepositorySingle(IOrganizationService orgService, IRetryExecutor retryExecutor)
-            : this(orgService, retryExecutor, new EntityMetadataCache(orgService))
+        public EntityRepositorySingle(IOrganizationService orgService, IRetryExecutor retryExecutor, RepositoryCachingMode cachingMode)
+            : this(orgService, retryExecutor, new EntityMetadataCache(orgService), cachingMode)
         {
         }
 
-        public EntityRepositorySingle(IOrganizationService orgService, IRetryExecutor retryExecutor, IEntityMetadataCache entMetadataCache)
-            : base(orgService, retryExecutor, entMetadataCache)
+        public EntityRepositorySingle(IOrganizationService orgService, IRetryExecutor retryExecutor, IEntityMetadataCache entMetadataCache, RepositoryCachingMode cachingMode)
+            : base(orgService, retryExecutor, entMetadataCache, cachingMode)
         {
         }
 

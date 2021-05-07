@@ -178,7 +178,7 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests.DataMigration.MigrationTe
             {
                 if (useFakeRepo)
                 {
-                    entityRepos.Add(new EntityRepositoryFake(targetServices[cnt], new ServiceRetryExecutor()));
+                    entityRepos.Add(new EntityRepositoryFake(targetServices[cnt], new ServiceRetryExecutor(), RepositoryCachingMode.None));
                 }
                 else
                 {

@@ -88,6 +88,12 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
             new Dictionary<string, Dictionary<string, List<string>>>();
 
         /// <summary>
+        /// Gets or sets a value indicating whether the repository can cache looked up values, e.g. resolving a username to a guid.
+        /// If true this speeds things up considerably, but the flag is here in case of unexpected consequences.
+        /// </summary>
+        public bool EnableLookupCaching { get; set; }
+
+        /// <summary>
         /// Reads configuration from file.
         /// </summary>
         /// <param name="filePath">filePath.</param>

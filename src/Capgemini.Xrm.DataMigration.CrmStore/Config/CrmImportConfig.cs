@@ -183,9 +183,15 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         public List<string> NoUpdateEntities { get; private set; } = new List<string>();
 
         /// <summary>
-        /// If true, updates to existing records with correct data are suppressed.
+        /// Gets or sets a value indicating whether, if true, updates to existing records with correct data are suppressed.
         /// </summary>
         public bool SkipExistingRecords { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the repository can cache looked up values, e.g. resolving a username to a guid.
+        /// If true this speeds things up considerably, but the flag is here in case of unexpected consequences.
+        /// </summary>
+        public bool EnableLookupCaching { get; set; }
 
         /// <summary>
         /// Reads settings from file.

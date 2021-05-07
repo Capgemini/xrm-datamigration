@@ -116,7 +116,6 @@
     </Compile>
     <Compile Include="Attributes\ValidatedNotNullAttribute.cs" />
     <Compile Include="Cache\DictionaryCache.cs" />
-    <Compile Include="Cache\BaseCache.cs" />
     <Compile Include="Cache\SimpleMemoryCache.cs" />
     <Compile Include="ConsoleLogger.cs" />
     <Compile Include="DataStore\MigrationEntityWrapper.cs" />

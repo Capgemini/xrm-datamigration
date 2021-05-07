@@ -105,7 +105,7 @@
     <Compile Include="CrmFileDataImporterTests.cs" />
     <Compile Include="DataProcessors\EntityStatusProcessorTests.cs" />
     <Compile Include="DataProcessors\IgnoredFieldsProcessorTests.cs" />
-    <Compile Include="DataProcessors\SkipExistingRecordProcessor.cs" />
+    <Compile Include="DataProcessors\SkipExistingRecordProcessorTests.cs" />
     <Compile Include="DataProcessors\MapEntityProcessorTests.cs" />
     <Compile Include="DataProcessors\NoUpdateProcessorTests.cs" />
     <Compile Include="DataProcessors\ObfuscateFieldsProcessorTests.cs" />

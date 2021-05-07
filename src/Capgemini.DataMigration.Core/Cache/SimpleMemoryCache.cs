@@ -3,7 +3,7 @@ using System.Runtime.Caching;
 
 namespace Capgemini.DataMigration.Cache
 {
-    public abstract class SimpleMemoryCache<TItem> : BaseCache<TItem>
+    public abstract class SimpleMemoryCache<TItem>
     {
         protected int ExpirationMinutes { get; set; } = 60;
 

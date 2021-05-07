@@ -23,17 +23,17 @@ namespace Capgemini.Xrm.DataMigration.Repositories
         private readonly EntityMapLookupCache mapLookupCache;
         private readonly IRetryExecutor retryExecutor;
 
-        public EntityRepository(IOrganizationService orgService, IRetryExecutor retryExecutor)
-            : this(orgService, retryExecutor, new EntityMetadataCache(orgService))
+        public EntityRepository(IOrganizationService orgService, IRetryExecutor retryExecutor, RepositoryCachingMode cachingMode = RepositoryCachingMode.None)
+            : this(orgService, retryExecutor, new EntityMetadataCache(orgService), cachingMode)
         {
         }
 
-        public EntityRepository(IOrganizationService orgService, IRetryExecutor retryExecutor, IEntityMetadataCache entMetadataCache)
+        public EntityRepository(IOrganizationService orgService, IRetryExecutor retryExecutor, IEntityMetadataCache entMetadataCache, RepositoryCachingMode cachingMode = RepositoryCachingMode.None)
         {
             this.orgService = orgService;
             this.retryExecutor = retryExecutor;
             this.metadataCache = entMetadataCache;
-            this.mapLookupCache = new EntityMapLookupCache(orgService);
+            this.mapLookupCache = cachingMode == RepositoryCachingMode.Lookup ? new EntityMapLookupCache(orgService) : null;
         }
 
         /// <summary>
@@ -230,7 +230,48 @@ namespace Capgemini.Xrm.DataMigration.Repositories
 
         public Guid GetGuidForMapping(string entityName, string[] filterFields, object[] filterValues)
         {
-            return this.mapLookupCache.GetGuidForMapping(entityName, filterFields, filterValues);
+            return this.mapLookupCache != null ? this.mapLookupCache.GetGuidForMapping(entityName, filterFields, filterValues, GetGuidForMappingNonCached) : GetGuidForMappingNonCached(entityName, filterFields, filterValues);
+        }
+
+        public Guid GetGuidForMappingNonCached(string entityName, string[] filterFields, object[] filterValues)
+        {
+            if (filterFields == null || filterValues == null || filterFields.Length != filterValues.Length)
+            {
+                throw new ArgumentException("Filter fields must have same length as filter values!");
+            }
+
+            QueryExpression query = new QueryExpression
+            {
+                EntityName = entityName,
+                ColumnSet = new ColumnSet(false)
+            };
+
+            for (int i = 0; i < filterFields.Length; i++)
+            {
+                if (!(filterValues[i] is EntityReference entRefValue))
+                {
+                    query.Criteria.AddCondition(filterFields[i], ConditionOperator.Equal, filterValues[i]);
+                }
+                else
+                {
+                    Guid refId = entRefValue.Id;
+                    query.Criteria.AddCondition(filterFields[i], ConditionOperator.Equal, refId);
+                }
+            }
+
+            List<Entity> entities = orgService.GetDataByQuery(query, 2).Entities.ToList();
+
+            if (entities.Count > 1)
+            {
+                throw new ConfigurationException($"incorrect mapping value - cannot find unique record, Found {entities.Count} maching criteria {entityName}:{string.Join(",", filterFields)}={string.Join(", ", filterValues)}");
+            }
+
+            if (entities.Count == 0)
+            {
+                return Guid.Empty;
+            }
+
+            return entities[0].Id;
         }
 
         /// <summary>

@@ -29,10 +29,11 @@ namespace Capgemini.Xrm.DataMigration.Cli
         {
             using (var serviceClient = new CrmServiceClient(options.ConnectionString))
             {
+                var config = CrmExporterConfig.GetConfiguration(options.ConfigurationFile);
                 new CrmFileDataExporter(
                     Logger,
-                    new EntityRepository(serviceClient.OrganizationServiceProxy, new ServiceRetryExecutor()),
-                    CrmExporterConfig.GetConfiguration(options.ConfigurationFile),
+                    new EntityRepository(serviceClient.OrganizationServiceProxy, new ServiceRetryExecutor(), config.EnableLookupCaching ? RepositoryCachingMode.Lookup : RepositoryCachingMode.None),
+                    config,
                     CancellationToken.None).MigrateData();
                 return 0;
             }
@@ -42,10 +43,12 @@ namespace Capgemini.Xrm.DataMigration.Cli
         {
             using (var serviceClient = new CrmServiceClient(options.ConnectionString))
             {
+                var config = CrmImportConfig.GetConfiguration(options.ConfigurationFile);
+
                 new CrmFileDataImporter(
                     Logger,
-                    new EntityRepository(serviceClient, new ServiceRetryExecutor()),
-                    CrmImportConfig.GetConfiguration(options.ConfigurationFile),
+                    new EntityRepository(serviceClient, new ServiceRetryExecutor(), config.EnableLookupCaching ? RepositoryCachingMode.Lookup : RepositoryCachingMode.None),
+                    config,
                     CancellationToken.None).MigrateData();
                 return 0;
             }
