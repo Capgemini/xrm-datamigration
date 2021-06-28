@@ -78,7 +78,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
 
             systemUnderTest.ProcessEntity(entityWrapper, pass, 100);
 
-            Assert.AreNotEqual(OperationType.Ignore, entityWrapper.OperationType);
+            entityWrapper.OperationType.Should().Be(OperationType.Create);
         }
 
         [DataTestMethod]
@@ -93,7 +93,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
 
             systemUnderTest.ProcessEntity(entityWrapper, pass, 100);
 
-            Assert.AreEqual(OperationType.Ignore, entityWrapper.OperationType);
+            entityWrapper.OperationType.Should().Be(OperationType.New);
         }
 
         [DataTestMethod]
