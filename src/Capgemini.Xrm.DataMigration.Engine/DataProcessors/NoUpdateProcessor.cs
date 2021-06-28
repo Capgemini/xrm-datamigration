@@ -40,9 +40,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
         {
             entity.ThrowArgumentNullExceptionIfNull(nameof(entity));
 
-            if (noUpdateEntities.Contains(entity.LogicalName) && passNumber != (int)PassType.CreateRequiredEntity && passNumber != (int)PassType.CreateEntity)
+            if (noUpdateEntities.Contains(entity.LogicalName) && (passNumber == (int)PassType.CreateRequiredEntity || passNumber == (int)PassType.CreateEntity))
             {
-                entity.OperationType = OperationType.Ignore;
+                entity.OperationType = OperationType.Create;
             }
         }
     }
