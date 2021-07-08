@@ -31,7 +31,7 @@ namespace Capgemini.Xrm.DataMigration.Cli
             {
                 new CrmFileDataExporter(
                     Logger,
-                    new EntityRepository(serviceClient.OrganizationServiceProxy, new ServiceRetryExecutor()),
+                    new EntityRepository(serviceClient, new ServiceRetryExecutor()),
                     CrmExporterConfig.GetConfiguration(options.ConfigurationFile),
                     CancellationToken.None).MigrateData();
                 return 0;

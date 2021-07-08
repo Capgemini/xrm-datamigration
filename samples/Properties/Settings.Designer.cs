@@ -43,8 +43,7 @@ namespace Capgemini.Xrm.Datamigration.Examples.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Url = CRMUrl; Username=user; Password=password; AuthType=Office365; RequireNewIns" +
-            "tance=True;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("AuthType=OAuth; Username=***REMOVED***; Password=***REMOVED*** Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;")]
         public string CrmExportConnectionString {
             get {
                 return ((string)(this["CrmExportConnectionString"]));
@@ -53,8 +52,7 @@ namespace Capgemini.Xrm.Datamigration.Examples.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Url = CRMUrl; Username=user; Password=password; AuthType=Office365; RequireNewIns" +
-            "tance=True;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("AuthType=OAuth; Username=***REMOVED***; Password=***REMOVED*** Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;")]
         public string CrmImportConnectionString {
             get {
                 return ((string)(this["CrmImportConnectionString"]));
