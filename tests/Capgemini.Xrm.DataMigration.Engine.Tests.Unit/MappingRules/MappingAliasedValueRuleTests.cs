@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.Engine.MappingRules;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
+using Moq;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.MappingRules
 {
@@ -45,6 +47,34 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.MappingRules
 
             actual.Should().BeFalse();
             replacementValue.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void ProcessImportDuplicateAliasMappingQueriesAreCached()
+        {
+            string aliasedAttributeName = "accountid";
+            var firstValues = new List<AliasedValue>()
+            {
+                new AliasedValue("account", "name", "Test Account"),
+            };
+            var secondValues = new List<AliasedValue>()
+            {
+                new AliasedValue("account", "name", "Test Account"),
+            };
+            var returnedGuid = Guid.NewGuid();
+            MockEntityRepo
+                .Setup(r => r.GetGuidForMapping(It.IsAny<string>(), It.IsAny<string[]>(), It.IsAny<object[]>()))
+                .Returns(returnedGuid);
+
+            systemUnderTest.ProcessImport(aliasedAttributeName, firstValues, out object replacementValue);
+            systemUnderTest.ProcessImport(aliasedAttributeName, secondValues, out replacementValue);
+
+            MockEntityRepo.Verify(
+                r => r.GetGuidForMapping(It.IsAny<string>(), It.IsAny<string[]>(), It.IsAny<object[]>()),
+                Times.AtMostOnce(),
+                "Expected alias mappings to be cached but they were not.");
+
+            replacementValue.Should().BeEquivalentTo(returnedGuid);
         }
     }
 }
