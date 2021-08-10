@@ -52,8 +52,8 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
                 {
                     entitySpecificRules = new List<IMappingRule>()
                     {
-                new BusinessUnitRootRule(targetBusinessUnitId),
-                new MappingAliasedValueRule(targetRepo)
+                        new BusinessUnitRootRule(targetBusinessUnitId),
+                        new MappingAliasedValueRule(targetRepo)
                     };
                 }
 
