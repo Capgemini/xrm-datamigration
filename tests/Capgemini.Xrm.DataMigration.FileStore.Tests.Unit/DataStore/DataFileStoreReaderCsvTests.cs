@@ -16,8 +16,15 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
-    public class DataFileStoreReaderTest : UnitTestBase
+    public class DataFileStoreReaderCsvTest : UnitTestBase
     {
+        private readonly string filePrefix = "filePrefix";
+        private readonly string filesPath = "TestData";
+        private static string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
+        private static string extractFolder = Path.Combine(extractedPath, "ExtractedData");
+        //private string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
+        //new ConsoleLogger()
+
         private CrmSchemaConfiguration crmSchemaConfiguration;
 
         private DataFileStoreReaderCsv systemUnderTest;
@@ -33,7 +40,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadTestFileSystemuser()
         {
-            var result = GetFirstEntities("ExportedDataSystemUser");
+            var result = GetFirstEntities("ExportedDataSystemUser", GetSchema(extractedPath, "usersettingsschema.xml"), MockLogger.Object);
             Assert.AreEqual(result.Item1.Count, result.Item2.Count);
             List<Entity> firstEntList = result.Item1;
             List<Entity> firstEntJsonList = result.Item2;
@@ -52,7 +59,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadTestFileUserprofile()
         {
-            var result = GetFirstEntities("ExportedDataUserProfile");
+            var result = GetFirstEntities("ExportedDataUserProfile", GetSchema(extractedPath, "usersettingsschema.xml"), MockLogger.Object);
             Assert.AreEqual(result.Item1.Count, result.Item2.Count);
 
             List<Entity> firstEntList = result.Item1;
@@ -72,7 +79,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadTestFileUserrole()
         {
-            var result = GetFirstEntities("ExportedDataUserRole");
+            var result = GetFirstEntities("ExportedDataUserRole", GetSchema(extractedPath, "usersettingsschema.xml"), MockLogger.Object);
             Assert.AreEqual(result.Item1.Count, result.Item2.Count);
 
             List<Entity> firstEntList = result.Item1;
@@ -92,7 +99,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadTestFileTeammem()
         {
-            var result = GetFirstEntities("ExportedDataTeamMem");
+            var result = GetFirstEntities("ExportedDataTeamMem", GetSchema(extractedPath, "usersettingsschema.xml"), MockLogger.Object);
             Assert.AreEqual(result.Item1.Count, result.Item2.Count);
             List<Entity> firstEntList = result.Item1;
             List<Entity> firstEntJsonList = result.Item2;
@@ -111,7 +118,26 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadTestFileUserset()
         {
-            var result = GetFirstEntities("ExportedDataUserSet");
+            var result = GetFirstEntities("ExportedDataUserSet", GetSchema(extractedPath, "usersettingsschema.xml"), MockLogger.Object);
+            Assert.AreEqual(result.Item1.Count, result.Item2.Count);
+            List<Entity> firstEntList = result.Item1;
+            List<Entity> firstEntJsonList = result.Item2;
+
+            int idx = 0;
+            while (idx < firstEntList.Count)
+            {
+                var firstEnt = firstEntList[idx];
+                var firstEntJson = firstEntJsonList[idx];
+                CompareAttributes(firstEnt, firstEntJson);
+                idx++;
+            }
+        }
+
+        [TestMethod]
+        [TestCategory(TestBase.AutomatedTestCategory)]
+        public void ReadContacts()
+        {
+            var result = GetFirstEntities("filePrefix", GetSchema(), MockLogger.Object);
             Assert.AreEqual(result.Item1.Count, result.Item2.Count);
             List<Entity> firstEntList = result.Item1;
             List<Entity> firstEntJsonList = result.Item2;
@@ -130,8 +156,8 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void Reset()
         {
-            string filePrefix = "filePrefix";
-            string filesPath = "TestData";
+            // string filePrefix = "filePrefix";
+            // string filesPath = "TestData";
 
             systemUnderTest = new DataFileStoreReaderCsv(MockLogger.Object, filePrefix, filesPath, crmSchemaConfiguration);
 
@@ -140,15 +166,15 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
                          .NotThrow();
         }
 
-        private static Tuple<List<Entity>, List<Entity>> GetFirstEntities(string filePrefix)
+        private static Tuple<List<Entity>, List<Entity>> GetFirstEntities(string filePrefix, CrmSchemaConfiguration schemaConfig, ILogger logger)
         {
-            string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
-            string extractFolder = Path.Combine(extractedPath, "ExtractedData");
-            string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
+            //string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
+            //string extractFolder = Path.Combine(extractedPath, "ExtractedData");
+            //string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
 
-            CrmSchemaConfiguration schemaConfig = CrmSchemaConfiguration.ReadFromFile(schemaFilePath);
+            //CrmSchemaConfiguration schemaConfig = CrmSchemaConfiguration.ReadFromFile(schemaFilePath);
 
-            DataFileStoreReaderCsv store = new DataFileStoreReaderCsv(new ConsoleLogger(), filePrefix, extractFolder, schemaConfig);
+            var store = new DataFileStoreReaderCsv(logger, filePrefix, extractFolder, schemaConfig);
 
             var batch = store.ReadBatchDataFromStore();
             List<Entity> firstEnt = batch.Select(p => p.OriginalEntity).ToList();

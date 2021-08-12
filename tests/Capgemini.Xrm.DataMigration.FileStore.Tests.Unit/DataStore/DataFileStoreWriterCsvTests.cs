@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
+using Capgemini.Xrm.DataMigration.FileStore.UnitTests;
 using Capgemini.Xrm.DataMigration.Model;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,6 +18,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
     [TestClass]
     public class DataFileStoreWriterCsvTests : UnitTestBase
     {
+        private readonly string extractPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "DataExtractTest");
         private CrmSchemaConfiguration crmSchemaConfiguration;
 
         private DataFileStoreWriterCsv systemUnderTest;
@@ -119,6 +123,21 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
             FluentActions.Invoking(() => systemUnderTest.SaveBatchDataToStore(entities))
                              .Should()
                              .NotThrow();
+        }
+
+        [TestMethod]
+        [TestCategory(TestBase.AutomatedTestCategory)]
+        public void SaveBatchDataToStoreWithSampleContact()
+        {
+            var schemaConfig = GetSchema();
+
+            systemUnderTest = new DataFileStoreWriterCsv(MockLogger.Object, FilePrefix, TestResultFolder, null, schemaConfig);
+
+            var entities = PrepareEntities();
+
+            FluentActions.Invoking(() => systemUnderTest.SaveBatchDataToStore(entities))
+                .Should()
+                .NotThrow();
         }
     }
 }

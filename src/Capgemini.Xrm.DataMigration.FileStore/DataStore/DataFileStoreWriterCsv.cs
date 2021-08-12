@@ -122,6 +122,11 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
 
                 var fields = entity.CrmFields.Where(p => p.FieldName != entity.PrimaryIdField).Select(p => p.FieldName).ToList();
 
+                foreach (var lookup in entity.CrmFields.Where(p => p.FieldName != entity.PrimaryIdField && p.FieldType == "entityreference").Select(p => $"{p.FieldName}.LogicalName"))
+                {
+                    fields.Add(lookup);
+                }
+
                 AddFieldWithCheck(header, entity.PrimaryIdField);
 
                 if (fields != null)
@@ -187,6 +192,17 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
                         {
                             string atVal = attrValue?.ToString().Replace("\"", "\"\"");
                             items[position] = $"\"{atVal}\"";
+                        }
+                        else if (item.AttributeType == "Microsoft.Xrm.Sdk.EntityReference")
+                        {
+                            var entityref = (EntityReference)item.AttributeValue;
+                            int logicalNamePosition = header.IndexOf($"{item.AttributeName}.LogicalName");
+                            if (logicalNamePosition >= 0)
+                            {
+                                items[logicalNamePosition] = $"\"{entityref.LogicalName}\"";
+                            }
+
+                            items[position] = attrValue?.ToString();
                         }
                         else
                         {
