@@ -18,7 +18,6 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
     [TestClass]
     public class DataFileStoreWriterCsvTests : UnitTestBase
     {
-        private readonly string extractPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "DataExtractTest");
         private CrmSchemaConfiguration crmSchemaConfiguration;
 
         private DataFileStoreWriterCsv systemUnderTest;
@@ -131,7 +130,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
         {
             var schemaConfig = GetSchema();
 
-            systemUnderTest = new DataFileStoreWriterCsv(MockLogger.Object, FilePrefix, TestResultFolder, null, schemaConfig);
+            systemUnderTest = new DataFileStoreWriterCsv(MockLogger.Object, $"{Guid.NewGuid()}", TestResultFolder, null, schemaConfig);
 
             var entities = PrepareEntities();
 

@@ -18,15 +18,12 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
     [TestClass]
     public class DataFileStoreReaderTests : UnitTestBase
     {
-        //private CrmSchemaConfiguration crmSchemaConfiguration;
-
         private DataFileStoreReader systemUnderTest;
 
         [TestInitialize]
         public void Setup()
         {
             InitializeProperties();
-            //crmSchemaConfiguration = new CrmSchemaConfiguration();
 
             systemUnderTest = new DataFileStoreReader(MockLogger.Object, FilePrefix, TestResultFolder);
         }
@@ -146,9 +143,6 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         {
             string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
             string extractFolder = Path.Combine(extractedPath, "ExtractedData");
-            string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
-
-            //CrmSchemaConfiguration schemaConfig = CrmSchemaConfiguration.ReadFromFile(schemaFilePath);
 
             var store = new DataFileStoreReader(new ConsoleLogger(), filePrefix, extractFolder);
 

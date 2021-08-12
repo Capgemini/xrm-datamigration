@@ -16,14 +16,12 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
-    public class DataFileStoreReaderCsvTest : UnitTestBase
+    public class DataFileStoreReaderCsvTests : UnitTestBase
     {
-        private readonly string filePrefix = "filePrefix";
-        private readonly string filesPath = "TestData";
         private static string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
         private static string extractFolder = Path.Combine(extractedPath, "ExtractedData");
-        //private string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
-        //new ConsoleLogger()
+        private readonly string filePrefix = "filePrefix";
+        private readonly string filesPath = "TestData";
 
         private CrmSchemaConfiguration crmSchemaConfiguration;
 
@@ -137,18 +135,20 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadContacts()
         {
-            var result = GetFirstEntities("filePrefix", GetSchema(), MockLogger.Object);
-            Assert.AreEqual(result.Item1.Count, result.Item2.Count);
-            List<Entity> firstEntList = result.Item1;
-            List<Entity> firstEntJsonList = result.Item2;
+            var store = new DataFileStoreReaderCsv(MockLogger.Object, "filePrefix", extractFolder, GetSchema());
 
-            int idx = 0;
-            while (idx < firstEntList.Count)
+            var batch = store.ReadBatchDataFromStore();
+            var actual = batch.Select(p => p.OriginalEntity).ToList();
+
+            actual.Count.Should().Be(4);
+
+            foreach (var entity in actual)
             {
-                var firstEnt = firstEntList[idx];
-                var firstEntJson = firstEntJsonList[idx];
-                CompareAttributes(firstEnt, firstEntJson);
-                idx++;
+                entity.GetAttributeValue<string>("firstname").Should().StartWith("First Test ");
+                entity.GetAttributeValue<string>("lastname").Should().StartWith("Last Test ");
+
+                entity.GetAttributeValue<Guid>("contactid").Should().NotBeEmpty();
+                entity.GetAttributeValue<EntityReference>("ownerid").Should().NotBeNull();
             }
         }
 
@@ -156,9 +156,6 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void Reset()
         {
-            // string filePrefix = "filePrefix";
-            // string filesPath = "TestData";
-
             systemUnderTest = new DataFileStoreReaderCsv(MockLogger.Object, filePrefix, filesPath, crmSchemaConfiguration);
 
             FluentActions.Invoking(() => systemUnderTest.Reset())
@@ -168,18 +165,12 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
 
         private static Tuple<List<Entity>, List<Entity>> GetFirstEntities(string filePrefix, CrmSchemaConfiguration schemaConfig, ILogger logger)
         {
-            //string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
-            //string extractFolder = Path.Combine(extractedPath, "ExtractedData");
-            //string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
-
-            //CrmSchemaConfiguration schemaConfig = CrmSchemaConfiguration.ReadFromFile(schemaFilePath);
-
             var store = new DataFileStoreReaderCsv(logger, filePrefix, extractFolder, schemaConfig);
 
             var batch = store.ReadBatchDataFromStore();
             List<Entity> firstEnt = batch.Select(p => p.OriginalEntity).ToList();
 
-            DataFileStoreReader storeJson = new DataFileStoreReader(new ConsoleLogger(), filePrefix, extractFolder);
+            var storeJson = new DataFileStoreReader(logger, filePrefix, extractFolder);
 
             var batchJson = storeJson.ReadBatchDataFromStore();
             List<Entity> firstEntJson = batchJson.Select(p => p.OriginalEntity).ToList();

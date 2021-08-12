@@ -176,23 +176,6 @@ where T : OrganizationResponse
             }
         }
 
-        protected void InitializeProperties()
-        {
-            MockOrganizationService = new Mock<IOrganizationService>();
-            MockLogger = new Mock<ILogger>();
-            MockDataStoreReader = new Mock<IDataStoreReader<Entity, MigrationEntityWrapper<Entity>>>();
-            MockDataStoreWriter = new Mock<IDataStoreWriter<Entity, MigrationEntityWrapper<Entity>>>();
-            MockProcessor = new Mock<IEntityProcessor<Entity, MigrationEntityWrapper<Entity>>>();
-            MockEntityRepo = new Mock<IEntityRepository>();
-            MockCrmStoreReaderConfig = new Mock<ICrmStoreReaderConfig>();
-            MockCrmStoreWriterConfig = new Mock<ICrmStoreWriterConfig>();
-            MockEntityMetadataCache = new Mock<IEntityMetadataCache>();
-            MockCrmGenericImporterConfig = new Mock<ICrmGenericImporterConfig>();
-            MockFileStoreWriterConfig = new Mock<IFileStoreWriterConfig>();
-            MockRetryExecutor = new Mock<IRetryExecutor>();
-            TestResultFolder = TestContext.TestResultsDirectory;
-        }
-
         protected static Entity CreateContact(string firstName, string lastName, EntityReference ownerId)
         {
             Entity contact = new Entity("contact")
@@ -248,6 +231,23 @@ where T : OrganizationResponse
             schemaConfig.Entities.AddRange(entities);
 
             return schemaConfig;
+        }
+
+        protected void InitializeProperties()
+        {
+            MockOrganizationService = new Mock<IOrganizationService>();
+            MockLogger = new Mock<ILogger>();
+            MockDataStoreReader = new Mock<IDataStoreReader<Entity, MigrationEntityWrapper<Entity>>>();
+            MockDataStoreWriter = new Mock<IDataStoreWriter<Entity, MigrationEntityWrapper<Entity>>>();
+            MockProcessor = new Mock<IEntityProcessor<Entity, MigrationEntityWrapper<Entity>>>();
+            MockEntityRepo = new Mock<IEntityRepository>();
+            MockCrmStoreReaderConfig = new Mock<ICrmStoreReaderConfig>();
+            MockCrmStoreWriterConfig = new Mock<ICrmStoreWriterConfig>();
+            MockEntityMetadataCache = new Mock<IEntityMetadataCache>();
+            MockCrmGenericImporterConfig = new Mock<ICrmGenericImporterConfig>();
+            MockFileStoreWriterConfig = new Mock<IFileStoreWriterConfig>();
+            MockRetryExecutor = new Mock<IRetryExecutor>();
+            TestResultFolder = TestContext.TestResultsDirectory;
         }
     }
 }
