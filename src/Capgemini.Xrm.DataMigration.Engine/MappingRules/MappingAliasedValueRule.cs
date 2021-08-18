@@ -35,7 +35,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.MappingRules
             else
             {
                 replacementValue = entityRepository.GetGuidForMapping(entityName, attributeNames, attributeValues);
-                cache.Add(cacheKey, (Guid)replacementValue);
+
+                if ((Guid)replacementValue != Guid.Empty)
+                {
+                    cache.Add(cacheKey, (Guid)replacementValue);
+                }
             }
 
             return (Guid)replacementValue != Guid.Empty;
