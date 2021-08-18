@@ -76,5 +76,32 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.MappingRules
 
             replacementValue.Should().BeEquivalentTo(returnedGuid);
         }
+
+        [TestMethod]
+        public void ProcessImportEmptyGuidsAreNotCached()
+        {
+            string aliasedAttributeName = "accountid";
+            var firstValues = new List<AliasedValue>()
+            {
+                new AliasedValue("account", "name", "Test Account"),
+            };
+            var secondValues = new List<AliasedValue>()
+            {
+                new AliasedValue("account", "name", "Test Account"),
+            };
+            MockEntityRepo
+                .Setup(r => r.GetGuidForMapping(It.IsAny<string>(), It.IsAny<string[]>(), It.IsAny<object[]>()))
+                .Returns(Guid.Empty);
+
+            systemUnderTest.ProcessImport(aliasedAttributeName, firstValues, out object replacementValue);
+            systemUnderTest.ProcessImport(aliasedAttributeName, secondValues, out replacementValue);
+
+            MockEntityRepo.Verify(
+                r => r.GetGuidForMapping(It.IsAny<string>(), It.IsAny<string[]>(), It.IsAny<object[]>()),
+                Times.Exactly(2),
+                "Expected empty GUIDs not to be cached but they were.");
+
+            replacementValue.Should().BeEquivalentTo(Guid.Empty);
+        }
     }
 }
