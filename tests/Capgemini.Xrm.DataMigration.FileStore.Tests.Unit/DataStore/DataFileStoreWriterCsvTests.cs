@@ -114,7 +114,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
         [TestMethod]
         public void SaveBatchDataToStore()
         {
-            List<EntityWrapper> entities = new List<EntityWrapper>
+            var entities = new List<EntityWrapper>
             {
                 new EntityWrapper(new Entity("contact", Guid.NewGuid()) { })
             };

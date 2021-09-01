@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Core.Tests.Base;
+using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.FileStore.DataStore;
 using FluentAssertions;
@@ -135,21 +136,61 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadContacts()
         {
-            var store = new DataFileStoreReaderCsv(MockLogger.Object, "filePrefix", extractFolder, GetSchema());
+            var expectedIdList = new List<Guid>{
+                Guid.Parse("274589c3-2dbf-465b-938a-4992a24fea5b"),
+                Guid.Parse("e6f72b28-c9c8-4315-b005-7fbe74495e3b"),
+                Guid.Parse("4ac0c3be-a142-402f-988b-0c01c158c065"),
+                Guid.Parse("07843cd6-ce3f-4638-a36f-5d7dbe4a5c26") };
+
+            var store = new DataFileStoreReaderCsv(MockLogger.Object, "ValidFilePrefix", extractFolder, GetSchema());
 
             var batch = store.ReadBatchDataFromStore();
             var actual = batch.Select(p => p.OriginalEntity).ToList();
 
             actual.Count.Should().Be(4);
 
-            foreach (var entity in actual)
+            for (int counter = 0; counter < expectedIdList.Count; counter++)
             {
-                entity.GetAttributeValue<string>("firstname").Should().StartWith("First Test ");
-                entity.GetAttributeValue<string>("lastname").Should().StartWith("Last Test ");
+                var itemLabel = counter + 1;
+                var item = actual.First(x => x.GetAttributeValue<Guid>("contactid") == expectedIdList[counter]);
 
-                entity.GetAttributeValue<Guid>("contactid").Should().NotBeEmpty();
-                entity.GetAttributeValue<EntityReference>("ownerid").Should().NotBeNull();
+                item.GetAttributeValue<string>("firstname").Should().StartWith($"First Test {itemLabel}");
+                item.GetAttributeValue<string>("lastname").Should().StartWith($"Last Test {itemLabel}");
+
+                switch (itemLabel)
+                {
+                    case 1:
+                        item.GetAttributeValue<EntityReference>("ownerid").LogicalName.Should().Be("systemuser");
+                        item.GetAttributeValue<EntityReference>("ownerid").Id.ToString().Should().Be("5633ab67-20f8-4f2b-8237-f81814910707");
+                        break;
+
+                    case 2:
+                        item.GetAttributeValue<EntityReference>("ownerid").LogicalName.Should().Be("systemuser");
+                        item.GetAttributeValue<EntityReference>("ownerid").Id.ToString().Should().Be("fb73d6ab-86b1-4d59-a99b-b65792a0dc75");
+                        break;
+
+                    case 3:
+                        item.GetAttributeValue<EntityReference>("ownerid").LogicalName.Should().Be("team");
+                        item.GetAttributeValue<EntityReference>("ownerid").Id.ToString().Should().Be("91f9d682-e7aa-4506-bd8c-5f4c7f515044");
+                        break;
+
+                    case 4:
+                        item.GetAttributeValue<EntityReference>("ownerid").LogicalName.Should().Be("user");
+                        item.GetAttributeValue<EntityReference>("ownerid").Id.ToString().Should().Be("925f0d29-8099-4247-a0c9-149dc9cf4c6b");
+                        break;
+                }
             }
+        }
+
+        [TestMethod]
+        [TestCategory(TestBase.AutomatedTestCategory)]
+        public void ReadContactsFailsForInvalidFile()
+        {
+            var store = new DataFileStoreReaderCsv(MockLogger.Object, "ErrorFilePrefix", extractFolder, GetSchema());
+
+            FluentActions.Invoking(() => store.ReadBatchDataFromStore())
+                         .Should()
+                         .Throw<ConfigurationException>().WithMessage("Unabale to map ownerid!");
         }
 
         [TestMethod]

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
 using CsvHelper;
@@ -43,7 +44,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
                             }
                             else
                             {
-                                ReadCsvValue(entityName, reader, ent, idx, item);
+                                ReadCsvValue(entityName, reader, ent, idx, item, header);
                             }
 
                             idx++;
@@ -76,11 +77,26 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
             }
         }
 
-        private void ReadCsvValue(string entityName, CsvReader reader, Entity entity, int idx, string attrName)
+        private void ReadCsvValue(string entityName, CsvReader reader, Entity entity, int idx, string attrName, List<string> header)
         {
             string fieldName = attrName;
 
             var field = schemaConfig.Entities.Single(p => p.Name == entityName).CrmFields.FirstOrDefault(p => p.FieldName == fieldName);
+
+            if (fieldName == "ownerid")
+            {
+                string lookupType;
+                int colIndex = header.FindIndex(x => x == "ownerid.LogicalName");
+
+                if (colIndex == -1 || !reader.TryGetField<string>(colIndex, out lookupType))
+                {
+                    throw new ConfigurationException("Unabale to map ownerid!");
+                }
+                else
+                {
+                    field.LookupType = lookupType;
+                }
+            }
 
             if (field != null)
             {

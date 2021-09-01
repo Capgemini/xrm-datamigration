@@ -178,7 +178,7 @@ where T : OrganizationResponse
 
         protected static Entity CreateContact(string firstName, string lastName, EntityReference ownerId)
         {
-            Entity contact = new Entity("contact")
+            var contact = new Entity("contact")
             {
                 Id = Guid.NewGuid()
             };

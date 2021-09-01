@@ -143,7 +143,10 @@
     <None Include="TestData\ExtractedData\ExportedDataUserSet_usersettings_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\ExtractedData\filePrefix_contact_1.csv">
+    <None Include="TestData\ExtractedData\ErrorFilePrefix_contact_1.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ExtractedData\ValidFilePrefix_contact_1.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\UserSettingsExportConfig.json">
