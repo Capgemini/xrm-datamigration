@@ -39,7 +39,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             this.filePrefix = filePrefix;
             this.filesPath = filesPath;
             filesToRead = Directory.GetFiles(filesPath, $"{filePrefix}*.csv").OrderBy(p => p).ToList();
-            csvHelper = new ReadCsvHelper(schemaConfig);
+            csvHelper = new ReadCsvHelper(schemaConfig, logger);
         }
 
         public void Reset()

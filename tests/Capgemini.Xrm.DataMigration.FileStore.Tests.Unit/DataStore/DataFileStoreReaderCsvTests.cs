@@ -186,11 +186,16 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadContactsFailsForInvalidFile()
         {
+            var message = "CSV file does not contain column ownerid.LogicalName! OwnerId will be mapped to systemuser. If you wanted granular mapping of OwnerId, please regenerate the CSV.";
+
             var store = new DataFileStoreReaderCsv(MockLogger.Object, "ErrorFilePrefix", extractFolder, GetSchema());
+            MockLogger.Setup(x => x.LogWarning(message));
 
             FluentActions.Invoking(() => store.ReadBatchDataFromStore())
                          .Should()
-                         .Throw<ConfigurationException>().WithMessage("Unabale to map ownerid!");
+                         .NotThrow();
+
+            MockLogger.Verify(x => x.LogWarning(message));
         }
 
         [TestMethod]

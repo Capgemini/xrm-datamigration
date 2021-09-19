@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
@@ -13,10 +14,12 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
     internal class ReadCsvHelper
     {
         private readonly CrmSchemaConfiguration schemaConfig;
+        private readonly ILogger logger;
 
-        public ReadCsvHelper(CrmSchemaConfiguration schemaConfig)
+        public ReadCsvHelper(CrmSchemaConfiguration schemaConfig, ILogger logger)
         {
             this.schemaConfig = schemaConfig;
+            this.logger = logger;
         }
 
         public List<EntityWrapper> ReadFromFile(string fileName, string entityName)
@@ -88,9 +91,9 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
                 string lookupType;
                 int colIndex = header.FindIndex(x => x == "ownerid.LogicalName");
 
-                if (colIndex == -1 || !reader.TryGetField<string>(colIndex, out lookupType))
+                if (colIndex == -1 || !reader.TryGetField(colIndex, out lookupType))
                 {
-                    throw new ConfigurationException("Unabale to map ownerid!");
+                    logger.LogWarning("CSV file does not contain column ownerid.LogicalName! OwnerId will be mapped to systemuser. If you wanted granular mapping of OwnerId, please regenerate the CSV.");
                 }
                 else
                 {
