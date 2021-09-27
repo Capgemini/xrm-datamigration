@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.DataMigration.Core.Tests.Base;
 using Capgemini.Xrm.DataMigration.DataStore;
 using Capgemini.Xrm.DataMigration.FileStore.Model;
+using Capgemini.Xrm.DataMigration.FileStore.UnitTests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
@@ -100,16 +102,14 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
         }
 
         [TestMethod]
+        [TestCategory(TestBase.AutomatedTestCategory)]
         public void SaveBatchDataToStore()
         {
-            List<EntityWrapper> entities = new List<EntityWrapper>
-            {
-                new EntityWrapper(new Entity("contact", Guid.NewGuid()) { })
-            };
+            List<EntityWrapper> entities = PrepareEntities();
 
             FluentActions.Invoking(() => systemUnderTest.SaveBatchDataToStore(entities))
-                             .Should()
-                             .NotThrow();
+                .Should()
+                .NotThrow();
         }
 
         [TestMethod]
@@ -156,8 +156,8 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
 
             // Assert
             FluentActions.Invoking(() => dataFileStoreWriter.RemoveEntityReferenceNameProperty(entitiesToExport))
-                             .Should()
-                             .NotThrow();
+                                .Should()
+                                .NotThrow();
 
             string accountNameAfter = ((EntityReference)entity["account"]).Name;
             accountNameBefore.Should().Be(accountName);
