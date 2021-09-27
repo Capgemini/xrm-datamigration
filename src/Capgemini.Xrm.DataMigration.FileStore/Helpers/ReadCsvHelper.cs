@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Capgemini.DataMigration.Core;
+using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
 using CsvHelper;
@@ -12,10 +14,12 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
     internal class ReadCsvHelper
     {
         private readonly CrmSchemaConfiguration schemaConfig;
+        private readonly ILogger logger;
 
-        public ReadCsvHelper(CrmSchemaConfiguration schemaConfig)
+        public ReadCsvHelper(CrmSchemaConfiguration schemaConfig, ILogger logger)
         {
             this.schemaConfig = schemaConfig;
+            this.logger = logger;
         }
 
         public List<EntityWrapper> ReadFromFile(string fileName, string entityName)
@@ -43,7 +47,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
                             }
                             else
                             {
-                                ReadCsvValue(entityName, reader, ent, idx, item);
+                                ReadCsvValue(entityName, reader, ent, idx, item, header);
                             }
 
                             idx++;
@@ -76,11 +80,26 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
             }
         }
 
-        private void ReadCsvValue(string entityName, CsvReader reader, Entity entity, int idx, string attrName)
+        private void ReadCsvValue(string entityName, CsvReader reader, Entity entity, int idx, string attrName, List<string> header)
         {
             string fieldName = attrName;
 
             var field = schemaConfig.Entities.Single(p => p.Name == entityName).CrmFields.FirstOrDefault(p => p.FieldName == fieldName);
+
+            if (fieldName == "ownerid")
+            {
+                string lookupType;
+                int colIndex = header.FindIndex(x => x == "ownerid.LogicalName");
+
+                if (colIndex == -1 || !reader.TryGetField(colIndex, out lookupType))
+                {
+                    logger.LogWarning("CSV file does not contain column ownerid.LogicalName! OwnerId will be mapped to systemuser. If you wanted granular mapping of OwnerId, please regenerate the CSV.");
+                }
+                else
+                {
+                    field.LookupType = lookupType;
+                }
+            }
 
             if (field != null)
             {

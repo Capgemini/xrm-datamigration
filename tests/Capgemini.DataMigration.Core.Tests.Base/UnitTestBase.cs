@@ -9,6 +9,8 @@ using Capgemini.DataMigration.DataStore;
 using Capgemini.DataMigration.Resiliency;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.Core;
+using Capgemini.Xrm.DataMigration.DataStore;
+using Capgemini.Xrm.DataMigration.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -172,6 +174,63 @@ where T : OrganizationResponse
             {
                 // Just bail out we don't care as this is a test artefact!
             }
+        }
+
+        protected static Entity CreateContact(string firstName, string lastName, EntityReference ownerId)
+        {
+            var contact = new Entity("contact")
+            {
+                Id = Guid.NewGuid()
+            };
+            contact.Attributes["firstname"] = firstName;
+            contact.Attributes["lastname"] = lastName;
+            contact.Attributes["ownerid"] = ownerId;
+
+            return contact;
+        }
+
+        protected static List<EntityWrapper> PrepareEntities()
+        {
+            List<EntityWrapper> entities = new List<EntityWrapper>
+            {
+                new EntityWrapper(CreateContact("Firs Test 1", "Last Test 1", new EntityReference("systemuser", Guid.NewGuid())), false),
+                new EntityWrapper(CreateContact("Firs Test 2", "Last Test 2", new EntityReference("systemuser", Guid.NewGuid())), false),
+                new EntityWrapper(CreateContact("Firs Test 3", "Last Test 3", new EntityReference("team", Guid.NewGuid())), false),
+                new EntityWrapper(CreateContact("Firs Test 4", "Last Test 4", new EntityReference("user", Guid.NewGuid())), false)
+            };
+            return entities;
+        }
+
+        protected static CrmSchemaConfiguration GetSchema(string extractedPath, string schemaFilename)
+        {
+            string schemaFilePath = Path.Combine(extractedPath, schemaFilename);
+
+            return CrmSchemaConfiguration.ReadFromFile(schemaFilePath);
+        }
+
+        protected static CrmSchemaConfiguration GetSchema()
+        {
+            var schemaConfig = new CrmSchemaConfiguration();
+            var entities = new List<CrmEntity>();
+            var contact = new CrmEntity
+            {
+                Name = "contact",
+                PrimaryIdField = "contactid"
+            };
+
+            var fields = new List<CrmField>
+            {
+                new CrmField { FieldName = "contactid", FieldType = "guid" },
+                new CrmField { FieldName = "firstname", FieldType = "string" },
+                new CrmField { FieldName = "lastname", FieldType = "string" },
+                new CrmField { FieldName = "ownerid", FieldType = "entityreference", LookupType = "systemuser" }
+            };
+            contact.CrmFields.AddRange(fields);
+
+            entities.Add(contact);
+            schemaConfig.Entities.AddRange(entities);
+
+            return schemaConfig;
         }
 
         protected void InitializeProperties()

@@ -16,17 +16,16 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
-    public class DataFileStoreReaderTest : UnitTestBase
+    public class DataFileStoreReaderTests : UnitTestBase
     {
-        private CrmSchemaConfiguration crmSchemaConfiguration;
-
-        private DataFileStoreReaderCsv systemUnderTest;
+        private DataFileStoreReader systemUnderTest;
 
         [TestInitialize]
         public void Setup()
         {
             InitializeProperties();
-            crmSchemaConfiguration = new CrmSchemaConfiguration();
+
+            systemUnderTest = new DataFileStoreReader(MockLogger.Object, FilePrefix, TestResultFolder);
         }
 
         [TestMethod]
@@ -133,7 +132,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
             string filePrefix = "filePrefix";
             string filesPath = "TestData";
 
-            systemUnderTest = new DataFileStoreReaderCsv(MockLogger.Object, filePrefix, filesPath, crmSchemaConfiguration);
+            systemUnderTest = new DataFileStoreReader(MockLogger.Object, filePrefix, filesPath);
 
             FluentActions.Invoking(() => systemUnderTest.Reset())
                          .Should()
@@ -144,19 +143,16 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         {
             string extractedPath = Path.Combine(TestBase.GetWorkiongFolderPath(), "TestData");
             string extractFolder = Path.Combine(extractedPath, "ExtractedData");
-            string schemaFilePath = Path.Combine(extractedPath, "usersettingsschema.xml");
 
-            CrmSchemaConfiguration schemaConfig = CrmSchemaConfiguration.ReadFromFile(schemaFilePath);
-
-            DataFileStoreReaderCsv store = new DataFileStoreReaderCsv(new ConsoleLogger(), filePrefix, extractFolder, schemaConfig);
+            var store = new DataFileStoreReader(new ConsoleLogger(), filePrefix, extractFolder);
 
             var batch = store.ReadBatchDataFromStore();
-            List<Entity> firstEnt = batch.Select(p => p.OriginalEntity).ToList();
+            var firstEnt = batch.Select(p => p.OriginalEntity).ToList();
 
-            DataFileStoreReader storeJson = new DataFileStoreReader(new ConsoleLogger(), filePrefix, extractFolder);
+            var storeJson = new DataFileStoreReader(new ConsoleLogger(), filePrefix, extractFolder);
 
             var batchJson = storeJson.ReadBatchDataFromStore();
-            List<Entity> firstEntJson = batchJson.Select(p => p.OriginalEntity).ToList();
+            var firstEntJson = batchJson.Select(p => p.OriginalEntity).ToList();
 
             return new Tuple<List<Entity>, List<Entity>>(firstEnt, firstEntJson);
         }

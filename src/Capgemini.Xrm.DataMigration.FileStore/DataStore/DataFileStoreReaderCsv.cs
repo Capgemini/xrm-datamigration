@@ -38,14 +38,14 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             this.logger = logger;
             this.filePrefix = filePrefix;
             this.filesPath = filesPath;
-            filesToRead = Directory.GetFiles(filesPath, filePrefix + "*.csv").OrderBy(p => p).ToList();
-            csvHelper = new ReadCsvHelper(schemaConfig);
+            filesToRead = Directory.GetFiles(filesPath, $"{filePrefix}*.csv").OrderBy(p => p).ToList();
+            csvHelper = new ReadCsvHelper(schemaConfig, logger);
         }
 
         public void Reset()
         {
             logger.LogInfo("DataFileStoreReaderCsv Reset performed");
-            filesToRead = Directory.GetFiles(filesPath, filePrefix + "*.csv").OrderBy(p => p).ToList();
+            filesToRead = Directory.GetFiles(filesPath, $"{filePrefix}*.csv").OrderBy(p => p).ToList();
             currentBatchNo = 0;
         }
 
@@ -111,7 +111,7 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             FileInfo file = new FileInfo(batchFile);
             string fileName = file.Name;
 
-            string entName = fileName.Replace(filePrefix + "_", string.Empty);
+            string entName = fileName.Replace($"{filePrefix}_", string.Empty);
 
             int lastUnderScore = entName.LastIndexOf('_');
 
