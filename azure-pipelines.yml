@@ -48,4 +48,4 @@ stages:
                   command: push
                   packagesToPush: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg
                   nuGetFeedType: external
-                  publishFeedCredentials: CapgeminiUkKey
+                  publishFeedCredentials: Capgemini_UK
