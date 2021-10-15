@@ -8,7 +8,7 @@ jobs:
       - name: buildConfiguration
         value: 'Release'
     displayName: Build test and analyse
-    
+     
     steps:
         - task: NuGetToolInstaller@1
           displayName: Install NuGet
