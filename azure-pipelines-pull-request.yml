@@ -12,19 +12,3 @@ stages:
   - stage: Build
     jobs:
     - template: templates/commonbuildtasks.yml
-  - stage: PublishtoPrivateFeed
-    displayName: Publish to Private Feed
-    jobs:
-      - job: PublishPrivateJob
-        displayName: Publish to Private Feed
-        steps:
-          - checkout: none
-          - download: current
-            displayName: Download NuGet package artifact
-            artifact: Capgemini.Xrm.DataMigration.Engine
-          - task: NuGetCommand@2
-            displayName: 'Push to private feed'
-            inputs:
-              command: push
-              packagesToPush: '$(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg'
-              publishVstsFeed: 'e64f1ace-b73a-42b0-8b8e-4b2fdbdac2c9'
