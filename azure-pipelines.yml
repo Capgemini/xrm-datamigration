@@ -1,7 +1,6 @@
 name: $(GITVERSION_FullSemVer)
 trigger:
   - master
-  
 pool:
   vmImage: 'windows-latest'
 variables:
