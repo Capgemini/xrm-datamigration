@@ -24,7 +24,7 @@ jobs:
         - task: SonarCloudPrepare@1
           displayName: Prepare SonarCloud
           inputs:
-            SonarCloud: 'Capgemini Accelerator Token'
+            SonarCloud: 'SonarCloud'
             organization: 'capgemini-1'
             scannerMode: 'MSBuild'
             projectKey: 'xrm-datamigration'
