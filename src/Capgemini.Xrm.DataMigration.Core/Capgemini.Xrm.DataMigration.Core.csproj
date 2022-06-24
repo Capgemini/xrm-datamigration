@@ -85,6 +85,7 @@
     <Compile Include="Config\MappingConfiguration.cs" />
     <Compile Include="Config\ObjectTypeCodeMappingConfiguration.cs" />
     <Compile Include="DataStore\EntityWrapper.cs" />
+    <Compile Include="IGenericCrmDataMigrator.cs" />
     <Compile Include="IEntityMetadataCache.cs" />
     <Compile Include="IEntityRepository.cs" />
     <Compile Include="IMappingFetchCreator.cs" />

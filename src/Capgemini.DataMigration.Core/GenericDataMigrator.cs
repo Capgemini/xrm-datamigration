@@ -11,8 +11,7 @@ namespace Capgemini.DataMigration.Core
     /// <summary>
     /// Generic Data Migrator Engine.
     /// </summary>
-    public class GenericDataMigrator<TMigrationEntity, TMigrationEntityWrapper>
-        where TMigrationEntity : class
+    public class GenericDataMigrator<TMigrationEntity, TMigrationEntityWrapper> : IGenericDataMigrator<TMigrationEntity, TMigrationEntityWrapper> where TMigrationEntity : class
         where TMigrationEntityWrapper : MigrationEntityWrapper<TMigrationEntity>
     {
         private readonly IDataStoreWriter<TMigrationEntity, TMigrationEntityWrapper> storeWriter;
