@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace Capgemini.DataMigration.Core.Model
 {
