@@ -125,6 +125,7 @@
     <Compile Include="IEntityProcessor.cs" />
     <Compile Include="IDataStoreReader.cs" />
     <Compile Include="IDataStoreWriter.cs" />
+    <Compile Include="IGenericDataMigrator.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="Model\EntityToBeObfuscated.cs" />
     <Compile Include="Model\FieldToBeObfuscated.cs" />
