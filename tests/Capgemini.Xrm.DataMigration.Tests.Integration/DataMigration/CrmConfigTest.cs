@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Capgemini.Xrm.DataMigration.Config;
+using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.CrmStore.Config;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Capgemini.Xrm.DataMigration.IntegrationTests
 {
@@ -13,6 +16,7 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
     public class CrmConfigTest
     {
         private const string ImportConfigExample = @"TestData/ImportConfigExample.json";
+        private Mock<IEntityMetadataCache> mockEntityMetadataCache;
 
         [TestInitialize]
         public void Setup()
@@ -21,6 +25,8 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
             {
                 File.Delete(ImportConfigExample);
             }
+
+            mockEntityMetadataCache = new Mock<IEntityMetadataCache>();
         }
 
         [TestMethod]
@@ -107,7 +113,7 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
             string fetchXMLFolderPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\TestDataSchema");
             CrmExporterConfig config = new CrmExporterConfig() { FetchXMLFolderPath = fetchXMLFolderPath };
 
-            List<string> fetchXmls = config.GetFetchXMLQueries();
+            List<string> fetchXmls = config.GetFetchXMLQueries(mockEntityMetadataCache.Object);
             Assert.IsTrue(fetchXmls.Count > 0);
         }
 
@@ -119,8 +125,65 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
             CrmExporterConfig config = new CrmExporterConfig();
             config.CrmMigrationToolSchemaPaths.Add(configPath);
 
-            List<string> fetchXmls = config.GetFetchXMLQueries();
+            List<string> fetchXmls = config.GetFetchXMLQueries(mockEntityMetadataCache.Object);
             Assert.IsTrue(fetchXmls.Count > 0);
+        }
+
+        [TestMethod]
+        public void GetFetchXMLQueries_ShouldIncludeCustomFilterWhenProvided()
+        {
+            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\TestDataSchema\\usersettingsschema.xml");
+            CrmExporterConfig config = new CrmExporterConfig();
+            config.CrmMigrationToolSchemaPaths.Add(configPath);
+            config.CrmMigrationToolSchemaFilters.Add("systemuser", "<filter></filter>");
+
+            List<string> fetchXmls = config.GetFetchXMLQueries(mockEntityMetadataCache.Object);
+            Assert.IsTrue(fetchXmls.Find(x => x.Contains("<entity name=\"systemuser\">")).Contains("<filter></filter>"));
+        }
+
+        [TestMethod]
+        public void GetFetchXMLQueries_ShouldNotIncludeActiveFilterWhenEnableButCustomFilterProvided()
+        {
+            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\TestDataSchema\\usersettingsschema.xml");
+            CrmExporterConfig config = new CrmExporterConfig();
+            config.CrmMigrationToolSchemaPaths.Add(configPath);
+            config.OnlyActiveRecords = true;
+            config.CrmMigrationToolSchemaFilters.Add("systemuser", "<filter></filter>");
+
+            List<string> fetchXmls = config.GetFetchXMLQueries(mockEntityMetadataCache.Object);
+            Assert.IsFalse(fetchXmls.First().Contains("<filter type=\"and\" >\r\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\r\n</filter>"));
+        }
+
+        [TestMethod]
+        public void GetFetchXMLQueries_ShouldIncludeActiveFilterWhenOnlyActiveRecordsIsTrue()
+        {
+            mockEntityMetadataCache.Setup(x => x.ContainsAttribute("systemuser", "statecode")).Returns(true);
+
+            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\TestDataSchema\\usersettingsschema.xml");
+            CrmExporterConfig config = new CrmExporterConfig();
+            config.CrmMigrationToolSchemaPaths.Add(configPath);
+            config.OnlyActiveRecords = true;
+
+            List<string> fetchXmls = config.GetFetchXMLQueries(mockEntityMetadataCache.Object);
+            Assert.IsTrue(fetchXmls.First().Contains("<filter type=\"and\" >\r\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\r\n</filter>"));
+        }
+
+        [TestMethod]
+        public void GetFetchXMLQueries_ShouldNotIncludeActiveFilterWhenStateCodeFieldDoesNotExist()
+        {
+            mockEntityMetadataCache.Setup(x => x.ContainsAttribute("systemuser", "statecode")).Returns(false);
+
+            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\BusinessUnits\\BusinessUnitSchema.xml");
+            CrmExporterConfig config = new CrmExporterConfig();
+            config.CrmMigrationToolSchemaPaths.Add(configPath);
+            config.OnlyActiveRecords = true;
+
+            List<string> fetchXmls = config.GetFetchXMLQueries(mockEntityMetadataCache.Object);
+            Assert.IsFalse(fetchXmls.Find(x => x.Contains("<entity name=\"businessunit\">")).Contains("<filter type=\"and\" >\r\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\r\n</filter>"));
         }
 
         [TestMethod]

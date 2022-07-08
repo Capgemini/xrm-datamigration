@@ -2,9 +2,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Capgemini.DataMigration.Core.Tests.Base;
+using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.CrmStore.DataStores;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit
 {
@@ -44,11 +46,12 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit
         [TestMethod]
         public void CrmDirectMigratorTest2()
         {
+            MockEntityRepo.SetupGet(x => x.GetEntityMetadataCache).Returns(MockEntityMetadataCache.Object);
             MockCrmStoreReaderConfig.SetupGet(a => a.PageSize).Returns(500);
             MockCrmStoreReaderConfig.SetupGet(a => a.BatchSize).Returns(500);
             MockCrmStoreReaderConfig.SetupGet(a => a.TopCount).Returns(1000);
             MockCrmStoreReaderConfig.SetupGet(a => a.OneEntityPerBatch).Returns(true);
-            MockCrmStoreReaderConfig.Setup(a => a.GetFetchXMLQueries()).Returns(new List<string>());
+            MockCrmStoreReaderConfig.Setup(a => a.GetFetchXMLQueries(It.IsAny<IEntityMetadataCache>())).Returns(new List<string>());
 
             MockCrmStoreWriterConfig.SetupGet(a => a.SaveBatchSize).Returns(10);
 

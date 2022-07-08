@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Capgemini.DataMigration.Core.Tests.Base;
+using Capgemini.Xrm.DataMigration.Core;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
 {
@@ -26,11 +28,13 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
             };
 
         private CrmStoreReaderConfig systemUnderTest;
+        private Mock<IEntityMetadataCache> mockEntityMetadataCache;
 
         [TestInitialize]
         public void Setup()
         {
             systemUnderTest = new CrmStoreReaderConfig(fetchXMlQueries);
+            mockEntityMetadataCache = new Mock<IEntityMetadataCache>();
         }
 
         [TestMethod]
@@ -47,7 +51,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
         [TestMethod]
         public void GetFetchXMLQueries()
         {
-            var actual = systemUnderTest.GetFetchXMLQueries();
+            var actual = systemUnderTest.GetFetchXMLQueries(mockEntityMetadataCache.Object);
 
             actual.Count.Should().Be(2);
         }

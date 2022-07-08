@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using Capgemini.DataMigration.Core.Tests.Base;
+using Capgemini.Xrm.DataMigration.Core;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
 {
@@ -10,18 +12,20 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
     public class CrmExporterConfigTests : UnitTestBase
     {
         private CrmExporterConfig systemUnderTest;
+        private Mock<IEntityMetadataCache> mockEntityMetadataCache;
 
         [TestInitialize]
         public void Setup()
         {
             InitializeProperties();
             systemUnderTest = new CrmExporterConfig();
+            mockEntityMetadataCache = new Mock<IEntityMetadataCache>();
         }
 
         [TestMethod]
         public void GetFetchXMLQueriesWithoutSettingConfigProperties()
         {
-            var actual = systemUnderTest.GetFetchXMLQueries();
+            var actual = systemUnderTest.GetFetchXMLQueries(mockEntityMetadataCache.Object);
 
             actual.Count.Should().Be(0);
         }
@@ -31,7 +35,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
         {
             systemUnderTest.FetchXMLFolderPath = "TestData";
 
-            var actual = systemUnderTest.GetFetchXMLQueries();
+            var actual = systemUnderTest.GetFetchXMLQueries(mockEntityMetadataCache.Object);
 
             actual.Count.Should().Be(1);
         }
@@ -42,7 +46,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
             systemUnderTest.FetchXMLFolderPath = "TestData";
             systemUnderTest.CrmMigrationToolSchemaPaths.Add("TestData\\usersettingsschema.xml");
 
-            var actual = systemUnderTest.GetFetchXMLQueries();
+            var actual = systemUnderTest.GetFetchXMLQueries(mockEntityMetadataCache.Object);
 
             actual.Count.Should().BeGreaterThan(2);
         }
