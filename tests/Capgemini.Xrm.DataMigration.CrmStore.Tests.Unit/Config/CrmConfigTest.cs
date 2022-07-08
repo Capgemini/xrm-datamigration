@@ -9,7 +9,7 @@ using Capgemini.Xrm.DataMigration.CrmStore.Config;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Capgemini.Xrm.DataMigration.IntegrationTests
+namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
 {
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [TestClass]
@@ -103,7 +103,7 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
         {
             var mgr = CrmExporterConfig.GetConfiguration(@"TestData/ExportConfig.json");
 
-            Assert.AreEqual("C:\\GitRepos\\UserSettings\\usersettingsschema.xml", mgr.CrmMigrationToolSchemaPaths[0]);
+            Assert.AreEqual(Path.Combine(Directory.GetCurrentDirectory(), "TestData\\usersettingsschema.xml"), mgr.CrmMigrationToolSchemaPaths[0]);
         }
 
         [TestMethod]
@@ -177,7 +177,7 @@ namespace Capgemini.Xrm.DataMigration.IntegrationTests
             mockEntityMetadataCache.Setup(x => x.ContainsAttribute("systemuser", "statecode")).Returns(false);
 
             string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
-            string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\BusinessUnits\\BusinessUnitSchema.xml");
+            string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\BusinessUnitSchema.xml");
             CrmExporterConfig config = new CrmExporterConfig();
             config.CrmMigrationToolSchemaPaths.Add(configPath);
             config.OnlyActiveRecords = true;
