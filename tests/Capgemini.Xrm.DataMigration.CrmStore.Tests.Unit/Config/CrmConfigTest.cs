@@ -6,6 +6,7 @@ using System.Reflection;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.CrmStore.Config;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -127,6 +128,21 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
 
             List<string> fetchXmls = config.GetFetchXMLQueries(mockEntityMetadataCache.Object);
             Assert.IsTrue(fetchXmls.Count > 0);
+        }
+
+        [TestMethod]
+        public void GetFetchXMLQueries_ShouldThrowWhenNullCacheProvided()
+        {
+            string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\TestDataSchema\\usersettingsschema.xml");
+            CrmExporterConfig config = new CrmExporterConfig();
+            config.CrmMigrationToolSchemaPaths.Add(configPath);
+
+            FluentActions
+                .Invoking(() => config.GetFetchXMLQueries(null))
+                .Should()
+                .Throw<ArgumentNullException>()
+                .WithMessage("*entityMetadataCache*");
         }
 
         [TestMethod]
