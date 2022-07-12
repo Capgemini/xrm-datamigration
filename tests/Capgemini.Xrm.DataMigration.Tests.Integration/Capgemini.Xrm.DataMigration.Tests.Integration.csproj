@@ -153,7 +153,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="DataMigration\CrmConfigTest.cs" />
     <Compile Include="DataMigration\DataStoreTests\DataCrmStoreReaderWriterTest.cs" />
     <Compile Include="DataMigration\DataStoreTests\DataFileStoreReaderWriterTest.cs" />
     <Compile Include="DataMigration\EntityMetadataCacheTest.cs" />

@@ -97,6 +97,7 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="Config\CrmConfigTest.cs" />
     <Compile Include="Config\CrmExporterConfigTests.cs" />
     <Compile Include="Config\CrmImportConfigTests.cs" />
     <Compile Include="Config\CrmStoreReaderConfigTests.cs" />
@@ -145,6 +146,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestData\ImportSchemas\BusinessUnitSchema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\ImportSchemas\TestDataSchema\testschemafile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\ImportSchemas\TestDataSchema\usersettingsschema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\usersettingsschema.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

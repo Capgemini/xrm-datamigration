@@ -14,6 +14,8 @@ namespace Capgemini.Xrm.DataMigration.Core
 
         AttributeMetadata GetAttribute(string entityName, string attributeName);
 
+        bool ContainsAttribute(string entityName, string attributeName);
+
         string GetLookUpEntityName(string entityName, string attributeName);
 
         string GetIdAliasKey(string entName);

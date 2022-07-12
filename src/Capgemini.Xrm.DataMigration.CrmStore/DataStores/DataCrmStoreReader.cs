@@ -36,7 +36,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
                 readerConfig == null ? 0 : readerConfig.BatchSize,
                 readerConfig == null ? 0 : readerConfig.TopCount,
                 readerConfig != null && readerConfig.OneEntityPerBatch,
-                readerConfig?.GetFetchXMLQueries(),
+                entityRepo?.GetEntityMetadataCache != null ? readerConfig?.GetFetchXMLQueries(entityRepo.GetEntityMetadataCache) : null,
                 readerConfig?.FieldsToObfuscate)
         {
         }

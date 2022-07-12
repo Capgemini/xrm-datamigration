@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Capgemini.DataMigration.Core.Tests.Base;
+using Capgemini.Xrm.DataMigration.Core;
 using Capgemini.Xrm.DataMigration.DataStore;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -141,11 +142,12 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
         [TestMethod]
         public void DataCrmStoreReaderConstructorWithConfigParameters()
         {
+            MockEntityRepo.SetupGet(x => x.GetEntityMetadataCache).Returns(MockEntityMetadataCache.Object);
             MockCrmStoreReaderConfig.SetupGet(a => a.PageSize).Returns(2);
             MockCrmStoreReaderConfig.SetupGet(a => a.BatchSize).Returns(4);
             MockCrmStoreReaderConfig.SetupGet(a => a.TopCount).Returns(4);
 
-            MockCrmStoreReaderConfig.Setup(a => a.GetFetchXMLQueries()).Returns(FetchXMlQueries);
+            MockCrmStoreReaderConfig.Setup(a => a.GetFetchXMLQueries(It.IsAny<IEntityMetadataCache>())).Returns(FetchXMlQueries);
 
             FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object))
                         .Should()

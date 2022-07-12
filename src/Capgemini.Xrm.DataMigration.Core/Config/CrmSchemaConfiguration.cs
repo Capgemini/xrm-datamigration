@@ -59,8 +59,13 @@ namespace Capgemini.Xrm.DataMigration.Config
             }
         }
 
-        public List<string> PrepareFetchXMLFromSchema(bool onlyActiveRecords, Dictionary<string, string> fetchXmlFilters, List<IMappingFetchCreator> mappingFetchCreators)
+        public List<string> PrepareFetchXMLFromSchema(bool onlyActiveRecords, Dictionary<string, string> fetchXmlFilters, List<IMappingFetchCreator> mappingFetchCreators, IEntityMetadataCache entityMetadataCache)
         {
+            if (entityMetadataCache == null)
+            {
+                throw new ArgumentNullException(nameof(entityMetadataCache));
+            }
+
             if (mappingFetchCreators == null)
             {
                 mappingFetchCreators = new List<IMappingFetchCreator>();
@@ -70,7 +75,7 @@ namespace Capgemini.Xrm.DataMigration.Config
 
             foreach (var entity in Entities)
             {
-                fetchXMls.Add(BuildFetchXml(entity, onlyActiveRecords, fetchXmlFilters, mappingFetchCreators));
+                fetchXMls.Add(BuildFetchXml(entity, onlyActiveRecords, fetchXmlFilters, mappingFetchCreators, entityMetadataCache));
 
                 if (entity.CrmRelationships != null)
                 {
@@ -84,7 +89,7 @@ namespace Capgemini.Xrm.DataMigration.Config
             return fetchXMls;
         }
 
-        private static string BuildFetchXml(CrmEntity entity, bool onlyActiveRecords, Dictionary<string, string> fetchXmlFilters, List<IMappingFetchCreator> mappingFetchCreators)
+        private static string BuildFetchXml(CrmEntity entity, bool onlyActiveRecords, Dictionary<string, string> fetchXmlFilters, List<IMappingFetchCreator> mappingFetchCreators, IEntityMetadataCache entityMetadataCache)
         {
             StringBuilder fetchXML = new StringBuilder();
             fetchXML.AppendLine("<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">");
@@ -105,15 +110,15 @@ namespace Capgemini.Xrm.DataMigration.Config
                 }
             }
 
-            if (onlyActiveRecords)
+            if (fetchXmlFilters != null && fetchXmlFilters.ContainsKey(entity.Name))
+            {
+                fetchXML.AppendLine(fetchXmlFilters[entity.Name]);
+            }
+            else if (onlyActiveRecords && entityMetadataCache.ContainsAttribute(entity.Name, EntityFields.StateCode))
             {
                 fetchXML.AppendLine("<filter type=\"and\" >");
                 fetchXML.AppendLine($"      <condition attribute=\"{EntityFields.StateCode}\" operator=\"eq\" value=\"0\" />");
                 fetchXML.AppendLine("</filter>");
-            }
-            else if (fetchXmlFilters != null && fetchXmlFilters.ContainsKey(entity.Name))
-            {
-                fetchXML.AppendLine(fetchXmlFilters[entity.Name]);
             }
 
             fetchXML.AppendLine("</entity>");
