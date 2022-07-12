@@ -47,10 +47,10 @@ jobs:
              **\*Tests*.dll
              !**\*Integration*.dll
              !**\obj\**
-        - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
-          displayName: 'WhiteSource Bolt'
-          inputs:
-            cwd: '$(Build.SourcesDirectory)'
+#         - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
+#           displayName: 'WhiteSource Bolt'
+#           inputs:
+#             cwd: '$(Build.SourcesDirectory)'
         - task: SonarCloudAnalyze@1
           displayName: 'Run Code Analysis'
         - task: SonarCloudPublish@1
