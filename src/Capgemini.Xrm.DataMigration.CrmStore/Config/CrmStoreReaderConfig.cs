@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Capgemini.DataMigration.Core.Model;
 using Capgemini.Xrm.DataMigration.Config;
+using Capgemini.Xrm.DataMigration.Core;
 
 namespace Capgemini.Xrm.DataMigration.CrmStore.Config
 {
@@ -26,7 +27,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// </summary>
         public List<EntityToBeObfuscated> FieldsToObfuscate { get; private set; } = new List<EntityToBeObfuscated>();
 
-        public List<string> GetFetchXMLQueries()
+        public List<string> GetFetchXMLQueries(IEntityMetadataCache entityMetadataCache)
         {
             return fetchXMlQueries;
         }

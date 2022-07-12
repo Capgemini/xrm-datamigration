@@ -117,7 +117,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
         /// Generates FetchXMLQueries.
         /// </summary>
         /// <returns>value.</returns>
-        public List<string> GetFetchXMLQueries()
+        public List<string> GetFetchXMLQueries(IEntityMetadataCache entityMetadataCache)
         {
             List<string> result = new List<string>();
 
@@ -136,7 +136,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config
                 foreach (var schemaPath in CrmMigrationToolSchemaPaths)
                 {
                     CrmSchemaConfiguration schema = CrmSchemaConfiguration.ReadFromFile(schemaPath);
-                    result.AddRange(schema.PrepareFetchXMLFromSchema(OnlyActiveRecords, CrmMigrationToolSchemaFilters, GetMappingFetchCreators()));
+                    result.AddRange(schema.PrepareFetchXMLFromSchema(OnlyActiveRecords, CrmMigrationToolSchemaFilters, GetMappingFetchCreators(), entityMetadataCache));
                 }
             }
 

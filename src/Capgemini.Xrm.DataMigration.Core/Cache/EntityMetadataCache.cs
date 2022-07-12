@@ -92,6 +92,11 @@ namespace Capgemini.Xrm.DataMigration.Cache
             return attr;
         }
 
+        public bool ContainsAttribute(string entityName, string attributeName)
+        {
+            return GetEntityMetadata(entityName).Attributes.Any(x => x.LogicalName == attributeName);
+        }
+
         public Type GetAttributeDotNetType(string entityName, string attributeName)
         {
             var attr = GetAttribute(entityName, attributeName);

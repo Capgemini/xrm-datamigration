@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Capgemini.DataMigration.Core.Model;
+using Capgemini.Xrm.DataMigration.Core;
 
 namespace Capgemini.Xrm.DataMigration.Config
 {
@@ -35,6 +36,6 @@ namespace Capgemini.Xrm.DataMigration.Config
         /// Generates FetchXMLQueries.
         /// </summary>
         /// <returns>Returns fetchxml list.</returns>
-        List<string> GetFetchXMLQueries();
+        List<string> GetFetchXMLQueries(IEntityMetadataCache entityMetadataCache);
     }
 }

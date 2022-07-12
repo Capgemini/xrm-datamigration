@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <entity name="cap_configurationparameter" displayname="Configuration Parameter" etc="10059" primaryidfield="cap_configurationparameterid" primarynamefield="cap_name" disableplugins="false">
+    <fields>
+      <field displayname="Key" name="cap_key" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Is Encrypted" name="cap_isencrypted" type="bool" primaryKey="false" customfield="false" />
+      <field displayname="Value" name="cap_value" type="string" primaryKey="false" customfield="false" />
+      <field displayname="Description" name="cap_description" type="string" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+  <entity name="cap_log" displayname="Log" etc="10060" primaryidfield="cap_logid" primarynamefield="cap_name" disableplugins="false">
+    <fields>
+      <field displayname="Type" name="cap_type" type="optionsetvalue" primaryKey="false" customfield="false" />
+      <field displayname="Error Details" name="cap_errordetails" type="memo" primaryKey="false" customfield="false" />
+      <field displayname="Name" name="cap_name" type="string" primaryKey="false" customfield="false" />
+    </fields>
+    <relationships />
+  </entity>
+</entities>

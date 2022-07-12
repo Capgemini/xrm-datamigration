@@ -10,7 +10,7 @@
     "businessunitid"
   ],
   "CrmMigrationToolSchemaPaths": [
-    "TestData\\usersettingsschema.xml"
+    "usersettingsschema.xml"
   ],
   "PageSize": 500,
   "BatchSize": 500,
