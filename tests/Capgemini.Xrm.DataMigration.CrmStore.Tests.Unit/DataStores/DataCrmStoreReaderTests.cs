@@ -51,7 +51,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object))
                         .Should()
                         .Throw<ArgumentOutOfRangeException>()
-                        .Where(a => a.Message.Contains("Must be more than zero") && a.Message.Contains("pageSize"));
+                        .Where(a => a.Message.Contains("Must be more than zero") && a.Message.Contains("PageSize"));
 
             MockCrmStoreReaderConfig.VerifyGet(a => a.PageSize);
         }
@@ -65,7 +65,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object))
                         .Should()
                         .Throw<ArgumentOutOfRangeException>()
-                        .Where(a => a.Message.Contains("Must be more than zero") && a.Message.Contains("batchSize"));
+                        .Where(a => a.Message.Contains("Must be more than zero") && a.Message.Contains("BatchSize"));
 
             MockCrmStoreReaderConfig.VerifyGet(a => a.PageSize);
             MockCrmStoreReaderConfig.VerifyGet(a => a.BatchSize);
@@ -81,7 +81,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object))
                         .Should()
                         .Throw<ArgumentOutOfRangeException>()
-                        .Where(a => a.Message.Contains("Must be more than zero") && a.Message.Contains("topCount"));
+                        .Where(a => a.Message.Contains("Must be more than zero") && a.Message.Contains("TopCount"));
 
             MockCrmStoreReaderConfig.VerifyGet(a => a.PageSize);
             MockCrmStoreReaderConfig.VerifyGet(a => a.BatchSize);
@@ -98,7 +98,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object))
                         .Should()
                         .Throw<ArgumentOutOfRangeException>()
-                        .Where(a => a.Message.Contains("Must be less or equall batchSize") && a.Message.Contains("pageSize"));
+                        .Where(a => a.Message.Contains("Must be less than or equal to batchSize") && a.Message.Contains("PageSize"));
 
             MockCrmStoreReaderConfig.VerifyGet(a => a.PageSize);
             MockCrmStoreReaderConfig.VerifyGet(a => a.BatchSize);
@@ -115,7 +115,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object))
                         .Should()
                         .Throw<ArgumentOutOfRangeException>()
-                        .Where(a => a.Message.Contains("Must be more or equall batchSize") && a.Message.Contains("topCount"));
+                        .Where(a => a.Message.Contains("Must be more than or equal to batchSize") && a.Message.Contains("TopCount"));
 
             MockCrmStoreReaderConfig.VerifyGet(a => a.PageSize);
             MockCrmStoreReaderConfig.VerifyGet(a => a.BatchSize);
@@ -136,7 +136,6 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             MockCrmStoreReaderConfig.VerifyGet(a => a.PageSize);
             MockCrmStoreReaderConfig.VerifyGet(a => a.BatchSize);
             MockCrmStoreReaderConfig.VerifyGet(a => a.TopCount);
-            MockCrmStoreReaderConfig.VerifyGet(a => a.OneEntityPerBatch);
         }
 
         [TestMethod]

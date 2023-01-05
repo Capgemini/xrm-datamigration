@@ -29,16 +29,46 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
         private int totalCount;
 
         public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, ICrmStoreReaderConfig readerConfig)
-            : this(
-                logger,
-                entityRepo,
-                readerConfig == null ? 0 : readerConfig.PageSize,
-                readerConfig == null ? 0 : readerConfig.BatchSize,
-                readerConfig == null ? 0 : readerConfig.TopCount,
-                readerConfig != null && readerConfig.OneEntityPerBatch,
-                entityRepo?.GetEntityMetadataCache != null ? readerConfig?.GetFetchXMLQueries(entityRepo.GetEntityMetadataCache) : null,
-                readerConfig?.FieldsToObfuscate)
         {
+            logger.ThrowIfNull<ArgumentNullException>(nameof(logger));
+            entityRepo.ThrowIfNull<ArgumentNullException>(nameof(entityRepo));
+            if (readerConfig == null || readerConfig.PageSize <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(readerConfig.PageSize), "Must be more than zero");
+            }
+
+            if (readerConfig.BatchSize <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(readerConfig.BatchSize), "Must be more than zero");
+            }
+
+            if (readerConfig.TopCount <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(readerConfig.TopCount), "Must be more than zero");
+            }
+
+            if (readerConfig.PageSize > readerConfig.BatchSize)
+            {
+                throw new ArgumentOutOfRangeException(nameof(readerConfig.PageSize), "Must be less than or equal to batchSize");
+            }
+
+            if (readerConfig.TopCount < readerConfig.BatchSize)
+            {
+                throw new ArgumentOutOfRangeException(nameof(readerConfig.TopCount), "Must be more than or equal to batchSize");
+            }
+
+            List<string> fetchXmlQueries = entityRepo?.GetEntityMetadataCache != null ? readerConfig?.GetFetchXMLQueries(entityRepo.GetEntityMetadataCache) : null;
+
+            fetchXmlQueries.ThrowArgumentNullExceptionIfNull(nameof(fetchXmlQueries));
+
+            this.entityRepo = entityRepo;
+            this.logger = logger;
+            this.pageSize = readerConfig.PageSize;
+            this.batchSize = readerConfig.BatchSize;
+            this.topCount = readerConfig.TopCount;
+            this.oneEntityPerBatch = readerConfig.OneEntityPerBatch;
+            this.fieldsToObfuscate = readerConfig?.FieldsToObfuscate;
+            fetchXMLQueries = fetchXmlQueries;
         }
 
         public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, int pageSize, int batchSize, int topCount, bool oneEntityPerBatch, List<string> fetchXmlQueries, List<EntityToBeObfuscated> fieldsToObfuscate)
