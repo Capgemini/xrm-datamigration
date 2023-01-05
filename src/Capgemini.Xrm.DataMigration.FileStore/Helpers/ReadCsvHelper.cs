@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Capgemini.DataMigration.Core;
+using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
 using Capgemini.Xrm.DataMigration.Model;
@@ -29,12 +30,10 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
 
             if (headerLine == null)
             {
-                throw new Exception($"null data retruned from file: {fileName}");
+                throw new ConfigurationException($"null data retruned from file: {fileName}");
             }
 
             List<string> header = headerLine.Split(',').ToList();
-
-
 
             using (TextReader tr = File.OpenText(fileName))
             {
