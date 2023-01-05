@@ -63,52 +63,11 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
 
             this.entityRepo = entityRepo;
             this.logger = logger;
-            this.pageSize = readerConfig.PageSize;
-            this.batchSize = readerConfig.BatchSize;
-            this.topCount = readerConfig.TopCount;
-            this.oneEntityPerBatch = readerConfig.OneEntityPerBatch;
-            this.fieldsToObfuscate = readerConfig?.FieldsToObfuscate;
-            fetchXMLQueries = fetchXmlQueries;
-        }
-
-        public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, int pageSize, int batchSize, int topCount, bool oneEntityPerBatch, List<string> fetchXmlQueries, List<EntityToBeObfuscated> fieldsToObfuscate)
-        {
-            logger.ThrowIfNull<ArgumentNullException>(nameof(logger));
-            entityRepo.ThrowIfNull<ArgumentNullException>(nameof(entityRepo));
-            if (pageSize <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(pageSize), "Must be more than zero");
-            }
-
-            if (batchSize <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(batchSize), "Must be more than zero");
-            }
-
-            if (topCount <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(topCount), "Must be more than zero");
-            }
-
-            if (pageSize > batchSize)
-            {
-                throw new ArgumentOutOfRangeException(nameof(pageSize), "Must be less or equall batchSize");
-            }
-
-            if (topCount < batchSize)
-            {
-                throw new ArgumentOutOfRangeException(nameof(topCount), "Must be more or equall batchSize");
-            }
-
-            fetchXmlQueries.ThrowArgumentNullExceptionIfNull(nameof(fetchXmlQueries));
-
-            this.entityRepo = entityRepo;
-            this.logger = logger;
-            this.pageSize = pageSize;
-            this.batchSize = batchSize;
-            this.topCount = topCount;
-            this.oneEntityPerBatch = oneEntityPerBatch;
-            this.fieldsToObfuscate = fieldsToObfuscate;
+            pageSize = readerConfig.PageSize;
+            batchSize = readerConfig.BatchSize;
+            topCount = readerConfig.TopCount;
+            oneEntityPerBatch = readerConfig.OneEntityPerBatch;
+            fieldsToObfuscate = readerConfig?.FieldsToObfuscate;
             fetchXMLQueries = fetchXmlQueries;
         }
 

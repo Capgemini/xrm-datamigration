@@ -161,7 +161,15 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
         [TestMethod]
         public void DataCrmStoreReaderConstructor()
         {
-            FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries, EmptyFieldsToObfuscate))
+            MockEntityRepo.SetupGet(x => x.GetEntityMetadataCache).Returns(MockEntityMetadataCache.Object);
+
+            MockCrmStoreReaderConfig.SetupGet(a => a.PageSize).Returns(pageSize);
+            MockCrmStoreReaderConfig.SetupGet(a => a.BatchSize).Returns(batchSize);
+            MockCrmStoreReaderConfig.SetupGet(a => a.TopCount).Returns(topCount);
+            MockCrmStoreReaderConfig.SetupGet(a => a.OneEntityPerBatch).Returns(oneEntityPerBatch);
+            MockCrmStoreReaderConfig.Setup(a => a.GetFetchXMLQueries(It.IsAny<IEntityMetadataCache>())).Returns(FetchXMlQueries);
+
+            FluentActions.Invoking(() => new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object))
                    .Should()
                    .NotThrow();
         }
@@ -169,6 +177,14 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
         [TestMethod]
         public void ReadBatchDataFromStore()
         {
+            MockEntityRepo.SetupGet(x => x.GetEntityMetadataCache).Returns(MockEntityMetadataCache.Object);
+
+            MockCrmStoreReaderConfig.SetupGet(a => a.PageSize).Returns(pageSize);
+            MockCrmStoreReaderConfig.SetupGet(a => a.BatchSize).Returns(batchSize);
+            MockCrmStoreReaderConfig.SetupGet(a => a.TopCount).Returns(topCount);
+            MockCrmStoreReaderConfig.SetupGet(a => a.OneEntityPerBatch).Returns(oneEntityPerBatch);
+            MockCrmStoreReaderConfig.Setup(a => a.GetFetchXMLQueries(It.IsAny<IEntityMetadataCache>())).Returns(FetchXMlQueries);
+
             var entityWrapperList = new List<EntityWrapper>
             {
                 new EntityWrapper(new Entity("contact", Guid.NewGuid()))
@@ -177,7 +193,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
             MockEntityRepo.Setup(a => a.GetEntitesByFetchXML(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), ref It.Ref<string>.IsAny))
                            .Returns(entityWrapperList);
 
-            systemUnderTest = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries, EmptyFieldsToObfuscate);
+            systemUnderTest = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object);
 
             var actual = systemUnderTest.ReadBatchDataFromStore();
 
@@ -188,7 +204,15 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores.Tests
         [TestMethod]
         public void Reset()
         {
-            systemUnderTest = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, pageSize, batchSize, topCount, oneEntityPerBatch, FetchXMlQueries, EmptyFieldsToObfuscate);
+            MockEntityRepo.SetupGet(x => x.GetEntityMetadataCache).Returns(MockEntityMetadataCache.Object);
+
+            MockCrmStoreReaderConfig.SetupGet(a => a.PageSize).Returns(pageSize);
+            MockCrmStoreReaderConfig.SetupGet(a => a.BatchSize).Returns(batchSize);
+            MockCrmStoreReaderConfig.SetupGet(a => a.TopCount).Returns(topCount);
+            MockCrmStoreReaderConfig.SetupGet(a => a.OneEntityPerBatch).Returns(oneEntityPerBatch);
+            MockCrmStoreReaderConfig.Setup(a => a.GetFetchXMLQueries(It.IsAny<IEntityMetadataCache>())).Returns(FetchXMlQueries);
+
+            systemUnderTest = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object);
 
             FluentActions.Invoking(() => systemUnderTest.Reset())
                         .Should()
