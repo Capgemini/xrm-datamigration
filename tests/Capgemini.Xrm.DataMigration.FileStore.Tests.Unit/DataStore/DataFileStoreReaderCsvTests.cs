@@ -5,13 +5,11 @@ using System.IO;
 using System.Linq;
 using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Core.Tests.Base;
-using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.FileStore.DataStore;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
-using Moq;
 
 namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
 {
@@ -136,11 +134,13 @@ namespace Capgemini.Xrm.DataMigration.FileStore.UnitTests.DataStore
         [TestCategory(TestBase.AutomatedTestCategory)]
         public void ReadContacts()
         {
-            var expectedIdList = new List<Guid>{
+            var expectedIdList = new List<Guid>
+            {
                 Guid.Parse("274589c3-2dbf-465b-938a-4992a24fea5b"),
                 Guid.Parse("e6f72b28-c9c8-4315-b005-7fbe74495e3b"),
                 Guid.Parse("4ac0c3be-a142-402f-988b-0c01c158c065"),
-                Guid.Parse("07843cd6-ce3f-4638-a36f-5d7dbe4a5c26") };
+                Guid.Parse("07843cd6-ce3f-4638-a36f-5d7dbe4a5c26")
+            };
 
             var store = new DataFileStoreReaderCsv(MockLogger.Object, "ValidFilePrefix", extractFolder, GetSchema());
 

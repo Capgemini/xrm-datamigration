@@ -177,44 +177,44 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
 
         private string CreateCsvLine(CrmEntityStore record, List<string> header)
         {
-            if (record != null)
+            if (record == null)
             {
-                string[] items = new string[header.Count];
-                items[0] = record.Id.ToString();
-                foreach (var item in record.Attributes)
-                {
-                    int position = header.IndexOf(item.AttributeName);
-
-                    if (position >= 0)
-                    {
-                        object attrValue = EntityConverterHelper.GetAttributeValueForCsv(item);
-                        if (item.AttributeType == "System.String")
-                        {
-                            string atVal = attrValue?.ToString().Replace("\"", "\"\"");
-                            items[position] = $"\"{atVal}\"";
-                        }
-                        else if (item.AttributeType == "Microsoft.Xrm.Sdk.EntityReference" && item.AttributeName == "ownerid")
-                        {
-                            var entityref = (EntityReference)item.AttributeValue;
-                            int logicalNamePosition = header.IndexOf($"{item.AttributeName}.LogicalName");
-                            if (logicalNamePosition >= 0)
-                            {
-                                items[logicalNamePosition] = $"\"{entityref.LogicalName}\"";
-                            }
-
-                            items[position] = attrValue?.ToString();
-                        }
-                        else
-                        {
-                            items[position] = attrValue?.ToString();
-                        }
-                    }
-                }
-
-                return string.Join(delimiter, items);
+                return null;
             }
 
-            return null;
+            string[] items = new string[header.Count];
+            items[0] = record.Id.ToString();
+            foreach (var item in record.Attributes)
+            {
+                int position = header.IndexOf(item.AttributeName);
+
+                if (position >= 0)
+                {
+                    object attrValue = EntityConverterHelper.GetAttributeValueForCsv(item);
+                    if (item.AttributeType == "System.String")
+                    {
+                        string atVal = attrValue?.ToString().Replace("\"", "\"\"");
+                        items[position] = $"\"{atVal}\"";
+                    }
+                    else if (item.AttributeType == "Microsoft.Xrm.Sdk.EntityReference" && item.AttributeName == "ownerid")
+                    {
+                        var entityref = (EntityReference)item.AttributeValue;
+                        int logicalNamePosition = header.IndexOf($"{item.AttributeName}.LogicalName");
+                        if (logicalNamePosition >= 0)
+                        {
+                            items[logicalNamePosition] = $"\"{entityref.LogicalName}\"";
+                        }
+
+                        items[position] = attrValue?.ToString();
+                    }
+                    else
+                    {
+                        items[position] = attrValue?.ToString();
+                    }
+                }
+            }
+
+            return string.Join(delimiter, items);
         }
 
         private string GetFileNameForBatchNo(int batchNo, string entName)
