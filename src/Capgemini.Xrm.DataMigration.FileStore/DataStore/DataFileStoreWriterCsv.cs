@@ -114,28 +114,17 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             store.ThrowArgumentNullExceptionIfNull(nameof(store));
 
             var ent = store.ExportedEntities.FirstOrDefault();
+
+            if (ent == null)
+            {
+                throw new ConfigurationException($"null value returned from {nameof(store.ExportedEntities)}");
+            }
+
             List<string> header = new List<string>();
 
             if (!ent.IsManyToMany)
             {
-                CrmEntity entity = schemaConfig.Entities.FirstOrDefault(p => p.Name == ent.LogicalName);
-
-                var fields = entity.CrmFields.Where(p => p.FieldName != entity.PrimaryIdField).Select(p => p.FieldName).ToList();
-
-                foreach (var lookup in entity.CrmFields.Where(p => p.FieldName != entity.PrimaryIdField && p.FieldType == "entityreference" && p.FieldName == "ownerid").Select(p => $"{p.FieldName}.LogicalName"))
-                {
-                    fields.Add(lookup);
-                }
-
-                AddFieldWithCheck(header, entity.PrimaryIdField);
-
-                if (fields != null)
-                {
-                    foreach (var field in fields)
-                    {
-                        AddFieldWithCheck(header, field);
-                    }
-                }
+                AddSingleEntityFields(ent.LogicalName, header);
             }
             else
             {
@@ -143,6 +132,11 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
                     .First(r => r.CrmRelationships.Select(a => a.RelatedEntityName == ent.LogicalName).Any());
 
                 CrmRelationship rel = entity.CrmRelationships.FirstOrDefault(a => a.RelatedEntityName == ent.LogicalName);
+
+                if (rel == null)
+                {
+                    throw new ConfigurationException($"null value returned from {nameof(entity.CrmRelationships)}");
+                }
 
                 AddFieldWithCheck(header, $"{rel.RelationshipName}id");
                 AddFieldWithCheck(header, entity.PrimaryIdField);
@@ -160,6 +154,33 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore
             }
 
             return header;
+        }
+
+        private void AddSingleEntityFields(string entLogicalName, List<string> header)
+        {
+            CrmEntity entity = schemaConfig.Entities.FirstOrDefault(p => p.Name == entLogicalName);
+
+            if (entity == null)
+            {
+                throw new ConfigurationException($"null value returned from {nameof(schemaConfig.Entities)}");
+            }
+
+            var fields = entity.CrmFields.Where(p => p.FieldName != entity.PrimaryIdField).Select(p => p.FieldName).ToList();
+
+            foreach (var lookup in entity.CrmFields.Where(p => p.FieldName != entity.PrimaryIdField && p.FieldType == "entityreference" && p.FieldName == "ownerid").Select(p => $"{p.FieldName}.LogicalName"))
+            {
+                fields.Add(lookup);
+            }
+
+            AddFieldWithCheck(header, entity.PrimaryIdField);
+
+            if (fields != null)
+            {
+                foreach (var field in fields)
+                {
+                    AddFieldWithCheck(header, field);
+                }
+            }
         }
 
         private void AddFieldWithCheck(List<string> header, string fieldName)

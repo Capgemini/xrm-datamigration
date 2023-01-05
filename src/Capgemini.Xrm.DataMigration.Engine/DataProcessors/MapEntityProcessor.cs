@@ -109,12 +109,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
         private static void MapGuidAttributes(EntityWrapper entity, Dictionary<string, Dictionary<Guid, Guid>> mappings, List<KeyValuePair<string, object>> items)
         {
-            foreach (KeyValuePair<string, object> item in items)
+            foreach (var item in items.Where(item => item.Value is Guid))
             {
-                if (item.Value is Guid)
-                {
-                    SetEnityAttributeFromMap(entity, mappings, item);
-                }
+                SetEnityAttributeFromMap(entity, mappings, item);
             }
         }
 
