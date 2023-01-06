@@ -4,8 +4,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Core.Tests.Base;
+using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
+using Capgemini.Xrm.DataMigration.FileStore.Model;
 using Capgemini.Xrm.DataMigration.FileStore.UnitTests;
 using Capgemini.Xrm.DataMigration.Model;
 using FluentAssertions;
@@ -137,6 +139,44 @@ namespace Capgemini.Xrm.DataMigration.FileStore.DataStore.Tests
             FluentActions.Invoking(() => systemUnderTest.SaveBatchDataToStore(entities))
                 .Should()
                 .NotThrow();
+        }
+
+        [TestMethod]
+        [TestCategory(TestBase.AutomatedTestCategory)]
+        [ExpectedException(typeof(ConfigurationException), "null value returned from ExportedEntities")]
+        public void GetHeaderNullExportedEntities()
+        {
+            var schemaConfig = GetSchema();
+
+            systemUnderTest = new DataFileStoreWriterCsv(MockLogger.Object, $"{Guid.NewGuid()}", TestResultFolder, null, schemaConfig);
+
+            var exportedStore = new CrmExportedDataStore();
+
+            PrivateObject privateObject = new PrivateObject(systemUnderTest);
+            object[] args = { exportedStore };
+
+            privateObject.Invoke("GetHeader", args);
+        }
+
+        [TestMethod]
+        [TestCategory(TestBase.AutomatedTestCategory)]
+        [ExpectedException(typeof(ConfigurationException), "null value returned from CrmRelationships")]
+        public void GetHeaderManyToManyNullRelationship()
+        {
+            var schemaConfig = GetSchema();
+            var crmRelationship = new CrmRelationship() { RelatedEntityName = "name1" };
+            schemaConfig.Entities[0].CrmRelationships.Add(crmRelationship);
+
+            systemUnderTest = new DataFileStoreWriterCsv(MockLogger.Object, $"{Guid.NewGuid()}", TestResultFolder, null, schemaConfig);
+
+            var exportedStore = new CrmExportedDataStore();
+            var crmEntityStore = new CrmEntityStore() { IsManyToMany = true, LogicalName = "name2" };
+            exportedStore.ExportedEntities.Add(crmEntityStore);
+
+            PrivateObject privateObject = new PrivateObject(systemUnderTest);
+            object[] args = { exportedStore };
+
+            privateObject.Invoke("GetHeader", args);
         }
     }
 }

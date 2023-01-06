@@ -6,6 +6,7 @@ using Capgemini.DataMigration.Core;
 using Capgemini.DataMigration.Exceptions;
 using Capgemini.Xrm.DataMigration.Config;
 using Capgemini.Xrm.DataMigration.DataStore;
+using Capgemini.Xrm.DataMigration.Model;
 using CsvHelper;
 using Microsoft.Xrm.Sdk;
 
@@ -26,6 +27,12 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
         {
             List<EntityWrapper> store = new List<EntityWrapper>();
             string headerLine = File.ReadLines(fileName).FirstOrDefault();
+
+            if (headerLine == null)
+            {
+                throw new ConfigurationException($"null data retruned from file: {fileName}");
+            }
+
             List<string> header = headerLine.Split(',').ToList();
 
             using (TextReader tr = File.OpenText(fileName))
@@ -82,23 +89,11 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
 
         private void ReadCsvValue(string entityName, CsvReader reader, Entity entity, int idx, string attrName, List<string> header)
         {
-            string fieldName = attrName;
+            var field = schemaConfig.Entities.Single(p => p.Name == entityName).CrmFields.FirstOrDefault(p => p.FieldName == attrName);
 
-            var field = schemaConfig.Entities.Single(p => p.Name == entityName).CrmFields.FirstOrDefault(p => p.FieldName == fieldName);
-
-            if (fieldName == "ownerid")
+            if (attrName == "ownerid")
             {
-                string lookupType;
-                int colIndex = header.FindIndex(x => x == "ownerid.LogicalName");
-
-                if (colIndex == -1 || !reader.TryGetField(colIndex, out lookupType))
-                {
-                    logger.LogWarning("CSV file does not contain column ownerid.LogicalName! OwnerId will be mapped to systemuser. If you wanted granular mapping of OwnerId, please regenerate the CSV.");
-                }
-                else
-                {
-                    field.LookupType = lookupType;
-                }
+                GetOwnerIdLogicalName(header, reader, field);
             }
 
             if (field != null)
@@ -119,6 +114,21 @@ namespace Capgemini.Xrm.DataMigration.FileStore.Helpers
                         }
                     }
                 }
+            }
+        }
+
+        private void GetOwnerIdLogicalName(List<string> header, CsvReader reader, CrmField field)
+        {
+            string lookupType;
+            int colIndex = header.FindIndex(x => x == "ownerid.LogicalName");
+
+            if (colIndex == -1 || !reader.TryGetField(colIndex, out lookupType))
+            {
+                logger.LogWarning("CSV file does not contain column ownerid.LogicalName! OwnerId will be mapped to systemuser. If you wanted granular mapping of OwnerId, please regenerate the CSV.");
+            }
+            else
+            {
+                field.LookupType = lookupType;
             }
         }
     }
