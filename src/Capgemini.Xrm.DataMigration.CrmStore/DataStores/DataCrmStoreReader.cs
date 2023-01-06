@@ -29,56 +29,24 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
         private int totalCount;
 
         public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, ICrmStoreReaderConfig readerConfig)
-            : this(
-                logger,
-                entityRepo,
-                readerConfig == null ? 0 : readerConfig.PageSize,
-                readerConfig == null ? 0 : readerConfig.BatchSize,
-                readerConfig == null ? 0 : readerConfig.TopCount,
-                readerConfig != null && readerConfig.OneEntityPerBatch,
-                entityRepo?.GetEntityMetadataCache != null ? readerConfig?.GetFetchXMLQueries(entityRepo.GetEntityMetadataCache) : null,
-                readerConfig?.FieldsToObfuscate)
-        {
-        }
-
-        public DataCrmStoreReader(ILogger logger, IEntityRepository entityRepo, int pageSize, int batchSize, int topCount, bool oneEntityPerBatch, List<string> fetchXmlQueries, List<EntityToBeObfuscated> fieldsToObfuscate)
         {
             logger.ThrowIfNull<ArgumentNullException>(nameof(logger));
             entityRepo.ThrowIfNull<ArgumentNullException>(nameof(entityRepo));
-            if (pageSize <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(pageSize), "Must be more than zero");
-            }
+            readerConfig.ThrowIfNull<ArgumentNullException>(nameof(readerConfig));
 
-            if (batchSize <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(batchSize), "Must be more than zero");
-            }
+            ReaderConfigValidation(readerConfig.PageSize, readerConfig.BatchSize, readerConfig.TopCount);
 
-            if (topCount <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(topCount), "Must be more than zero");
-            }
-
-            if (pageSize > batchSize)
-            {
-                throw new ArgumentOutOfRangeException(nameof(pageSize), "Must be less or equall batchSize");
-            }
-
-            if (topCount < batchSize)
-            {
-                throw new ArgumentOutOfRangeException(nameof(topCount), "Must be more or equall batchSize");
-            }
+            List<string> fetchXmlQueries = entityRepo?.GetEntityMetadataCache != null ? readerConfig?.GetFetchXMLQueries(entityRepo.GetEntityMetadataCache) : null;
 
             fetchXmlQueries.ThrowArgumentNullExceptionIfNull(nameof(fetchXmlQueries));
 
             this.entityRepo = entityRepo;
             this.logger = logger;
-            this.pageSize = pageSize;
-            this.batchSize = batchSize;
-            this.topCount = topCount;
-            this.oneEntityPerBatch = oneEntityPerBatch;
-            this.fieldsToObfuscate = fieldsToObfuscate;
+            pageSize = readerConfig.PageSize;
+            batchSize = readerConfig.BatchSize;
+            topCount = readerConfig.TopCount;
+            oneEntityPerBatch = readerConfig.OneEntityPerBatch;
+            fieldsToObfuscate = readerConfig?.FieldsToObfuscate;
             fetchXMLQueries = fetchXmlQueries;
         }
 
@@ -130,6 +98,34 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.DataStores
             currentQueryIdx = 0;
             recordsCount = 0;
             totalCount = 0;
+        }
+
+        private static void ReaderConfigValidation(int pageSize, int batchSize, int topCount)
+        {
+            if (pageSize <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageSize), "Must be more than zero");
+            }
+
+            if (batchSize <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(batchSize), "Must be more than zero");
+            }
+
+            if (topCount <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(topCount), "Must be more than zero");
+            }
+
+            if (pageSize > batchSize)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageSize), "Must be less than or equal to batchSize");
+            }
+
+            if (topCount < batchSize)
+            {
+                throw new ArgumentOutOfRangeException(nameof(topCount), "Must be more than or equal to batchSize");
+            }
         }
 
         private bool ShouldExitLoop(List<EntityWrapper> entities)

@@ -32,7 +32,15 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit
             schemaConfig = new CrmSchemaConfiguration();
             schemaConfig.Entities.AddRange(entities);
 
-            dataCrmStoreReader = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, 500, 500, 1000, true, new List<string>(), EmptyFieldsToObfuscate);
+            MockEntityRepo.SetupGet(x => x.GetEntityMetadataCache).Returns(MockEntityMetadataCache.Object);
+            MockCrmStoreReaderConfig.SetupGet(a => a.PageSize).Returns(500);
+            MockCrmStoreReaderConfig.SetupGet(a => a.BatchSize).Returns(500);
+            MockCrmStoreReaderConfig.SetupGet(a => a.TopCount).Returns(1000);
+            MockCrmStoreReaderConfig.SetupGet(a => a.OneEntityPerBatch).Returns(true);
+            MockCrmStoreReaderConfig.SetupGet(a => a.FieldsToObfuscate).Returns(EmptyFieldsToObfuscate);
+            MockCrmStoreReaderConfig.Setup(a => a.GetFetchXMLQueries(It.IsAny<IEntityMetadataCache>())).Returns(new List<string>());
+
+            dataCrmStoreReader = new DataCrmStoreReader(MockLogger.Object, MockEntityRepo.Object, MockCrmStoreReaderConfig.Object);
 
             string filePrefix = "Test";
             string filesPath = "TestData";
