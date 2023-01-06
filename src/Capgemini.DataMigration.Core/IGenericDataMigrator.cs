@@ -7,7 +7,9 @@ namespace Capgemini.DataMigration.Core
         where TMigrationEntityWrapper : MigrationEntityWrapper<TMigrationEntity>
     {
         void AddProcessor(IEntityProcessor<TMigrationEntity, TMigrationEntityWrapper> processor);
+
         int GetStartingPassNumber();
+
         void MigrateData();
     }
 }
