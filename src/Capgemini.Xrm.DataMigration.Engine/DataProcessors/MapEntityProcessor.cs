@@ -167,16 +167,16 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
         private void MapNonGuidAttributes(EntityWrapper entity, Dictionary<string, Dictionary<Guid, Guid>> mappings)
         {
-            foreach (KeyValuePair<string, object> item in entity.OriginalEntity.Attributes)
+            foreach (var value in entity.OriginalEntity.Attributes.Select(item => item.Value))
             {
-                if (item.Value is EntityReference)
+                if (value is EntityReference)
                 {
-                    EntityReference entRef = item.Value as EntityReference;
+                    EntityReference entRef = value as EntityReference;
                     SetEnityIdFromMap(mappings, entRef);
                 }
-                else if (item.Value is EntityCollection)
+                else if (value is EntityCollection)
                 {
-                    EntityCollection entCol = item.Value as EntityCollection;
+                    EntityCollection entCol = value as EntityCollection;
                     foreach (var ent in entCol.Entities)
                     {
                         MapGuids(new EntityWrapper(ent));
@@ -188,12 +188,10 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
         private void RemoveAliassedValues(Entity entity)
         {
             List<string> alliasedAttributes = GetAliasedKeys(entity);
-            foreach (var fieldName in alliasedAttributes)
+
+            foreach (var fieldToRemove in alliasedAttributes.Where(fieldName => entity.Attributes.ContainsKey(fieldName)))
             {
-                if (entity.Attributes.ContainsKey(fieldName))
-                {
-                    entity.Attributes.Remove(fieldName);
-                }
+                entity.Attributes.Remove(fieldToRemove);
             }
         }
 
