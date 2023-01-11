@@ -45,10 +45,10 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
                 throw new ArgumentOutOfRangeException($"The min({min}) must be lower than the max({max}).");
             }
 
-            int randomNumber = FormattingOptionProcessorStatics.RandomGenerator.Next(min, max);
+            int randomNumber = FormattingOptionProcessorStatics.Next(min, max);
             while (originalValue.Contains(randomNumber.ToString(CultureInfo.InvariantCulture)))
             {
-                randomNumber = FormattingOptionProcessorStatics.RandomGenerator.Next(min, max);
+                randomNumber = FormattingOptionProcessorStatics.Next(min, max);
             }
 
             return randomNumber;
@@ -123,7 +123,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.Obfuscate.ObfuscationType.Formattin
 
         private object LookupRandomValue(string columnName, ObfuscationLookup lookup)
         {
-            int index = FormattingOptionProcessorStatics.RandomGenerator.Next(lookup.Count - 1);
+            int index = FormattingOptionProcessorStatics.Next(lookup.Count - 1);
 
             var newValue = lookup[index, columnName];
             return newValue;
