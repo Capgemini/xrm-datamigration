@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+
+[assembly: InternalsVisibleTo("Capgemini.Xrm.DataMigration.Engine")]
 
 namespace Capgemini.DataScrambler.Scramblers
 {
     internal static class RandomGenerator
     {
-        internal static RandomNumberGenerator GetRandom { get; } = RandomNumberGenerator.Create();
+        private static RandomNumberGenerator GetRandom { get; } = RandomNumberGenerator.Create();
 
         internal static double NextDouble()
         {
@@ -31,6 +34,11 @@ namespace Capgemini.DataScrambler.Scramblers
             var diff = (long)maxValue - minValue;
 
             return (int)(minValue + (diff * NextDouble()));
+        }
+
+        internal static int Next(int maxValue)
+        {
+            return Next(0, maxValue);
         }
     }
 }
