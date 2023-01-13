@@ -25,7 +25,7 @@ stages:
             displayName: 'Push to private feed'
             inputs:
               command: push
-              packagesToPush: '$(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg'
+              packagesToPush: '$(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.symbols.nupkg'
               publishVstsFeed: 'e64f1ace-b73a-42b0-8b8e-4b2fdbdac2c9'
   - stage: PublishToPublicFeed
     displayName: Publish to Public Feed
@@ -46,6 +46,6 @@ stages:
                 displayName: 'Push NuGet Package'
                 inputs:
                   command: push
-                  packagesToPush: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg
+                  packagesToPush: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.symbols.nupkg
                   nuGetFeedType: external
                   publishFeedCredentials: Capgemini_UK
