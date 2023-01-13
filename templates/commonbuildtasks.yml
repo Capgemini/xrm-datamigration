@@ -11,16 +11,19 @@ jobs:
     steps:
         - task: NuGetToolInstaller@1
           displayName: Install NuGet
+
         - task: gittools.gitversion.gitversion-task.GitVersion@5
           displayName: GitVersion
           inputs:
             runtime: full
             configFilePath: '$(Build.SourcesDirectory)\GitVersion.yml'
             updateAssemblyInfo: true
+
         - task: NuGetCommand@2
           displayName: Restore packages
           inputs:
             restoreSolution: '$(solution)'
+
         - task: SonarCloudPrepare@1
           displayName: Prepare SonarCloud
           inputs:
@@ -30,12 +33,14 @@ jobs:
             projectKey: 'xrm-datamigration'
             projectName: 'xrm-datamigration'
             projectVersion: '$(GitVersion.NuGetVersionV2)'
+
         - task: VSBuild@1
           displayName: Build solution
           inputs:
             solution: '$(solution)'
             platform: '$(buildPlatform)'
             configuration: '$(buildConfiguration)'
+
         - task: VSTest@2
           displayName: Run tests
           inputs:
@@ -47,34 +52,43 @@ jobs:
              **\*Tests*.dll
              !**\*Integration*.dll
              !**\obj\**
+
 #         - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
 #           displayName: 'WhiteSource Bolt'
 #           inputs:
 #             cwd: '$(Build.SourcesDirectory)'
+
         - task: SonarCloudAnalyze@1
           displayName: 'Run Code Analysis'
+
         - task: SonarCloudPublish@1
           displayName: Publish SonarCloud results
           inputs:
             pollingTimeoutSec: '300'
-        - task: NuGetCommand@2
+
+        - task: DotNetCoreCLI@2
           displayName: Pack NuGet package
           inputs:
             command: pack
             packagesToPack: src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj
-            packDestination: '$(Build.ArtifactStagingDirectory)/package'
+            modifyOutputPath: true 
             versioningScheme: byEnvVar
             versionEnvVar: GitVersion.NuGetVersionV2
-            includeReferencedProjects: true
+            nobuild: true
+            buildProperties: Configuration=$(buildConfiguration)
+            packDirectory: '$(Build.ArtifactStagingDirectory)/package'
+
         - task: CopyFiles@2
           displayName: Copy tests to staging directory
           inputs:
             Contents: '**/$(buildConfiguration)/**'
             SourceFolder: tests
             TargetFolder: '$(Build.ArtifactStagingDirectory)/tests'
+
         - publish: $(Build.ArtifactStagingDirectory)/package
           displayName: Publish NuGet artifact
           artifact: Capgemini.Xrm.DataMigration.Engine
+
         - publish: $(Build.ArtifactStagingDirectory)/tests
           displayName: Publish tests
           artifact: Capgemini.Xrm.DataMigration.Tests
