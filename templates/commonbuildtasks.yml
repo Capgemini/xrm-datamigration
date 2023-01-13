@@ -66,6 +66,7 @@ jobs:
             versioningScheme: byEnvVar
             versionEnvVar: GitVersion.NuGetVersionV2
             includeReferencedProjects: true
+            noBuild: true
         - task: CopyFiles@2
           displayName: Copy tests to staging directory
           inputs:
