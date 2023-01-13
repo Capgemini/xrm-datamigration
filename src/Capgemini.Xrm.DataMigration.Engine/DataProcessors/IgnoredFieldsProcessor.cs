@@ -10,11 +10,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 {
     public class IgnoredFieldsProcessor : IEntityProcessor<Entity, EntityWrapper>
     {
-        private readonly List<string> filedsToIgnore;
+        private readonly List<string> fieldsToIgnore;
 
-        public IgnoredFieldsProcessor(List<string> filedsToIgnore)
+        public IgnoredFieldsProcessor(List<string> fieldsToIgnore)
         {
-            this.filedsToIgnore = filedsToIgnore;
+            this.fieldsToIgnore = fieldsToIgnore;
         }
 
         public int MinRequiredPassNumber
@@ -31,7 +31,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
             if (entity.OperationType != OperationType.Ignore)
             {
-                if (filedsToIgnore != null)
+                if (fieldsToIgnore != null)
                 {
                     RemoveIgnoredFieldsFromEntityAttributes(entity);
 
@@ -62,12 +62,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
         private void RemoveIgnoredFieldsFromEntityAttributes(EntityWrapper entity)
         {
-            foreach (var fieldName in filedsToIgnore)
+            foreach (var fieldToRemove in fieldsToIgnore.Where(fieldName => entity.OriginalEntity.Attributes.ContainsKey(fieldName)))
             {
-                if (entity.OriginalEntity.Attributes.ContainsKey(fieldName))
-                {
-                    entity.OriginalEntity.Attributes.Remove(fieldName);
-                }
+                entity.OriginalEntity.Attributes.Remove(fieldToRemove);
             }
         }
     }

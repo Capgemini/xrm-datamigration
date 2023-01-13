@@ -55,12 +55,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
                 // If the list is not empty process the entities fields
                 if (fieldsToChangeForCurrentEntity != null && fieldsToChangeForCurrentEntity.Count > 0)
                 {
-                    foreach (FieldToBeObfuscated field in fieldsToChangeForCurrentEntity)
+                    foreach (var fieldToObfuscate in fieldsToChangeForCurrentEntity.Where(field => originalEntity.Attributes.Contains(field.FieldName)))
                     {
-                        if (originalEntity.Attributes.Contains(field.FieldName))
-                        {
-                            ObfuscateField(originalEntity, field);
-                        }
+                        ObfuscateField(originalEntity, fieldToObfuscate);
                     }
                 }
             }

@@ -131,7 +131,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
         }
 
         [TestMethod]
-        public void GetFetchXMLQueries_ShouldThrowWhenNullCacheProvided()
+        public void GetFetchXMLQueriesShouldThrowWhenNullCacheProvided()
         {
             string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
             string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\TestDataSchema\\usersettingsschema.xml");
@@ -146,7 +146,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
         }
 
         [TestMethod]
-        public void GetFetchXMLQueries_ShouldIncludeCustomFilterWhenProvided()
+        public void GetFetchXMLQueriesShouldIncludeCustomFilterWhenProvided()
         {
             string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
             string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\TestDataSchema\\usersettingsschema.xml");
@@ -159,7 +159,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
         }
 
         [TestMethod]
-        public void GetFetchXMLQueries_ShouldNotIncludeActiveFilterWhenEnableButCustomFilterProvided()
+        public void GetFetchXMLQueriesShouldNotIncludeActiveFilterWhenEnableButCustomFilterProvided()
         {
             string folderPath = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
             string configPath = Path.Combine(folderPath, "TestData\\ImportSchemas\\TestDataSchema\\usersettingsschema.xml");
@@ -173,7 +173,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
         }
 
         [TestMethod]
-        public void GetFetchXMLQueries_ShouldIncludeActiveFilterWhenOnlyActiveRecordsIsTrue()
+        public void GetFetchXMLQueriesShouldIncludeActiveFilterWhenOnlyActiveRecordsIsTrue()
         {
             mockEntityMetadataCache.Setup(x => x.ContainsAttribute("systemuser", "statecode")).Returns(true);
 
@@ -188,7 +188,7 @@ namespace Capgemini.Xrm.DataMigration.CrmStore.Config.Tests
         }
 
         [TestMethod]
-        public void GetFetchXMLQueries_ShouldNotIncludeActiveFilterWhenStateCodeFieldDoesNotExist()
+        public void GetFetchXMLQueriesShouldNotIncludeActiveFilterWhenStateCodeFieldDoesNotExist()
         {
             mockEntityMetadataCache.Setup(x => x.ContainsAttribute("systemuser", "statecode")).Returns(false);
 

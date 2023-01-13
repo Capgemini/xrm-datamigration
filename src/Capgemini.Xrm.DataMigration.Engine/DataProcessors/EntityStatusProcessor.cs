@@ -84,12 +84,9 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
         private static void RemoveStatusFields(EntityWrapper entity)
         {
-            foreach (var fieldName in StatusFields)
+            foreach (var fieldToRemove in StatusFields.Where(fieldName => entity.OriginalEntity.Attributes.ContainsKey(fieldName)))
             {
-                if (entity.OriginalEntity.Attributes.ContainsKey(fieldName))
-                {
-                    entity.OriginalEntity.Attributes.Remove(fieldName);
-                }
+                entity.OriginalEntity.Attributes.Remove(fieldToRemove);
             }
         }
     }

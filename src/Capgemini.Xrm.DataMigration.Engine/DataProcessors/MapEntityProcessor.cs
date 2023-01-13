@@ -111,11 +111,11 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
         {
             foreach (var item in items.Where(item => item.Value is Guid))
             {
-                SetEnityAttributeFromMap(entity, mappings, item);
+                SetEntityAttributeFromMap(entity, mappings, item);
             }
         }
 
-        private static void SetEnityIdFromMap(Dictionary<string, Dictionary<Guid, Guid>> mappings, EntityReference entRef)
+        private static void SetEntityIdFromMap(Dictionary<string, Dictionary<Guid, Guid>> mappings, EntityReference entRef)
         {
             if (mappings != null && mappings.ContainsKey(entRef.LogicalName))
             {
@@ -132,7 +132,7 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
             return entity.Attributes.Where(a => a.Value is AliasedValue).Select(a => a.Key).ToList();
         }
 
-        private static void SetEnityAttributeFromMap(EntityWrapper entity, Dictionary<string, Dictionary<Guid, Guid>> mappings, KeyValuePair<string, object> item)
+        private static void SetEntityAttributeFromMap(EntityWrapper entity, Dictionary<string, Dictionary<Guid, Guid>> mappings, KeyValuePair<string, object> item)
         {
             if (mappings != null && mappings.ContainsKey(entity.LogicalName))
             {
@@ -167,16 +167,16 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
 
         private void MapNonGuidAttributes(EntityWrapper entity, Dictionary<string, Dictionary<Guid, Guid>> mappings)
         {
-            foreach (KeyValuePair<string, object> item in entity.OriginalEntity.Attributes)
+            foreach (var value in entity.OriginalEntity.Attributes.Select(item => item.Value))
             {
-                if (item.Value is EntityReference)
+                if (value is EntityReference)
                 {
-                    EntityReference entRef = item.Value as EntityReference;
-                    SetEnityIdFromMap(mappings, entRef);
+                    EntityReference entRef = value as EntityReference;
+                    SetEntityIdFromMap(mappings, entRef);
                 }
-                else if (item.Value is EntityCollection)
+                else if (value is EntityCollection)
                 {
-                    EntityCollection entCol = item.Value as EntityCollection;
+                    EntityCollection entCol = value as EntityCollection;
                     foreach (var ent in entCol.Entities)
                     {
                         MapGuids(new EntityWrapper(ent));
@@ -188,12 +188,10 @@ namespace Capgemini.Xrm.DataMigration.Engine.DataProcessors
         private void RemoveAliassedValues(Entity entity)
         {
             List<string> alliasedAttributes = GetAliasedKeys(entity);
-            foreach (var fieldName in alliasedAttributes)
+
+            foreach (var fieldToRemove in alliasedAttributes.Where(fieldName => entity.Attributes.ContainsKey(fieldName)))
             {
-                if (entity.Attributes.ContainsKey(fieldName))
-                {
-                    entity.Attributes.Remove(fieldName);
-                }
+                entity.Attributes.Remove(fieldToRemove);
             }
         }
 

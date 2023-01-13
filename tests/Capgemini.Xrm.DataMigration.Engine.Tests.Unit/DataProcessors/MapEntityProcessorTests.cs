@@ -236,6 +236,49 @@ namespace Capgemini.Xrm.DataMigration.Engine.Tests.Unit.DataProcessors
         }
 
         [TestMethod]
+        public void MapNonGuidAttributes()
+        {
+            Guid entityGuid = Guid.NewGuid();
+            Guid mappedGuid = Guid.NewGuid();
+            Entity entity = new Entity()
+            {
+                Attributes = new AttributeCollection()
+                {
+                    {
+                        "key", new EntityReference()
+                        {
+                            Id = entityGuid,
+                            LogicalName = "Name",
+                        }
+                    }
+                }
+            };
+            EntityWrapper entitycollection = new EntityWrapper(new Entity()
+            {
+                Attributes = new AttributeCollection()
+                {
+                    {
+                        "key", new EntityCollection(new List<Entity>() { { entity } })
+                    }
+                }
+            });
+            MappingConfiguration mappingConfig = new MappingConfiguration();
+            mappingConfig.Mappings.Add("Name", new Dictionary<Guid, Guid>
+                    {
+                        { entityGuid, mappedGuid }
+                    });
+
+            MapEntityProcessor mapEntityProcessor = new MapEntityProcessor(mappingConfig, MockLogger.Object, MockEntityRepo.Object, passOneReferences);
+
+            PrivateObject privateObject = new PrivateObject(mapEntityProcessor);
+            privateObject.Invoke("MapNonGuidAttributes", new object[] { entitycollection, mappingConfig.Mappings });
+
+            EntityReference entityReference = (EntityReference)entity.Attributes["key"];
+
+            Assert.AreEqual(entityReference.Id, mappedGuid);
+        }
+
+        [TestMethod]
         public void ImportCompleted()
         {
             systemUnderTest = new MapEntityProcessor(mappingConfig, MockLogger.Object, MockEntityRepo.Object, passOneReferences);
