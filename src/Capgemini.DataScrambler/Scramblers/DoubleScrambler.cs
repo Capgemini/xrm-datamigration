@@ -17,6 +17,6 @@
             return randomNumber;
         }
 
-        private static double CalculateRandomDouble(int max) => RandomGenerator.GetRandom.NextDouble() * max;
+        private static double CalculateRandomDouble(int max) => RandomGenerator.NextDouble() * max;
     }
 }
