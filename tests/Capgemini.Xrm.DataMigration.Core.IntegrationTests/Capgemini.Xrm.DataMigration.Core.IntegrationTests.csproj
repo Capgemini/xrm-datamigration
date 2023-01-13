@@ -9,7 +9,7 @@
     <AssemblyTitle>Capgemini.Xrm.DataMigration.Core.IntegrationTests</AssemblyTitle>
     <Company>Microsoft Corporation</Company>
     <Product>Capgemini.Xrm.DataMigration.Core.IntegrationTests</Product>
-    <Copyright>Copyright © Microsoft Corporation 2017</Copyright>
+    <Copyright>Copyright © 2023</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

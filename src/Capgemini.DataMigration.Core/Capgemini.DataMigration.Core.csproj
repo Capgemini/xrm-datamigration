@@ -4,11 +4,10 @@
     <AssemblyTitle>Capgemini.DataMigration.Core</AssemblyTitle>
     <Company>Capgemini</Company>
     <Product>Capgemini.DataMigration.Core</Product>
-    <Copyright>Copyright © Capgemini Corporation 2018</Copyright>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <Copyright>Copyright © 2023</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <CodeAnalysisRuleSet>Capgemini.DataMigration.Core.ruleset</CodeAnalysisRuleSet>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>

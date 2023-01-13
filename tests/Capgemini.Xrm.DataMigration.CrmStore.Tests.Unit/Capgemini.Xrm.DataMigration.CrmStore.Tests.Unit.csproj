@@ -8,7 +8,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <AssemblyTitle>Capgemini.Xrm.DataMigration.CrmStore.Test.Unit</AssemblyTitle>
     <Product>Capgemini.Xrm.DataMigration.CrmStore.Test.Unit</Product>
-    <Copyright>Copyright ©  2019</Copyright>
+    <Copyright>Copyright © 2023</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

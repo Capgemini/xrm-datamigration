@@ -8,13 +8,13 @@
     <Company>Capgemini</Company>
     <Product>Capgemini.Xrm.DataMigration.Cli</Product>
     <Description>Command-line interface for the Capgemini Data Migration Engine</Description>
-    <Copyright>Copyright 2018</Copyright>
-    <Version>2.0.0.8</Version>
+    <Copyright>Copyright © 2023</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <CodeAnalysisRuleSet>Capgemini.Xrm.DataMigration.Cli.ruleset</CodeAnalysisRuleSet>
     <Authors>Capgemini</Authors>
     <PackageId>Capgemini.Xrm.DataMigration.Cli</PackageId>
     <PackageTags>Library</PackageTags>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>

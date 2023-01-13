@@ -5,10 +5,7 @@
     <Company>Capgemini</Company>
     <Product>Capgemini.Xrm.DataMigration.Engine</Product>
     <Description>Capgemini DataMigration Engine - Export/Import of CRM Data allowing management and release in the same way as code. The engine supports JSON and CSV file formats.</Description>
-    <Copyright>Capgemini Copyright ©  2019</Copyright>
-    <Version>3.0.1</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <Copyright>Copyright © 2023</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <CodeAnalysisRuleSet>Capgemini.Xrm.DataMigration.Engine.ruleset</CodeAnalysisRuleSet>
     <Authors>Capgemini</Authors>
@@ -18,6 +15,7 @@
     <PackageTags>Capgemini.Xrm.DataMigration, DataMigration, Xrm</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <IncludeSymbols>true</IncludeSymbols>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>

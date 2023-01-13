@@ -3,8 +3,9 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyTitle>Capgemini.DataMigration.Core.Tests.Base</AssemblyTitle>
     <Product>Capgemini.DataMigration.Core.Tests.Base</Product>
-    <Copyright>Copyright ©  2019</Copyright>
+    <Copyright>Copyright © 2023</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
