@@ -19,7 +19,7 @@ namespace Capgemini.DataScrambler.Scramblers
             StringBuilder sb = new StringBuilder();
             foreach (char c in input)
             {
-                int randomNumber = RandomGenerator.GetRandom.Next(0, Chars.Length);
+                int randomNumber = RandomGenerator.Next(0, Chars.Length);
                 char newCharacter = Chars[randomNumber];
                 sb.Append(newCharacter);
             }
