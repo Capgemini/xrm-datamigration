@@ -42,6 +42,11 @@ stages:
               - download: current
                 displayName: Download NuGet package artifact
                 artifact: Capgemini.Xrm.DataMigration.Engine
+
+              - task: NuGetToolInstaller@1
+                inputs:
+                  versionSpec: '5.x'
+
               - task: NuGetCommand@2
                 displayName: 'Push NuGet Package'
                 inputs:
