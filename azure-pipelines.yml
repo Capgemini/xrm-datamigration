@@ -46,6 +46,6 @@ stages:
                 displayName: 'Push NuGet Package'
                 inputs:
                   command: push
-                  packagesToPush: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.symbols.nupkg
+                  packagesToPush: $(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg
                   nuGetFeedType: external
                   publishFeedCredentials: Capgemini_UK
