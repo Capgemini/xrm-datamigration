@@ -1,21 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyTitle>Capgemini Data Migration Engine</AssemblyTitle>
-    <Company>Capgemini</Company>
-    <Product>Capgemini.Xrm.DataMigration.Engine</Product>
-    <Description>Capgemini DataMigration Engine - Export/Import of CRM Data allowing management and release in the same way as code. The engine supports JSON and CSV file formats.</Description>
-    <Copyright>Copyright © 2023</Copyright>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <CodeAnalysisRuleSet>Capgemini.Xrm.DataMigration.Engine.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>8.0</LangVersion>
     <Authors>Capgemini</Authors>
     <PackageId>Capgemini.Xrm.DataMigration.Engine</PackageId>
-    <PackageLicenseUrl>https://github.com/Capgemini/xrm-datamigration/blob/master/LICENSE</PackageLicenseUrl>
+    <Description>Capgemini DataMigration Engine - Export/Import of CRM Data allowing management and release in the same way as code. The engine supports JSON and CSV file formats.</Description>
     <PackageProjectUrl>https://github.com/Capgemini/xrm-datamigration</PackageProjectUrl>
     <PackageTags>Capgemini.Xrm.DataMigration, DataMigration, Xrm</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
