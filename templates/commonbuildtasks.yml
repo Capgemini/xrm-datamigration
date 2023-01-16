@@ -9,8 +9,10 @@ jobs:
         value: 'Release'
     displayName: Build test and analyse
     steps:
-        - task: NuGetToolInstaller@1
-          displayName: Install NuGet
+        - task: gitversion/setup@0
+          displayName: Install GitVersion
+          inputs:
+            versionSpec: '5.x'
 
         - task: gittools.gitversion.gitversion-task.GitVersion@5
           displayName: GitVersion
