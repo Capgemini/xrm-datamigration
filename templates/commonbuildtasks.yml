@@ -17,7 +17,7 @@ jobs:
           inputs:
             runtime: full
             configFilePath: '$(Build.SourcesDirectory)\GitVersion.yml'
-            updateAssemblyInfo: true
+            updateAssemblyInfo: false
 
         - task: NuGetCommand@2
           displayName: Restore packages
