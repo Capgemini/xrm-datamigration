@@ -21,11 +21,16 @@ stages:
           - download: current
             displayName: Download NuGet package artifact
             artifact: Capgemini.Xrm.DataMigration.Engine
+
+          - task: NuGetToolInstaller@1
+            inputs:
+              versionSpec: '5.x'
+            
           - task: NuGetCommand@2
             displayName: 'Push to private feed'
             inputs:
               command: push
-              packagesToPush: '$(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.symbols.nupkg'
+              packagesToPush: '$(Pipeline.Workspace)/Capgemini.Xrm.DataMigration.Engine/*.nupkg'
               publishVstsFeed: 'e64f1ace-b73a-42b0-8b8e-4b2fdbdac2c9'
   - stage: PublishToPublicFeed
     displayName: Publish to Public Feed
