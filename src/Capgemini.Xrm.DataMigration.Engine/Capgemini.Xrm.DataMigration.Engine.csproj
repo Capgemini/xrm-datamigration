@@ -5,25 +5,19 @@
     <Authors>Capgemini</Authors>
     <PackageId>Capgemini.Xrm.DataMigration.Engine</PackageId>
     <Description>Capgemini DataMigration Engine - Export/Import of CRM Data allowing management and release in the same way as code. The engine supports JSON and CSV file formats.</Description>
+    <Copyright>Capgemini Copyright © 2020</Copyright>
     <PackageProjectUrl>https://github.com/Capgemini/xrm-datamigration</PackageProjectUrl>
     <PackageTags>Capgemini.Xrm.DataMigration, DataMigration, Xrm</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
   <PropertyGroup>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <NoWarn>1701,1702,1573,1591,1712,RECS0145,RECS0129,CA1054,CA1056,SA1618,SA1600</NoWarn>
-    <DocumentationFile>bin\$(Configuration)\Capgemini.Xrm.DataMigration.Engine.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="9.2.3" />
