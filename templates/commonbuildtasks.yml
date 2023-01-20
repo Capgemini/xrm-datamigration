@@ -79,7 +79,9 @@ jobs:
             packDestination: '$(Build.ArtifactStagingDirectory)/package'
             versioningScheme: byEnvVar
             versionEnvVar: GitVersion.NuGetVersionV2
-            arguments: -Symbols -SymbolPackageFormat snupkg
+            includeReferencedProjects: true
+            includeSymbols: true
+            arguments: -SymbolPackageFormat snupkg
 
         - task: CopyFiles@2
           displayName: Copy tests to staging directory
