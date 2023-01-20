@@ -68,18 +68,6 @@ jobs:
           inputs:
             pollingTimeoutSec: '300'
 
-        - task: DotNetCoreCLI@2
-          displayName: Pack NuGet package
-          inputs:
-            command: pack
-            packagesToPack: src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj
-            modifyOutputPath: true 
-            versioningScheme: byEnvVar
-            versionEnvVar: GitVersion.NuGetVersionV2
-            nobuild: true
-            buildProperties: Configuration=$(buildConfiguration)
-            packDirectory: '$(Build.ArtifactStagingDirectory)/package'
-
         - task: NuGetCommand@2
           displayName: Pack NuGet package
           inputs:
