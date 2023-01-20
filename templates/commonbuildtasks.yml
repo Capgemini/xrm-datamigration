@@ -72,7 +72,7 @@ jobs:
           displayName: Pack NuGet package
           inputs:
             command: custom
-            arguments: pack src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj -IncludeReferencedProjects -Symbols -SymbolPackageFormat snupkg -Version $(GitVersion.NuGetVersionV2) --OutputDirectory '$(Build.ArtifactStagingDirectory)/package'
+            arguments: pack src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj -IncludeReferencedProjects -Symbols -SymbolPackageFormat snupkg -Version $(GitVersion.NuGetVersionV2) -OutputDirectory '$(Build.ArtifactStagingDirectory)/package'
 
         - task: CopyFiles@2
           displayName: Copy tests to staging directory
