@@ -60,12 +60,8 @@ jobs:
         - task: NuGetCommand@2
           displayName: Pack NuGet package
           inputs:
-            command: pack
-            packagesToPack: src/Capgemini.Xrm.DataMigration.Engine/Capgemini.Xrm.DataMigration.Engine.csproj
-            packDestination: '$(Build.ArtifactStagingDirectory)/package'
-            versioningScheme: byEnvVar
-            versionEnvVar: GitVersion.NuGetVersionV2
-            includeReferencedProjects: true
+            command: custom
+            arguments: pack $(Build.SourcesDirectory)\src\Capgemini.Xrm.DataMigration.Engine\Capgemini.Xrm.DataMigration.Engine.csproj -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\package -Properties Configuration=Release -IncludeReferencedProjects -Symbols -SymbolPackageFormat snupkg -Version $(GitVersion.NuGetVersionV2) -Verbosity Detailed
         - task: CopyFiles@2
           displayName: Copy tests to staging directory
           inputs:
