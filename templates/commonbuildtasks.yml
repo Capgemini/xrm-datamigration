@@ -9,6 +9,9 @@ jobs:
         value: 'Release'
     displayName: Build test and analyse
     steps:
+        - task: NuGetToolInstaller@1
+          displayName: Install NuGet
+
         - task: gitversion/setup@0
           displayName: Install GitVersion
           inputs:
@@ -67,10 +70,6 @@ jobs:
           displayName: Publish SonarCloud results
           inputs:
             pollingTimeoutSec: '300'
-
-        - task: NuGetToolInstaller@1
-          inputs:
-            versionSpec: '5.x'
 
         - task: NuGetCommand@2
           displayName: Pack NuGet package
