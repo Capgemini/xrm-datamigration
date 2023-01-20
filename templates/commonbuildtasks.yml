@@ -69,8 +69,8 @@ jobs:
             pollingTimeoutSec: '300'
 
         - task: NuGetToolInstaller@1
-            inputs:
-              versionSpec: '5.x'
+          inputs:
+            versionSpec: '5.x'
 
         - task: NuGetCommand@2
           displayName: Pack NuGet package
