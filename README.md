@@ -30,10 +30,10 @@ Open example project (Capgemini.Xrm.Datamigration.Examples) and edit configurati
         <value>Contacts</value>
       </setting>
       <setting name="CrmExportConnectionString" serializeAs="String">
-        <value>AuthType=OAuth; Username=***REMOVED***; Password=***REMOVED*** Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;</value>
+        <value>AuthType=OAuth; Username=name[at]example.onmicrosoft.com; Password=*********; Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;</value>
       </setting>
       <setting name="CrmImportConnectionString" serializeAs="String">
-        <value>AuthType=OAuth; Username=***REMOVED***; Password=***REMOVED*** Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;</value>
+        <value>AuthType=OAuth; Username=name[at]example.onmicrosoft.com; Password=*********; Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;</value>
       </setting>
       <setting name="UseCsvImport" serializeAs="String">
         <value>False</value>
@@ -86,10 +86,10 @@ Edit configuration file:
         <value>Contacts</value>
       </setting>
       <setting name="CrmExportConnectionString" serializeAs="String">
-        <value>AuthType=OAuth; Username=***REMOVED***; Password=***REMOVED*** Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;</value>
+        <value>AuthType=OAuth; Username=name[at]example.onmicrosoft.com; Password=*********; Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;</value>
       </setting>
       <setting name="CrmImportConnectionString" serializeAs="String">
-        <value>AuthType=OAuth; Username=***REMOVED***; Password=***REMOVED*** Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;</value>
+        <value>AuthType=OAuth; Username=name[at]example.onmicrosoft.com; Password=*********; Url=https://contosotest.crm.dynamics.com; AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97; LoginPrompt=Auto; RequireNewInstance=True;</value>
       </setting>
       <setting name="UseCsvImport" serializeAs="String">
         <value>False</value>
