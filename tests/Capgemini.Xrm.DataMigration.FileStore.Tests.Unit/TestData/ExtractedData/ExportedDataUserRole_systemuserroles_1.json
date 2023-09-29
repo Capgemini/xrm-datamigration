@@ -440,7 +440,7 @@
           "AttributeValue": {
             "AttributeLogicalName": "domainname",
             "EntityLogicalName": "systemuser",
-            "Value": "***REMOVED***"
+            "Value": "ciauth@capgeminicrmuk.onmicrosoft.com"
           },
           "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
         },
@@ -518,7 +518,7 @@
           "AttributeValue": {
             "AttributeLogicalName": "domainname",
             "EntityLogicalName": "systemuser",
-            "Value": "***REMOVED***"
+            "Value": "ciauth@capgeminicrmuk.onmicrosoft.com"
           },
           "AttributeType": "Microsoft.Xrm.Sdk.AliasedValue"
         },

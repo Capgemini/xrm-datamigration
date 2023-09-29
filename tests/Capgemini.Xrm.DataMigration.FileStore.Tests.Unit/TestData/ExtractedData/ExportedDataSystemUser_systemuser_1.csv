@@ -18,4 +18,4 @@ domainname,lastname,firstname,accessmode,map.businessunitid.isRootBU.name
 "","INTEGRATION","",0,capgeminibasedev
 "crmoln2@microsoft.com","","Delegated Admin",5,capgeminibasedev
 "","SYSTEM","",0,capgeminibasedev
-"***REMOVED***","Auth","CI",0,capgeminibasedev
+"ciauth@capgeminicrmuk.onmicrosoft.com","Auth","CI",0,capgeminibasedev
